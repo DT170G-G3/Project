@@ -44,7 +44,6 @@ Projektet är uppdelat i:
 
 > Vid build kopieras WAR automatiskt till `infra/payara/deployments/`.
 
-Detta bör finnas under infra.
 ### `infra/`
 - `docker-compose.yml` → startar MySQL + Flyway + Payara
 - `.env` → lokala variabler (ska inte committas)

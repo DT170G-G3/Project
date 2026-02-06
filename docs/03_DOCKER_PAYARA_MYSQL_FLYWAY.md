@@ -188,7 +188,7 @@ Det bör finna en fil under /config som heter post-boot-commands.asadmin om inte
 
 
 ## pom.xml
-För att war-filen skall hamna korrekt så sköter IDE'n det själ. detta bör finnas i er /backend/pom.xml
+För att war-filen skall hamna korrekt så sköter IDE'n/MAVEN det själv. detta bör finnas i er /backend/pom.xml
 ---------
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"

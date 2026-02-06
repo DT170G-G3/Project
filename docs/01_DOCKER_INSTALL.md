@@ -24,7 +24,7 @@
     Fungerar allt? bra! annars så blir det lite felsökning
 
 ## Felsökning
-Kör ni en logal mysql? DÅ kanske den tar upp den port som Docker vill använda. Avsluta programmet som tar.
+Kör ni mysql lokalt? DÅ kanske den tar upp den port som Docker vill använda. Avsluta programmet som tar.
 Enklast kör "netstat -ano | findstr :8080" för att se vad som tar upp porten. sedan "tasklist /FI "PID eq <PID>", nu vet du vilket program du skall stänga av.
 Man kan ändra portar i .env filen och via .yml-filen om det behövs om man inte lyckas ändra portar.
 Oftast "mysql" som tar upp porten, bara att stänga via terminalen.

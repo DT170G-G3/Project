@@ -32,7 +32,7 @@ Målet med dokumentationen är att alla i gruppen ska kunna:
 
 ### 2 Bygg WAR
     Kör följande via cmd i mappen /backend
-    ./mvnw clean pacakge (linux)
+    ./mvnw clean package (linux)
     .\mvnw.cmd clean package (windows)
     eller kör direkt via IDE Maven och välj clean och sedan package
 
