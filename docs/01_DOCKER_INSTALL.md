@@ -6,7 +6,9 @@
     wsl behövs för att kunna köra detta. 
     i valfri cmd skriv: 
         wsl --install
+        wsl --update
     man kan behöva trixa så det är wsl version 2
+        wsl -l -v
 
 
 ## Installera Docker Desktop
@@ -31,10 +33,10 @@ Portarna påverkar inte så mycket mer än vart ni skall ansluta emot, så det �
 ## Grundkommandon du behöver kunna i docker
 
 Lite olika kommandon för docker som kan vara bra att ta med sig:
-    docker compose ps               #lista containers
-    docker compose up -d --build    #bygg och kör upp
-    docker compose down             #
-    docker compose down -v          #
+    docker compose ps               #lista containers och status
+    docker compose up -d --build    #bygg och kör upp i bakgrunden
+    docker compose down             # stoppar och tar bort containrar
+    docker compose down -v          # stoppar men nollställer även databasen, bra när man vill wipa
     docker compose logs -f          #kolla loggar
     docker system df
-    docker system prune -a
+    docker system prune             #Totalrensning delux

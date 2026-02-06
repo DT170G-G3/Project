@@ -1,7 +1,22 @@
 # 03 — Docker stack (Payara + MySQL + Flyway)
 
-## What-if?
-Allt bör vara på plats via git, men om något inte stämmer så har ni det ni behöver copy-pasta längre ned i denna fil.
+## Snabbnavigering
+- [TL;DR starta lokalt](#tldr-starta-lokalt)
+- [Vad som startas](#vad-som-startas)
+- [Hur Payara och MySQL pratar](#hur-payara-och-mysql-pratar)
+- [Post-boot JDBC](#post-boot-jdbc)
+- [Deploy av WAR](#deploy-av-war)
+- [Flyway migrations](#flyway-migrations)
+- [Copy/paste (vid behov)](#copypaste-vid-behov)
+
+
+## TL;DR starta lokalt
+Kör från:
+`infra/docker/`
+
+docker compose --env-file .env up -d --build
+docker compose ps
+docker logs -f restaurant-payara
 
 ## Vad som startas
 - `mysql` → databasen

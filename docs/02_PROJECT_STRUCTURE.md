@@ -1,14 +1,27 @@
 # 02 — Projektstruktur
 
+## Snabbnavigering
+- [Översikt](#översikt)
+- [Projektträd](#projektträd)
+- [Viktiga mappar](#viktiga-mappar)
+  - [android-app-1](#android-app-1)
+  - [backend](#backend)
+  - [infra](#infra)
+- [Flyway-regler](#flyway-regler)
+
+
 ## Översikt
+
 Projektet är uppdelat i:
 - `android-app-1` → Android applikation
 - `backend/` → Java backend (bygger en WAR: `restaurant.war`)
 - `infra/` → Docker-stack, Payara-konfig, Flyway-migrations
 
+## Projektträd
     /Project
     +---android-app-1
     +---backend
+    +---docs                    (All dokumentation)
     +---infra                   (här lägger ni docker-compose.yml samt .env)
         +---db
         |   +---init            (lägg grundschema här så vi har koll på basen)
