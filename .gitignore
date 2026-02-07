@@ -25,3 +25,14 @@ yarn-error.log*
 *.tmp
 *.temp
 .cache/
+
+# Ignorera alla WAR-filer oavsett var de ligger
+*.war
+
+# Ignorera Mavens byggmapp
+**/target/
+
+# Ignorera Gradles byggmappar (för Android)
+.gradle/
+**/build/
+infra/payara/deployments/restaurant.war
