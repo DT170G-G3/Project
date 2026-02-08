@@ -123,6 +123,33 @@
     transform: translateY(-1px);
 }
 
+/* Credits till respektive bild */
+.hero-credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    /*pointer-events: none;*/
+}
+
+.hero-credit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-family: sans-serif;
+
+    opacity: 0;
+    animation: heroFade 30s ease-in-out infinite;
+}
+
+/* Matchar delay som bildern har */
+.hero-credit.c1 { animation-delay: 0s; }
+.hero-credit.c2 { animation-delay: 10s; }
+.hero-credit.c3 { animation-delay: 20s; }
+
 
 /* =========================
    Concept section
