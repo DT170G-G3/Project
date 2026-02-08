@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>
+        <ui:insert name="title">Anton's Skafferi</ui:insert>
+    </title>
+
+    <h:outputStylesheet library="css" name="base.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="layout.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="components.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="landing.css?v=${build.version}" />
+<!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}" />-->
+<!--    <h:outputStylesheet library="css" name="layout.css?v=1" />-->
+
+    <ui:insert name="extra-head" />
+</h:head>
+
+<h:body>
+    <header class="header">
+        <div class="logo">
+            <h:link outcome="index">Anton's Skafferi</h:link>
+        </div>
+        <nav class="nav-links">
+            <h:link outcome="index" value="Hem" styleClass="nav-link" />
+            <h:link outcome="lunch" value="Lunch" styleClass="nav-link" />
+            <h:link outcome="menu" value="À La Carte" styleClass="nav-link" />
+            <h:link outcome="booking" value="Boka bord" styleClass="nav-link" />
+            <h:link outcome="events" value="Events" styleClass="nav-link" />
+        </nav>
+    </header>
+
+<!--    laddas bara om man definierar namet "hero" på respektive sida-->
+    <ui:insert name="hero"/>
+<!--    sidor som man döper till name="content" kommer att laddas här under-->
+    <main id="main-content" class="main-container">
+        <ui:insert name="content">
+            <p>Innehåll saknas.</p>
+        </ui:insert>
+    </main>
+<!-- fram till hit..-->
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>© 2026 Anton's Skafferi</p>
+        </div>
+    </footer>
+</h:body>
+</html>

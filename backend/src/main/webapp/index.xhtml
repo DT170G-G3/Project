@@ -1,20 +1,72 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/base.xhtml">
 
-<h:head>
-    <meta charset="UTF-8" />
-    <title>En Ganska Kass Titel</title>
-    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>
+    <ui:define name="title">Anton's Skafferi - Lokala Smaker</ui:define>
 
-</h:head>
-<h:body>
-    <div class="container">
+    <ui:define name="hero">
+        <section class="hero">
 
-        <h1>Test igen om det fungerar, sienna</h1>
-        <div id="message-box">
-            <h:outputText value="#{dbHandler.messageText}" />
-        </div>
-    </div>
-</h:body>
+            <div class="hero-slides" aria-hidden="true">
+                <span class="hero-slide s1"></span>
+                <span class="hero-slide s2"></span>
+                <span class="hero-slide s3"></span>
+                <span class="hero-slide s4"></span>
+            </div>
 
-</html>
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <h1>Välkommen till Anton's Skafferi</h1>
+                <p>Där skog och hav är centralt i varje maträtt.</p>
+                <h:link outcome="lunch" value="Se dagens lunch" styleClass="hero-btn" />
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <section class="concept-section">
+            <h2>Vårt Koncept</h2>
+            <p>
+                Vi tror på det enkla och äkta. Vi har alltid en grundmeny som vi följer,
+                men vi låter oss inspireras av säsongens smaker och vad naturen har att erbjuda. Vi sammarbetar
+                med lokala bönder, fiskare och jägare för att säkerställa att vi alltid har de bästa råvarorna på tallriken.
+                Hos oss hittar du alltid <strong>färskfångad fisk</strong>,
+                <strong>viltkött av högsta kvalitet</strong> eller
+                <strong>närodlat kött</strong>.
+            </p>
+        </section>
+
+        <section class="category-grid">
+
+            <div class="card">
+                <div class="card-header"><h3>Dagens Lunch</h3></div>
+                <div class="card-content"><p>Klassisk husman med en vild twist. Se även vår veckovy.</p></div>
+                <div class="card-link"><h:link outcome="lunch" value="Visa lunchmeny" /></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h3>À La Carte</h3></div>
+                <div class="card-content"><p>Utvalt vilt och dagens fångst.</p></div>
+                <div class="card-link"><h:link outcome="menu" value="Se hela menyn" /></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h3>Boka Bord</h3></div>
+                <div class="card-content"><p>Säkra din plats i skafferiet.</p></div>
+                <div class="card-link"><h:link outcome="booking" value="Till bokningen" /></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h3>Musik och Events</h3></div>
+                <div class="card-content"><p>Kommande &amp; tidigare events.</p></div>
+                <div class="card-link"><h:link outcome="events" value="Gå till bloggen" /></div>
+            </div>
+
+        </section>
+
+    </ui:define>
+
+</ui:composition>
