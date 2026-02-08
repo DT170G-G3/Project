@@ -3,7 +3,6 @@
    ========================= */
 
 :root {
-    /* Colors (enligt ditt schema) */
     --bg-dark: oklch(0.1 0.025 264);
     --bg: oklch(0.15 0.025 264);
     --bg-light: oklch(0.2 0.025 264);
@@ -24,13 +23,13 @@
     --success: oklch(0.7 0.05 160);
     --info: oklch(0.7 0.05 260);
 
-    /* Typography (fluid) */
+    /* Typography */
     --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
     --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
     --font-size-h2: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
     --font-size-h3: clamp(1.1rem, 1.0rem + 0.7vw, 1.45rem);
 
-    /* Spacing (fluid) */
+    /* Spacing  */
     --padding-fluid: clamp(0.9rem, 0.6rem + 1.1vw, 1.6rem);
     --gap-fluid: clamp(0.75rem, 0.5rem + 1vw, 1.35rem);
     --space-fluid: clamp(1.2rem, 0.9rem + 1.6vw, 2.6rem);
@@ -46,6 +45,9 @@
     /* Effects */
     --shadow: 0 18px 55px rgba(0,0,0,0.35);
     --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+
+    /* Scale */
+    --scale-on-hover: 1.015;
 
     color-scheme: dark;
 }

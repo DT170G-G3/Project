@@ -59,13 +59,34 @@
 }
 
 .nav-link {
+    position: relative;
     padding: 0.55em 0.8em;
     border-radius: 999px;
     border: 1px solid transparent;
     color: color-mix(in oklch, var(--text) 92%, transparent);
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover {
     background: color-mix(in oklch, var(--bg-light) 55%, transparent);
     border-color: color-mix(in oklch, var(--border-muted) 60%, transparent);
+}
+
+/* Själva linjen */
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;      /* Hur långt ner från texten den ska ligga */
+    left: 0.8em;       /* Matchar din padding så linjen linjerar med texten */
+    right: 0.8em;
+    height: 2px;       /* Tjockleken du bad om */
+    background-color: var(--secondary);
+    border-radius: 2px;
+    box-shadow: 0 0 8px color-mix(in oklch, var(--secondary) 40%, transparent); /* Valfritt: ger ett litet "glow" */
+}
+
+/* Gör texten lite tydligare när den är aktiv */
+.nav-link.active {
+    color: var(--text);
+    font-weight: 600;
 }

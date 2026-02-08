@@ -31,7 +31,7 @@
     background-repeat: no-repeat;
 
     opacity: 0;
-    /* ändra duration här, fint att det är jämnt delbart på antal bildder) */
+    /* ändra duration här, fint om det är jämnt delbart på antal bildder) */
     animation: heroFade 30s ease-in-out infinite;
 }
 
@@ -45,7 +45,7 @@
 .hero-slide.s1{ animation-delay: 0s; }
 .hero-slide.s2{ animation-delay: 10s; }
 .hero-slide.s3{ animation-delay: 20s; }
-/*.hero-slide.s4{ animation-delay: 18s; }*/
+/*.hero-slide.s4{ animation-delay: 30s; }*/
 
 /* Fade-form: synlig ~1/4 av tiden */
 @keyframes heroFade{
@@ -125,7 +125,7 @@
 
 
 /* =========================
-   Sections
+   Concept section
    ========================= */
 
 .concept-section {
@@ -139,7 +139,7 @@
     transition: ease-in-out 0.2s;
 }
 
-.concept-section:hover { transform: scale(1.02); border-color: var(--border-muted); }
+.concept-section:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted); }
 
 .concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
 .concept-section strong { color: var(--text); }
