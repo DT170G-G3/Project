@@ -73,6 +73,14 @@
 
 /* Innehåll ovanpå allt i hero */
 .hero-inner{
+
+    /*glaseffekt*/
+    background: rgba(0,0,0,0.10);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius);
+
+
     position: relative;
     z-index: 2;
 
@@ -80,6 +88,7 @@
     place-items: center;
     padding: var(--space-fluid) var(--padding-fluid);
     max-width: var(--container-width);
+    bor
 }
 
 /* Reduced motion */
@@ -102,9 +111,6 @@
     margin-inline: auto;
     color: color-mix(in oklch, var(--text) 80%, transparent);
     margin-bottom: 1.2em;
-    text-shadow:
-            1px 1px 3px rgba(0,0,0,0.8),
-            0 10px 30px rgba(0,0,0,0.5);
 }
 
 

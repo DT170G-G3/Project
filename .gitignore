@@ -36,3 +36,5 @@ yarn-error.log*
 .gradle/
 **/build/
 infra/payara/deployments/restaurant.war
+backend/.idea/copilot.data.migration.ask2agent.xml
+infra/payara/deployments/restaurant.war
