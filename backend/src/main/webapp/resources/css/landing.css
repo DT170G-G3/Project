@@ -32,27 +32,27 @@
 
     opacity: 0;
     /* ändra duration här, fint om det är jämnt delbart på antal bildder) */
-    animation: heroFade 30s ease-in-out infinite;
+    animation: heroFade 40s ease-in-out infinite;
 }
 
-/* Lägg bildern här för animation */
+/* Bilder för animation */
 .hero-slide.s1{ background-image: url("#{resource['images:burgers.jpeg']}"); }
 .hero-slide.s2{ background-image: url("#{resource['images:Drink-picture.jpg']}"); }
 .hero-slide.s3{ background-image: url("#{resource['images:bottles-picture.jpg']}"); }
-/*.hero-slide.s4{ background-image: url("#{resource['images:hero4.jpg']}"); }*/
+.hero-slide.s4{ background-image: url("#{resource['images:fish.jpg']}"); }
 
-/* Förskjut animationen så varje bild får sin “slot” */
+/* Förskjut tiden för att matcha antalet bilder mot animationen */
 .hero-slide.s1{ animation-delay: 0s; }
 .hero-slide.s2{ animation-delay: 10s; }
 .hero-slide.s3{ animation-delay: 20s; }
-/*.hero-slide.s4{ animation-delay: 30s; }*/
+.hero-slide.s4{ animation-delay: 30s; }
 
 /* Fade-form: synlig ~1/4 av tiden */
 @keyframes heroFade{
     0%      { opacity: 0; }
-    8%      { opacity: 1; }
-    30%     { opacity: 1; }
-    38%     { opacity: 0; }
+    5%      { opacity: 1; }
+    25%     { opacity: 1; }
+    30%     { opacity: 0; }
     100%    { opacity: 0; }
 }
 
@@ -88,7 +88,6 @@
     place-items: center;
     padding: var(--space-fluid) var(--padding-fluid);
     max-width: var(--container-width);
-    bor
 }
 
 /* Reduced motion */
@@ -154,13 +153,15 @@
     font-family: sans-serif;
 
     opacity: 0;
-    animation: heroFade 30s ease-in-out infinite;
+    /*Denna duration MÅSTE vara samma som animationen för bilderna*/
+    animation: heroFade 40s ease-in-out infinite;
 }
 
 /* Matchar delay som bildern har */
 .hero-credit.c1 { animation-delay: 0s; }
 .hero-credit.c2 { animation-delay: 10s; }
 .hero-credit.c3 { animation-delay: 20s; }
+.hero-credit.c4 { animation-delay: 30s; }
 
 
 /* =========================
