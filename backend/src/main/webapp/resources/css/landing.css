@@ -1,6 +1,6 @@
 
 /* =========================
-   Hero – 2-bilders crossfade + gradient overlay
+   Hero med bild animation
    ========================= */
 
 .hero{
@@ -71,7 +71,7 @@
     );
 }
 
-/* Innehåll ovanpå allt */
+/* Innehåll ovanpå allt i hero */
 .hero-inner{
     position: relative;
     z-index: 2;
@@ -91,7 +91,9 @@
 
 .hero-inner h1 {
     color: var(--secondary);
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-shadow:
+            1px 1px 3px rgba(0,0,0,0.8),
+            0 10px 30px rgba(0,0,0,0.5);
     margin-bottom: 0.35em;
 }
 
@@ -100,7 +102,11 @@
     margin-inline: auto;
     color: color-mix(in oklch, var(--text) 80%, transparent);
     margin-bottom: 1.2em;
+    text-shadow:
+            1px 1px 3px rgba(0,0,0,0.8),
+            0 10px 30px rgba(0,0,0,0.5);
 }
+
 
 .hero-btn {
     display: inline-flex;

@@ -30,13 +30,12 @@
         <nav class="nav-links">
             <h:link outcome="index" value="Hem" styleClass="nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}"/>
             <h:link outcome="lunch" value="Lunch" styleClass="nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}"/>
-            <h:link outcome="menu" value="À La Carte" styleClass="nav-link #{view.viewId == '/menu.xhtml' ? 'active' : ''}"/>
+            <h:link outcome="menu" value="Á La Carte" styleClass="nav-link #{view.viewId == '/menu.xhtml' ? 'active' : ''}"/>
             <h:link outcome="booking" value="Boka bord" styleClass="nav-link #{view.viewId == '/booking.xhtml' ? 'active' : ''}"/>
             <h:link outcome="events" value="Events" styleClass="nav-link #{view.viewId == '/events.xhtml' ? 'active' : ''}"/>
         </nav>
     </header>
 
-<!--    laddas bara om man definierar namet "hero" på respektive sida-->
     <ui:insert name="hero"/>
 <!--    sidor som man döper till name="content" kommer att laddas här under-->
     <main id="main-content" class="main-container">

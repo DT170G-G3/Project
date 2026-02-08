@@ -29,7 +29,7 @@ exempel:
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/templates/base.xhtml">
 
-    <ui:define name="title">'Á la carte'</ui:define>
+    <ui:define name="title">Á la carte</ui:define>
 
     <ui:define name="content">
         <h1>Á la carte meny</h1>
