@@ -9,7 +9,6 @@
     position: relative;
     overflow: hidden;
     background: var(--bg-dark);
-
     display: grid;
     place-items: center;
     text-align: center;
@@ -29,6 +28,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    /*background-attachment: fixed; */
 
     opacity: 0;
     /* ändra duration här, fint om det är jämnt delbart på antal bildder) */
