@@ -1,6 +1,11 @@
 CREATE TABLE dish (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(255) NOT NULL,
     price DECIMAL(7,2) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE category (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(255)
 ) ENGINE=InnoDB;
