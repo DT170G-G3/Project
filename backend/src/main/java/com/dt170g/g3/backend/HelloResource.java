@@ -5,7 +5,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import com.dt170g.g3.backend.entities.Message;
+import com.dt170g.g3.backend.entities.Dish;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class HelloResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getAllMessages() {
-        return dbHandler.getMessages();
+    public List<Dish> getAllMessages() {
+        return dbHandler.getDishes();
     }
 }
