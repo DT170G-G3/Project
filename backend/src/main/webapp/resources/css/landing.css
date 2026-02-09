@@ -47,12 +47,12 @@
 .hero-slide.s3{ animation-delay: 20s; }
 .hero-slide.s4{ animation-delay: 30s; }
 
-/* Fade-form: synlig ~1/4 av tiden */
+/* Fade-form */
 @keyframes heroFade{
     0%      { opacity: 0; }
-    5%      { opacity: 1; }
-    25%     { opacity: 1; }
-    30%     { opacity: 0; }
+    10%      { opacity: 1; }
+    28%     { opacity: 1; }
+    35%     { opacity: 0; }
     100%    { opacity: 0; }
 }
 
