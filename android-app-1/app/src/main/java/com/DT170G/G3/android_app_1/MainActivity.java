@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
 
             /*
              *    Below is simply a test to see if the database can be reached!
@@ -63,5 +68,41 @@ public class MainActivity extends AppCompatActivity {
 
             return insets;
         });
+
+
+        BottomNavigationView bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
+
+        Fragment addOrderFragment = new AddOrderFragment();
+        Fragment chefFragment = new ChefFragment();
+        Fragment drinkFragment = new DrinkFragment();
+        Fragment calendarFragment = new CalendarFragment();
+        Fragment summarizeOrderFragment = new SummarizeOrderFragment();
+
+        setCurrentFragment(addOrderFragment);
+
+        bottomNavigationMenu.setOnItemSelectedListener(item-> {
+            int id = item.getItemId();
+            if(id == R.id.addOrder) {
+                setCurrentFragment(addOrderFragment);
+            }
+            else if (id == R.id.chef) {
+                setCurrentFragment(chefFragment);
+            }
+            else if (id == R.id.drink) {
+                setCurrentFragment(drinkFragment);
+            }
+            else if (id == R.id.calendar) {
+                setCurrentFragment(calendarFragment);
+            }
+            else if (id == R.id.summarizeOrder) {
+                setCurrentFragment(summarizeOrderFragment);
+            }
+            return true;
+        });
+
+    }
+
+    private void setCurrentFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/addOrder"
+        android:title="Order"
+        android:icon="@drawable/add_order"
+        />
+
+    <item
+        android:id="@+id/chef"
+        android:title="Kök"
+        android:icon="@drawable/chef" />
+
+
+    <item
+        android:id="@+id/drink"
+        android:title="Dryck"
+        android:icon="@drawable/drink" />
+
+
+    <item
+        android:id="@+id/calendar"
+        android:title="Schema"
+        android:icon="@drawable/calendar" />
+
+    <item
+        android:id="@+id/summarizeOrder"
+        android:title="Hantera order"
+        android:icon="@drawable/summarize_order" />
+</menu>
