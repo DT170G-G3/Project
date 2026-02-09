@@ -14,18 +14,22 @@ public class DatabaseHandler {
     @PersistenceContext
     EntityManager entityManager;
 
+    public Dish getDishById(int id){
+        Dish dish = entityManager.find(Dish.class, id);
+        return dish;
+    }
     public List<Dish> getDishes(){
         TypedQuery<Dish> messageQuery = entityManager.createNamedQuery("Dish.getAll", Dish.class);
         List<Dish> resultList = messageQuery.getResultList();
         return resultList;
     }
 
-    public String getDescriptionText(){
-        List<Dish> messageList = getDishes();
-        if(messageList.isEmpty()){
+    public String getDishName(){
+        Dish dish = getDishById(1);
+        if(dish.getName().isEmpty()){
             return "NO MESSAGES!";
         }
-        return messageList.get(0).getDescription();
+        return dish.getName();
     }
 }
 

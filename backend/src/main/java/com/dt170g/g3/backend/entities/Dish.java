@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @NamedQueries(
-        @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM Dish name")
+        @NamedQuery(name = "Dish.getAll", query = "SELECT info FROM Dish info WHERE info.id = :id")
 )
 @Entity
 @Table(name = "dish")
