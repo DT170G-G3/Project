@@ -1,3 +1,10 @@
 CREATE TABLE dish (
 
 ) ENGINE=InnoDB;
+
+
+
+CREATE TABLE category(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+) ENGINE=InnoDB;
