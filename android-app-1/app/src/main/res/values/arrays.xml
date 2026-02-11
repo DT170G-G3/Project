@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tableList">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+
+    <string-array name="drinkList">
+        <item>Pepsi</item>
+        <item>Pepsi Max</item>
+        <item>Vin</item>
+        <item>Annat vin</item>
+        <item>God drink</item>
+        <item>Öl</item>
+    </string-array>
+
+    <string-array name="foodList">
+        <item>Fisk</item>
+        <item>Kötträtt</item>
+        <item>Soppa</item>
+        <item>Veg</item>
+        <item>Något annat gottigt</item>
+        <item>Mer gott</item>
+    </string-array>
+</resources>

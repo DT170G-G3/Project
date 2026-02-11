@@ -1,12 +1,24 @@
 package com.DT170G.G3.android_app_1;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,4 +73,89 @@ public class AddOrderFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //Bordsval
+        Spinner tableSpinner = view.findViewById(R.id.tableSpinner);
+        //byt detta till inläsning från databas
+        String[] tables = getResources().getStringArray(R.array.tableList);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.tableList,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tableSpinner.setAdapter(adapter);
+
+
+        //Byt detta mot inlsäning från databas
+        String[] drinks = getResources().getStringArray(R.array.drinkList);
+        String[] foods = getResources().getStringArray(R.array.foodList);
+
+        LinearLayout drinkContainer = view.findViewById(R.id.drinkContainer);
+        LinearLayout foodContainer = view.findViewById(R.id.foodContainer);
+
+        //loopa igenom listan av drinkar för att skriva ut
+        for(String drink : drinks) {
+            drinkContainer.addView((createDrinkAndFoodRow(drink)));
+        }
+
+        for(String food : foods) {
+            foodContainer.addView(createDrinkAndFoodRow(food));
+        }
+    }
+
+    private LinearLayout createDrinkAndFoodRow(String itemName) {
+        LinearLayout drinkAndFoodRow = new LinearLayout(requireContext());
+        drinkAndFoodRow.setOrientation(LinearLayout.HORIZONTAL);
+        drinkAndFoodRow.setPadding(0,16,0,16);
+
+        //Dryckesnamn
+        TextView drinkName = new TextView(requireContext());
+        drinkName.setText(itemName);
+        drinkName.setTextSize(18);
+        drinkName.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1
+        ));
+
+        //Minusknapp
+        Button minusButton = new Button(requireContext());
+        minusButton.setText("-");
+        minusButton.setLayoutParams(new LinearLayout.LayoutParams(120,120));
+
+        //Antal
+        TextView numberText = new TextView((requireContext()));
+        numberText.setText("0");
+        numberText.setTextSize(18);
+        numberText.setGravity(Gravity.CENTER);
+        numberText.setLayoutParams(new LinearLayout.LayoutParams(120,120));
+
+        //Plusknapp
+        Button plusButton = new Button(requireContext());
+        plusButton.setText("+");
+        plusButton.setLayoutParams(new LinearLayout.LayoutParams(120,120));
+
+        //öka antal
+        plusButton.setOnClickListener(numberButtonClicked -> {
+            int currentNumber = Integer.parseInt(numberText.getText().toString());
+            numberText.setText(String.valueOf(currentNumber +1));
+        });
+
+        minusButton.setOnClickListener(numberButtonClicked -> {
+            int currentNumber = Integer.parseInt(numberText.getText().toString());
+            if(currentNumber > 0 ) {
+                numberText.setText(String.valueOf(currentNumber -1));
+            }
+        });
+
+        drinkAndFoodRow.addView(drinkName);
+        drinkAndFoodRow.addView(minusButton);
+        drinkAndFoodRow.addView(numberText);
+        drinkAndFoodRow.addView(plusButton);
+
+        return drinkAndFoodRow;
+    }
+
 }
