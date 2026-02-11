@@ -29,5 +29,7 @@ public class LunchMenu {
         return dishes;
     }
 
+    public LocalDate getDate() {return date;}
+
 
 }
