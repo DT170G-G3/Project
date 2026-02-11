@@ -9,12 +9,6 @@ import jakarta.ws.rs.core.MediaType;
 import com.dt170g.g3.backend.entities.Dish;
 import java.util.List;
 
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.Consumes;
-
-
-
 @Path("/dish")
 public class DishApi {
     @Inject
