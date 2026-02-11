@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="100dp"
     tools:context=".AddOrderFragment">
 
     <LinearLayout
@@ -20,10 +19,16 @@
             android:gravity="center"
             android:paddingTop="15dp"
             android:text="Skapa order"
-            android:textColor="@color/menuBarColor"
+            android:textColor="@color/mainColor"
             android:textSize="24dp"
             android:paddingBottom="20dp"/>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#808080"/>
 
         <TextView
             android:id="@+id/tableTextView"
@@ -36,8 +41,14 @@
         <Spinner
             android:id="@+id/tableSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#808080"/>
 
         <TextView
             android:id="@+id/drinkTextView"
@@ -55,6 +66,13 @@
         </LinearLayout>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#808080"/>
+
+
+        <TextView
             android:id="@+id/foodTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +86,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#808080"/>
 
         <TextView
             android:id="@+id/noteToChefTextView"
@@ -93,7 +117,7 @@
             android:layout_height="wrap_content"
             android:text="Skicka till kocken"
             android:textSize="18dp"
-            android:backgroundTint="@color/menuBarColor"
+            android:backgroundTint="@color/mainColor"
             android:textColor="@color/white"
             android:padding="12dp"/>
 

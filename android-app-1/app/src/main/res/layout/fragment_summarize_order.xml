@@ -21,7 +21,7 @@
             android:gravity="center"
             android:paddingTop="15dp"
             android:text="Aktiva notor"
-            android:textColor="@color/brown"
+            android:textColor="@color/mainColor"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

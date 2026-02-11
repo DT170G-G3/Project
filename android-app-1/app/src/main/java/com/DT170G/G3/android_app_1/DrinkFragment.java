@@ -2,11 +2,21 @@ package com.DT170G.G3.android_app_1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.DT170G.G3.android_app_1.classes.Order;
+import com.DT170G.G3.android_app_1.classes.FoodAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +70,34 @@ public class DrinkFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_drink, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView recyclerView = view.findViewById(R.id.drinkRecyclerView);
+
+        String tablename1 = "bord 2";
+        String tablename2 = "bord 5";
+
+        List<String> order1 = new ArrayList<>();
+        order1.add("pepsi");
+        order1.add("Vin");
+
+        List<String> order2 = new ArrayList<>();
+        order2.add("Vatten");
+        order2.add("Drink");
+
+        Order drinkOrder1 = new Order(tablename1, order1);
+        Order drinkOrder2 = new Order(tablename2, order2);
+
+        List<Order> allOrders = new ArrayList<>();
+        allOrders.add(drinkOrder1);
+        allOrders.add(drinkOrder2);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        FoodAdapter orderAdapter = new FoodAdapter(allOrders);
+        recyclerView.setAdapter(orderAdapter);
     }
 }
