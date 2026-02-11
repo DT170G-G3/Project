@@ -1,21 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="100dp"
     tools:context=".AddOrderFragment">
 
-
-    <TextView
-        android:id="@+id/addOrderHeader"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textColor="@color/blue"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:paddingTop="15dp"
-        android:text="Lägg till order" />
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/addOrderHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:text="Skapa order"
+            android:textColor="@color/menuBarColor"
+            android:textSize="24dp"
+            android:paddingBottom="20dp"/>
 
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Välj bordsnummer"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"/>
+
+        <Spinner
+            android:id="@+id/tableSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/drinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lägg till dryck"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/drinkContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/foodTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lägg till maträtter"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/foodContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noteToChefTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noteringar till kocken"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"/>
+
+        <EditText
+            android:id="@+id/noteEditText"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top"
+            android:hint="Skriv in noteringar till kocken här"
+            android:background="@android:drawable/edit_text"
+            android:padding="12dp"/>
+
+
+        <Button
+            android:id="@+id/sendToChefButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skicka till kocken"
+            android:textSize="18dp"
+            android:backgroundTint="@color/menuBarColor"
+            android:textColor="@color/white"
+            android:padding="12dp"/>
+
+    </LinearLayout>
+</ScrollView>

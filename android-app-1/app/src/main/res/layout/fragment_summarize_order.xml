@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/menuBarColor"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:paddingTop="15dp"
