@@ -6,7 +6,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import com.dt170g.g3.backend.entities.Dish;
-
 import java.util.List;
 
 @Path("/message")
