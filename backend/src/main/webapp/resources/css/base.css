@@ -3,19 +3,19 @@
    ========================= */
 
 :root {
-    --bg-dark: oklch(0.1 0.025 264);
-    --bg: oklch(0.15 0.025 264);
-    --bg-light: oklch(0.2 0.025 264);
+    --bg-dark: oklch(0.9641 0.01875 90);
+    --bg: oklch(0.9936 0.0143 90);
+    --bg-light: oklch(0.9641 0.01875 90);
 
-    --text: oklch(0.96 0.05 264);
+    --text: oklch(0.0672 0.0562 90);
     --text-muted: oklch(0.76 0.05 264);
 
     --highlight: oklch(0.5 0.05 264);
 
-    --border: oklch(0.4 0.05 264);
-    --border-muted: oklch(0.3 0.05 264);
+    --border: oklch(0.9936 0.0143 90);
+    --border-muted: oklch(0.9936 0.0143 90);
 
-    --primary: oklch(0.76 0.1 264);
+    --primary: oklch(0.9641 0.01875 90);
     --secondary: oklch(0.76 0.1 84);
 
     --danger: oklch(0.7 0.05 30);
@@ -36,7 +36,7 @@
 
     /* Layout */
     --container-width: clamp(20rem, 92vw, 81.25rem);
-    --border-radius: clamp(0.85rem, 0.7rem + 0.7vw, 1.25rem);
+    --border-radius: none;
 
     --header-height: clamp(3.8rem, 3.3rem + 1.2vw, 4.6rem);
     --footer-height: clamp(3.5rem, 3rem + 1vw, 4.2rem);
@@ -101,4 +101,9 @@ input:focus-visible {
 .full-width {
     width: 100vw;
     margin-left: calc(50% - 50vw);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
 }

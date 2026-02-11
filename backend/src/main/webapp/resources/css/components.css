@@ -11,6 +11,15 @@
     align-items: stretch;
 }
 
+.menu-grid{
+    margin-top: var(--space-fluid);
+    display: grid;
+    gap: var(--gap-fluid);
+
+    grid-template-columns: 1fr;
+    align-items: stretch;
+}
+
 /* Fallback om inte subgrid fungerar */
 .card {
     display: grid;
@@ -27,6 +36,27 @@
 }
 
 .card:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted);
+}
+
+.card-content h4::after {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(
+            to right,
+            transparent,
+            var(--border-muted),
+            transparent
+    );
+}
+
+.card-content h4 {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .card-header h3 { color: var(--text); margin: 0; }

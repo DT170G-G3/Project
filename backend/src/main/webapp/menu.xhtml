@@ -1,12 +1,147 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/WEB-INF/templates/base.xhtml">
 
     <ui:define name="title">Á la carte</ui:define>
 
+    <ui:define name="hero">
+        <section class="hero">
+
+            <div class="hero-slides" aria-hidden="true">
+                <span class="hero-slide s1"></span>
+                <span class="hero-slide s2"></span>
+                <span class="hero-slide s3"></span>
+                <span class="hero-slide s4"></span>
+            </div>
+
+            <!--            <div class="hero-overlay" aria-hidden="true"></div>-->
+
+            <div class="hero-inner">
+                <h1 style="color: white">Meny</h1>
+            </div>
+            <div class="hero-credits">
+                <h:outputLink value="https://www.eat-and-breathe.co.uk/photography/" target="_blank" styleClass="hero-credit c1">
+                    Foto: https://www.eat-and-breathe.co.uk/
+                </h:outputLink>
+                <h:outputLink value="https://www.eat-and-breathe.co.uk/photography/" target="_blank" styleClass="hero-credit c2">
+                    Foto: https://www.eat-and-breathe.co.uk/
+                </h:outputLink>
+                <h:outputLink value="https://www.eat-and-breathe.co.uk/photography/" target="_blank" styleClass="hero-credit c3">
+                    Foto: https://www.eat-and-breathe.co.uk/
+                </h:outputLink>
+                <h:outputLink value="https://www.freepik.com/free-photo/bottom-view-fish-fry-fried-eggplants-onion-wood-serving-board-black-pepper-bowl-oil-bottle-dill-dark-background_16607675.htm#from_element=cross_selling__photo" target="_blank" styleClass="hero-credit c4">
+                    Foto: Image by KamranAydinov on Freepik
+                </h:outputLink>
+            </div>
+        </section>
+    </ui:define>
+
     <ui:define name="content">
-        <h1>Á la carte meny</h1>
-        <p class="muted">Här lägger vi ut menyn</p>
+                <section class="menu-grid">
+
+                    <div class="card">
+                        <div class="card-header"><h3>À La Carte</h3></div>
+                        <div class="card-content">
+
+                            <h4>Förrätter</h4>
+                            <ul>
+                                <li>
+                                    <strong>Råbiff på svenskt nötkött</strong><br/>
+                                    Kapris, rödbeta, dijonmajonnäs, picklad silverlök och friterad potatis<br/>
+                                    <em>Rekommenderat vin: Pinot Noir, Bourgogne</em>
+                                </li>
+
+                                <li>
+                                    <strong>Lättrökt hjortcarpaccio</strong><br/>
+                                    Västerbottenost, rostade hasselnötter, rårörda lingon och brynt smör<br/>
+                                    <em>Rekommenderat vin: Barbera d’Alba</em>
+                                </li>
+
+                                <li>
+                                    <strong>Viltpaté på älg och rådjur</strong><br/>
+                                    Cornichons, portvinsreduktion och grillat surdegsbröd<br/>
+                                    <em>Rekommenderat vin: Rioja Reserva</em>
+                                </li>
+                            </ul>
+
+                            <h4>Varmrätter</h4>
+                            <ul>
+                                <li>
+                                    <strong>Grillad ryggbiff</strong><br/>
+                                    Rödvinssky, tryffelsmör, rostad rotselleri och potatisfondant<br/>
+                                    <em>Rekommenderat vin: Amarone della Valpolicella</em>
+                                </li>
+
+                                <li>
+                                    <strong>Helstekt hjortytterfilé</strong><br/>
+                                    Enbärssås, smörstekta kantareller, potatispuré och rårörda lingon<br/>
+                                    <em>Rekommenderat vin: Châteauneuf-du-Pape</em>
+                                </li>
+
+                                <li>
+                                    <strong>Långbakad vildsvinskarré</strong><br/>
+                                    Mustig äpple- och calvadossky, bakad palsternacka och rostad potatis<br/>
+                                    <em>Rekommenderat vin: Syrah från norra Rhône</em>
+                                </li>
+                            </ul>
+
+                            <h4>Efterrätter</h4>
+                            <ul>
+                                <li><strong>Hjortronparfait</strong><br/>Vit choklad, mandelcrunch och lättvispad grädde</li>
+                                <li><strong>Äppeltarte Tatin</strong><br/>Calvadosflamberade äpplen och kanelglass</li>
+                                <li><strong>Lingon- och mandelkaka</strong><br/>Brynt smörkräm och rostad mandel</li>
+                                <li><strong>Urval av svenska ostar</strong><br/>Serveras med fikonmarmelad, honung och knäckebröd</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>Dagens Lunch</h3></div>
+                        <div class="card-content">
+                            <strong>Viltgryta på hjort</strong><br/>
+                            Serveras med potatispuré, pressgurka och rårörda lingon.<br/>
+                            Inkluderar sallad, bröd, kaffe och liten kaka.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>Drycker</h3></div>
+                        <div class="card-content">
+
+                            <h4>Röda Viner</h4>
+                            <ul>
+                                <li>Amarone della Valpolicella, Italien</li>
+                                <li>Châteauneuf-du-Pape, Frankrike</li>
+
+                                    <li>
+                                        <h4>Husets</h4>
+                                        <strong>Côtes du Rhône, Frankrike</strong><br/>
+                                        Mjuk och kryddig med toner av mörka bär, peppar och örter.
+                                    </li>
+                            </ul>
+
+                            <h4>Vita Viner</h4>
+                            <ul>
+                                <li>Chablis Premier Cru</li>
+                                <li>Chardonnay från Bourgogne</li>
+                            </ul>
+
+                            <h4>Spriter</h4>
+                            <ul>
+                                <li>Lagavulin 16 Years</li>
+                                <li>Mackmyra Svensk Ek</li>
+                            </ul>
+
+                            <h4>Avec</h4>
+                            <ul>
+                                <li>Calvados</li>
+                                <li>Grappa Riserva</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </section>
+
     </ui:define>
 
 </ui:composition>

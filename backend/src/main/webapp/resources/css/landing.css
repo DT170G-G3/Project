@@ -173,13 +173,10 @@
     padding: var(--space-fluid);
     border-radius: var(--border-radius);
 
-    background: color-mix(in oklch, var(--bg-light) 35%, transparent);
+    background: color-mix(in oklch, var(--bg) 35%, transparent);
     border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
-    box-shadow: var(--shadow-soft);
     transition: ease-in-out 0.2s;
 }
-
-.concept-section:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted); }
 
 .concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
 .concept-section strong { color: var(--text); }

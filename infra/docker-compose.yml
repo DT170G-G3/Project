@@ -14,6 +14,7 @@ services:
       - "${MYSQL_PORT}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ../backend/target:/opt/payara/deployments
     healthcheck:
       test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent" ]
       interval: 5s
