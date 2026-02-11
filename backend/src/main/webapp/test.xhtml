@@ -13,14 +13,14 @@
 
         <h1>Test igen om det fungerar, sienna</h1>
         <div id="message-box">
-            <ui:repeat value="#{dbHandler.dishes}" var="dish">
+            <ui:repeat value="#{lunch.dishesToday}" var="item">
 
-                <h2>#{dish.name}</h2>
+                <h2>#{item.name}</h2>
 
-                <p>#{dish.description}</p>
+                <p>#{item.description}</p>
 
                 <p>
-                    <h:outputText value="#{dish.price}">
+                    <h:outputText value="#{item.price}">
                         <f:convertNumber type="currency" currencySymbol="€" />
                     </h:outputText>
                 </p>

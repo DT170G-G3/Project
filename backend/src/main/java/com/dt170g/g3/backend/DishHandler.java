@@ -9,8 +9,8 @@ import com.dt170g.g3.backend.entities.Dish;
 import java.util.List;
 
 @ApplicationScoped
-@Named("dbHandler")
-public class DatabaseHandler {
+@Named("dish")
+public class DishHandler {
     @PersistenceContext
     EntityManager entityManager;
 

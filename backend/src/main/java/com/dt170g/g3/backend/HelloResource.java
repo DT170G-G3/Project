@@ -11,7 +11,7 @@ import java.util.List;
 @Path("/message")
 public class HelloResource {
     @Inject
-    private DatabaseHandler dbHandler;
+    private DishHandler dbHandler;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -19,3 +19,4 @@ INSERT INTO dish (name, description, price) VALUES
 ('Chicken Soup', 'Classic chicken soup with vegetables', 5.75),
 ('Pancakes', 'Fluffy pancakes served with syrup', 6.00),
 ('Chocolate Cake', 'Rich chocolate cake with chocolate frosting', 5.50);
+
