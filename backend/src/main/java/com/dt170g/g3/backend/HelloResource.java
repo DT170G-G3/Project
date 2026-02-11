@@ -13,9 +13,10 @@ import java.util.List;
 public class HelloResource {
     @Inject
     private DatabaseHandler dbHandler;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getAllMessages(){
+    public List<Message> getAllMessages() {
         return dbHandler.getMessages();
     }
 }
