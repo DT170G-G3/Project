@@ -8,6 +8,16 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    <script>
+        (function () {
+            const saved = localStorage.getItem("theme"); // "dark" | "light"
+            if (saved === "dark" || saved === "light") {
+                document.documentElement.dataset.theme = saved;
+            } else {
+            }
+        })();
+    </script>
+
     <title>
         <ui:insert name="title">Anton's Skafferi</ui:insert>
     </title>
@@ -25,7 +35,16 @@
     <header class="header full-width">
         <div class="logo">
             <h:link outcome="index">Anton's Skafferi</h:link>
+
+            <button id="themeToggle"
+                    type="button"
+                    class="theme-toggle"
+                    aria-label="Växla tema"
+                    aria-pressed="false">
+            🌙
+            </button>
         </div>
+
         <nav class="nav-links">
             <h:link outcome="index" value="Hem" styleClass="nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}"/>
             <h:link outcome="lunch" value="Lunch" styleClass="nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}"/>
@@ -49,5 +68,37 @@
             <p>© 2026 Anton's Skafferi</p>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            const KEY = "theme";
+            const root = document.documentElement;
+            const btn = document.getElementById("themeToggle");
+            if (!btn) return;
+
+            function apply(theme) {
+                root.dataset.theme = theme;
+                const isLight = theme === "light";
+                btn.setAttribute("aria-pressed", String(isLight));
+                btn.textContent = isLight ? "☀️" : "🌙";
+            }
+            const saved = localStorage.getItem(KEY);
+            if (saved === "dark" || saved === "light") {
+                apply(saved);
+            } else {
+                const prefersLight = matchMedia("(prefers-color-scheme: light)").matches;
+                apply(prefersLight ? "light" : "dark");
+                localStorage.setItem(KEY, prefersLight ? "light" : "dark");
+            }
+
+            btn.addEventListener("click", () => {
+                const current = root.dataset.theme === "light" ? "light" : "dark";
+                const next = current === "light" ? "dark" : "light";
+                localStorage.setItem(KEY, next);
+                apply(next);
+            });
+        })();
+    </script>
+
 </h:body>
 </html>

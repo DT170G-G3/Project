@@ -50,7 +50,7 @@
 /* Fade-form */
 @keyframes heroFade{
     0%      { opacity: 0; }
-    10%      { opacity: 1; }
+    10%     { opacity: 1; }
     28%     { opacity: 1; }
     35%     { opacity: 0; }
     100%    { opacity: 0; }
@@ -108,7 +108,7 @@
 .hero-inner p {
     max-width: 60ch;
     margin-inline: auto;
-    color: color-mix(in oklch, var(--text) 80%, transparent);
+    color: var(--text);
     margin-bottom: 1.2em;
 }
 
@@ -164,23 +164,4 @@
 .hero-credit.c4 { animation-delay: 30s; }
 
 
-/* =========================
-   Concept section
-   ========================= */
 
-.concept-section {
-    margin-top: var(--space-fluid);
-    padding: var(--space-fluid);
-    border-radius: var(--border-radius);
-
-    background: color-mix(in oklch, var(--bg-light) 35%, transparent);
-    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
-    box-shadow: var(--shadow-soft);
-    transition: ease-in-out 0.2s;
-}
-
-.concept-section:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted); }
-
-.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
-.concept-section strong { color: var(--text); }
-.concept-section h2 { color: var(--secondary); }

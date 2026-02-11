@@ -2,6 +2,7 @@
    Anton's Skafferi - Design Tokens
    ========================= */
 
+/* dARK SOM Default */
 :root {
     --bg-dark: oklch(0.1 0.025 264);
     --bg: oklch(0.15 0.025 264);
@@ -23,6 +24,12 @@
     --success: oklch(0.7 0.05 160);
     --info: oklch(0.7 0.05 260);
 
+    /* Effects */
+    --shadow: 0 18px 55px rgba(0,0,0,0.35);
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+
+    --focus-ring: color-mix(in oklch, var(--primary) 60%, white);
+
     /* Typography */
     --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
     --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
@@ -42,21 +49,60 @@
     --footer-height: clamp(3.5rem, 3rem + 1vw, 4.2rem);
     --hero-height: clamp(22rem, 42vh, 34rem);
 
-    /* Effects */
-    --shadow: 0 18px 55px rgba(0,0,0,0.35);
-    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
 
     /* Scale */
     --scale-on-hover: 1.015;
 
+    --surface: color-mix(in oklch, var(--bg-light) 28%, transparent);
+    --surface-hover: color-mix(in oklch, var(--bg-light) 40%, transparent);
+    --surface-border: color-mix(in oklch, var(--border-muted) 60%, transparent);
+    --surface-border-hover: var(--border-muted);
+
     color-scheme: dark;
 }
+
+/* LIGHT MODE */
+
+:root[data-theme="light"] {
+    --bg-dark: oklch(0.95 0.01 264);
+    --bg: oklch(0.985 0.008 264);
+    --bg-light: oklch(0.995 0.006 264);
+
+    --text: oklch(0.2 0.02 264);
+    --text-muted: oklch(0.42 0.02 264);
+
+    --highlight: oklch(0.9 0.02 264);
+
+    --border: oklch(0.8 0.02 264);
+    --border-muted: oklch(0.88 0.015 264);
+
+    --primary: oklch(0.48 0.12 264);
+    --secondary: oklch(0.52 0.12 84);
+
+    --danger: oklch(0.52 0.12 30);
+    --warning: oklch(0.56 0.12 100);
+    --success: oklch(0.5 0.1 160);
+    --info: oklch(0.5 0.1 260);
+
+    --shadow: 0 18px 55px rgba(0, 0, 0, 0.12);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    --focus-ring: color-mix(in oklch, var(--primary) 55%, black);
+
+    --surface: color-mix(in oklch, var(--bg-dark) 55%, var(--bg));
+    --surface-hover: color-mix(in oklch, var(--bg-dark) 70%, var(--bg));
+    --surface-border-hover: var(--border);
+
+    color-scheme: light;
+}
+
 
 /* =========================
    Base / Reset
    ========================= */
 
 * { box-sizing: border-box; }
+
 html, body {
     height: 100%;
     /*scrollbar-gutter: stable;*/
@@ -93,7 +139,7 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid color-mix(in oklch, var(--primary) 60%, white);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 3px;
     border-radius: 0.65rem;
 }
