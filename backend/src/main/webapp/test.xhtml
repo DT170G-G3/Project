@@ -13,9 +13,9 @@
 
         <h1>Test igen om det fungerar, sienna</h1>
         <div id="message-box">
-            <ui:repeat value="#{lunch.menuWeek}" var="day">
-                <h2>#{day.date}</h2>
-                <ui:repeat value="#{day.dishes}" var="item">
+            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+                <h2>#{menu.day}</h2>
+                <ui:repeat value="#{menu.dishes}" var="item">
                 <h2>#{item.name}</h2>
 
                 <p>#{item.description}</p>
