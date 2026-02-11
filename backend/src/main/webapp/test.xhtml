@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>En Ganska Kass Titel</title>
+    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>
+
+</h:head>
+<h:body>
+    <div class="container">
+
+        <h1>Test igen om det fungerar, sienna</h1>
+        <div id="message-box">
+            <ui:repeat value="#{dbHandler.dishes}" var="dish">
+
+                <h2>#{dish.name}</h2>
+
+                <p>#{dish.description}</p>
+
+                <p>
+                    <h:outputText value="#{dish.price}">
+                        <f:convertNumber type="currency" currencySymbol="€" />
+                    </h:outputText>
+                </p>
+
+            </ui:repeat>
+        </div>
+    </div>
+</h:body>
+
+</html>
