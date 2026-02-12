@@ -1,11 +1,34 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    template="/WEB-INF/templates/base.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/base.xhtml">
 
     <ui:define name="title">Dagens lunch</ui:define>
 
     <ui:define name="content">
         <h1>Dagens lunch</h1>
-        <p class="muted">Dagens lunch + veckovy kommer här.</p>
+
+        <section class="category-grid">
+            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+
+                <article class="card lunch-menu">
+                    <div class="card-header">
+                        <h2>#{menu.day}</h2>
+                    </div>
+
+                    <div class="card-content">
+                        <ui:repeat value="#{menu.dishes}" var="item">
+                            <div class="dish">
+                                <h3>#{item.name}</h3>
+                                <p>#{item.description}</p>
+                            </div>
+                        </ui:repeat>
+
+                    </div>
+
+                </article>
+
+            </ui:repeat>
+        </section>
     </ui:define>
 
 </ui:composition>

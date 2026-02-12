@@ -6,18 +6,30 @@
 
     <ui:define name="content">
         <h1>Á la carte meny</h1>
-        <ui:repeat value="#{lunch.menuWeek }" var="menu">
-            <div class="lunch-menu">
-                <h2>#{menu.day}</h2>
-                <ui:repeat value="#{menu.dishes}" var="item">
-                    <h2>#{item.name}</h2>
-                    <p>#{item.description}</p>
-                </ui:repeat>
 
-            </div>
+        <section class="category-grid">
+            <ui:repeat value="#{lunch.menuWeek}" var="menu">
 
-            <p class="muted">Här lägger vi ut menyn</p>
-        </ui:repeat>
+                <article class="card lunch-menu">
+                    <div class="card-header">
+                        <h2>#{menu.day}</h2>
+                    </div>
+
+                    <div class="card-content">
+                        <ui:repeat value="#{menu.dishes}" var="item">
+                            <div class="dish">
+                                <h3>#{item.name}</h3>
+                                <p>#{item.description}</p>
+                            </div>
+                        </ui:repeat>
+
+                        <p class="muted">Här lägger vi ut menyn</p>
+                    </div>
+
+                </article>
+
+            </ui:repeat>
+        </section>
     </ui:define>
 
 </ui:composition>
