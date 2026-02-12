@@ -15,6 +15,9 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Exe
+*.war
+
 # Logs
 *.log
 npm-debug.log*
@@ -35,5 +38,3 @@ yarn-error.log*
 # Ignorera Gradles byggmappar (för Android)
 .gradle/
 **/build/
-infra/payara/deployments/restaurant.war
-backend/.idea/copilot.data.migration.ask2agent.xml

@@ -6,7 +6,18 @@
 
     <ui:define name="content">
         <h1>Á la carte meny</h1>
-        <p class="muted">Här lägger vi ut menyn</p>
+        <ui:repeat value="#{lunch.menuWeek }" var="menu">
+            <div class="lunch-menu">
+                <h2>#{menu.day}</h2>
+                <ui:repeat value="#{menu.dishes}" var="item">
+                    <h2>#{item.name}</h2>
+                    <p>#{item.description}</p>
+                </ui:repeat>
+
+            </div>
+
+            <p class="muted">Här lägger vi ut menyn</p>
+        </ui:repeat>
     </ui:define>
 
 </ui:composition>

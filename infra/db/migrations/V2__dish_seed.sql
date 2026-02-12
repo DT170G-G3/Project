@@ -1,0 +1,22 @@
+INSERT INTO dish (name, description, price) VALUES
+('Margherita Pizza', 'Classic pizza with tomato sauce, mozzarella, and basil', 8.50),
+('Pepperoni Pizza', 'Pizza topped with pepperoni and mozzarella cheese', 9.50),
+('Spaghetti Carbonara', 'Pasta with eggs, pecorino cheese, pancetta, and pepper', 11.00),
+('Lasagna Bolognese', 'Layers of pasta with beef ragu and béchamel sauce', 12.50),
+('Chicken Alfredo', 'Creamy Alfredo pasta with grilled chicken', 11.75),
+('Caesar Salad', 'Romaine lettuce with Caesar dressing, croutons, and parmesan', 7.25),
+('Greek Salad', 'Fresh salad with tomatoes, cucumbers, olives, and feta cheese', 7.50),
+('Beef Burger', 'Grilled beef patty with lettuce, tomato, and cheese', 9.00),
+('Cheeseburger', 'Classic burger topped with melted cheddar cheese', 9.50),
+('Chicken Burger', 'Crispy chicken fillet with lettuce and mayo', 8.75),
+('French Fries', 'Golden fried potato sticks', 3.50),
+('Chicken Wings', 'Spicy chicken wings served with dipping sauce', 6.75),
+('Grilled Salmon', 'Fresh salmon fillet grilled with lemon and herbs', 14.50),
+('Fish and Chips', 'Battered fish served with fries and tartar sauce', 10.50),
+('Steak Frites', 'Grilled beef steak served with French fries', 16.00),
+('Mushroom Risotto', 'Creamy risotto with mushrooms and parmesan', 10.75),
+('Tomato Soup', 'Warm tomato soup served with bread', 5.25),
+('Chicken Soup', 'Classic chicken soup with vegetables', 5.75),
+('Pancakes', 'Fluffy pancakes served with syrup', 6.00),
+('Chocolate Cake', 'Rich chocolate cake with chocolate frosting', 5.50);
+
