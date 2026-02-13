@@ -19,7 +19,7 @@ public class LunchMenuHandler{
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Dish> getDishesToday() {
+    public List<Dish> getLunchDishesToday() {
 
         List<LunchMenu> dishIDs = entityManager.createQuery(
                 "SELECT menu FROM LunchMenu menu WHERE menu.date = :today",

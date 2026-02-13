@@ -10,6 +10,10 @@
 </h:head>
 <h:body>
     <div class="container">
+        <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
+            <h2>#{menuToday.name}</h2>
+            <p>#{menuToday.description} </p>
+        </ui:repeat>
 
         <h1>Test igen om det fungerar, sienna</h1>
         <div id="message-box">
