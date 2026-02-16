@@ -6,7 +6,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +33,6 @@ public class LunchMenuHandler{
 
     public List<List<Dish>> getDishesWeek(){
         return null;
-    }
-
-    @Transactional
-    public void uploadDish(Dish dish) {
-        entityManager.persist(dish);
     }
 
 }

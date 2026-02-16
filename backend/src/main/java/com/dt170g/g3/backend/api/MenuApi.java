@@ -1,3 +1,22 @@
+/**
+ * MenuApi.java
+ *
+ * REST API resource for managing lunch menus and dishes.
+ * Provides endpoints to:
+ *  - GET /menu          : Retrieve all dishes for today
+ *  - GET /menu/lunch    : Retrieve the lunch menu for today
+ *
+ * Uses LunchMenuHandler to fetch dishes from the database.
+ * All responses are returned as JSON.
+ *
+ * Example usage:
+ *   GET http://localhost:8080/restaurant/api/menu
+ *   GET http://localhost:8080/restaurant/api/menu/lunch
+ *
+ * Author: Axel Friman
+ * Date: 2026-02-16
+ */
+
 package com.dt170g.g3.backend;
 
 import jakarta.inject.Inject;
@@ -26,15 +45,4 @@ public class MenuApi {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getLunchMenu() {
         return lunchHandler.getDishesToday(); }
-
-    @POST
-    @Path("/addDish")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addDish(Dish dish) {
-        lunchHandler.uploadDish(dish);
-        return Response.ok(dish).build();
-    }
-
-
 }
