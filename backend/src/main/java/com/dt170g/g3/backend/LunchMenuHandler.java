@@ -6,7 +6,13 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+<<<<<<< HEAD
+=======
+
+import java.time.DayOfWeek;
+>>>>>>> a760daf0e9413dc78167f426194f6cb7bd5d6d82
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,10 +22,10 @@ public class LunchMenuHandler{
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Dish> getDishesToday() {
+    public List<Dish> getLunchDishesToday() {
 
         List<LunchMenu> dishIDs = entityManager.createQuery(
-                "SELECT menu from LunchMenu menu WHERE menu.date = :today",
+                "SELECT menu FROM LunchMenu menu WHERE menu.date = :today",
                 LunchMenu.class)
                 .setParameter("today", LocalDate.now())
                 .getResultList();
@@ -31,8 +37,20 @@ public class LunchMenuHandler{
         }
     }
 
-    public List<List<Dish>> getDishesWeek(){
-        return null;
+    public List<LunchMenu> getMenuWeek(){
+        LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate saturday = monday.plusDays(5);
+        List<LunchMenu> weekMenu = entityManager.createQuery(
+                "SELECT menu FROM LunchMenu menu " +
+                   "WHERE menu.date BETWEEN :start AND :end " +
+                   "ORDER BY menu.date",
+                    LunchMenu.class
+                )
+                .setParameter("start",monday)
+                .setParameter("end", saturday)
+                .getResultList();
+
+        return weekMenu;
     }
 
 }

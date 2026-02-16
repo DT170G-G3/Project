@@ -37,12 +37,18 @@ public class MenuApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getAllDishes() {
-        return lunchHandler.getDishesToday();
+        return lunchHandler.getLunchDishesToday();
     }
 
     @GET
     @Path("/lunch")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getLunchMenu() {
+<<<<<<< HEAD
         return lunchHandler.getDishesToday(); }
+=======
+        return lunchHandler.getLunchDishesToday(); }
+
+
+>>>>>>> a760daf0e9413dc78167f426194f6cb7bd5d6d82
 }

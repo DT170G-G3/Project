@@ -2,6 +2,7 @@ package com.dt170g.g3.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,8 @@ public class LunchMenu {
     public List<Dish> getDishes(){
         return dishes;
     }
+
+    public DayOfWeek getDay() {return date.getDayOfWeek();}
 
 
 }

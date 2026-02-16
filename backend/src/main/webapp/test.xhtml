@@ -10,22 +10,26 @@
 </h:head>
 <h:body>
     <div class="container">
+        <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
+            <h2>#{menuToday.name}</h2>
+            <p>#{menuToday.description} </p>
+        </ui:repeat>
 
         <h1>Test igen om det fungerar, sienna</h1>
         <div id="message-box">
-            <ui:repeat value="#{lunch.dishesToday}" var="item">
-
+            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+                <h2>#{menu.day}</h2>
+                <ui:repeat value="#{menu.dishes}" var="item">
                 <h2>#{item.name}</h2>
 
                 <p>#{item.description}</p>
 
-                <p>
-                    <h:outputText value="#{item.price}">
-                        <f:convertNumber type="currency" currencySymbol="€" />
-                    </h:outputText>
-                </p>
-
+                </ui:repeat>
             </ui:repeat>
+            <h:form>
+                <h:commandButton value="Add Dish" action="#{dish.addDish}" />
+            </h:form>
+
         </div>
     </div>
 </h:body>

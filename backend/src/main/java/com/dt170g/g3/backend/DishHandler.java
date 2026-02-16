@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import com.dt170g.g3.backend.entities.Dish;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @ApplicationScoped
@@ -30,6 +32,14 @@ public class DishHandler {
             return "NO MESSAGES!";
         }
         return dish.getName();
+    }
+@Transactional
+    public void addDish(){
+        Dish dish = new Dish();
+        dish.setName("Skinka");
+        dish.setDescription("God jul mat");
+        dish.setPrice(666.6);
+        entityManager.persist(dish);
     }
 
 }
