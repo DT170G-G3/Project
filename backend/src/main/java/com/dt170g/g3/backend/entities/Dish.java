@@ -1,8 +1,19 @@
+/*
+ * Java Application project.
+ * Author: Jesper
+ */
+
 package com.dt170g.g3.backend.entities;
+/*
+ * JPA Entity class, Dish
+ * Corresponds to a table in the database and makes a Java object out of it.
+ * Each of the variables represents a column in the table.
+ */
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 @NamedQueries(
         @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM Dish name")
 )

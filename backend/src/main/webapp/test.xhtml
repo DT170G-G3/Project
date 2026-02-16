@@ -27,7 +27,20 @@
                 </ui:repeat>
             </ui:repeat>
             <h:form>
-                <h:commandButton value="Add Dish" action="#{dish.addDish}" />
+                <h:panelGrid columns="2">
+
+                    <h:outputLabel value="Name" />
+                    <h:inputText value="#{dish.newDish.name}" required="true" />
+
+                    <h:outputLabel value="Description" />
+                    <h:inputText value="#{dish.newDish.description}" />
+
+                    <h:outputLabel value="Price" />
+                    <h:inputText value="#{dish.newDish.price}" />
+
+                </h:panelGrid>
+
+                <h:commandButton value="Save" action="#{dish.addDish}" />
             </h:form>
 
         </div>

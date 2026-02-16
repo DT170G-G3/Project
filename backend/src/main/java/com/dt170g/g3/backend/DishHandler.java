@@ -1,3 +1,7 @@
+/*
+ * Java Application project.
+ * Author: Jesper
+ */
 package com.dt170g.g3.backend;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -9,12 +13,24 @@ import com.dt170g.g3.backend.entities.Dish;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
-
+/*
+ * Class exposed to the JFA, also known as a "bean".
+ * These functions can be reaches by the facelet webapplication.
+ * It is reached via the given name "dish".
+ *
+ * Example:
+ * If you use "#{dish.dishes}", you will call the getDishes function inside dish!
+ * You always skip the "get" or "set", for some reason.
+ * Since this returns a list you can loop through via ui:repeat.
+ *
+ */
 @ApplicationScoped
 @Named("dish")
 public class DishHandler {
     @PersistenceContext
     EntityManager entityManager;
+
+    private Dish newDish = new Dish();
 
     public Dish getDishById(int id){
         Dish dish = entityManager.find(Dish.class, id);
@@ -26,21 +42,17 @@ public class DishHandler {
         return resultList;
     }
 
-    public String getDishName(){
-        Dish dish = getDishById(1);
-        if(dish.getName().isEmpty()){
-            return "NO MESSAGES!";
-        }
-        return dish.getName();
+    public Dish getNewDish(){
+        return newDish;
     }
+
 @Transactional
     public void addDish(){
-        Dish dish = new Dish();
-        dish.setName("Skinka");
-        dish.setDescription("God jul mat");
-        dish.setPrice(666.6);
-        entityManager.persist(dish);
+        entityManager.persist(newDish);
+        this.newDish = new Dish();
     }
+
+
 
 }
 
