@@ -3,7 +3,11 @@
     android:id="@+id/eachOrderLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="18dp"
+    android:background="@color/lightYellow"
+    android:elevation="6dp"
+    android:layout_margin="10dp">
 
 
     <TextView
@@ -24,6 +28,8 @@
     <CheckBox
         android:id="@+id/completeOrderCheckBox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5">
     </CheckBox>
 </LinearLayout>

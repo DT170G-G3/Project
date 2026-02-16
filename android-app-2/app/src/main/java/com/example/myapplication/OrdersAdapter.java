@@ -36,6 +36,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         for(String o : order.getOrders()) {
             TextView textView = new TextView(holder.itemView.getContext());
             textView.setText(o);
+            textView.setTextSize(22);
+            textView.setPadding(0,8,0,8);
             holder.listOfDishesLinearLayout.addView(textView);
         }
     }
