@@ -18,6 +18,7 @@
         android:paddingTop="15dp"
         android:text="Dryck" />
 
+
     <TextView
         android:id="@+id/drinkBorderHeader"
         android:layout_width="match_parent"
@@ -27,7 +28,17 @@
         android:layout_marginStart="15dp"
         android:background="#808080"/>
 
+    <Spinner
+        android:id="@+id/tabelSpinnerDrink"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/box"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"/>
 
+
+    <!--
     <TextView
         android:id="@+id/sodaHeader"
         android:layout_width="match_parent"
@@ -45,7 +56,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:background="#808080"/>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +65,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp">
-        
+
         <Button
             android:id="@+id/sodaButton1"
             android:layout_width="150dp"
@@ -120,7 +131,7 @@
             android:layout_marginLeft="100dp"
             android:text="0" />
     </LinearLayout>
-
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -145,7 +156,9 @@
             android:layout_marginLeft="100dp"
             android:text="0" />
     </LinearLayout>
-    
+-->
+
+    <!--
     <TextView
         android:id="@+id/wineUpperBoarder"
         android:layout_width="match_parent"
@@ -154,12 +167,12 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:background="#808080"/>
-    
+
     <TextView
         android:id="@+id/wineHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vin" 
+        android:text="Vin"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="16sp"/>
@@ -172,7 +185,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:background="#808080"/>
-    
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -223,7 +236,7 @@
             android:text="0" />
     </LinearLayout>
 
-
+<!--
     <TextView
         android:id="@+id/beerUpperBoarder"
         android:layout_width="match_parent"
@@ -250,7 +263,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:background="#808080"/>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -300,4 +313,12 @@
             android:layout_marginLeft="100dp"
             android:text="0" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/sendDrinkToBarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Skicka drinkbeställningen" />
 </LinearLayout>
