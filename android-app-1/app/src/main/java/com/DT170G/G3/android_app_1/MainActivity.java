@@ -72,30 +72,29 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
 
-        Fragment addOrderFragment = new AddOrderFragment();
-        Fragment chefFragment = new ChefFragment();
+        Fragment starterFragment = new StarterFragment();
+        Fragment mainFragment = new MainFragment();
         Fragment drinkFragment = new DrinkFragment();
-        Fragment calendarFragment = new CalendarFragment();
-        Fragment summarizeOrderFragment = new SummarizeOrderFragment();
+        Fragment dessertFragment = new DessertFragment();
+        Fragment todaysFragment = new TodaysFragment();
 
-        setCurrentFragment(addOrderFragment);
+        setCurrentFragment(drinkFragment);
 
         bottomNavigationMenu.setOnItemSelectedListener(item-> {
             int id = item.getItemId();
-            if(id == R.id.addOrder) {
-                setCurrentFragment(addOrderFragment);
+            if(id == R.id.todaysTab) {
+                setCurrentFragment(todaysFragment);
             }
-            else if (id == R.id.chef) {
-                setCurrentFragment(chefFragment);
+            else if (id == R.id.starterTab) {
+                setCurrentFragment(starterFragment);
             }
-            else if (id == R.id.drink) {
+            else if (id == R.id.mainTab) {
+                setCurrentFragment(mainFragment);
+            }
+            else if (id == R.id.dessertTab) {
+                setCurrentFragment(dessertFragment);
+            } else {
                 setCurrentFragment(drinkFragment);
-            }
-            else if (id == R.id.calendar) {
-                setCurrentFragment(calendarFragment);
-            }
-            else if (id == R.id.summarizeOrder) {
-                setCurrentFragment(summarizeOrderFragment);
             }
             return true;
         });

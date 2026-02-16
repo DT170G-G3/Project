@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/addOrder"
-        android:title="Lägg order"
-        android:icon="@drawable/add_order"
-        />
 
     <item
-        android:id="@+id/chef"
-        android:title="Kök"
-        android:icon="@drawable/chef" />
-
-
-    <item
-        android:id="@+id/drink"
+        android:id="@+id/drinkTab"
         android:title="Dryck"
-        android:icon="@drawable/drink" />
+        android:icon="@drawable/counter_1"/>
+
+    <item
+        android:id="@+id/starterTab"
+        android:title="Förrätt"
+        android:icon="@drawable/counter_2"/>
+
+    <item
+        android:id="@+id/mainTab"
+        android:title="Varmrätt"
+        android:icon="@drawable/counter_3"/>
 
 
     <item
-        android:id="@+id/calendar"
-        android:title="Schema"
-        android:icon="@drawable/calendar" />
+        android:id="@+id/dessertTab"
+        android:title="Efterrätt"
+        android:icon="@drawable/counter_4"/>
 
+    <item
+        android:id="@+id/todaysTab"
+        android:title="Dagens"
+        android:icon="@drawable/main_icon"/>
+<!--
     <item
         android:id="@+id/summarizeOrder"
         android:title="Hantera order"
-        android:icon="@drawable/summarize_order" />
+        android:icon="@drawable/summarize_order"/>
+
+        -->
 </menu>
