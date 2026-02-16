@@ -10,8 +10,6 @@ import com.dt170g.g3.backend.entities.LunchMenu;
 import com.dt170g.g3.backend.entities.Dish;
 import java.util.List;
 
-
-
 @Path("/menu")
 public class MenuApi {
     @Inject
@@ -28,6 +26,15 @@ public class MenuApi {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Dish> getLunchMenu() {
         return lunchHandler.getDishesToday(); }
+
+    @POST
+    @Path("/addDish")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addDish(Dish dish) {
+        lunchHandler.uploadDish(dish);
+        return Response.ok(dish).build();
+    }
 
 
 }

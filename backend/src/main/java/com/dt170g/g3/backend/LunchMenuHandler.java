@@ -35,4 +35,10 @@ public class LunchMenuHandler{
     public List<List<Dish>> getDishesWeek(){
         return null;
     }
+
+    @Transactional
+    public void uploadDish(Dish dish) {
+        entityManager.persist(dish);
+    }
+
 }
