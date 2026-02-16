@@ -101,9 +101,12 @@ input:focus-visible {
 .full-width {
     width: 100vw;
     margin-left: calc(50% - 50vw);
+<<<<<<< Updated upstream
 }
 
 ul {
     list-style: none;
     padding: 0;
+=======
+>>>>>>> Stashed changes
 }

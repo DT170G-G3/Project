@@ -36,6 +36,7 @@
 }
 
 .card:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted);
+<<<<<<< Updated upstream
 }
 
 .card-content h4::after {
@@ -57,6 +58,8 @@
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: 600;
+=======
+>>>>>>> Stashed changes
 }
 
 .card-header h3 { color: var(--text); margin: 0; }

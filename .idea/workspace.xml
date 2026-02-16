@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fa059aec-d097-430d-bbdd-b2648e7fa4a4" name="Changes" comment="Test merge with dev">
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V1__grund_schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V2__message.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V3__seed_message.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V4__seed_basic_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-app-1/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/android-app-1/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-app-2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V3__menu_seed.sql" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="39U8j7eNzEv3U3eXz3vsOJDJ1ub" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.index.xhtml.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;landing-page&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa059aec-d097-430d-bbdd-b2648e7fa4a4" name="Changes" comment="" />
+      <created>1770739446772</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770739446772</updated>
+      <workItem from="1770739459315" duration="15531000" />
+      <workItem from="1771230209696" duration="1129000" />
+    </task>
+    <task id="LOCAL-00001" summary="Rewamp styling">
+      <option name="closed" value="true" />
+      <created>1770801850393</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1770801850393</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Rewamp styling">
+      <option name="closed" value="true" />
+      <created>1770801860109</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770801860109</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Test merge with dev">
+      <option name="closed" value="true" />
+      <created>1770802198725</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1770802198725</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rewamp styling" />
+    <MESSAGE value="Test merge with dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test merge with dev" />
+  </component>
+</project>
