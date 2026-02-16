@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 @NamedQueries(
         @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM Dish name")
 )
+
 @Entity
 @Table(name = "dish")
 public class Dish {
@@ -15,6 +16,8 @@ public class Dish {
     private String name;
     private String description;
     private double price;
+
+    public Dish(){}
 
     public int getId() {
         return id;
