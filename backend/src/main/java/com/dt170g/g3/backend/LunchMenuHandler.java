@@ -6,11 +6,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-<<<<<<< HEAD
-=======
+import jakarta.transaction.Transactional;
 
 import java.time.DayOfWeek;
->>>>>>> a760daf0e9413dc78167f426194f6cb7bd5d6d82
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Collections;
@@ -51,6 +49,11 @@ public class LunchMenuHandler{
                 .getResultList();
 
         return weekMenu;
+    }
+
+    @Transactional
+    public void addLunch() {//List<Integer> dishIDs, LocalDate date) {
+
     }
 
 }
