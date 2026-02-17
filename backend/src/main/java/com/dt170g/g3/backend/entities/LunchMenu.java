@@ -1,3 +1,6 @@
+/*
+ * Java Application project.
+ */
 package com.dt170g.g3.backend.entities;
 
 import jakarta.persistence.*;
@@ -11,6 +14,11 @@ import java.util.ArrayList;
 @NamedQueries(
         @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM Dish name")
 )
+/*
+ * JPA Entity class, Lunch_Menu
+ * Corresponds to a table in the database and makes a Java object out of it.
+ * Each of the variables represents a column in the table.
+ */
 @Entity
 @Table(name="lunch_menu")
 public class LunchMenu {
@@ -19,6 +27,11 @@ public class LunchMenu {
     private int id;
     private LocalDate date;
 
+    /*
+     * Makes a join with the dish_lunch_menu,
+     * In other words, takes out all the dishes that are on the menu
+     * and puts them in a List variable.
+     */
 
     @ManyToMany
     @JoinTable(
@@ -26,7 +39,7 @@ public class LunchMenu {
             joinColumns = @JoinColumn(name = "lunch_menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<Dish> dishes = new ArrayList<>();
+    private List<Dish> dishes; //This contains all the dishes for that day!
 
     public List<Dish> getDishes(){
         return dishes;
