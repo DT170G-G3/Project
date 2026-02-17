@@ -33,24 +33,6 @@
         android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/meatHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="A la carte"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/meatUnderBoarder"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
-            android:background="#808080"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

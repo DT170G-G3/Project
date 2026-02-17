@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu" />
+        app:layout_constraintBottom_toTopOf="@+id/tableSpinner" />
 <!--
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -25,7 +25,25 @@
 
     </FrameLayout>
 
+
 -->
+    <Spinner
+        android:id="@+id/tableSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/box"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/sendOrderButton" />
+
+    <Button
+        android:id="@+id/sendOrderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="Skicka beställningen"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationMenu"

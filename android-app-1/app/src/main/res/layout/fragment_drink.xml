@@ -28,15 +28,6 @@
         android:layout_marginStart="15dp"
         android:background="#808080"/>
 
-    <Spinner
-        android:id="@+id/tabelSpinnerDrink"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@drawable/box"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"/>
-
 
     <!--
     <TextView
@@ -67,14 +58,14 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/sodaButton1"
+            android:id="@+id/drinkButton1"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="Pepsi"/>
 
         <TextView
-            android:id="@+id/sodaCounter1"
+            android:id="@+id/drinkCounter1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -92,14 +83,14 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/sodaButton2"
+            android:id="@+id/drinkButton2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="Coca Cola"/>
 
         <TextView
-            android:id="@+id/sodaCounter2"
+            android:id="@+id/drinkCounter2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -117,7 +108,7 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/sodaButton3"
+            android:id="@+id/drinkButton3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
@@ -142,7 +133,7 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/sodaButton4"
+            android:id="@+id/drinkButton4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
@@ -196,14 +187,14 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/wineButton1"
+            android:id="@+id/drinkButton4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="Rött vin"/>
 
         <TextView
-            android:id="@+id/wineCounter1"
+            android:id="@+id/drinkCounter4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -221,14 +212,14 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/wineButton2"
+            android:id="@+id/drinkButton5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="Vitt vin"/>
 
         <TextView
-            android:id="@+id/wineCounter2"
+            android:id="@+id/drinkCounter5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -274,14 +265,14 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/beerButton1"
+            android:id="@+id/drinkButton6"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="Öl"/>
 
         <TextView
-            android:id="@+id/beerCounter1"
+            android:id="@+id/drinkCounter6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -299,26 +290,18 @@
         android:layout_marginRight="50dp">
 
         <Button
-            android:id="@+id/beerButton2"
+            android:id="@+id/drinkButton7"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accentColor"
             android:text="IPA"/>
 
         <TextView
-            android:id="@+id/beerCounter2"
+            android:id="@+id/drinkCounter7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="100dp"
             android:text="0" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/sendDrinkToBarButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Skicka drinkbeställningen" />
 </LinearLayout>

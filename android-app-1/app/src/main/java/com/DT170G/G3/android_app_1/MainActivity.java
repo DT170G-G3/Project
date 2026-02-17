@@ -2,8 +2,16 @@ package com.DT170G.G3.android_app_1;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -13,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.classes.PagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -98,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        viewPager.registerOnPageChangeCallback(
-                new ViewPager2.OnPageChangeCallback() {
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
                     @Override
                     public void onPageSelected(int position){
                         switch (position) {
@@ -123,5 +131,52 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+
+        // https://developer.android.com/develop/ui/views/components/spinner
+        //Bordsval
+        Spinner tableSpinner = this.findViewById(R.id.tableSpinner);
+
+        String[] tables = getResources().getStringArray(R.array.tableList);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.tableList,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tableSpinner.setAdapter(adapter);
+
+
+
+
+        //Resest form ändra så att den skickar till databasen oxå
+        Button sendButton = findViewById(R.id.sendOrderButton);
+        int selectedMenuId = bottomNavigationMenu.getSelectedItemId();
+
+        sendButton.setOnClickListener(buttonClicked -> {
+            if(selectedMenuId == R.id.drinkTab) {
+                TextView counter1Text = findViewById(R.id.drinkCounter1);
+                TextView counter2Text = findViewById(R.id.drinkCounter2);
+                TextView counter3Text = findViewById(R.id.drinkCounter3);
+                TextView counter4Text = findViewById(R.id.drinkCounter4);
+                TextView counter5Text = findViewById(R.id.drinkCounter5);
+                TextView counter6Text = findViewById(R.id.drinkCounter6);
+                TextView counter7Text = findViewById(R.id.drinkCounter7);
+
+                counter1Text.setText("0");
+                counter2Text.setText("0");
+                counter3Text.setText("0");
+                counter4Text.setText("0");
+                counter5Text.setText("0");
+                counter6Text.setText("0");
+                counter7Text.setText("0");
+
+
+                Snackbar.make(findViewById(R.id.viewPager), "Drinkbeställningen skickas till baren", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
+            }
+
+        });
+
     }
+
+
 }
