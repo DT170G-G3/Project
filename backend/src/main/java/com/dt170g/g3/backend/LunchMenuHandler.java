@@ -14,6 +14,9 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
+
 
 /*
  * Class exposed to the JFA, also known as a "bean".
@@ -41,6 +44,35 @@ public class LunchMenuHandler{
              return Collections.emptyList(); //Needed in case there was no food.
         } else {
             return dishIDs.get(0).getDishes();
+        }
+    }
+
+    /**
+     * Retrieves all dishes for a specific date.
+     *
+     * The method queries the database for a LunchMenu with the given date
+     * and returns its associated dishes.
+     *
+     * Assumes exactly one menu per date (date is UNIQUE in the database).
+     *
+     * Throws:
+     *  - IllegalStateException if no menu exists for the date
+     *  - IllegalStateException if multiple menus exist (data integrity issue)
+     */
+    public List<Dish> getLunchDishesByDate(LocalDate date) {
+        try {
+            LunchMenu menu = entityManager.createQuery(
+                            "SELECT menu FROM LunchMenu menu WHERE menu.date = :targetDate",
+                            LunchMenu.class)
+                    .setParameter("targetDate", date)
+                    .getSingleResult();
+
+            return menu.getDishes();
+
+        } catch (NoResultException e) {
+            throw new IllegalStateException("No lunch menu exists for date: " + date);
+        } catch (NonUniqueResultException e) {
+            throw new IllegalStateException("Multiple lunch menus exist for date: " + date);
         }
     }
 
