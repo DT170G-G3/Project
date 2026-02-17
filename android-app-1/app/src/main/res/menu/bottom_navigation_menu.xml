@@ -25,7 +25,7 @@
     <item
         android:id="@+id/todaysTab"
         android:title="Dagens"
-        android:icon="@drawable/main_icon"/>
+        android:icon="@drawable/todays_icon"/>
 <!--
     <item
         android:id="@+id/summarizeOrder"
