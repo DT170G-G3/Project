@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d1c239b-79df-4a13-bae2-d20e5fffbb8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/CarteMenuHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishCarteMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/CarteMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/webapp/testCarteMenu.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/webapp/testLunchMenuService.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V4__carte_seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V3__menu_seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V3__menu_seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +42,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging API",
+    "git-widget-placeholder": "API",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/ApplikationsutvecklingJava/Project",
@@ -87,7 +80,7 @@
       <workItem from="1770846118762" duration="644000" />
       <workItem from="1770899768389" duration="5064000" />
       <workItem from="1771227587482" duration="12252000" />
-      <workItem from="1771319302449" duration="5548000" />
+      <workItem from="1771319302449" duration="12474000" />
     </task>
     <servers />
   </component>

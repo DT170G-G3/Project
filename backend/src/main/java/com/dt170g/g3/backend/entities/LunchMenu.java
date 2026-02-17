@@ -39,7 +39,7 @@ public class LunchMenu {
             joinColumns = @JoinColumn(name = "lunch_menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<Dish> dishes; //This contains all the dishes for that day!
+    private List<Dish> dishes = new ArrayList<>(); //This contains all the dishes for that day!
 
     public List<Dish> getDishes(){
         return dishes;
@@ -55,7 +55,7 @@ public class LunchMenu {
         return date;
     }
 
-    public void setDishes(List<Dish> dishes){
+    public void setDishes(List<Dish> dishes) {
         this.dishes.clear();
         if (dishes != null) {
             this.dishes.addAll(dishes);

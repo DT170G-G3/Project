@@ -1,4 +1,4 @@
-INSERT INTO lunch_menu (date) VALUES
+/*INSERT INTO lunch_menu (date) VALUES
 ('2026-02-13'),
 ('2026-02-14'),
 ('2026-02-15'),
@@ -83,4 +83,4 @@ INSERT INTO dish_lunch_menu (dish_id, lunch_menu_id) VALUES
 (7, 19), (16, 19), (3, 19),
 
 -- Menu 20
-(8, 20), (17, 20), (4, 20);
+(8, 20), (17, 20), (4, 20);*/
