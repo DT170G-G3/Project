@@ -148,6 +148,21 @@ public class LunchMenuHandler{
         selectedDishIds.clear();
     }
 
+    @Transactional
+    public void addDishesToMenu() {
+        LocalDate date = LocalDate.parse(selectedDate);
+
+        LunchMenu menu = findMenuByDate(date);
+
+        List<Dish> dishes = entityManager.createQuery(
+                        "SELECT d FROM Dish d WHERE d.id IN :ids", Dish.class)
+                .setParameter("ids", selectedDishIds)
+                .getResultList();
+
+        menu.getDishes().addAll(dishes);
+    }
+
+
     // Getters and setters for JSF binding
     public List<Integer> getSelectedDishIds() { return selectedDishIds; }
     public void setSelectedDishIds(List<Integer> selectedDishIds) { this.selectedDishIds = selectedDishIds; }
