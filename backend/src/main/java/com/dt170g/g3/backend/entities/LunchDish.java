@@ -11,16 +11,14 @@ package com.dt170g.g3.backend.entities;
  */
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @NamedQueries(
-        @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM Dish name")
+        @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM LunchDish name")
 )
 
 @Entity
-@Table(name = "dish")
-public class Dish {
+@Table(name = "lunch_dish")
+public class LunchDish {    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -28,7 +26,7 @@ public class Dish {
     private String description;
     private double price;
 
-    public Dish(){}
+    public LunchDish(){}
 
     public int getId() {
         return id;

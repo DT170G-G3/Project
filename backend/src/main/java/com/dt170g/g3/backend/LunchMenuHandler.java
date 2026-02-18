@@ -1,6 +1,6 @@
 package com.dt170g.g3.backend;
 
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -25,7 +25,7 @@ public class LunchMenuHandler{
     EntityManager entityManager;
 
     /*Creates a query for the database, and returns all the dishes for the current day*/
-    public List<Dish> getLunchDishesToday() {
+    public List<LunchDish> getLunchDishesToday() {
         List<LunchMenu> dishIDs = entityManager.createQuery(
                 "SELECT menu FROM LunchMenu menu WHERE menu.date = :today",
                 LunchMenu.class)

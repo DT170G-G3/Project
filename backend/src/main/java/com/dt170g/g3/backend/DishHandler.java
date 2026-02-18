@@ -9,7 +9,7 @@ import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -30,26 +30,26 @@ public class DishHandler {
     @PersistenceContext
     EntityManager entityManager;
 
-    private Dish newDish = new Dish();
+    private LunchDish newDish = new LunchDish();
 
-    public Dish getDishById(int id){
-        Dish dish = entityManager.find(Dish.class, id);
+    public LunchDish getDishById(int id){
+        LunchDish dish = entityManager.find(LunchDish.class, id);
         return dish;
     }
-    public List<Dish> getDishes(){
-        TypedQuery<Dish> messageQuery = entityManager.createNamedQuery("Dish.getAll", Dish.class);
-        List<Dish> resultList = messageQuery.getResultList();
+    public List<LunchDish> getDishes(){
+        TypedQuery<LunchDish> messageQuery = entityManager.createNamedQuery("Dish.getAll", LunchDish.class);
+        List<LunchDish> resultList = messageQuery.getResultList();
         return resultList;
     }
 
-    public Dish getNewDish(){
+    public LunchDish getNewDish(){
         return newDish;
     }
 
 @Transactional
     public void addDish(){
         entityManager.persist(newDish);
-        this.newDish = new Dish();
+        this.newDish = new LunchDish();
     }
 
 

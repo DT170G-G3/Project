@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @NamedQueries(
-        @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM Dish name")
+        @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM LunchDish name")
 )
 /*
  * JPA Entity class, Lunch_Menu
@@ -37,9 +37,9 @@ public class LunchMenu {
             joinColumns = @JoinColumn(name = "lunch_menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<Dish> dishes; //This contains all the dishes for that day!
+    private List<LunchDish> dishes; //This contains all the dishes for that day!
 
-    public List<Dish> getDishes(){
+    public List<LunchDish> getDishes(){
         return dishes;
     }
 
