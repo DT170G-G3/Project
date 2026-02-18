@@ -9,6 +9,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 @NamedQueries(
         @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM LunchDish name")
@@ -45,5 +46,19 @@ public class LunchMenu {
 
     public DayOfWeek getDay() {return date.getDayOfWeek();}
 
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDishes(List<LunchDish> dishes) {
+        this.dishes.clear();
+        if (dishes != null) {
+            this.dishes.addAll(dishes);
+        }
+    }
 
 }
