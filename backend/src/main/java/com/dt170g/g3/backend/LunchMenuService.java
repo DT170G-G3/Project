@@ -26,7 +26,7 @@
 
 package com.dt170g.g3.backend;
 
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
@@ -56,7 +56,7 @@ public class LunchMenuService{
      */
     @Transactional
     public void editDish(int dishId, String description){
-        Dish dish = entityManager.find(Dish.class, dishId);
+        LunchDish dish = entityManager.find(LunchDish.class, dishId);
         if(dish != null){
             dish.setDescription(description);
         }
@@ -76,7 +76,7 @@ public class LunchMenuService{
     public void removeDishFromMenu(int dishId, int menuId) {
 
         LunchMenu menu = entityManager.find(LunchMenu.class, menuId);
-        Dish dish = entityManager.find(Dish.class, dishId);
+        LunchDish dish = entityManager.find(LunchDish.class, dishId);
 
         if (menu != null && dish != null) {
             menu.getDishes().remove(dish);  // tar bort raden i dish_lunch_menu
