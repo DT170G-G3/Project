@@ -5,31 +5,33 @@
     <ui:define name="title">Á la carte</ui:define>
 
     <ui:define name="content">
-        <h1>Á la carte meny</h1>
 
-        <section class="category-grid">
-            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+        <div class="panel">
+            <h1 class="text-center">Á la cart meny</h1>
 
-                <article class="card lunch-menu">
-                    <div class="card-header">
-                        <h2>#{menu.day}</h2>
-                    </div>
-
-                    <div class="card-content">
-                        <ui:repeat value="#{menu.dishes}" var="item">
-                            <div class="dish">
-                                <h3>#{item.name}</h3>
-                                <p>#{item.description}</p>
+            <section class="panel card paper-look paper-torn">
+                <ui:repeat value="#{lunch.menuWeek}" var="menu">
+                    <div class="text-center">
+                        <article class="">
+                            <div class="under-line">
+                                <h2>#{menu.day}</h2>
                             </div>
-                        </ui:repeat>
 
-                        <p class="muted">Här lägger vi ut menyn</p>
+                            <ui:repeat value="#{menu.dishes}" var="item">
+                                <div class="dish under-line">
+                                    <h3>#{item.name}</h3>
+                                    <p>#{item.description}</p>
+                                </div>
+                            </ui:repeat>
+
+                        </article>
+
                     </div>
 
-                </article>
 
-            </ui:repeat>
-        </section>
+                </ui:repeat>
+            </section>
+        </div>
     </ui:define>
 
 </ui:composition>

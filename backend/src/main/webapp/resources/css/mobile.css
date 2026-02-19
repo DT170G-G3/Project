@@ -1,4 +1,7 @@
-/* Hamburger-knapp: gömd på desktop */
+/* =========================
+   Logik för att skapa en hamburgerknapp/meny i mobilläge
+   ========================= */
+
 .menu-toggle{
     display: none;
     width: 2.7rem;
@@ -61,8 +64,6 @@
         justify-content: flex-start;
     }
 
-    /* Viktigt: header-inner måste vara position:relative
-       så absolut-positionerad nav hamnar rätt */
     .header-inner{
         position: relative;
     }

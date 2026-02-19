@@ -30,8 +30,6 @@
     padding: var(--space-fluid);
 
 
-    /*box-shadow: none !important;*/
-
     border-radius: var(--border-radius);
     border: 1px solid oklch(0.86 0.02 95);
     border-top: 1px solid oklch(0.995 0.01 95);
