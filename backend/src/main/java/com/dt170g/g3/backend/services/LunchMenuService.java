@@ -2,6 +2,7 @@ package com.dt170g.g3.backend.services;
 
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
+import jakarta.ejb.Local;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -113,6 +114,11 @@ public class LunchMenuService {
                 .getResultList();
 
         return !existing.isEmpty();
+    }
+    @Transactional
+    public void createLunchMenu(LocalDate date){
+        LunchMenu menu = new LunchMenu(date);
+        entityManager.persist(menu);
     }
 
     /**

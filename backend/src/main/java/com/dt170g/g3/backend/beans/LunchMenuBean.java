@@ -17,7 +17,6 @@ public class LunchMenuBean {
 
     @Inject
     private LunchMenuService lunchMenuService;
-
     private String selectedDate;
     private List<Integer> selectedDishIds = new ArrayList<>();
 
@@ -51,6 +50,13 @@ public class LunchMenuBean {
 
     public void setSelectedDate(String selectedDate) {
         this.selectedDate = selectedDate;
+    }
+
+    public void saveToMenu(String localDate){
+        LocalDate date = LocalDate.parse(localDate);
+        if(!lunchMenuService.menuExistsForDate(date)){
+            lunchMenuService.createLunchMenu(date);
+        }
     }
 
 

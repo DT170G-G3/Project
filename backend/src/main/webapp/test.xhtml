@@ -39,8 +39,12 @@
                     <h:inputText value="#{dish.newDish.price}" />
 
                 </h:panelGrid>
-                <h:commandButton value="Save" action="#{dish.addDish}" />
+                <h:commandButton value="Save" action="#{lunch.saveToMenu('2026-04-20')}" />
             </h:form>
+
+            <h:commandButton value="#{week.currentWeekNumber}"  />
+            <h:commandButton value="Next week"  />
+            <h:commandButton value="Week after next"  />
 
 
 

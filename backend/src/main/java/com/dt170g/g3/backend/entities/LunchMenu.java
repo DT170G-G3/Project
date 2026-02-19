@@ -49,6 +49,11 @@ public class LunchMenu {
     )
     private List<LunchDish> dishes; //This contains all the dishes for that day!
 
+    public LunchMenu(){}
+    public LunchMenu(LocalDate date){
+        this.date = date;
+    }
+
     public List<LunchDish> getDishes(){
         return dishes;
     }
