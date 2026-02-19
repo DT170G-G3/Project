@@ -129,16 +129,3 @@
 .theme-toggle:hover{ transform: scale(1.01); }
 .theme-toggle:active{ transform: scale(0.98); }
 
-.lunch-menu .dish + .dish{
-    margin-top: 0.9rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid color-mix(in oklch, var(--border) 45%, transparent);
-}
-
-.lunch-menu h2 { margin: 0; }
-.lunch-menu h3 { margin: 0 0 0.25rem; color: var(--text); }
-
-.muted{
-    color: var(--text-muted);
-    margin-top: 1rem;
-}

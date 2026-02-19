@@ -179,6 +179,5 @@ input:focus-visible {
 
 .under-line {
     border-bottom: solid 1px var(--border);
-    /*padding-bottom: 0.5rem;*/
     margin-bottom: var(--gap-fluid);
 }

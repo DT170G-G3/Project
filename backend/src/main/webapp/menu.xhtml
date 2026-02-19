@@ -6,32 +6,30 @@
 
     <ui:define name="content">
 
-        <div class="panel">
-            <h1 class="text-center">Á la cart meny</h1>
+        <section class="panel paper-look paper-torn">
+            <div class="menu-inner">
+                <h1 class="text-center">Á la carte meny</h1>
 
-            <section class="panel card paper-look paper-torn">
                 <ui:repeat value="#{lunch.menuWeek}" var="menu">
-                    <div class="text-center">
-                        <article class="">
-                            <div class="under-line">
-                                <h2>#{menu.day}</h2>
-                            </div>
+                    <article class="menu-category">
+                        <h2 class="text-center">#{menu.day}</h2>
 
+                        <div class="menu-items">
                             <ui:repeat value="#{menu.dishes}" var="item">
-                                <div class="dish under-line">
-                                    <h3>#{item.name}</h3>
+                                <div class="menu-dish">
+                                    <div class="dish-header">
+                                        <h3>#{item.name}</h3>
+                                        <span class="dish-price">70 kr</span>
+                                    </div>
                                     <p>#{item.description}</p>
                                 </div>
                             </ui:repeat>
-
-                        </article>
-
-                    </div>
-
-
+                        </div>
+                    </article>
                 </ui:repeat>
-            </section>
-        </div>
+            </div>
+        </section>
+
     </ui:define>
 
 </ui:composition>
