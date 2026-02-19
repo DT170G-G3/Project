@@ -26,8 +26,9 @@ public class LunchDishBean implements Serializable {
         return dishService.findAllLunchDishes();
     }
 
-    public void addDish() {
-        dishService.saveDish(newDish);
+    public void reset() {
         newDish = new LunchDish();
     }
+
+
 }

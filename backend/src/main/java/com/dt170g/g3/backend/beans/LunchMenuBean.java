@@ -2,10 +2,12 @@ package com.dt170g.g3.backend.beans;
 
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
+import com.dt170g.g3.backend.services.LunchDishService;
 import com.dt170g.g3.backend.services.LunchMenuService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +19,10 @@ public class LunchMenuBean {
 
     @Inject
     private LunchMenuService lunchMenuService;
+    @Inject
+    private LunchDishService lunchDishService;
+    @Inject
+    private LunchDishBean dishBean;
     private String selectedDate;
     private List<Integer> selectedDishIds = new ArrayList<>();
 
@@ -52,11 +58,24 @@ public class LunchMenuBean {
         this.selectedDate = selectedDate;
     }
 
+    /* It works, but not very refined! Might need to be broken down for parts.
+    * "Finns inget skrot, bara gamla grejer som går att använda på nya sätt"
+    * -Mulle Meck
+    *  */
+
+    @Transactional
     public void saveToMenu(String localDate){
         LocalDate date = LocalDate.parse(localDate);
         if(!lunchMenuService.menuExistsForDate(date)){
             lunchMenuService.createLunchMenu(date);
         }
+        LunchMenu menu = lunchMenuService.getLunchMenuByDate(date);
+        LunchDish dish = dishBean.getNewDish();
+        if(!lunchDishService.checkIfDishExist(dish)){
+            lunchDishService.saveDish(dish);
+        }
+        menu.addDish(dish);
+        dishBean.reset();
     }
 
 
