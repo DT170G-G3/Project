@@ -1,7 +1,7 @@
 package com.dt170g.g3.backend;
 
 import com.dt170g.g3.backend.entities.CarteMenu;
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityManager;
@@ -17,9 +17,7 @@ public class CarteMenuHandler {
     @PersistenceContext
     EntityManager entityManager;
 
-
-
-    public List<Dish> getCarteMenu(){
+    public List<LunchDish> getCarteMenu(){
 
         CarteMenu menu = entityManager.find(CarteMenu.class, 1L);
 
