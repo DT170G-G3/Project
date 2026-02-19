@@ -3,7 +3,9 @@ package com.dt170g.g3.backend.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+@NamedQueries(
+        @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM Dish name")
+)
 @Entity
 @Table(name = "dish")
 public class Dish {
