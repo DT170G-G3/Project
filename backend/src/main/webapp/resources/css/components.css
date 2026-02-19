@@ -6,7 +6,6 @@
     margin-top: var(--space-fluid);
     display: grid;
     gap: var(--gap-fluid);
-
     grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
     align-items: stretch;
 }
@@ -17,40 +16,77 @@
     grid-template-rows: auto 1fr auto;
     gap: 0.75rem;
 
-    padding: var(--space-fluid);
-    border-radius: var(--border-radius);
-
-    background-color: var(--surface);
-    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
-    box-shadow: var(--shadow-soft);
-    /*transition: ease-in-out 0.2s;*/
-
     transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.card:hover {
-    /*transform: scale(var(--scale-on-hover)); */
+/*.card:hover {*/
+/*    !*transform: scale(var(--scale-on-hover)); *!*/
 
-    background: var(--surface-hover);
-    border-color: var(--surface-border-hover);
-    box-shadow: var(--shadow);
-}
+/*    background: var(--surface-hover);*/
+/*    border-color: var(--surface-border-hover);*/
+/*    box-shadow: var(--shadow);*/
+/*}*/
 
 .card-header h3 { color: var(--text); margin: 0; }
 .card-content p { margin: 0; }
 
-.card-link a {
+.card-link{
+    margin-top: var(--gap-fluid);
+}
+
+/* Gör länken till en knapp */
+.btn-link{
     display: inline-flex;
     align-items: center;
-    gap: 0.35em;
+    justify-content: center;
+    gap: 0.5rem;
 
+    padding: clamp(0.55rem, 0.45rem + 0.4vw, 0.75rem)
+    clamp(0.85rem, 0.7rem + 0.7vw, 1.15rem);
+
+    border-radius: calc(var(--border-radius) * 0.75);
+    background-color: var(--bg-light);
+    color: var(--text);
+
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
+
+    text-decoration: none;
     font-weight: 700;
-    color: color-mix(in oklch, var(--primary) 85%, var(--text));
+
+    transition: transform 120ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
-.card-link a:hover {
-    text-decoration: underline;
+.btn-link:hover{
+    /* enkel hover utan color-mix: byt till gradient-hover eller bg */
+    background: var(--gradient-hover);
+    box-shadow: var(--shadow-hover);
 }
+
+.btn-link:active{
+    transform: scale(0.98);
+}
+
+.btn-link:focus-visible{
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+/*.card-link a {*/
+/*    display: inline-flex;*/
+/*    align-items: center;*/
+/*    gap: 0.35em;*/
+
+/*    font-weight: 700;*/
+/*    color: var(--primary);*/
+/*    transition: color 0.2s ease;*/
+/*}*/
+
+/*.card-link a:hover {*/
+/*    text-decoration: underline;*/
+/*    color: var(--hightlight);*/
+/*}*/
 
 /*
   Subgrid-enhancement (om browser stödjer):
@@ -82,27 +118,15 @@
 
 .concept-section{
     margin-top: var(--space-fluid);
-    padding: var(--space-fluid);
-    border-radius: var(--border-radius);
-
-    background-color: var(--surface);
-    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
-    box-shadow: var(--shadow-soft);
-    /*transition: ease-in-out 0.2s;*/
     transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-
 }
 
-.concept-section:hover {
-    /*transform: scale(var(--scale-on-hover));*/
-    /*border-color: var(--border-muted);*/
-    background: var(--surface-hover);
-    border-color: var(--surface-border-hover);
-    box-shadow: var(--shadow);
-}
 
-.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
-.concept-section strong { color: var(--text); }
+.concept-section p { color: var(--text-muted); }
+.concept-section strong {
+    color: var(--text);
+    font-weight: 700;
+}
 .concept-section h2 { color: var(--secondary); }
 
 

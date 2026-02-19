@@ -1,0 +1,69 @@
+/* Hamburger-knapp: gömd på desktop */
+.menu-toggle{
+    display: none;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+
+    box-shadow: none;
+}
+
+.menu-toggle__bar{
+    display: block;
+    width: 1.15rem;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+}
+
+/* === MOBILE < 950px === */
+@media (max-width: 949px){
+    .menu-toggle{
+        display: inline-flex;
+    }
+
+    /* Göm nav som “inline” i headern */
+    .nav-links{
+        display: none;
+    }
+
+    /* När meny är öppen: visa som panel under header-inner */
+    .nav-links.is-open{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+
+        position: absolute;
+        right: var(--padding-fluid);
+        left: var(--padding-fluid);
+        top: calc(100% + 0.5rem);
+
+        padding: 0.6rem;
+        border-radius: var(--border-radius);
+
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        z-index: 999;
+    }
+
+    /* Gör länkarna “full width” i mobile */
+    .nav-links.is-open .nav-link{
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    /* Viktigt: header-inner måste vara position:relative
+       så absolut-positionerad nav hamnar rätt */
+    .header-inner{
+        position: relative;
+    }
+}

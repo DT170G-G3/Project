@@ -25,36 +25,54 @@
     <h:outputStylesheet library="css" name="base.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="layout.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="components.css?v=${build.version}" />
-    <h:outputStylesheet library="css" name="landing.css?v=${build.version}" />
-<!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}" />-->
+    <h:outputStylesheet library="css" name="hero.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="paper-look.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="mobile.css?v=${build.version}" />
 
     <ui:insert name="extra-head" />
 </h:head>
 
 <h:body>
-    <header class="header full-width">
-        <div class="logo">
-            <h:link outcome="index">Anton's Skafferi</h:link>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <h:link outcome="index">Anton's Skafferi</h:link>
 
-            <button id="themeToggle"
-                    type="button"
-                    class="theme-toggle"
-                    aria-label="Växla tema"
-                    aria-pressed="false">
-            🌙
-            </button>
-        </div>
+                <button id="themeToggle"
+                        type="button"
+                        class="theme-toggle"
+                        aria-label="Växla tema"
+                        aria-pressed="false">
+                    🌙
+                </button>
+            </div>
 
-        <nav class="nav-links">
+        <!-- Hamburger -->
+        <button id="menuToggle"
+                type="button"
+                class="menu-toggle"
+                aria-label="Öppna meny"
+                aria-controls="primaryNav"
+                aria-expanded="false">
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+        </button>
+
+        <nav id="primaryNav" class="nav-links">
             <h:link outcome="index" value="Hem" styleClass="nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}"/>
             <h:link outcome="lunch" value="Lunch" styleClass="nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}"/>
             <h:link outcome="menu" value="Á La Carte" styleClass="nav-link #{view.viewId == '/menu.xhtml' ? 'active' : ''}"/>
             <h:link outcome="booking" value="Boka bord" styleClass="nav-link #{view.viewId == '/booking.xhtml' ? 'active' : ''}"/>
             <h:link outcome="events" value="Events" styleClass="nav-link #{view.viewId == '/events.xhtml' ? 'active' : ''}"/>
+
         </nav>
+
+        </div>
     </header>
 
     <ui:insert name="hero"/>
+
 <!--    sidor som man döper till name="content" kommer att laddas här under-->
     <main id="main-content" class="main-container">
         <ui:insert name="content">
@@ -98,7 +116,61 @@
                 apply(next);
             });
         })();
+
     </script>
+
+    <script>
+        (function () {
+            const btn = document.getElementById("menuToggle");
+            const nav = document.getElementById("primaryNav");
+            if (!btn || !nav) return;
+
+            function openMenu() {
+                nav.classList.add("is-open");
+                btn.setAttribute("aria-expanded", "true");
+            }
+
+            function closeMenu() {
+                nav.classList.remove("is-open");
+                btn.setAttribute("aria-expanded", "false");
+            }
+
+            function toggleMenu() {
+                const isOpen = nav.classList.contains("is-open");
+                isOpen ? closeMenu() : openMenu();
+            }
+
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            // Stäng om man klickar utanför
+            document.addEventListener("click", (e) => {
+                if (!nav.classList.contains("is-open")) return;
+                if (nav.contains(e.target) || btn.contains(e.target)) return;
+                closeMenu();
+            });
+
+            // Stäng med Esc
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeMenu();
+            });
+
+            // Stäng när man klickar på en länk i menyn
+            nav.addEventListener("click", (e) => {
+                const a = e.target.closest("a");
+                if (a) closeMenu();
+            });
+
+            // Om man går från mobile->desktop: stäng menyn
+            const mq = window.matchMedia("(min-width: 950px)");
+            mq.addEventListener?.("change", (e) => {
+                if (e.matches) closeMenu();
+            });
+        })();
+    </script>
+
 
 </h:body>
 </html>

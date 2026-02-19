@@ -5,30 +5,33 @@
     <ui:define name="title">Dagens lunch</ui:define>
 
     <ui:define name="content">
+
+        <div class="panel">
         <h1>Dagens lunch</h1>
 
-        <section class="category-grid">
-            <ui:repeat value="#{lunch.menuWeek}" var="menu">
-
-                <article class="card lunch-menu">
-                    <div class="card-header">
-                        <h2>#{menu.day}</h2>
-                    </div>
-
-                    <div class="card-content">
-                        <ui:repeat value="#{menu.dishes}" var="item">
-                            <div class="dish">
-                                <h3>#{item.name}</h3>
-                                <p>#{item.description}</p>
+            <section class="category-grid">
+                <ui:repeat value="#{lunch.menuWeek}" var="menu">
+                    <div class="panel card paper-look">
+                        <article class="">
+                            <div class="under-line">
+                                <h2>#{menu.day}</h2>
                             </div>
-                        </ui:repeat>
+
+                            <ui:repeat value="#{menu.dishes}" var="item">
+                                <div class="dish under-line">
+                                    <h3>#{item.name}</h3>
+                                    <p>#{item.description}</p>
+                                </div>
+                            </ui:repeat>
+
+                        </article>
 
                     </div>
 
-                </article>
 
-            </ui:repeat>
-        </section>
+                </ui:repeat>
+            </section>
+        </div>
     </ui:define>
 
 </ui:composition>
