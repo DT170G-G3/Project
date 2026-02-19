@@ -5,7 +5,7 @@
     <!-- <color name="mainColor">#8A1313</color> -->
     <color name="mainColor">#E7E7E7</color>
     <color name="accentColor">#737373</color>
-    <color name="boarderColor">#808080</color>
+    <color name="borderColor">#808080</color>
 
     <color name="boxBackground">#F6F6F6</color>
 </resources>

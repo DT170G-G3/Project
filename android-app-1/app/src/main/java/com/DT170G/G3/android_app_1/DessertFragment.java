@@ -2,11 +2,16 @@ package com.DT170G.G3.android_app_1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +65,21 @@ public class DessertFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dessert, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        String[] desserts = getResources().getStringArray(R.array.dessertList);
+
+        LinearLayout dessertView = view.findViewById(R.id.dessertLayout);
+
+        OrderItemRow orderItemRow = new OrderItemRow();
+
+        for(String dessert : desserts){
+            dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert));
+        }
+
     }
 }

@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment"
-    android:orientation="vertical">
+    tools:context=".MainCourseFragment"
+    android:orientation="vertical"
+    android:id="@+id/starterLayout">
 
 
     <TextView
@@ -25,133 +26,24 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:background="#808080"/>
-
-
-    <LinearLayout
+        android:background="@color/borderColor"/>
+<!--
+    <TextView
+        android:id="@+id/tableHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="Bord 1"
+        android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
+        android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/sodaButton1"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Toast Skagen"/>
-
-        <TextView
-            android:id="@+id/starterCounter1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tableUnderBoarder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/starterButton2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bruschetta"/>
-
-        <TextView
-            android:id="@+id/starterCounter2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/starterButton3"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Oliver"/>
-
-        <TextView
-            android:id="@+id/starterCounter3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/starterButton4"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Räksoppa" />
-
-        <TextView
-            android:id="@+id/starterCounter4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/starterButton5"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Carpaccio" />
-
-        <TextView
-            android:id="@+id/starterCounter5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/borderColor"/>
+-->
 </LinearLayout>

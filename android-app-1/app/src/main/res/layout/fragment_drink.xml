@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment"
-    android:orientation="vertical">
+    tools:context=".MainCourseFragment"
+    android:orientation="vertical"
+    android:id="@+id/drinkLayout">
 
 
     <TextView
@@ -26,280 +27,25 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:background="@color/boarderColor"/>
-
-    <TextView
-        android:id="@+id/tableHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bord 1"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/tableUnderBoarder"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:background="@color/boarderColor"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton1"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Pepsi"/>
-
-        <TextView
-            android:id="@+id/drinkCounter1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Coca Cola"/>
-
-        <TextView
-            android:id="@+id/drinkCounter2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton3"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Fanta"/>
-
-        <TextView
-            android:id="@+id/drinkCounter3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-<!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton4"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Sprite" />
-
-        <TextView
-            android:id="@+id/drinkCounter4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
--->
-
+        android:background="@color/borderColor"/>
     <!--
-    <TextView
-        android:id="@+id/wineUpperBoarder"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:background="#808080"/>
-
-    <TextView
-        android:id="@+id/wineHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vin"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tableHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bord 1"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"/>
 
         <TextView
-        android:id="@+id/wineUnderBoarder"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:background="#808080"/>
--->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
+            android:id="@+id/tableUnderBoarder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:background="@color/borderColor"/>
+            -->
 
-        <Button
-            android:id="@+id/drinkButton4"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Rött vin"/>
-
-        <TextView
-            android:id="@+id/drinkCounter4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton5"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Vitt vin"/>
-
-        <TextView
-            android:id="@+id/drinkCounter5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-<!--
-    <TextView
-        android:id="@+id/beerUpperBoarder"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:background="#808080" />
-
-    <TextView
-        android:id="@+id/beerHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Öl"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/beerUnderBoarder"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:background="#808080"/>
--->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton6"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Öl"/>
-
-        <TextView
-            android:id="@+id/drinkCounter6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <Button
-            android:id="@+id/drinkButton7"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="IPA"/>
-
-        <TextView
-            android:id="@+id/drinkCounter7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="100dp"
-            android:text="0" />
-    </LinearLayout>
-</LinearLayout>

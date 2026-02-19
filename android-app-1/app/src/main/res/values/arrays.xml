@@ -15,20 +15,35 @@
 
     <string-array name="drinkList">
         <item>Pepsi</item>
-        <item>Pepsi Max</item>
-        <item>Vin</item>
-        <item>Annat vin</item>
-        <item>God drink</item>
-        <item>Öl</item>
+        <item>Fanta</item>
+        <item>Rött vin</item>
+        <item>Vitt vin</item>
+        <item>IPA</item>
+        <item>Öl ljus lager</item>
     </string-array>
 
-    <string-array name="foodList">
+    <string-array name="starterList">
+        <item>Toast skagen</item>
+        <item>Bruschetta</item>
+        <item>Oliver</item>
+        <item>Räksoppa</item>
+        <item>Carpaccio</item>
+    </string-array>
+
+    <string-array name="mainCourseList">
+        <item>Oxfilé</item>
+        <item>Älg</item>
+        <item>Kalkon</item>
         <item>Fisk</item>
-        <item>Kötträtt</item>
-        <item>Soppa</item>
-        <item>Veg</item>
-        <item>Något annat gottigt</item>
-        <item>Mer gott</item>
+        <item>Vegitariskt</item>
+        <item>Pasta</item>
+    </string-array>
+
+    <string-array name="dessertList">
+        <item>Glass</item>
+        <item>Brownie</item>
+        <item>Pannacotta</item>
+        <item>Blåbärspaj</item>
     </string-array>
 
 

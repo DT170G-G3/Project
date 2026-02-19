@@ -1,10 +1,24 @@
 package com.DT170G.G3.android_app_1;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.DT170G.G3.android_app_1.classes.OrderItemRow;
+import com.DT170G.G3.android_app_1.classes.PagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,5 +52,53 @@ public class TableFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_table, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        String[] tables = getResources().getStringArray(R.array.tableList);
+
+        LinearLayout tableView = view.findViewById(R.id.tableLayout);
+
+        for(String table : tables){
+            tableView.addView(createButton(table));
+        }
+
+    }
+
+    public Button createButton(String item){
+        //Skapar Button
+        Button tableButton = new Button(requireContext());
+        tableButton.setAllCaps(false);
+        tableButton.setText(item);
+        tableButton.setTextColor(Color.parseColor("#FFFFFF"));
+
+        //Ändrar färg och form på knappen
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.parseColor("#737373"));
+        gd.setCornerRadius(75);
+        tableButton.setBackground(gd);
+
+
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        buttonParams.setMargins(0,20,0,20);
+        tableButton.setLayoutParams(buttonParams);
+        //tableButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ));
+
+
+        tableButton.setOnClickListener(buttonClicked -> {
+            //Ändra text för valt bord
+            TextView tv = requireActivity().findViewById(R.id.tableHeader);
+            tv.setText(item);
+
+            //Ändrar vy till Drinkvy
+            ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
+            viewPager.setCurrentItem(1);
+        });
+
+
+        return tableButton;
     }
 }

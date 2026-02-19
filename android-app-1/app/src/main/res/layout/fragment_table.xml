@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment"
+    tools:context=".MainCourseFragment"
     android:orientation="vertical">
 
 
     <TextView
-        android:id="@+id/todaysHeader"
+        android:id="@+id/tableTabHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24dp"
@@ -19,96 +19,122 @@
         android:text="Välj bord" />
 
     <TextView
-        android:id="@+id/todaysBorderHeader"
+        android:id="@+id/tableBorderHeader"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:background="#808080"/>
-
-
-    <LinearLayout
+        android:background="@color/borderColor"/>
+    <!--
+    <TextView
+        android:id="@+id/tableHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:text="Välj bord nedan"
+        android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
+        android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/buttonTableOne"
+    <TextView
+        android:id="@+id/tableUnderBoarder"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/borderColor"/>
+-->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 1" />
-
-        <Button
-            android:id="@+id/buttonTableTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 2" />
-
-        <Button
-            android:id="@+id/buttonTableThree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 3" />
-
-        <Button
-            android:id="@+id/buttonTableFour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 4" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/tableLayout">
 
 
-        <Button
-            android:id="@+id/buttonTableFive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 5" />
+
+            <!--
+
+                        <Button
+                            android:id="@+id/buttonTableOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 1" />
+
+                        <Button
+                            android:id="@+id/buttonTableTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 2" />
+
+                        <Button
+                            android:id="@+id/buttonTableThree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 3" />
+
+                        <Button
+                            android:id="@+id/buttonTableFour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 4" />
 
 
-        <Button
-            android:id="@+id/buttonTableSix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 6" />
+                        <Button
+                            android:id="@+id/buttonTableFive"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 5" />
 
 
-        <Button
-            android:id="@+id/buttonTableSeven"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 7" />
+                        <Button
+                            android:id="@+id/buttonTableSix"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 6" />
 
-        <Button
-            android:id="@+id/buttonTableEight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 8" />
 
-        <Button
-            android:id="@+id/buttonTableNine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/accentColor"
-            android:text="Bord 9" />
-    </LinearLayout>
+                        <Button
+                            android:id="@+id/buttonTableSeven"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 7" />
+
+                        <Button
+                            android:id="@+id/buttonTableEight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 8" />
+
+                        <Button
+                            android:id="@+id/buttonTableNine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/accentColor"
+                            android:text="Bord 9" />
+            -->
+
+                </LinearLayout>
+
 </LinearLayout>
