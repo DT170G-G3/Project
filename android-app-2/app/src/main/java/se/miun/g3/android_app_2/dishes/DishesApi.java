@@ -1,6 +1,7 @@
-package com.DT170G.G3.android_app_1;
+package se.miun.g3.android_app_2.dishes;
 
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 

@@ -1,4 +1,6 @@
-package com.DT170G.G3.android_app_1;
+package se.miun.g3.android_app_2.dishes;
+
+import se.miun.g3.android_app_2.ApiClient;
 
 import java.util.List;
 
@@ -6,16 +8,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrdersRepository {
-    public interface OrderCallback {
-        void onSuccess(Order postedOrder);
+public class DishesRepository {
+
+    public interface GetCallback {
+        void onSuccess(List<Dish> dishes);
         void onError(String message);
     }
-    public void postOrder(Order order, OrderCallback cb) {
-        Call<Order> call = ApiClient.ordersApi().postOrder(order);
-        call.enqueue(new Callback<Order>() {
+
+
+    public void getDishes(GetCallback cb) {
+        Call<List<Dish>> call = ApiClient.dishesApi().getDishes();
+        call.enqueue(new Callback<List<Dish>>() {
             @Override
-            public void onResponse(Call<Order> call, Response<Order> response) {
+            public void onResponse(Call<List<Dish>> call, Response<List<Dish>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     cb.onSuccess(response.body());
                 }
@@ -25,7 +30,7 @@ public class OrdersRepository {
             }
 
             @Override
-            public void onFailure(Call<Order> call, Throwable t) {
+            public void onFailure(Call<List<Dish>> call, Throwable t) {
                 cb.onError(t.getMessage());
             }
         });

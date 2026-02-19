@@ -1,4 +1,4 @@
-package com.DT170G.G3.android_app_1;
+package se.miun.g3.android_app_2.dishes;
 
 public class Dish {
     public long id;

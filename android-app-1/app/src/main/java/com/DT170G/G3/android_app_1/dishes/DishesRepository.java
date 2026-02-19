@@ -1,4 +1,6 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.dishes;
+
+import com.DT170G.G3.android_app_1.ApiClient;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -7,13 +9,13 @@ import retrofit2.Callback;
 
 public class DishesRepository {
 
-    public interface DishesCallback {
+    public interface GetCallback {
         void onSuccess(List<Dish> dishes);
         void onError(String message);
     }
 
 
-    public void getDishes(DishesCallback cb) {
+    public void getDishes(GetCallback cb) {
         Call<List<Dish>> call = ApiClient.dishesApi().getDishes();
         call.enqueue(new Callback<List<Dish>>() {
             @Override

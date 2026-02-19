@@ -1,4 +1,4 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.orders;
 
 import java.util.List;
 
