@@ -8,13 +8,7 @@
     tools:context=".MainActivity">
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tableSpinner" />
-<!--
+    <!--
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -27,14 +21,14 @@
 
 
 -->
-    <Spinner
-        android:id="@+id/tableSpinner"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/box"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/sendOrderButton" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/sendOrderButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/sendOrderButton"

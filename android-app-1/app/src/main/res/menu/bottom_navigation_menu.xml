@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/todaysTab"
+        android:title="Dagens"
+        android:icon="@drawable/table"/>
+
+    <item
         android:id="@+id/drinkTab"
         android:title="Dryck"
         android:icon="@drawable/counter_1"/>
@@ -21,16 +26,4 @@
         android:id="@+id/dessertTab"
         android:title="Efterrätt"
         android:icon="@drawable/counter_4"/>
-
-    <item
-        android:id="@+id/todaysTab"
-        android:title="Dagens"
-        android:icon="@drawable/todays_icon"/>
-<!--
-    <item
-        android:id="@+id/summarizeOrder"
-        android:title="Hantera order"
-        android:icon="@drawable/summarize_order"/>
-
-        -->
 </menu>

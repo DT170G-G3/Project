@@ -32,7 +32,6 @@ public class DrinkFragment extends Fragment {
      *
      * @return A new instance of fragment DrinkFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DrinkFragment newInstance() {
         DrinkFragment fragment = new DrinkFragment();
         return fragment;

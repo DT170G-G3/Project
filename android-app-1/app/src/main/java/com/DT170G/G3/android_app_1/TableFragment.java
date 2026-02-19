@@ -1,18 +1,19 @@
 package com.DT170G.G3.android_app_1;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StarterFragment#newInstance} factory method to
+ * Use the {@link TableFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StarterFragment extends Fragment {
-    public StarterFragment() {
+public class TableFragment extends Fragment {
+
+    public TableFragment() {
         // Required empty public constructor
     }
 
@@ -22,8 +23,8 @@ public class StarterFragment extends Fragment {
      *
      * @return A new instance of fragment AddFragment.
      */
-    public static StarterFragment newInstance(String param1, String param2) {
-        StarterFragment fragment = new StarterFragment();
+    public static TableFragment newInstance(String param1, String param2) {
+        TableFragment fragment = new TableFragment();
         return fragment;
     }
 
@@ -36,6 +37,6 @@ public class StarterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_starter, container, false);
+        return inflater.inflate(R.layout.fragment_table, container, false);
     }
 }

@@ -9,7 +9,7 @@ import com.DT170G.G3.android_app_1.DessertFragment;
 import com.DT170G.G3.android_app_1.DrinkFragment;
 import com.DT170G.G3.android_app_1.MainFragment;
 import com.DT170G.G3.android_app_1.StarterFragment;
-import com.DT170G.G3.android_app_1.TodaysFragment;
+import com.DT170G.G3.android_app_1.TableFragment;
 
 public class PagerAdapter extends FragmentStateAdapter {
 
@@ -30,7 +30,7 @@ public class PagerAdapter extends FragmentStateAdapter {
             case 3:
                 return new DessertFragment();
             case 4:
-                return new TodaysFragment();
+                return new TableFragment();
             default:
                 return new DrinkFragment();
         }
