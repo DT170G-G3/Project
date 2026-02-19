@@ -132,7 +132,7 @@
 .lunch-menu .dish + .dish{
     margin-top: 0.9rem;
     padding-top: 0.9rem;
-    border-top: 1px solid color-mix(in oklch, var(--border-muted) 45%, transparent);
+    border-top: 1px solid color-mix(in oklch, var(--border) 45%, transparent);
 }
 
 .lunch-menu h2 { margin: 0; }
