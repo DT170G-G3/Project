@@ -9,11 +9,10 @@ package com.dt170g.g3.backend.entities;
  * Corresponds to a table in the database and makes a Java object out of it.
  * Each of the variables represents a column in the table.
  */
-
 import jakarta.persistence.*;
 
 @NamedQueries(
-        @NamedQuery(name = "Dish.getAll", query = "SELECT name FROM LunchDish name")
+        @NamedQuery(name = "LunchDish.getAll", query = "SELECT name FROM LunchDish name")
 )
 
 @Entity
@@ -27,6 +26,11 @@ public class LunchDish {
     private double price;
 
     public LunchDish(){}
+    public LunchDish(String name, String description, double price){
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     public int getId() {
         return id;

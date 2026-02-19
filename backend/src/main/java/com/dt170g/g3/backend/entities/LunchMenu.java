@@ -4,6 +4,7 @@
 package com.dt170g.g3.backend.entities;
 
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -11,9 +12,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-@NamedQueries(
-        @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM LunchDish name")
-)
+@NamedQueries({
+        @NamedQuery(name = "Lunch.getDishes", query = "SELECT d.name FROM LunchDish d"),
+
+        @NamedQuery(name = "Lunch.getLunchDishesToday",
+                    query = "SELECT menu FROM LunchMenu menu WHERE menu.date = :today"),
+
+        @NamedQuery(name = "Lunch.getWeeklyMenues",
+                    query = "SELECT menu FROM LunchMenu menu  WHERE menu.date BETWEEN :start AND :end " +
+                    "ORDER BY menu.date")
+
+})
 /*
  * JPA Entity class, Lunch_Menu
  * Corresponds to a table in the database and makes a Java object out of it.

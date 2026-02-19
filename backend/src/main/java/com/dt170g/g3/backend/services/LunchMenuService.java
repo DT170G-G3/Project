@@ -1,51 +1,75 @@
-package com.dt170g.g3.backend;
+package com.dt170g.g3.backend.services;
 
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.NonUniqueResultException;
 
-
-/*
- * Class exposed to the JFA, also known as a "bean".
- * These functions can be reaches by the facelet webapplication.
- * It is reached via the given name "lunch".
- */
 @ApplicationScoped
-@Named("lunch")
-public class LunchMenuHandler{
+public class LunchMenuService {
     @PersistenceContext
     EntityManager entityManager;
 
-    private String selectedDate; //LocalDate?
-    private List<Integer> selectedDishIds = new ArrayList<>();
-
     /*Creates a query for the database, and returns all the dishes for the current day*/
     public List<LunchDish> getLunchDishesToday() {
-        List<LunchMenu> dishIDs = entityManager.createQuery(
-                "SELECT menu FROM LunchMenu menu WHERE menu.date = :today",
-                LunchMenu.class)
+        List<LunchMenu> dishIDs = entityManager.createNamedQuery(
+                        "Lunch.getLunchDishesToday", LunchMenu.class)
                 .setParameter("today", LocalDate.now())
                 .getResultList();
 
         if (dishIDs.isEmpty()) {
-             return Collections.emptyList(); //Needed in case there was no food.
+            return Collections.emptyList(); //Needed in case there was no food.
         } else {
             return dishIDs.get(0).getDishes();
         }
     }
+
+    /*Creates a query for the database, and returns all the menues for the current week*/
+    public List<LunchMenu> getMenuWeek(){
+        LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate saturday = monday.plusDays(5);
+        List<LunchMenu> weekMenu = entityManager.createNamedQuery(
+             "Lunch.getWeeklyMenues",LunchMenu.class)
+                .setParameter("start",monday)
+                .setParameter("end", saturday)
+                .getResultList();
+        return weekMenu;
+    }
+
+    /**
+     * Removes the association between a specific Dish and a LunchMenu.
+     *
+     * This method does not delete the Dish entity itself. It only removes
+     * the relationship entry from the join table connecting the Dish
+     * to the specified LunchMenu.
+     *
+     * @param dishId the id of the Dish to remove
+     * @param menuId the id of the LunchMenu from which the Dish will be removed
+     */
+    @Transactional
+    public void removeDishFromMenu(int dishId, int menuId) {
+
+        LunchMenu menu = entityManager.find(LunchMenu.class, menuId);
+        LunchDish dish = entityManager.find(LunchDish.class, dishId);
+
+        if (menu != null && dish != null) {
+            menu.getDishes().remove(dish);  // tar bort raden i dish_lunch_menu
+        }
+    }
+
+    private String selectedDate; //LocalDate?
+    private List<Integer> selectedDishIds = new ArrayList<>();
 
     /**
      * Retrieves all dishes for a specific date.
@@ -74,23 +98,6 @@ public class LunchMenuHandler{
         } catch (NonUniqueResultException e) {
             throw new IllegalStateException("Multiple lunch menus exist for date: " + date);
         }
-    }
-
-    /*Creates a query for the database, and returns all the menues for the current week*/
-    public List<LunchMenu> getMenuWeek(){
-        LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate saturday = monday.plusDays(5);
-        List<LunchMenu> weekMenu = entityManager.createQuery(
-                "SELECT menu FROM LunchMenu menu " +
-                   "WHERE menu.date BETWEEN :start AND :end " +
-                   "ORDER BY menu.date",
-                    LunchMenu.class
-                )
-                .setParameter("start",monday)
-                .setParameter("end", saturday)
-                .getResultList();
-
-        return weekMenu;
     }
 
     /**
