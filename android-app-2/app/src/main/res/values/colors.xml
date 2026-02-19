@@ -2,5 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="lightYellow">#FFF8E1</color>
+    <color name="bongColor">#FAFAFA</color>
+    <color name="green">#81C784</color>
+    <color name="headerColor">#333333</color>
+    <color name="textColor">#444444</color>
+    <color name="clickedGreen">#43A047</color>
+    <color name="background">#ECECEC</color>
 </resources>

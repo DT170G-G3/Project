@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +11,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,39 +27,90 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        RecyclerView starterRecyclerView = findViewById(R.id.starterRecyclerView);
-        RecyclerView mainRecyclerView = findViewById(R.id.mainCourseRecyclerView);
-        RecyclerView dessertRecyclerView = findViewById(R.id.dessertRecyclerView);
+        RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
+        orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        starterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        dessertRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //För test, byt till databaskoppling sen
+        List<Orders> starterOrders = Arrays.asList(
+                new Orders(1, Arrays.asList("Carpaccio", "Caprese"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(2, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(3, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(4, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(5, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(6, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(7, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(8, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
+                new Orders(9, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>())
 
-
-        //bara för test
-        List<Order> starterOrder = Arrays.asList(
-                new Order(1, Arrays.asList("Carpaccio")),
-                        new Order(5, Arrays.asList("Caprese"))
         );
 
-        List<Order> mainOrder = Arrays.asList(
-                new Order(2, Arrays.asList("kött", "Fish and chips")),
-                new Order(6, Arrays.asList("Bolognese"))
+        List<Orders> mainCourserOrders = Arrays.asList(
+                new Orders(1, new ArrayList<>(), Arrays.asList("Kött", "Fisk"), new ArrayList<>()),
+                new Orders(2, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(3, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(4, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(5, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(6, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(7, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(8, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>()),
+                new Orders(9, new ArrayList<>(), Arrays.asList("Pasta", "kött"),  new ArrayList<>())
+
         );
 
-        List<Order> dessertOrder = Arrays.asList(
-                new Order(3, Arrays.asList("kladdkaka", "glass")),
-                new Order(1, Arrays.asList("tiramisu"))
+        List<Orders> dessertOrders = Arrays.asList(
+                new Orders(1, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Tiramisu")),
+                new Orders(2, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(3, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(4, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(5, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(6, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(7, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(8, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
+                new Orders(9, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin"))
         );
 
-        starterRecyclerView.setAdapter(new OrdersAdapter(starterOrder));
-        mainRecyclerView.setAdapter(new OrdersAdapter(mainOrder));
-        dessertRecyclerView.setAdapter(new OrdersAdapter(dessertOrder));
 
+        List<Orders> finalList = setOrderList(starterOrders, mainCourserOrders, dessertOrders);
+        orderRecyclerView.setAdapter(new OrdersAdapter(finalList));
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
+
+    private List<Orders> setOrderList(List<Orders> starters, List<Orders> mainCourse, List<Orders>desserts) {
+        Map<Integer, List<String>> starterMap = new HashMap<>();
+        Map<Integer, List<String>> mainCourseMap = new HashMap<>();
+        Map<Integer, List<String>> dessertMap = new HashMap<>();
+
+        for(Orders o : starters) {
+            starterMap.putIfAbsent(o.getTableNumber(), new ArrayList<>());
+            starterMap.get(o.getTableNumber()).addAll(o.getStarters());
+        }
+
+        for(Orders o : mainCourse) {
+            mainCourseMap.putIfAbsent(o.getTableNumber(), new ArrayList<>());
+            mainCourseMap.get(o.getTableNumber()).addAll(o.getMainCourses());
+        }
+
+        for(Orders o : desserts) {
+            dessertMap.putIfAbsent(o.getTableNumber(), new ArrayList<>());
+            dessertMap.get(o.getTableNumber()).addAll(o.getDesserts());
+        }
+
+        Set<Integer> allTables = new HashSet<>();
+        allTables.addAll(starterMap.keySet());
+        allTables.addAll(mainCourseMap.keySet());
+        allTables.addAll(dessertMap.keySet());
+
+        List<Orders> completeOrder = new ArrayList<>();
+        for(Integer table : allTables) {
+            completeOrder.add(new Orders(table, starterMap.getOrDefault(table, new ArrayList<>()),
+                                        mainCourseMap.getOrDefault(table, new ArrayList<>()),
+                                        dessertMap.getOrDefault(table, new ArrayList<>())
+            ));
+        }
+        return completeOrder;
+     }
 }

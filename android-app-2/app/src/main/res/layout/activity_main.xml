@@ -5,12 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/columnLinearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/mainLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="8dp"
         android:gravity="center_horizontal"
@@ -19,85 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:id="@+id/starterLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/starterHeaderTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Förrätter"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                android:padding="8dp">
-            </TextView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/starterRecyclerView"
+                android:id="@+id/orderRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
             </androidx.recyclerview.widget.RecyclerView>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/mainCourseLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/mainCourseHeaderTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Varmrätter"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                android:padding="8dp">
-            </TextView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mainCourseRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/dessertLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/dessertHeaderTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Efterrätter"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                android:padding="8dp">
-            </TextView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dessertRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
