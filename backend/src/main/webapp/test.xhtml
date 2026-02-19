@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-      xmlns:ui="jakarta.faces.facelets">
+      xmlns:ui="jakarta.faces.facelets" >
 
 <h:head>
     <meta charset="UTF-8" />
@@ -15,7 +15,7 @@
             <p>#{menuToday.description} </p>
         </ui:repeat>
 
-        <h1>Test igen om det fungerar, sienna</h1>
+        <h1>Det Stora Testområdet</h1>
         <div id="message-box">
             <ui:repeat value="#{lunch.menuWeek}" var="menu">
                 <h2>#{menu.day}</h2>
@@ -39,8 +39,17 @@
                     <h:inputText value="#{dish.newDish.price}" />
 
                 </h:panelGrid>
-                <h:commandButton value="Save" action="#{dish.addDish}" />
+                <h:commandButton value="Save" action="#{lunch.saveToMenu('2026-02-19')}" />
             </h:form>
+
+            <h:commandButton value="#{week.currentWeekNumber}"  />
+            <h:commandButton value="Next week"  />
+            <h:commandButton value="Week after next"  />
+
+
+
+
+
 
             <h:form>
                 <h:panelGrid columns="2">
@@ -63,7 +72,6 @@
                     </h:selectManyListbox>
 
                 </h:panelGrid>
-
                 <h:commandButton value="Save Menu" action="#{lunch.addLunch}" />
             </h:form>
 

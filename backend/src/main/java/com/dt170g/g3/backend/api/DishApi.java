@@ -20,6 +20,7 @@
 
 package com.dt170g.g3.backend;
 
+import com.dt170g.g3.backend.services.LunchDishService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -27,6 +28,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import com.dt170g.g3.backend.entities.LunchDish;
+
 import java.util.List;
 
 
@@ -34,12 +36,12 @@ import java.util.List;
 @Path("/dish")
 public class DishApi {
     @Inject
-    private DishHandler dishHandler;
+    private LunchDishService dishHandler;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<LunchDish> getAllDishes() {
-        return dishHandler.getDishes();
+        return dishHandler.findAllLunchDishes();
     }
 
     @GET

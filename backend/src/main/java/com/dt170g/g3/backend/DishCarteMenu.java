@@ -19,11 +19,6 @@ public class DishCarteMenu {
     public List<LunchDish> getDishes(){
         return dish;
     }
-
-
-
-
-
 }
 
 //CREATE TABLE dish_carte_menu(

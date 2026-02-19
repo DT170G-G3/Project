@@ -17,8 +17,6 @@ public class CarteMenuHandler {
     @PersistenceContext
     EntityManager entityManager;
 
-
-
     public List<LunchDish> getCarteMenu(){
 
         CarteMenu menu = entityManager.find(CarteMenu.class, 1L);

@@ -26,7 +26,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import com.dt170g.g3.backend.entities.LunchMenu;
+import com.dt170g.g3.backend.services.LunchMenuService;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -34,7 +34,7 @@ import java.time.LocalDate;
 @Path("/menu")
 public class MenuApi {
     @Inject
-    private LunchMenuHandler lunchHandler;
+    private LunchMenuService lunchHandler;
 
     @GET
     @Path("/lunch")
