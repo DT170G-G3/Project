@@ -64,6 +64,6 @@
 
 .menu-inner{
     width: 100%;
-    max-width: clamp(32rem, 60vw, 52rem); /* justera efter smak */
+    max-width: clamp(32rem, 60vw, 52rem);
     margin-inline: auto;
 }
