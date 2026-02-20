@@ -1,0 +1,35 @@
+package se.miun.g3.android_app_2.dishes;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
+// This class allows the app to save a local cache of dishes
+// Used by Servitor and Cook apps for quick lookup
+// without unnecessary retrofit calls
+public class DishesCache {
+    private static List<Dish> cache = new ArrayList<>();
+
+    // Sets the cache through Retrofit call
+    public static void setCache(List<Dish> dishes) {
+        cache.clear();
+        cache.addAll(dishes);
+    }
+
+    //Returns a list that is read only (edits are done elsewhere)
+    // Dish objects are still modifiable (deal with this later)
+    public static List<Dish> getCache() {
+        return Collections.unmodifiableList(cache);
+    }
+
+    // Searches the list for a specific Dish, returns the Dish object with a matching ID
+    public static Dish getDishById(long id) {
+        for (Dish d : cache) {
+            if (id == d.id) {
+                return d;
+            }
+        }
+        return null;
+    }
+}

@@ -1,0 +1,165 @@
+/*
+
+!* =========================
+   Hero
+   'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=2400
+   ========================= *!
+
+.hero {
+    width: 100%;
+    min-height: clamp(40vh, 50vh, 90vh);
+    position: relative;
+    overflow: hidden;
+    background:
+        !* Fade till bg-dark i botten *!
+            linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,0.15) 0%,
+                    rgba(0,0,0,0.25) 45%,
+                    var(--bg-dark) 100%
+            ),
+            url("#{resource['images:Drink-picture.jpg']}") center / cover no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-fluid);
+}
+
+.hero-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--space-fluid) var(--padding-fluid);
+}
+
+.hero-inner h1 {
+    color: var(--secondary);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 0.35em;
+}
+
+.hero-inner p {
+    max-width: 60ch;
+    margin-inline: auto;
+    color: color-mix(in oklch, var(--text) 80%, transparent);
+    margin-bottom: 1.2em;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.85em 1.15em;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, var(--primary), color-mix(in oklch, var(--secondary) 55%, var(--primary)));
+    color: oklch(0.12 0.02 264);
+
+    border: 1px solid color-mix(in oklch, var(--primary) 40%, var(--border));
+    box-shadow: var(--shadow-soft);
+
+    font-weight: 700;
+}
+
+.hero-btn:hover {
+    transform: translateY(-1px);
+}
+
+!* =========================
+   Sections
+   ========================= *!
+
+.concept-section {
+    margin-top: var(--space-fluid);
+    padding: var(--space-fluid);
+    border-radius: var(--border-radius);
+
+    background: color-mix(in oklch, var(--bg-light) 35%, transparent);
+    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+    box-shadow: var(--shadow-soft);
+    transition: ease-in-out 0.2s;
+}
+
+.concept-section:hover { transform: scale(1.02); border-color: var(--border-muted); }
+
+.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
+.concept-section strong { color: var(--text); }
+.concept-section h2 { color: var(--secondary); }
+
+!* =========================
+   Cards grid + Subgrid alignment
+   ========================= *!
+
+.category-grid {
+    margin-top: var(--space-fluid);
+    display: grid;
+    gap: var(--gap-fluid);
+
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    align-items: stretch;
+}
+
+!* Fallback om inte subgrid fungerar *!
+.card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.75rem;
+
+    padding: var(--space-fluid);
+    border-radius: var(--border-radius);
+
+    background: color-mix(in oklch, var(--bg-light) 28%, transparent);
+    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+    box-shadow: var(--shadow-soft);
+    transition: ease-in-out 0.2s;
+}
+
+.card:hover { transform: scale(1.02); border-color: var(--border-muted);
+}
+
+.card-header h3 { color: var(--text); margin: 0; }
+.card-content p { margin: 0; }
+
+.card-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+
+    font-weight: 700;
+    color: color-mix(in oklch, var(--primary) 85%, var(--text));
+}
+
+.card-link a:hover {
+    text-decoration: underline;
+}
+
+!*
+  Subgrid-enhancement (om browser stödjer):
+  Parent får "3 rader per kort", korten span:3 och använder subgrid.
+*!
+@supports (grid-template-rows: subgrid) {
+    .category-grid {
+        grid-auto-rows: auto;
+    }
+
+    .card {
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+    }
+
+    .card-header { grid-row: 1; }
+    .card-content { grid-row: 2; }
+    .card-link { grid-row: 3; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+*/

@@ -1,0 +1,70 @@
+/* =========================
+   Cards grid + Subgrid alignment
+   ========================= */
+
+.category-grid {
+    margin-top: var(--space-fluid);
+    display: grid;
+    gap: var(--gap-fluid);
+
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    align-items: stretch;
+}
+
+/* Fallback om inte subgrid fungerar */
+.card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.75rem;
+
+    padding: var(--space-fluid);
+    border-radius: var(--border-radius);
+
+    background: color-mix(in oklch, var(--bg-light) 28%, transparent);
+    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+    box-shadow: var(--shadow-soft);
+    transition: ease-in-out 0.2s;
+}
+
+.card:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted);
+}
+
+.card-header h3 { color: var(--text); margin: 0; }
+.card-content p { margin: 0; }
+
+.card-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+
+    font-weight: 700;
+    color: color-mix(in oklch, var(--primary) 85%, var(--text));
+}
+
+.card-link a:hover {
+    text-decoration: underline;
+}
+
+/*
+  Subgrid-enhancement (om browser stödjer):
+  Parent får "3 rader per kort", korten span:3 och använder subgrid.
+*/
+@supports (grid-template-rows: subgrid) {
+    .category-grid {
+        grid-auto-rows: auto;
+    }
+
+    .card {
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+    }
+
+    .card-header { grid-row: 1; }
+    .card-content { grid-row: 2; }
+    .card-link { grid-row: 3; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
