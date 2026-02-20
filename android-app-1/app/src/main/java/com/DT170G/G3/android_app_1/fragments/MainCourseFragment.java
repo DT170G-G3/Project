@@ -1,4 +1,4 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.fragments;
 
 import android.os.Bundle;
 
@@ -11,16 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DrinkFragment#newInstance} factory method to
+ * Use the {@link MainCourseFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DrinkFragment extends Fragment {
-
-    public DrinkFragment() {
+public class MainCourseFragment extends Fragment {
+    public MainCourseFragment() {
         // Required empty public constructor
     }
 
@@ -28,11 +28,13 @@ public class DrinkFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     *
-     * @return A new instance of fragment DrinkFragment.
+     * @return A new instance of fragment ChefFragment.
      */
-    public static DrinkFragment newInstance() {
-        DrinkFragment fragment = new DrinkFragment();
+    // TODO: Rename and change types and number of parameters
+    public static MainCourseFragment newInstance(String param1, String param2) {
+        MainCourseFragment fragment = new MainCourseFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -45,24 +47,23 @@ public class DrinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drink, container, false);
+        return inflater.inflate(R.layout.fragment_main_course, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] drinks = getResources().getStringArray(R.array.drinkList);
+        String[] mainCourses = getResources().getStringArray(R.array.mainCourseList);
 
-        LinearLayout drinkView = view.findViewById(R.id.drinkLayout);
+        LinearLayout mainCourseView = view.findViewById(R.id.mainCourseLayout);
 
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        for(String drink : drinks){
-            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink));
+        for(String mainCourse : mainCourses){
+            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), mainCourse));
         }
 
     }
-
 
 }

@@ -1,24 +1,27 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.fragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StarterFragment#newInstance} factory method to
+ * Use the {@link DrinkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StarterFragment extends Fragment {
-    public StarterFragment() {
+public class DrinkFragment extends Fragment {
+
+    public DrinkFragment() {
         // Required empty public constructor
     }
 
@@ -26,10 +29,11 @@ public class StarterFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment StarterFragment.
+     *
+     * @return A new instance of fragment DrinkFragment.
      */
-    public static StarterFragment newInstance(String param1, String param2) {
-        StarterFragment fragment = new StarterFragment();
+    public static DrinkFragment newInstance() {
+        DrinkFragment fragment = new DrinkFragment();
         return fragment;
     }
 
@@ -42,23 +46,24 @@ public class StarterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_starter, container, false);
+        return inflater.inflate(R.layout.fragment_drink, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] starters = getResources().getStringArray(R.array.starterList);
+        String[] drinks = getResources().getStringArray(R.array.drinkList);
 
-        LinearLayout starterView = view.findViewById(R.id.starterLayout);
+        LinearLayout drinkView = view.findViewById(R.id.drinkLayout);
 
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        for(String starter : starters){
-            starterView.addView(orderItemRow.createItemRow(requireContext(), starter));
+        for(String drink : drinks){
+            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink));
         }
 
     }
+
+
 }

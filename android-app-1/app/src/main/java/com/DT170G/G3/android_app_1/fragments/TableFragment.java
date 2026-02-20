@@ -1,6 +1,5 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.fragments;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.DT170G.G3.android_app_1.classes.OrderItemRow;
-import com.DT170G.G3.android_app_1.classes.PagerAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.DT170G.G3.android_app_1.R;
 
 /**
  * A simple {@link Fragment} subclass.
