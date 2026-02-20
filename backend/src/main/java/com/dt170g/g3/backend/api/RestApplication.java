@@ -6,6 +6,9 @@
  *
  * By extending jakarta.ws.rs.core.Application, this class
  * serves as the entry point for the REST API.
+ *
+ * Author: Axel Friman
+ * Date: 2026-02-16
  */
 
 
