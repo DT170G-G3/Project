@@ -1,4 +1,4 @@
-/*package se.miun.g3.android_app_2.dishes;
+package se.miun.g3.android_app_2.dishes;
 
 import se.miun.g3.android_app_2.ApiClient;
 
@@ -35,4 +35,4 @@ public class DishesRepository {
             }
         });
     }
-}*/
+}
