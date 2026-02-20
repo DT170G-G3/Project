@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchDishBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchDishBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchDishService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchDishService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchMenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchMenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" afterDir="false" />
-    </list>
+    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -25,9 +21,29 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "sigrid-ctrl"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/DT170G-G3/Project.git",
+    "accountId": "7f019dfc-75a2-4f8b-85a5-983cdaf9ee79"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="39vhT7w0Na8AKrq53iAttQbpdek" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "Merging database",
+    "git-widget-placeholder": "app-Sigrid",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
