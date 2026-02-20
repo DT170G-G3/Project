@@ -1,4 +1,4 @@
-package com.DT170G.G3.android_app_1;
+package com.DT170G.G3.android_app_1.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 
 /**
