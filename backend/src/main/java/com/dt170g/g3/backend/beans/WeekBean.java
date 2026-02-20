@@ -14,7 +14,7 @@ import java.util.List;
 /*
  * The week-bean is used to calculate the current week and
  * the days of a week. These functions can then be used by the admin page.
- * 
+ *
  */
 @Named("week")
 @ViewScoped
