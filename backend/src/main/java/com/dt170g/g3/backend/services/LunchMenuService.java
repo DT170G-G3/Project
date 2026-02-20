@@ -168,6 +168,7 @@ public class LunchMenuService {
         selectedDishIds.clear();
     }
 
+
     // Getters and setters for JSF binding
     public List<Integer> getSelectedDishIds() { return selectedDishIds; }
     public void setSelectedDishIds(List<Integer> selectedDishIds) { this.selectedDishIds = selectedDishIds; }
