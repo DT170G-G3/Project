@@ -42,10 +42,18 @@
                 <h:commandButton value="Save" action="#{lunch.saveToMenu('2026-02-19')}" />
             </h:form>
 
-            <h:commandButton value="#{week.currentWeekNumber}"  />
-            <h:commandButton value="Next week"  />
-            <h:commandButton value="Week after next"  />
+            <h:form>
+                <ui:repeat value="#{week.weekNumbers}" var="w">
+                    <h:commandButton value="V.#{w}"
+                    action="#{week.setWeekNumber(w)}"/>
+                </ui:repeat>
 
+                <ui:repeat value="#{week.daysOfWeek}" var="day">
+                    <div class="day-box">
+                        #{day}
+                    </div>
+                </ui:repeat>
+            </h:form>
 
 
 
