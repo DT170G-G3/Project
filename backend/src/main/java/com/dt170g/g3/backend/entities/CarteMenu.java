@@ -26,10 +26,10 @@ public class CarteMenu {
             joinColumns = @JoinColumn(name = "carte_menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<Dish> dishes;
+    private List<LunchDish> dishes;
 
 
-    public List<Dish> getDishes() {
+    public List<LunchDish> getDishes() {
         return dishes;
     }
 

@@ -1,6 +1,6 @@
 package com.dt170g.g3.backend;
 
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -14,16 +14,11 @@ public class DishCarteMenu {
             name = "dish_carte_menu",
             joinColumns = @JoinColumn(name = "dish_id"),
             inverseJoinColumns = @JoinColumn(name = "carte_menu_id"))
-    private List<Dish> dish;
+    private List<LunchDish> dish;
 
-    public List<Dish> getDishes(){
+    public List<LunchDish> getDishes(){
         return dish;
     }
-
-
-
-
-
 }
 
 //CREATE TABLE dish_carte_menu(

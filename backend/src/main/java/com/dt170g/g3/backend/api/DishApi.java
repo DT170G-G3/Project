@@ -16,34 +16,40 @@
  * Author: Axel Friman
  * Date: 2026-02-16
  */
+
+
 package com.dt170g.g3.backend;
 
+import com.dt170g.g3.backend.services.LunchDishService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import com.dt170g.g3.backend.entities.Dish;
+import com.dt170g.g3.backend.entities.LunchDish;
+
 import java.util.List;
+
 
 
 @Path("/dish")
 public class DishApi {
     @Inject
-    private DishHandler dishHandler;
+    private LunchDishService dishHandler;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Dish> getAllDishes() {
-        return dishHandler.getDishes();
+    public List<LunchDish> getAllDishes() {
+        return dishHandler.findAllLunchDishes();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Dish getDishById(@PathParam("id") int id) {
+    public LunchDish getDishById(@PathParam("id") int id) {
         return dishHandler.getDishById(id);
     }
+
 
 }
