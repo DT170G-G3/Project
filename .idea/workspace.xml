@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchDishBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchDishBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchDishService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchDishService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchMenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/LunchMenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +27,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "Merging features/createTables",
+    "git-widget-placeholder": "Merging database",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>

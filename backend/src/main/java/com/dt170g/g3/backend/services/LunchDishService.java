@@ -4,6 +4,7 @@
  */
 package com.dt170g.g3.backend.services;
 
+import com.dt170g.g3.backend.entities.LunchMenu;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
@@ -58,6 +59,18 @@ public class LunchDishService {
         if(dish != null){
             dish.setDescription(description);
         }
+    }
+
+    public boolean checkIfDishExist(LunchDish dish){
+        List<LunchDish> existing = entityManager.createQuery(
+                            "SELECT m FROM LunchDish m WHERE lower(m.name) = lower(:name) AND " +
+                                "lower(m.description) = lower(:description) AND " +
+                                "m.price = :price", LunchDish.class)
+                .setParameter("name", dish.getName())
+                .setParameter("description", dish.getDescription())
+                .setParameter("price", dish.getPrice())
+                .getResultList();
+        return !existing.isEmpty();
     }
 
 

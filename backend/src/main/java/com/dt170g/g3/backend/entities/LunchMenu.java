@@ -47,7 +47,8 @@ public class LunchMenu {
             joinColumns = @JoinColumn(name = "lunch_menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<LunchDish> dishes; //This contains all the dishes for that day!
+    private List<LunchDish> dishes = new ArrayList<>(); //This contains all the dishes for that day!
+
 
     public LunchMenu(){}
     public LunchMenu(LocalDate date){
@@ -73,6 +74,11 @@ public class LunchMenu {
         if (dishes != null) {
             this.dishes.addAll(dishes);
         }
+    }
+
+    public void addDish(LunchDish dish){
+        this.dishes.add(dish);
+
     }
 
 }

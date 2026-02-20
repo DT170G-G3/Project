@@ -48,6 +48,7 @@ public class LunchMenuService {
         return weekMenu;
     }
 
+
     /**
      * Removes the association between a specific Dish and a LunchMenu.
      *
@@ -84,15 +85,13 @@ public class LunchMenuService {
      *  - IllegalStateException if no menu exists for the date
      *  - IllegalStateException if multiple menus exist (data integrity issue)
      */
-    public List<LunchDish> getLunchDishesByDate(LocalDate date) {
+    public LunchMenu getLunchMenuByDate(LocalDate date) {
         try {
-            LunchMenu menu = entityManager.createQuery(
+            return entityManager.createQuery(
                             "SELECT menu FROM LunchMenu menu WHERE menu.date = :targetDate",
                             LunchMenu.class)
                     .setParameter("targetDate", date)
                     .getSingleResult();
-
-            return menu.getDishes();
 
         } catch (NoResultException e) {
             throw new IllegalStateException("No lunch menu exists for date: " + date);
@@ -100,6 +99,13 @@ public class LunchMenuService {
             throw new IllegalStateException("Multiple lunch menus exist for date: " + date);
         }
     }
+
+    public List<LunchDish> getLunchDishesByDate(LocalDate date){
+        LunchMenu menu = getLunchMenuByDate(date);
+        return menu.getDishes();
+    }
+
+
 
     /**
      * Checks if a LunchMenu already exists for the given date.
@@ -120,6 +126,7 @@ public class LunchMenuService {
         LunchMenu menu = new LunchMenu(date);
         entityManager.persist(menu);
     }
+
 
     /**
      * Creates and persists a new lunch menu for a given date with selected dishes.
