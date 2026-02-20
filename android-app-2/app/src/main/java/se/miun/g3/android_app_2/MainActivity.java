@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import se.miun.g3.android_app_2.dishes.DishesRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         //För test, byt till databaskoppling sen
-        List<Orders> starterOrders = Arrays.asList(
+        /*List<Orders> starterOrders = Arrays.asList(
                 new Orders(1, Arrays.asList("Carpaccio", "Caprese"), new ArrayList<>(), new ArrayList<>()),
                 new Orders(2, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
                 new Orders(3, Arrays.asList("Bruschetta", "oliver", "chark"), new ArrayList<>(), new ArrayList<>()),
@@ -68,8 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 new Orders(7, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
                 new Orders(8, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin")),
                 new Orders(9, new ArrayList<>(), new ArrayList<>(), Arrays.asList("Pannacotta", "Chokladpralin"))
-        );
+        );*/
 
+        List<Orders> starterOrders = Collections.emptyList();
+        List<Orders> mainCourserOrders = Collections.emptyList();
+        List<Orders> dessertOrders = Collections.emptyList();
 
         List<Orders> finalList = setOrderList(starterOrders, mainCourserOrders, dessertOrders);
         orderRecyclerView.setAdapter(new OrdersAdapter(finalList));
@@ -79,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
 
     private List<Orders> setOrderList(List<Orders> starters, List<Orders> mainCourse, List<Orders>desserts) {
         Map<Integer, List<String>> starterMap = new HashMap<>();
