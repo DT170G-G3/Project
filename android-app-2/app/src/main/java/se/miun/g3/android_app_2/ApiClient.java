@@ -6,7 +6,7 @@ import se.miun.g3.android_app_2.dishes.DishesApi;
 import se.miun.g3.android_app_2.orders.*;
 
 public final class ApiClient {
-    private static String BASE_URL = "http://10.0.2.2:8080/restaurant/api/";
+    private static final String BASE_URL = "http://10.0.2.2:8080/restaurant/api/";
     private static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
