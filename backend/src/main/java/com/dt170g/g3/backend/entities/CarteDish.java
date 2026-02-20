@@ -11,8 +11,9 @@
  *
  * Maintains a many-to-one relationship with Category entities.
  * Named queries included:
- *  - "CarteDish.getAll"      : Retrieve all dishes
- *  - "CarteDish.findByName"  : Retrieve a dish by its name
+ *  - "CarteDish.getAll"            : Retrieve all dishes
+ *  - "CarteDish.findByCategory"    : Retrieve all dishes by category
+ *  - "CarteDish.findByName"        : Retrieve a dish by its name
  *
  * Example usage:
  *   CarteDish dish = new CarteDish("Pasta", "Tomato pasta", 12.50);
@@ -28,7 +29,11 @@ import jakarta.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "CarteDish.getAll",
-                query = "SELECT cd FROM CarteDish cd"
+                query = "SELECT cd FROM CarteDish cd JOIN FETCH cd.category"
+        ),
+        @NamedQuery(
+                name = "CarteDish.findByCategory",
+                query = "SELECT cd FROM CarteDish cd WHERE cd.category.name = :category"
         ),
         @NamedQuery(
                 name = "CarteDish.findByName",
@@ -96,6 +101,14 @@ public class CarteDish {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }

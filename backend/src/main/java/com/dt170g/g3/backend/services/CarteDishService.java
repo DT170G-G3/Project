@@ -3,8 +3,9 @@
  *
  * Service class for managing dishes in the restaurant application.
  * Provides methods to:
- *  - getDishById(int id)     : Retrieve a specific dish by its ID
- *  - findAllDishes()         : Retrieve all dishes from the database
+ *  - getDishById(int)              : Retrieve a specific dish by its ID
+ *  - getDishesByCategory(String)   : Retrieve all dishes by category
+ *  - findAllDishes()               : Retrieve all dishes from the database
  *
  * Uses JPA EntityManager to access the CarteDish entities.
  * This class is an application-scoped CDI bean.
@@ -38,6 +39,12 @@ public class CarteDishService {
 
     public CarteDish getDishById(int id){
         return entityManager.find(CarteDish.class, id);
+    }
+    public List<CarteDish> getDishesByCategory(String category){
+
+        TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.findByCategory", CarteDish.class);
+        messageQuery.setParameter("category", category);
+        return messageQuery.getResultList();
     }
     public List<CarteDish> findAllDishes(){
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getAll", CarteDish.class);

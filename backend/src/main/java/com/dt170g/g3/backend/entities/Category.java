@@ -38,9 +38,6 @@ public class Category {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<CarteDish> dishes;
-
     // Constructors
     public Category() {}
 
@@ -63,13 +60,5 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<CarteDish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<CarteDish> dishes) {
-        this.dishes = dishes;
     }
 }
