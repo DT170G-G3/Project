@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tableTab"
+        android:title="Välj bord"
+        android:icon="@drawable/table"/>
+
+    <item
+        android:id="@+id/drinkTab"
+        android:title="Dryck"
+        android:icon="@drawable/counter_1"/>
+
+    <item
+        android:id="@+id/starterTab"
+        android:title="Förrätt"
+        android:icon="@drawable/counter_2"/>
+
+    <item
+        android:id="@+id/mainCourseTab"
+        android:title="Varmrätt"
+        android:icon="@drawable/counter_3"/>
+
+    <item
+        android:id="@+id/dessertTab"
+        android:title="Efterrätt"
+        android:icon="@drawable/counter_4"/>
+</menu>
