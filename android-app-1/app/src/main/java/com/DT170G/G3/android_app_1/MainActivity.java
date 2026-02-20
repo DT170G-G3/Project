@@ -43,11 +43,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
         changeTabListener();
         sendOrderButtonListener();
-
-
     }
 
     public void sendOrderButtonListener(){
@@ -157,6 +154,5 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-
-
 }
+
