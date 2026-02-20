@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script>
+        (function () {
+            const saved = localStorage.getItem("theme"); // "dark" | "light"
+            if (saved === "dark" || saved === "light") {
+                document.documentElement.dataset.theme = saved;
+            } else {
+            }
+        })();
+    </script>
+
+    <title>
+        <ui:insert name="title">Anton's Skafferi</ui:insert>
+    </title>
+
+    <h:outputStylesheet library="css" name="base.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="layout.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="components.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="hero.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="paper-look.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="menu.css?v=${build.version}" />
+    <h:outputStylesheet library="css" name="mobile.css?v=${build.version}" />
+
+    <ui:insert name="extra-head" />
+</h:head>
+
+<h:body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <h:link outcome="index">Anton's Skafferi</h:link>
+
+                <button id="themeToggle"
+                        type="button"
+                        class="theme-toggle"
+                        aria-label="Växla tema"
+                        aria-pressed="false">
+                    🌙
+                </button>
+            </div>
+
+        <!-- Hamburger -->
+        <button id="menuToggle"
+                type="button"
+                class="menu-toggle"
+                aria-label="Öppna meny"
+                aria-controls="primaryNav"
+                aria-expanded="false">
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+        </button>
+
+        <nav id="primaryNav" class="nav-links">
+            <h:link outcome="index" value="Hem" styleClass="nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}"/>
+            <h:link outcome="lunch" value="Lunch" styleClass="nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}"/>
+            <h:link outcome="menu" value="Á La Carte" styleClass="nav-link #{view.viewId == '/menu.xhtml' ? 'active' : ''}"/>
+            <h:link outcome="booking" value="Boka bord" styleClass="nav-link #{view.viewId == '/booking.xhtml' ? 'active' : ''}"/>
+            <h:link outcome="events" value="Events" styleClass="nav-link #{view.viewId == '/events.xhtml' ? 'active' : ''}"/>
+
+        </nav>
+
+        </div>
+    </header>
+
+    <ui:insert name="hero"/>
+
+<!--    sidor som man döper till name="content" kommer att laddas här under-->
+    <main id="main-content" class="main-container">
+        <ui:insert name="content">
+            <p>Innehåll saknas.</p>
+        </ui:insert>
+    </main>
+<!-- fram till hit..-->
+
+    <footer class="footer full-width">
+        <div class="footer-inner">
+            <p>© 2026 Anton's Skafferi</p>
+        </div>
+    </footer>
+
+<!--    theme-toggle skritp-->
+    <script>
+        (function () {
+            const KEY = "theme";
+            const root = document.documentElement;
+            const btn = document.getElementById("themeToggle");
+            if (!btn) return;
+
+            function apply(theme) {
+                root.dataset.theme = theme;
+                const isLight = theme === "light";
+                btn.setAttribute("aria-pressed", String(isLight));
+                btn.textContent = isLight ? "☀️" : "🌙";
+            }
+            const saved = localStorage.getItem(KEY);
+            if (saved === "dark" || saved === "light") {
+                apply(saved);
+            } else {
+                const prefersLight = matchMedia("(prefers-color-scheme: light)").matches;
+                apply(prefersLight ? "light" : "dark");
+                localStorage.setItem(KEY, prefersLight ? "light" : "dark");
+            }
+
+            btn.addEventListener("click", () => {
+                const current = root.dataset.theme === "light" ? "light" : "dark";
+                const next = current === "light" ? "dark" : "light";
+                localStorage.setItem(KEY, next);
+                apply(next);
+            });
+        })();
+
+    </script>
+
+<!--    Hamburgerskript-->
+    <script>
+        (function () {
+            const btn = document.getElementById("menuToggle");
+            const nav = document.getElementById("primaryNav");
+            if (!btn || !nav) return;
+
+            function openMenu() {
+                nav.classList.add("is-open");
+                btn.setAttribute("aria-expanded", "true");
+            }
+
+            function closeMenu() {
+                nav.classList.remove("is-open");
+                btn.setAttribute("aria-expanded", "false");
+            }
+
+            function toggleMenu() {
+                const isOpen = nav.classList.contains("is-open");
+                isOpen ? closeMenu() : openMenu();
+            }
+
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            // Stäng om man klickar utanför
+            document.addEventListener("click", (e) => {
+                if (!nav.classList.contains("is-open")) return;
+                if (nav.contains(e.target) || btn.contains(e.target)) return;
+                closeMenu();
+            });
+
+            // Stäng med Esc
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeMenu();
+            });
+
+            // Stäng när man klickar på en länk i menyn
+            nav.addEventListener("click", (e) => {
+                const a = e.target.closest("a");
+                if (a) closeMenu();
+            });
+
+            // Om man går från mobile->desktop: stäng menyn
+            const mq = window.matchMedia("(min-width: 950px)");
+            mq.addEventListener?.("change", (e) => {
+                if (e.matches) closeMenu();
+            });
+        })();
+    </script>
+
+
+</h:body>
+</html>

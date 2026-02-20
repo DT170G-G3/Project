@@ -1,0 +1,165 @@
+
+/* =========================
+   Hero med bild animation
+   ========================= */
+
+.hero{
+    width: 100%;
+    min-height: clamp(40vh, 50vh, 90vh);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--space-fluid);
+}
+
+/* Bildlager */
+.hero-slides{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-slide{
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-attachment: fixed; */
+
+    opacity: 0;
+    /* ändra duration här, fint om det är jämnt delbart på antal bildder) */
+    animation: heroFade 40s ease-in-out infinite;
+}
+
+/* Bilder för animation */
+.hero-slide.s1{ background-image: url("#{resource['images:burgers-ai.png']}"); }
+.hero-slide.s2{ background-image: url("#{resource['images:pizza-ai.png']}"); }
+.hero-slide.s3{ background-image: url("#{resource['images:pasta-ai.png']}"); }
+.hero-slide.s4{ background-image: url("#{resource['images:fish-ai.png']}"); }
+
+/* Förskjut tiden för att matcha antalet bilder mot animationen */
+.hero-slide.s1{ animation-delay: 0s; }
+.hero-slide.s2{ animation-delay: 10s; }
+.hero-slide.s3{ animation-delay: 20s; }
+.hero-slide.s4{ animation-delay: 30s; }
+
+/* Fade-form */
+@keyframes heroFade{
+    0%      { opacity: 0; }
+    10%     { opacity: 1; }
+    28%     { opacity: 1; }
+    35%     { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+/* Gradient overlay (alltid ovanpå bilderna) */
+.hero-overlay{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.15) 0%,
+            rgba(0,0,0,0.25) 45%,
+            var(--bg-dark) 100%
+    );
+}
+
+/* Innehåll ovanpå allt i hero */
+.hero-inner{
+
+    /*glaseffekt*/
+    background: rgba(0,0,0,0.10);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius);
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    place-items: center;
+    padding: var(--space-fluid) var(--padding-fluid);
+    max-width: var(--container-width);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+    .hero-slide{ animation: none; }
+    .hero-slide.s1{ opacity: 1; } /* visa bara första bilden */
+    .hero-slide:not(.s1){ opacity: 0; }
+}
+
+.hero-inner h1 {
+    color: var(--secondary);
+    text-shadow:
+            1px 1px 3px rgba(0,0,0,0.8),
+            0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 0.35em;
+}
+
+.hero-inner p {
+    max-width: 60ch;
+    margin-inline: auto;
+    color: var(--text);
+    margin-bottom: 1.2em;
+}
+
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.85em 1.15em;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, var(--primary), color-mix(in oklch, var(--secondary) 55%, var(--primary)));
+    color: oklch(0.12 0.02 264);
+
+    border: 1px solid color-mix(in oklch, var(--primary) 40%, var(--border));
+    /*box-shadow: var(--shadow-soft);*/
+
+    font-weight: 700;
+}
+
+.hero-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Credits till respektive bild */
+.hero-credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    /*pointer-events: none;*/
+}
+
+.hero-credit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-family: sans-serif;
+
+    opacity: 0;
+    /*Denna duration MÅSTE vara samma som animationen för bilderna*/
+    animation: heroFade 40s ease-in-out infinite;
+}
+
+/* Matchar delay som bildern har */
+.hero-credit.c1 { animation-delay: 0s; }
+.hero-credit.c2 { animation-delay: 10s; }
+.hero-credit.c3 { animation-delay: 20s; }
+.hero-credit.c4 { animation-delay: 30s; }
+
+
+
