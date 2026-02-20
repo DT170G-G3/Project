@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V5__order_seed.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +30,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;features/createTables&quot;,
@@ -53,7 +57,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1771503065966</updated>
-      <workItem from="1771503068740" duration="5010000" />
+      <workItem from="1771503068740" duration="11227000" />
+      <workItem from="1771571715481" duration="4252000" />
     </task>
     <servers />
   </component>
