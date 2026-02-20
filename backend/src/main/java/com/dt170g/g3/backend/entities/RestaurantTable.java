@@ -20,11 +20,11 @@ import jakarta.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
-                name = "restaurant_table.getAll",
+                name = "restaurantTable.getAll",
                 query = "SELECT rt FROM RestaurantTable rt"
         ),
         @NamedQuery(
-                name = "restaurant_table.findBySeats",
+                name = "restaurantTable.findBySeats",
                 query = "SELECT rt FROM RestaurantTable rt WHERE rt.seats = :seats"
         )
 })
