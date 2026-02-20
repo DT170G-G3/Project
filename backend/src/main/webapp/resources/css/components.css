@@ -1,0 +1,131 @@
+/* =========================
+   Cards grid + Subgrid alignment
+   ========================= */
+
+.category-grid {
+    margin-top: var(--space-fluid);
+    display: grid;
+    gap: var(--gap-fluid);
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    align-items: stretch;
+}
+
+/* Fallback om inte subgrid fungerar */
+.card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.75rem;
+
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+
+.card-header h3 { color: var(--text); margin: 0; }
+.card-content p { margin: 0; }
+
+.card-link{
+    margin-top: var(--gap-fluid);
+}
+
+/* Gör länken till en knapp */
+.btn-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: clamp(0.55rem, 0.45rem + 0.4vw, 0.75rem)
+    clamp(0.85rem, 0.7rem + 0.7vw, 1.15rem);
+
+    border-radius: calc(var(--border-radius) * 0.75);
+    background-color: var(--bg-light);
+    color: var(--text);
+
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
+
+    text-decoration: none;
+    font-weight: 700;
+
+    transition: transform 120ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.btn-link:hover{
+    /* enkel hover utan color-mix: byt till gradient-hover eller bg */
+    background: var(--gradient-hover);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-link:active{
+    transform: scale(0.98);
+}
+
+.btn-link:focus-visible{
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+/*
+  Subgrid-enhancement (om browser stödjer):
+  Parent får "3 rader per kort", korten span:3 och använder subgrid.
+*/
+@supports (grid-template-rows: subgrid) {
+    .category-grid {
+        grid-auto-rows: auto;
+    }
+
+    .card {
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+    }
+
+    .card-header { grid-row: 1; }
+    .card-content { grid-row: 2; }
+    .card-link { grid-row: 3; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+
+/* =========================
+   Concept section
+   ========================= */
+
+.concept-section{
+    margin-top: var(--space-fluid);
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+
+.concept-section p { color: var(--text-muted); }
+.concept-section strong {
+    color: var(--text);
+    font-weight: 700;
+}
+.concept-section h2 { color: var(--secondary); }
+
+
+/* =========================
+   kanpp för att byta tema
+   ========================= */
+
+.theme-toggle{
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: color-mix(in oklch, var(--bg-light) 70%, transparent);
+    color: var(--text);
+    display: inline-grid;
+    place-items: center;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 120ms ease;
+}
+
+.theme-toggle:hover{ transform: scale(1.01); }
+.theme-toggle:active{ transform: scale(0.98); }
+
