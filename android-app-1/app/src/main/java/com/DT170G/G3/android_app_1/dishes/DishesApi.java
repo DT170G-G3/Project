@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 
 //Retrofit interface (endpoint)
 public interface DishesApi {
-    @GET("dishes")  // dishes for json server, dish for payara DATABASE
+    @GET("dish")  // dishes for json server, dish for payara DATABASE
     Call<List<Dish>> getDishes();
 }
