@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.DT170G.G3.android_app_3;
 
 import org.junit.Test;
 
