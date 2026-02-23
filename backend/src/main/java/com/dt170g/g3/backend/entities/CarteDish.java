@@ -24,6 +24,7 @@
  */
 
 package com.dt170g.g3.backend.entities;
+
 import jakarta.persistence.*;
 
 @NamedQueries({
@@ -38,6 +39,15 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "CarteDish.findByName",
                 query = "SELECT cd FROM CarteDish cd WHERE cd.name = :name"
+        ),
+        @NamedQuery(
+                name = "CarteDish.getDishesFromMenuByCategory",
+                query = "SELECT cd FROM CarteDish cd " +
+                        "JOIN cd.carteMenu m " +
+                        "JOIN cd.category c " +
+                        "LEFT JOIN cd.typeGroup t " +
+                        "WHERE m.id = 1 " +
+                        "ORDER BY c.displayOrder ASC"
         )
 })
 
@@ -54,6 +64,16 @@ public class CarteDish {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="carte_menu_id")
+    private CarteMenu carteMenu;
+
+    @ManyToOne
+    @JoinColumn(name="type_of_id")
+    private TypeOf typeGroup;
+
+
 
     // =====================
     // Constructors
@@ -106,6 +126,11 @@ public class CarteDish {
     public Category getCategory() {
         return category;
     }
+
+    public TypeOf getTypeGroup() {
+        return typeGroup;
+    }
+
 
     public void setCategory(Category category) {
         this.category = category;

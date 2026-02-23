@@ -42,3 +42,4 @@ yarn-error.log*
 /.idea/misc.xml
 *.lnk
 .idea/
+infra/payara/deployments/*.war
