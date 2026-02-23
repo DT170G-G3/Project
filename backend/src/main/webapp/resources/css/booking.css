@@ -1,0 +1,147 @@
+/* =========================
+   Booking Form Styles
+   ========================= */
+
+.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-fluid);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: oklch(0.15 0.05 264) !important;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--gap-fluid);
+}
+
+.form-row > .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    font-weight: 700;
+    color: var(--text);
+    /* font-family: 'Courier New', Courier, monospace;  <-- Om du vill behålla paper-look */
+}
+
+/* Input-fält som liknar dina kort/knappar */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: clamp(0.6rem, 0.5rem + 0.5vw, 0.9rem);
+
+    background-color: var(--bg-light); /* Ljusare bakgrund än panelen */
+    color: var(--text);
+
+    border: var(--border-card);
+    border-top: var(--border-top); /* Din specifika top-border */
+    border-radius: calc(var(--border-radius) * 0.5); /* Lite mindre radie än korten */
+
+    box-shadow: var(--shadow); /* Samma skugga som korten */
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--focus-ring);
+    box-shadow: 0 0 0 3px var(--focus-ring); /* Tydlig fokusring */
+}
+
+/* Knappen - kopierad stil från .btn-link */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%; /* Full bredd i formuläret */
+
+    padding: clamp(0.75rem, 0.6rem + 0.6vw, 1rem); /* Lite större padding än länkar */
+
+    border-radius: calc(var(--border-radius) * 0.75);
+    background-color: var(--bg-light); /* Eller var(--primary) om du vill ha den färgade */
+    color: var(--text); /* Eller var(--bg-dark) om bakgrunden är ljus */
+
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
+
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+
+    transition: transform 120ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.btn-primary:hover {
+    background: var(--gradient-hover);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+/* Felmeddelanden */
+.error-msg {
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+/* Globala meddelanden */
+.global-messages {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.msg-error {
+    color: var(--danger);
+    background: color-mix(in oklch, var(--danger) 40%, transparent);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--danger);
+}
+
+.msg-success {
+    color: var(--success);
+    background: color-mix(in oklch, var(--success) 40%, transparent);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--success);
+}
+
+/* Responsivitet */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

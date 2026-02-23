@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/CarteDish.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/CarteDish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/CarteDishService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/CarteDishService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/testCarteMenu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/testCarteMenu.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V4__carte_seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infra/db/migrations/V4__carte_seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/booking.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/booking.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -34,6 +32,10 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -50,8 +52,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "feature/aLaCarteMenu",
+    "git-widget-placeholder": "strid__FE__db__merge",
     "kotlin-language-version-configured": "true",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -78,5 +81,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
