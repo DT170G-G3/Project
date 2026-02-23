@@ -123,19 +123,25 @@
 }
 
 .msg-error {
-    color: var(--danger);
-    background: color-mix(in oklch, var(--danger) 40%, transparent);
+    color: var(--text);
+    background: var(--danger);
     padding: 1rem;
     border-radius: var(--border-radius);
-    border: 1px solid var(--danger);
+
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
 }
 
 .msg-success {
-    color: var(--success);
-    background: color-mix(in oklch, var(--success) 40%, transparent);
+    color: var(--text);
+    background: var(--success);
     padding: 1rem;
     border-radius: var(--border-radius);
-    border: 1px solid var(--success);
+
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
 }
 
 /* Responsivitet */
