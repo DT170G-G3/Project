@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------GET--------
-        //asyncLoadTables();
+        asyncLoadTables();
         //asyncLoadDrinks();
         asyncLoadDishes();
         //------/GET--------
