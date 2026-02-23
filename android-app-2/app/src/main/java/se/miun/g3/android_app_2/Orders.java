@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package se.miun.g3.android_app_2;
 
 import java.util.List;
 
