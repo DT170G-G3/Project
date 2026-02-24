@@ -1,0 +1,9 @@
+<changelist name="Changes" date="1771850765061" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" />
+  <option name="DESCRIPTION" value="Changes" />
+  <binary>
+    <option name="BEFORE_PATH" value="infra/payara/deployments/restaurant.war" />
+    <option name="AFTER_PATH" value="infra/payara/deployments/restaurant.war" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/restaurant.war" />
+  </binary>
+</changelist>
