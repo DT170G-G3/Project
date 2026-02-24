@@ -19,7 +19,6 @@
 
 package com.dt170g.g3.backend;
 
-import com.dt170g.g3.backend.entities.LunchDish;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -27,6 +26,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import com.dt170g.g3.backend.services.LunchMenuService;
+import com.dt170g.g3.backend.entities.LunchDish;
 import java.util.List;
 import java.time.LocalDate;
 

@@ -26,34 +26,41 @@
 
                 </ui:repeat>
             </ui:repeat>
+
             <h:form>
-                <h:panelGrid columns="2">
-
-                    <h:outputLabel value="Name" />
-                    <h:inputText value="#{dish.newDish.name}" required="true" />
-
-                    <h:outputLabel value="Description" />
-                    <h:inputText value="#{dish.newDish.description}" />
-
-                    <h:outputLabel value="Price" />
-                    <h:inputText value="#{dish.newDish.price}" />
-
-                </h:panelGrid>
-                <h:commandButton value="Save" action="#{lunch.saveToMenu('2026-02-19')}" />
+                <ui:repeat value="#{week.weekNumbers}" var="w">
+                    <h:commandButton value="V.#{w}"
+                    action="#{week.setWeekNumber(w)}"/>
+                </ui:repeat>
             </h:form>
 
-            <h:commandButton value="#{week.currentWeekNumber}"  />
-            <h:commandButton value="Next week"  />
-            <h:commandButton value="Week after next"  />
+                <ui:repeat value="#{week.daysOfWeek}" var="day">
+                    <h:form>
+                        <div class="day-box">
+                        #{day}
+                            <h:panelGrid columns="2">
 
+                                <h:outputLabel value="Name" />
+                                <h:inputText value="#{dish.newDish.name}" required="true" />
 
+                                <h:outputLabel value="Description" />
+                                <h:inputText value="#{dish.newDish.description}" />
+
+                                <h:outputLabel value="Price" />
+                                <h:inputText value="#{dish.newDish.price}" />
+
+                            </h:panelGrid>
+                            <h:commandButton value="Save" action="#{lunch.saveToMenu(day)}" />
+                        </div>
+                    </h:form>
+                </ui:repeat>
 
 
 
 
             <h:form>
                 <h:panelGrid columns="2">
-
+                    <h:outputLabel value="Add dishes to menu:" />
                     <h:outputLabel value="Date (YYYY-MM-DD):" />
                     <h:inputText value="#{lunch.selectedDate}" required="true" />
 
@@ -72,7 +79,8 @@
                     </h:selectManyListbox>
 
                 </h:panelGrid>
-                <h:commandButton value="Save Menu" action="#{lunch.addLunch}" />
+
+                <h:commandButton value="Save Menu" action="#{lunch.editLunch}" />
             </h:form>
 
 

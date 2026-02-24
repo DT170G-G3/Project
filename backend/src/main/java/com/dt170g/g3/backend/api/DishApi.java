@@ -1,12 +1,13 @@
 /**
  * DishApi.java
  *
- * REST API resource for managing Dish entities.
+ * REST API resource for managing CarteDish entities.
  * Provides endpoints to:
- *  - GET /dish          : Retrieve all dishes
- *  - GET /dish/{id}     : Retrieve a single dish by its ID
+ *  - GET /dish                     : Retrieve all carte dishes
+ *  - GET /dish/category/{category} : Retrieve all carte dishes by category
+ *  - GET /dish/id/{id}             : Retrieve a single carte dish by its ID
  *
- * Uses DishHandler to interact with the database.
+ * Uses CarteDishService to interact with the database.
  * All responses are returned in JSON format.
  *
  * Example usage:
@@ -20,36 +21,41 @@
 
 package com.dt170g.g3.backend;
 
-import com.dt170g.g3.backend.services.LunchDishService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import com.dt170g.g3.backend.entities.LunchDish;
+import com.dt170g.g3.backend.entities.CarteDish;
+import com.dt170g.g3.backend.services.CarteDishService;
 
 import java.util.List;
-
-
 
 @Path("/dish")
 public class DishApi {
     @Inject
-    private LunchDishService dishHandler;
+    private CarteDishService dishHandler;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<LunchDish> getAllDishes() {
-        return dishHandler.findAllLunchDishes();
+    public List<CarteDish> getAllDishes() {
+        return dishHandler.findAllDishes();
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/category/{category}")
     @Produces(MediaType.APPLICATION_JSON)
-    public LunchDish getDishById(@PathParam("id") int id) {
+    public List<CarteDish> getDishById(@PathParam("category") String category) {
+        return dishHandler.getDishesByCategory(category);
+    }
+    @GET
+    @Path("/id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public CarteDish getDishById(@PathParam("id") int id) {
         return dishHandler.getDishById(id);
     }
+
 
 
 }
