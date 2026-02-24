@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Adminpanel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <h:outputStylesheet library="css" name="admin.css"/>
+</h:head>
+    <h:body>
+        <header>
+            <h1>Antons Skafferi - Adminpanel</h1>
+            <span>Veckoplanering</span>
+            <div class="weekDiv">Vecka 8 — 16–22 Feb 2025</div>
+        </header>
+
+        <div class="workspace">
+
+            <aside class="poolPanel">
+                <h2>Anställda</h2>
+                <div class="employeePool" id="pool">
+                </div>
+            </aside>
+
+            <main class="scheduleArea">
+
+                <div class="weekTitle">Schema</div>
+
+                <div class="daysList" id="days-list"></div>
+
+                <div class="section-divider">Veckomeny</div>
+
+                <div class="menuGrid" id="menu-grid"></div>
+
+                <div class="saveBar">
+                    <button class="btn btnSecondary">Återställ</button>
+                    <button class="btn btnPrimary">Spara veckoplanering</button>
+                </div>
+
+            </main>
+        </div>
+        <h:outputScript library="js" name="admin.js"/>
+    </h:body>
+</html>
