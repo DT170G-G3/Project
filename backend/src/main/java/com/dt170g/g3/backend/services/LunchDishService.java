@@ -72,9 +72,4 @@ public class LunchDishService {
                 .getResultList();
         return !existing.isEmpty();
     }
-
-
-
-
 }
-

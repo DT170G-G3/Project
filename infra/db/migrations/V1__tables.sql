@@ -67,6 +67,7 @@ CREATE TABLE table_order(
     id INT AUTO_INCREMENT PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
     order_no INT,
+    note VARCHAR(255) DEFAULT NULL,
     sitting_id INT NOT NULL,
     FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -77,6 +78,7 @@ CREATE TABLE booking(
     start_time TIME NOT NULL,
     duration_minutes INT NOT NULL,
     no_of_people INT NOT NULL,
+    note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100),
     phone_no VARCHAR(30),
