@@ -12,6 +12,7 @@
  *   - id        : Auto-generated primary key
  *   - createdAt : Timestamp of when the order was created (database-generated)
  *   - orderNo   : Optional order number
+ *   - note      : Optional note
  *   - sitting   : Reference to the Sitting this order belongs to
  *   - dishes    : List of CarteDish items in this order (many-to-many)
  *   - drinks    : List of Drink items in this order (many-to-many)
