@@ -38,6 +38,9 @@ public class Category {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "display_order", nullable = false)
+    private Integer displayOrder;
+
     // Constructors
     public Category() {}
 
@@ -52,6 +55,14 @@ public class Category {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
     public String getName() {
