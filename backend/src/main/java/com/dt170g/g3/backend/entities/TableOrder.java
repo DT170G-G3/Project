@@ -34,9 +34,10 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "TableOrder.findBySitting",
-                query = "SELECT o FROM TableOrder o " +
+                query = "SELECT DISTINCT o FROM TableOrder o " +
                         "LEFT JOIN FETCH o.dishes " +
                         "LEFT JOIN FETCH o.drinks " +
+                        "LEFT JOIN FETCH o.sitting " +
                         "WHERE o.sitting.id = :sittingId"
         )
 })

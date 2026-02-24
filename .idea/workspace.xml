@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="" />
+    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/TableOrderApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/TableOrderApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/TableOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/TableOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/TableOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/services/TableOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -56,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771584708224</updated>
       <workItem from="1771584709675" duration="11461000" />
+      <workItem from="1771938008958" duration="6477000" />
     </task>
     <servers />
   </component>
