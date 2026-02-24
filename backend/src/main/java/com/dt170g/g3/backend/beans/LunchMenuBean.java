@@ -62,7 +62,6 @@ public class LunchMenuBean {
     * "Finns inget skrot, bara gamla grejer som går att använda på nya sätt"
     * -Mulle Meck
     *  */
-
     @Transactional
     public void saveToMenu(String localDate){
         LocalDate date = LocalDate.parse(localDate);

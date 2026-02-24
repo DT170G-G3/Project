@@ -38,5 +38,8 @@ yarn-error.log*
 # Ignorera Gradles byggmappar (för Android)
 .gradle/
 **/build/
+/.idea/workspace.xml
+/.idea/misc.xml
 *.lnk
 .idea/
+infra/payara/deployments/*.war
