@@ -67,7 +67,7 @@ CREATE TABLE table_order(
     id INT AUTO_INCREMENT PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
     order_no INT,
-    note VARCHAR(255),
+    note VARCHAR(255) DEFAULT NULL,
     sitting_id INT NOT NULL,
     FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
