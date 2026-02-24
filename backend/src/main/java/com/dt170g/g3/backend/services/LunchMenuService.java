@@ -39,11 +39,11 @@ public class LunchMenuService {
     /*Creates a query for the database, and returns all the menues for the current week*/
     public List<LunchMenu> getMenuWeek(){
         LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate saturday = monday.plusDays(5);
+        LocalDate friday = monday.plusDays(4);
         List<LunchMenu> weekMenu = entityManager.createNamedQuery(
              "Lunch.getWeeklyMenues",LunchMenu.class)
                 .setParameter("start",monday)
-                .setParameter("end", saturday)
+                .setParameter("end", friday)
                 .getResultList();
         return weekMenu;
     }
