@@ -2,6 +2,7 @@ package se.miun.g3.android_app_2;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import se.miun.g3.android_app_2.dishes.Dish;
+import se.miun.g3.android_app_2.dishes.DishesRepository;
+import se.miun.g3.android_app_2.orders.OrdersRepository;
+
 public class MainActivity extends AppCompatActivity {
+    DishesRepository dishesRepo = new DishesRepository();
+    OrdersRepository ordersRepo = new OrdersRepository();   // not in use, for later
 
 
     @Override
@@ -27,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+
+        // Hämtar rätter från backend när appen startar.
+        // När svaret kommer tillbaka (efter en stund) kallas populateDishesUI(...) automatiskt.
+        asyncLoadDishes();
+
+
+
 
         RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -113,5 +128,43 @@ public class MainActivity extends AppCompatActivity {
             ));
         }
         return completeOrder;
+    }
+
+
+
+
+    /**
+     * Hämtar alla rätter (dishes) från backend och skickar resultatet till UI.
+     *
+     * Vad den gör:
+     * - Startar ett nätverksanrop via DishesRepository.
+     * - När datan är klar: onSuccess() körs och skickar listan vidare till populateDishesUI(dishes).
+     * - Om något går fel: onError() körs och felet loggas.
+     *
+     * Viktigt:
+     * - Den här metoden ger INTE tillbaka en lista direkt.
+     * - Anropet tar tid (pga nätverk), så listan kommer först i onSuccess(...).
+     */
+    private void asyncLoadDishes() {
+        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Dish> dishes) {
+                //DishesCache.setCache(dishes);   //om vi ska använda cache
+                populateDishesUI(dishes);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("DISHES", "Fel: " + message);
+            }
+        });
+    }
+
+
+    /**
+     * Tar emot listan med rätter och uppdaterar UI så köket kan se dem.
+     */
+    public void populateDishesUI(List<Dish> dishes) {
+        // Your UI code
+        Log.d("DISH", "Size: " +dishes.size()); // Visar i loggen att API:et är åtkomligt
     }
 }
