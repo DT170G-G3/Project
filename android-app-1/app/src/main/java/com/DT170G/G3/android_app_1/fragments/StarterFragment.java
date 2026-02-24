@@ -96,7 +96,7 @@ public class StarterFragment extends Fragment {
             //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
             // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
             /**
-             if(catId != 2){
+             if(catId != 1){
              continue;
              }
              */

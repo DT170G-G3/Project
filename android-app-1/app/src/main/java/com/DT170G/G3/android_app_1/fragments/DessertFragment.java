@@ -37,7 +37,6 @@ public class DessertFragment extends Fragment {
      *
      * @return A new instance of fragment DessertFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DessertFragment newInstance(String param1, String param2) {
         DessertFragment fragment = new DessertFragment();
         Bundle args = new Bundle();
@@ -99,7 +98,7 @@ public class DessertFragment extends Fragment {
             //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
             // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
             /**
-             if(catId != 2){
+             if(catId != 3){
              continue;
              }
              */
