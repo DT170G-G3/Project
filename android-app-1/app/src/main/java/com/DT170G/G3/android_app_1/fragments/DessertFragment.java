@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import android.widget.LinearLayout;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
+import com.DT170G.G3.android_app_1.dishes.Dish;
+import com.DT170G.G3.android_app_1.dishes.DishesRepository;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,15 +25,7 @@ import com.DT170G.G3.android_app_1.classes.OrderItemRow;
  * create an instance of this fragment.
  */
 public class DessertFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    DishesRepository dishesRepo = new DishesRepository();
 
     public DessertFragment() {
         // Required empty public constructor
@@ -38,16 +35,12 @@ public class DessertFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CalendarFragment.
+     * @return A new instance of fragment DessertFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static DessertFragment newInstance(String param1, String param2) {
         DessertFragment fragment = new DessertFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,10 +48,6 @@ public class DessertFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -72,6 +61,9 @@ public class DessertFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //TODO Ändra så att denna används när API är färdigt
+        //asyncLoadDishes();
+
         String[] desserts = getResources().getStringArray(R.array.dessertList);
 
         LinearLayout dessertView = view.findViewById(R.id.dessertLayout);
@@ -82,5 +74,37 @@ public class DessertFragment extends Fragment {
             dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert));
         }
 
+    }
+
+    private void asyncLoadDishes() {
+        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Dish> dishes) {
+                //DishesCache.setCache(dishes);   //om vi ska använda cache
+                populateDishesUI(dishes);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("DISHES", "Fel: " + message);
+            }
+        });
+    }
+
+    public void populateDishesUI(List<Dish> dishes) {
+        LinearLayout starterView = requireView().findViewById(R.id.starterLayout);
+        OrderItemRow orderItemRow = new OrderItemRow();
+
+        for(Dish dish : dishes){
+            int catId = dish.getCategoryId();
+            //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
+            // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
+            /**
+             if(catId != 2){
+             continue;
+             }
+             */
+            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getName()));
+        }
+        Log.d("DISH STARTER", "Size: " +dishes.size());
     }
 }
