@@ -3,8 +3,9 @@
  *
  * REST API resource for managing CarteDish entities.
  * Provides endpoints to:
- *  - GET /dish          : Retrieve all carte dishes
- *  - GET /dish/{id}     : Retrieve a single carte dish by its ID
+ *  - GET /dish                     : Retrieve all carte dishes
+ *  - GET /dish/category/{category} : Retrieve all carte dishes by category
+ *  - GET /dish/id/{id}             : Retrieve a single carte dish by its ID
  *
  * Uses CarteDishService to interact with the database.
  * All responses are returned in JSON format.
@@ -43,11 +44,18 @@ public class DishApi {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/category/{category}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CarteDish> getDishById(@PathParam("category") String category) {
+        return dishHandler.getDishesByCategory(category);
+    }
+    @GET
+    @Path("/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public CarteDish getDishById(@PathParam("id") int id) {
         return dishHandler.getDishById(id);
     }
+
 
 
 }
