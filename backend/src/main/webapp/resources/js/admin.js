@@ -250,8 +250,8 @@ document.querySelector('.btnPrimary').addEventListener('click', () => {
         };
     });
     /**
-     * "Spara" till konsol för tillfället. Det här behöver serializas senare, så att det kan tas emot på backend och
-     * sparas i databasen.
+     * "Save" to console for now. This needs to be serialized later, in order to be usable against the
+     * backend and database.
      */
     console.log('Sparat schema:', result);
 });
