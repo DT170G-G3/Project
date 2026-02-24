@@ -55,6 +55,9 @@ public class TableOrder {
     @Column(name = "order_no")
     private Integer orderNo;
 
+    @Column(name = "note", length = 255)
+    private String note;
+
     @ManyToOne
     @JoinColumn(name = "sitting_id", nullable = false)
     private Sitting sitting;
@@ -110,6 +113,14 @@ public class TableOrder {
 
     public void setOrderNo(Integer orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Sitting getSitting() {
