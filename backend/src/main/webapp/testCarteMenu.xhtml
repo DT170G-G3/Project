@@ -24,3 +24,36 @@
 </h:body>
 
 </html>
+
+
+
+<h:dataTable value="#{week.daysOfWeek}" var="day" styleClass="day-table">
+
+    <h:column>
+        #{day}
+    </h:column>
+
+    <h:column>
+        <h:outputLabel value="Name" />
+        <h:inputText value="#{dish.newDish.name}" required="true" />
+    </h:column>
+
+    <h:column>
+        <h:outputLabel value="Description" />
+        <h:inputText value="#{dish.newDish.description}" />
+    </h:column>
+
+    <h:column>
+        <h:outputLabel value="Price" />
+        <h:inputText value="#{dish.newDish.price}" />
+    </h:column>
+
+    <h:column>
+        <h:commandButton value="Save" action="#{lunch.saveToMenu(day)}">
+            <f:ajax execute="@this" />
+        </h:commandButton>
+    </h:column>
+
+</h:dataTable>
+
+</h:form>
