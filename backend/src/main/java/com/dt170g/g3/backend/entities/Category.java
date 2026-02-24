@@ -38,8 +38,8 @@ public class Category {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<CarteDish> dishes;
+    @Column(name = "display_order", nullable = false)
+    private Integer displayOrder;
 
     // Constructors
     public Category() {}
@@ -57,19 +57,19 @@ public class Category {
         this.id = id;
     }
 
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    public Integer getDisplayOrder() {
+        return displayOrder;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<CarteDish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<CarteDish> dishes) {
-        this.dishes = dishes;
     }
 }
