@@ -60,14 +60,11 @@ public class MainActivity extends AppCompatActivity {
         sendOrderButtonListener();
 
 
-        //------GET--------
-        //asyncLoadTables();
+        //-------GET--------
+        asyncLoadTables();
         //asyncLoadDrinks();
         asyncLoadDishes();
         //------/GET--------
-
-
-
     }
 
     public void sendOrderButtonListener(){
