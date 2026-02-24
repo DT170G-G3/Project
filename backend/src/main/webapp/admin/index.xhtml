@@ -5,87 +5,10 @@
 
     <ui:define name="title">Anton's Skafferi - Lokala Smaker</ui:define>
 
-    <ui:define name="hero">
-        <section class="hero">
-
-            <div class="hero-slides" aria-hidden="true">
-                <span class="hero-slide s1"></span>
-                <span class="hero-slide s2"></span>
-                <span class="hero-slide s3"></span>
-                <span class="hero-slide s4"></span>
-            </div>
-
-            <div class="hero-inner">
-                <h1>Välkommen till Anton's Skafferi</h1>
-                <p>Där skog och hav är centralt i varje maträtt.</p>
-                <!--                <h:link outcome="lunch" value="Se dagens lunch" styleClass="hero-btn" />-->
-            </div>
-            <div class="hero-credits">
-                <!--                <h:outputLink value="https://www.eat-and-breathe.co.uk/photography/" target="_blank" styleClass="hero-credit c1">-->
-                <!--                    Foto: https://www.eat-and-breathe.co.uk/-->
-                <!--                </h:outputLink>-->
-                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c1"/>
-                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c2"/>
-                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c3" />
-                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c4" />
-                <!--               <h:outputLink value="https://www.freepik.com/free-photo/bottom-view-fish-fry-fried-eggplants-onion-wood-serving-board-black-pepper-bowl-oil-bottle-dill-dark-background_16607675.htm#from_element=cross_selling__photo" target="_blank" styleClass="hero-credit c4">-->
-                <!--                   Foto: Image by KamranAydinov on Freepik-->
-                <!--               </h:outputLink>-->
-            </div>
-        </section>
-    </ui:define>
-
     <ui:define name="content">
 
-        <section class="paper-wrap">
-            <div class="panel paper-look paper-torn text-center">
-                <h2>Dagens lunch</h2>
-                <div class="todays">
-                    <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
-                        <div class="under-line">
-                            <h3>#{menuToday.name}</h3>
-                            <p>#{menuToday.description}</p>
-                        </div>
-                    </ui:repeat>
-                </div>
-            </div>
-        </section>
-
-
         <section class="category-grid">
-
-            <div class="card panel">
-                <div class="card-header"><h3>Dagens Lunch</h3></div>
-                <div class="card-content"><p>Klassisk husman med en vild twist. Se hela veckomenyn här.</p></div>
-                <div class="card-link">
-                    <h:link outcome="lunch" value="Visa lunchmeny" styleClass="btn-link"/>
-                </div>
-            </div>
-
-            <div class="card panel">
-                <div class="card-header"><h3>À La Carte</h3></div>
-                <div class="card-content"><p>Utvalt vilt och dagens fångst.</p></div>
-                <div class="card-link">
-                    <h:link outcome="menu" value="Se hela menyn" styleClass="btn-link"/>
-                </div>
-            </div>
-
-            <div class="card panel">
-                <div class="card-header"><h3>Boka Bord</h3></div>
-                <div class="card-content"><p>Säkra din plats i skafferiet.</p></div>
-                <div class="card-link">
-                    <h:link outcome="booking" value="Till bokningen" styleClass="btn-link"/>
-                </div>
-            </div>
-
-            <div class="card panel">
-                <div class="card-header"><h3>Musik och Events</h3></div>
-                <div class="card-content"><p>Kommande &amp; tidigare events.</p></div>
-                <div class="card-link">
-                    <h:link outcome="events" value="Gå till bloggen" styleClass="btn-link"/>
-                </div>
-            </div>
-
+                <h2>TESTING TESTING</h2>
         </section>
 
     </ui:define>
