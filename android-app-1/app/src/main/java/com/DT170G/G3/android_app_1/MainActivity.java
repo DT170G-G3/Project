@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         //-------GET--------
         asyncLoadTables();
-        //asyncLoadDrinks();
+        asyncLoadOrders();
         asyncLoadDishes();
         //------/GET--------
     }
@@ -202,15 +202,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void asyncLoadDrinks() {
-        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+    private void asyncLoadOrders() {
+        ordersRepo.getOrders(new OrdersRepository.GetCallback() {
             @Override
-            public void onSuccess(List<Drink> drinks) {
-                populateDrinksUI(drinks);
+            public void onSuccess(List<Order> orders) {
+                populateOrdersUI(orders);
             }
             @Override
             public void onError(String message) {
-                Log.e("DRINKS", "Fel: " + message);
+                Log.e("ORDERS", "Fel: " + message);
             }
         });
     }
@@ -219,18 +219,17 @@ public class MainActivity extends AppCompatActivity {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
     }
-    private void populateDrinksUI(List<Drink> drinks) {
+    private void populateOrdersUI(List<Order> orders) {
         // Your code here
-        Log.d("DRINK", "Size: " +drinks.size());
+        Log.d("Order", "Size: " +orders.size());
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
         Log.d("DISH", "Size: " +dishes.size());
     }
 
-
-
     // Methods used for testing below
+    /*
     private void createOrder() {
         Order first = new Order();
         first.note = "Extra salt";
@@ -333,5 +332,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
 }
 
