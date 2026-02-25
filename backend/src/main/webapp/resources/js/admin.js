@@ -1,7 +1,7 @@
 const NUMBER_OF_EMPLOYEES = 11;
 
 /**
- * Needs to be replaced this with an actual list from the database.
+ * Needs to be replaced with an actual list from the database.
 */
 const employees = [
     "Alice", "Bob", "Eve", "Mike", "Lisa",
