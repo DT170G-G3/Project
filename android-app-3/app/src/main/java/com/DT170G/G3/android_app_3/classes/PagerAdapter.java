@@ -6,12 +6,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 
-/**
-import com.DT170G.G3.android_app_3.fragments.DessertFragment;
-import com.DT170G.G3.android_app_3.fragments.DrinkFragment;
-import com.DT170G.G3.android_app_3.fragments.MainCourseFragment;
-import com.DT170G.G3.android_app_3.fragments.StarterFragment;
-import com.DT170G.G3.android_app_3.fragments.TableFragment;
+import com.DT170G.G3.android_app_3.fragments.NextWeekFragment;
+import com.DT170G.G3.android_app_3.fragments.ThisWeekFragment;
 
 public class PagerAdapter extends FragmentStateAdapter {
 
@@ -24,25 +20,18 @@ public class PagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position){
         switch(position) {
             case 0:
-                return new TableFragment();
+                return new ThisWeekFragment();
             case 1:
-                return new DrinkFragment();
-            case 2:
-                return new StarterFragment();
-            case 3:
-                return new MainCourseFragment();
-            case 4:
-                return new DessertFragment();
+                return new NextWeekFragment();
             default:
-                return new TableFragment();
+                return new ThisWeekFragment();
         }
     }
 
     @Override
     public int getItemCount(){
-        return 5;
+        return 2;
     }
 
 
 }
-*/
