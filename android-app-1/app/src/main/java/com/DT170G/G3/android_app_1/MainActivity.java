@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     // Temporärt test
     DishesRepository dishesRepo = new DishesRepository();
     DrinksRepository drinksRepo = new DrinksRepository();
-    TablesRepository tablesRepo = new TablesRepository();
+
     OrdersRepository ordersRepo = new OrdersRepository();
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //-------GET--------
-        asyncLoadTables();
+        //asyncLoadTables();
         //asyncLoadDrinks();
         //asyncLoadDishes();
         //------/GET--------
@@ -182,18 +182,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void asyncLoadTables() {
-        tablesRepo.getTables(new TablesRepository.GetCallback() {
-            @Override
-            public void onSuccess(List<Table> tables) {
-                populateTablesUI(tables);
-            }
-            @Override
-            public void onError(String message) {
-                Log.e("TABLES", "Fel: " + message);
-            }
-        });
-    }
+
     private void asyncLoadDrinks() {
         drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
             @Override
@@ -207,11 +196,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void populateTablesUI(List<Table> tables) {
-        // Your code here
-        Log.d("TABLE", "Size: " +tables.size());
 
-    }
     private void populateDrinksUI(List<Drink> drinks) {
         // Your code here
         Log.d("DRINK", "Size: " +drinks.size());
