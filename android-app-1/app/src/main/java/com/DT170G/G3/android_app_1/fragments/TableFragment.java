@@ -3,6 +3,7 @@ package com.DT170G.G3.android_app_1.fragments;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.R;
+import com.DT170G.G3.android_app_1.tables.Table;
+import com.DT170G.G3.android_app_1.tables.TablesRepository;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,7 @@ import com.DT170G.G3.android_app_1.R;
  * create an instance of this fragment.
  */
 public class TableFragment extends Fragment {
+    TablesRepository tablesRepo = new TablesRepository();
 
     public TableFragment() {
         // Required empty public constructor
@@ -54,8 +60,9 @@ public class TableFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //asyncLoadTables();
 
-        String[] tables = getResources().getStringArray(R.array.tableList);
+         String[] tables = getResources().getStringArray(R.array.tableList);
 
         LinearLayout tableView = view.findViewById(R.id.tableLayout);
 
@@ -63,19 +70,20 @@ public class TableFragment extends Fragment {
             tableView.addView(createButton(table));
         }
 
+
     }
 
     public Button createButton(String item){
         //Skapar Button
         Button tableButton = new Button(requireContext());
         tableButton.setAllCaps(false);
-        tableButton.setText(item);
-        tableButton.setTextColor(Color.parseColor("#FFFFFF"));
+        tableButton.setText("Bord " + item);
+        tableButton.setTextColor(Color.parseColor("#000000"));
 
         //Ändrar färg och form på knappen
         GradientDrawable gd = new GradientDrawable();
         gd.setColor(Color.parseColor("#737373"));
-        gd.setCornerRadius(75);
+        //gd.setCornerRadius(75);
         tableButton.setBackground(gd);
 
 
@@ -88,7 +96,7 @@ public class TableFragment extends Fragment {
         tableButton.setOnClickListener(buttonClicked -> {
             //Ändra text för valt bord
             TextView tv = requireActivity().findViewById(R.id.tableHeader);
-            tv.setText(item);
+            tv.setText("Bord " + item);
 
             //Ändrar vy till Drinkvy
             ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
@@ -97,5 +105,34 @@ public class TableFragment extends Fragment {
 
 
         return tableButton;
+    }
+
+
+    private void asyncLoadTables() {
+        tablesRepo.getTables(new TablesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Table> tables) {
+                populateTablesUI(tables);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("TABLES", "Fel: " + message);
+            }
+        });
+    }
+
+    private void populateTablesUI(List<Table> tables) {
+
+        LinearLayout tableView = requireView().findViewById(R.id.tableLayout);
+
+
+        for(Table table : tables){
+
+            String tableNumber = String.valueOf(table.getTableId());
+            Log.d("TABLE", "table number funktion: " + table.getTableId());
+            tableView.addView(createButton(tableNumber));
+        }
+        Log.d("TABLE", "Size: " +tables.size());
+
     }
 }

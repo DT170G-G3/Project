@@ -42,7 +42,7 @@ public class OrderItemRow {
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout itemRow = new LinearLayout(context);
         itemRow.setOrientation(LinearLayout.HORIZONTAL);
-        itemRow.setPadding(250, 20,250,0);
+        itemRow.setPadding(20, 20,20,0);
         //itemRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rowParams.setMargins(0,10,0,10);
@@ -53,22 +53,23 @@ public class OrderItemRow {
         Button itemButton = new Button(context);
         itemButton.setAllCaps(false);
         itemButton.setText(item);
-        itemButton.setTextColor(Color.parseColor("#FFFFFF"));
+        itemButton.setTextColor(Color.parseColor("#000000"));
+        itemButton.setTextSize(16);
 
         //Ändrar färg och form på knappen
         GradientDrawable gd = new GradientDrawable();
         gd.setColor(Color.parseColor("#737373"));
-        gd.setCornerRadius(75);
+        //gd.setCornerRadius(75);
         itemButton.setBackground(gd);
 
-        itemButton.setLayoutParams(new LinearLayout.LayoutParams(400, ViewGroup.LayoutParams.WRAP_CONTENT ));
+        itemButton.setLayoutParams(new LinearLayout.LayoutParams(800, ViewGroup.LayoutParams.WRAP_CONTENT ));
 
 
         //Skapar TextView för counter
         TextView itemCounter = new TextView(context);
         itemCounter.setText("0");
         LinearLayout.LayoutParams counterParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        counterParams.setMargins(150,0,0,0);
+        counterParams.setMargins(50,0,0,0);
         itemCounter.setLayoutParams(counterParams);
 
 
