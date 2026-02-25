@@ -46,4 +46,9 @@ public class TableOrderService {
         query.setParameter("sittingId", id);
         return query.getResultList();
     }
+
+    @Transactional
+    public void addOrder(TableOrder order) {
+        entityManager.persist(order);
+    }
 }
