@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.DT170G.G3.android_app_3.classes.PagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
+        PagerAdapter adapter = new PagerAdapter(this);
+        viewPager2.setAdapter(adapter);
+
    }
 
-}
+    }
