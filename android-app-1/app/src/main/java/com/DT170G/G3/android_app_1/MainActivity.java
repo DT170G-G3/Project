@@ -33,6 +33,7 @@ import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.orders.OrdersRepository;
+import com.DT170G.G3.android_app_1.orders.Sitting;
 import com.DT170G.G3.android_app_1.tables.Table;
 import com.DT170G.G3.android_app_1.tables.TablesRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //-------GET--------
-        asyncLoadTables();
+        //asyncLoadTables();
         asyncLoadOrders();
-        asyncLoadDishes();
+        //asyncLoadDishes();
+        //asyncLoadDrinks();
         //------/GET--------
+
+        //------POST--------
+        //-----/POST--------
     }
 
     public void sendOrderButtonListener(){
@@ -221,7 +226,22 @@ public class MainActivity extends AppCompatActivity {
     }
     private void populateOrdersUI(List<Order> orders) {
         // Your code here
-        Log.d("Order", "Size: " +orders.size());
+        //Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
+        for (int i = 0; i < 5; i++) {
+            Order order = orders.get(i);
+            Sitting sitting = order.sitting;
+            Table table = sitting.restaurantTable;
+            Log.d("ORDER ID", "" + order.id);
+            Log.d("ORDER: TABLE NUM", "" + table.tableNum);
+
+            for (Dish dish : order.dishes) {
+                Log.d("DISH", "" + dish.name);
+                Log.d("DISH CATEGORY", "" + dish.category.name);
+            }
+            for (Drink drink : order.drinks) {
+                Log.d("DRINK", "" + drink.name);
+            }
+        }
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
