@@ -1,13 +1,8 @@
-/**
- * There's A LOT to change here later.
- */
-
 const NUMBER_OF_EMPLOYEES = 11;
 
 /**
- * Replace this with an actual list from the database.
- * @type {string[]}
- */
+ * Needs to be replaced this with an actual list from the database.
+*/
 const employees = [
     "Alice", "Bob", "Eve", "Mike", "Lisa",
     "Johan", "Elsa", "Lars", "Karin", "Emil", "Maria"
@@ -15,8 +10,7 @@ const employees = [
 
 /**
  * This isn't needed, we'll handle multiple weeks differently going forward.
- * @type {[{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},null]}
- */
+*/
 const days = [
     { name: "Måndag",   key: "Monday",    date: "16 Feb" },
     { name: "Tisdag",   key: "Tuesday",   date: "17 Feb" },
@@ -28,8 +22,7 @@ const days = [
 
 /**
  * This is just a placeholder - it's not needed in the final product.
- * @type {{Monday: {lunch: string[], evening: string[]}, Tuesday: {lunch: string[], evening: string[]}, Wednesday: {lunch: string[], evening: string[]}, Thursday: {lunch: string[], evening: string[]}, Friday: {lunch: string[], evening: string[]}, Saturday: {lunch: string[], evening: string[]}}}
- */
+*/
 const initialSchedule = {
     Monday:    { lunch: ["Alice", "Bob"],        evening: ["Mike", "Lisa", "Johan"] },
     Tuesday:   { lunch: ["Eve", "Elsa"],         evening: ["Lars", "Karin"] },
@@ -41,7 +34,6 @@ const initialSchedule = {
 
 /**
  * Same, this is just a placeholder - not needed in the final product.
- * @type {{Monday: string[], Tuesday: string[], Wednesday: string[], Thursday: string[], Friday: string[], Saturday: string[]}}
  */
 const initialMenu = {
     Monday:    ["Pasta Carbonara", "Grillad Lax"],
@@ -53,12 +45,12 @@ const initialMenu = {
 };
 
 /**
- * Might need to change this if someone has the same first name.
- * (First name + last name in the end, possibly?)
+ * Might need to change this if two people have the same first name.
+ * (Output initials instead, possibly?)
  * @param name
  * @returns {string}
  */
-function initials(name) {
+function getInitials(name) {
     return name.at(0).toUpperCase();
 }
 
@@ -81,10 +73,10 @@ function makeChip(name, inZone) {
     chip.className = 'chip';
     chip.dataset.name = name;
     chip.innerHTML = `
-    <span class="chip-avatar av-${idx}">${initials(name)}</span>
-    ${name}
-    ${inZone ? `<button class="remove-btn" title="Ta bort">✕</button>` : ''}
-  `;
+        <span class="chip-avatar av-${idx}">${getInitials(name)}</span>
+        ${name}
+        ${inZone ? `<button class="remove-btn" title="Ta bort">✕</button>` : ''}
+      `;
     if (inZone) {
         chip.querySelector('.remove-btn').addEventListener('click', e => {
             e.stopPropagation();
@@ -196,6 +188,7 @@ days.forEach(day => {
     card.appendChild(body);
     menuGrid.appendChild(card);
 });
+
 
 Sortable.create(pool, {
     group: { name: 'staff', pull: 'clone', put: false },
