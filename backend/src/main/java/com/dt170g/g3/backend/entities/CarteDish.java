@@ -34,7 +34,7 @@ import jakarta.persistence.*;
         ),
         @NamedQuery(
                 name = "CarteDish.findByCategory",
-                query = "SELECT cd FROM CarteDish cd WHERE cd.category.name = :category"
+                query = "SELECT cd FROM CarteDish cd WHERE cd.category.id = :id"
         ),
         @NamedQuery(
                 name = "CarteDish.findByName",
