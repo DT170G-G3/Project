@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="Tog bort lördag från dagens">
+    <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="Skapat en bildslider för a-la-carte">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/MenuViewBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/MenuViewBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/WeekBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/WeekBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/divider_img.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/divider_img.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +78,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -122,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771856638691</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Skapat en bildslider för a-la-carte">
+      <option name="closed" value="true" />
+      <created>1772119222926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772119222926</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +141,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Skapat booking.xhtml med beans till, ingen koppling till db ännu, utan bara fejkad data." />
     <MESSAGE value="Tog bort lördag från dagens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tog bort lördag från dagens" />
+    <MESSAGE value="Skapat en bildslider för a-la-carte" />
+    <option name="LAST_COMMIT_MESSAGE" value="Skapat en bildslider för a-la-carte" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -145,6 +156,11 @@
           <url>file://$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java</url>
           <line>50</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchDishBean.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
