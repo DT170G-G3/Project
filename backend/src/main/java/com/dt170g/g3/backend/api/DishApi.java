@@ -11,8 +11,8 @@
  * All responses are returned in JSON format.
  *
  * Example usage:
- *   GET http://localhost:8080/restaurant/api/dish
- *   GET http://localhost:8080/restaurant/api/dish/1
+ *   GET http://localhost:8080/restaurant/api/dish/category/starters
+ *   GET http://localhost:8080/restaurant/api/dish/id/1
  *
  * Author: Axel Friman
  * Date: 2026-02-16
@@ -46,7 +46,7 @@ public class DishApi {
     @GET
     @Path("/category/{category}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CarteDish> getDishById(@PathParam("category") String category) {
+    public List<CarteDish> getDishByCategory(@PathParam("category") String category) {
         return dishHandler.getDishesByCategory(category);
     }
     @GET

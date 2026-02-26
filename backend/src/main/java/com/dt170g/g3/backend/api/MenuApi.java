@@ -1,7 +1,7 @@
 /**
  * MenuApi.java
  *
- * REST API resource for managing lunch menus and dishes.
+ * REST API resource for managing menus and dishes.
  * Provides endpoints to:
  *  - GET /menu/lunch           : Retrieve the lunch menu for today
  *  - GET /menu/lunch/{date}    : Retrieve the lunch menu for the specified date

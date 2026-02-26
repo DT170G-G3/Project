@@ -11,9 +11,6 @@
  * This class is an application-scoped CDI bean.
  *
  * Example usage:
- *   @Inject
- *   CarteDishService dishService;
- *
  *   CarteDish dish = dishService.getDishById(1);
  *   List<CarteDish> allDishes = dishService.findAllDishes();
  *
