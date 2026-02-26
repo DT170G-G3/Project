@@ -8,8 +8,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface OrdersApi {
-    @GET("orders")
+    @GET("order")
     Call<List<Order>> getOrders();
-    @POST("orders")
+    @POST("order/add")
     Call<Order> postOrder(@Body Order order);
 }

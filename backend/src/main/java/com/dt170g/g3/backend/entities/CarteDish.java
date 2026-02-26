@@ -11,8 +11,9 @@
  *
  * Maintains a many-to-one relationship with Category entities.
  * Named queries included:
- *  - "CarteDish.getAll"      : Retrieve all dishes
- *  - "CarteDish.findByName"  : Retrieve a dish by its name
+ *  - "CarteDish.getAll"            : Retrieve all dishes
+ *  - "CarteDish.findByCategory"    : Retrieve all dishes by category
+ *  - "CarteDish.findByName"        : Retrieve a dish by its name
  *
  * Example usage:
  *   CarteDish dish = new CarteDish("Pasta", "Tomato pasta", 12.50);
@@ -23,16 +24,30 @@
  */
 
 package com.dt170g.g3.backend.entities;
+
 import jakarta.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
                 name = "CarteDish.getAll",
-                query = "SELECT cd FROM CarteDish cd"
+                query = "SELECT cd FROM CarteDish cd JOIN FETCH cd.category"
+        ),
+        @NamedQuery(
+                name = "CarteDish.findByCategory",
+                query = "SELECT cd FROM CarteDish cd WHERE cd.category.name = :category"
         ),
         @NamedQuery(
                 name = "CarteDish.findByName",
                 query = "SELECT cd FROM CarteDish cd WHERE cd.name = :name"
+        ),
+        @NamedQuery(
+                name = "CarteDish.getDishesFromMenuByCategory",
+                query = "SELECT cd FROM CarteDish cd " +
+                        "JOIN cd.carteMenu m " +
+                        "JOIN cd.category c " +
+                        "LEFT JOIN cd.typeGroup t " +
+                        "WHERE m.id = 1 " +
+                        "ORDER BY c.displayOrder ASC"
         )
 })
 
@@ -49,6 +64,16 @@ public class CarteDish {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="carte_menu_id")
+    private CarteMenu carteMenu;
+
+    @ManyToOne
+    @JoinColumn(name="type_of_id")
+    private TypeOf typeGroup;
+
+
 
     // =====================
     // Constructors
@@ -96,6 +121,19 @@ public class CarteDish {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public TypeOf getTypeGroup() {
+        return typeGroup;
+    }
+
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }

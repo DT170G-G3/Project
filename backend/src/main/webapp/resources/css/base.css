@@ -2,32 +2,42 @@
    Anton's Skafferi - Design Tokens
    ========================= */
 
+/* dARK SOM Default */
 :root {
-    --bg-dark: oklch(0.1 0.025 264);
-    --bg: oklch(0.15 0.025 264);
-    --bg-light: oklch(0.2 0.025 264);
+    --bg-dark: oklch(0.10 0.025 264);
+    --bg:      oklch(0.15 0.025 264);
+    --bg-light:oklch(0.20 0.025 264);
 
-    --text: oklch(0.96 0.05 264);
+    --text:       oklch(0.96 0.05 264);
     --text-muted: oklch(0.76 0.05 264);
 
-    --highlight: oklch(0.5 0.05 264);
+    --highlight:    oklch(0.50 0.05 264);
 
-    --border: oklch(0.4 0.05 264);
-    --border-muted: oklch(0.3 0.05 264);
+    --primary:   oklch(0.76 0.10 264);
+    --secondary: oklch(0.76 0.10 84);
 
-    --primary: oklch(0.76 0.1 264);
-    --secondary: oklch(0.76 0.1 84);
+    --danger:  oklch(0.70 0.05 30);
+    --warning: oklch(0.70 0.05 100);
+    --success: oklch(0.70 0.05 160);
+    --info:    oklch(0.70 0.05 260);
 
-    --danger: oklch(0.7 0.05 30);
-    --warning: oklch(0.7 0.05 100);
-    --success: oklch(0.7 0.05 160);
-    --info: oklch(0.7 0.05 260);
+    /* border */
+    --border-radius: clamp(0.85rem, 0.7rem + 0.7vw, 1.25rem);
+    --border:       oklch(0.40 0.05 264);
+    --border-card: 1px solid var(--border);
+    --border-top: solid 1px var(--highlight);
 
-    /* Typography */
-    --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
-    --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
-    --font-size-h2: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
-    --font-size-h3: clamp(1.1rem, 1.0rem + 0.7vw, 1.45rem);
+    /* Shadows */
+    --shadow: 0 10px 30px rgba(0,0,0,0.22);
+    --shadow-hover: 0 18px 55px rgba(0,0,0,0.35);
+
+    /* Gradients  */
+    --gradient: linear-gradient(0deg, var(--bg) 0%, var(--bg-light)95%);
+    --gradient-hover: linear-gradient(0deg, var(--bg-light) 0%, var(--bg));
+
+
+    /* Focus */
+    --focus-ring: var(--primary);
 
     /* Spacing  */
     --padding-fluid: clamp(0.9rem, 0.6rem + 1.1vw, 1.6rem);
@@ -35,32 +45,76 @@
     --space-fluid: clamp(1.2rem, 0.9rem + 1.6vw, 2.6rem);
 
     /* Layout */
-    --container-width: clamp(20rem, 92vw, 81.25rem);
-    --border-radius: clamp(0.85rem, 0.7rem + 0.7vw, 1.25rem);
-
+    --container-width: clamp(20rem, 85vw, 100rem);
     --header-height: clamp(3.8rem, 3.3rem + 1.2vw, 4.6rem);
     --footer-height: clamp(3.5rem, 3rem + 1vw, 4.2rem);
     --hero-height: clamp(22rem, 42vh, 34rem);
 
-    /* Effects */
-    --shadow: 0 18px 55px rgba(0,0,0,0.35);
-    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+    /* Typography */
+    --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
+    --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+    --font-size-h2: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
+    --font-size-h3: clamp(1.1rem, 1.0rem + 0.7vw, 1.45rem);
 
-    /* Scale */
-    --scale-on-hover: 1.015;
+    /* paper shadow */
+    --paper-shadow: drop-shadow(0 10px 30px rgba(0,0,0,0.22));
+    --paper-shadow-hover: drop-shadow(0 18px 55px rgba(0,0,0,0.35));
 
     color-scheme: dark;
 }
+
+/* LIGHT MODE */
+
+:root[data-theme="light"] {
+    --bg-dark: oklch(0.92 0.025 264);
+    --bg:      oklch(0.96 0.025 264);
+    --bg-light:oklch(1.00 0.02 264);
+
+    --text:       oklch(0.15 0.05 264);
+    --text-muted: oklch(0.40 0.05 264);
+
+    --highlight: oklch(1.00 0.01 264);
+
+
+    --primary:   oklch(0.40 0.10 264);
+    --secondary: oklch(0.40 0.10 84);
+
+    --danger:  oklch(0.50 0.05 30);
+    --warning: oklch(0.50 0.05 100);
+    --success: oklch(0.50 0.05 160);
+    --info:    oklch(0.50 0.05 260);
+
+    /* borders  */
+    --border-card: 1px solid var(--bg);
+    --border: oklch(0.60 0.05 264);
+    --border-top: solid 1px var(--bg);
+
+    /* Shadows */
+    --shadow: 0 2px 2px rgba(0,0,0,0.07), 0 8px 18px rgba(0,0,0,0.12);
+    --shadow-hover: 0 6px 22px rgba(0,0,0,0.16);
+
+    /* Gradients  */
+    --gradient: linear-gradient(0deg, var(--bg) 0%, var(--bg-light));
+    --gradient-hover: linear-gradient(0deg, var(--bg-light) 0%, var(--bg) 95%);
+
+    /* paper shadow */
+    --paper-shadow: drop-shadow(0 2px 2px rgba(0,0,0,0.07))
+    drop-shadow(0 8px 18px rgba(0,0,0,0.12));
+    --paper-shadow-hover: drop-shadow(0 6px 22px rgba(0,0,0,0.16));
+    color-scheme: light;
+}
+
 
 /* =========================
    Base / Reset
    ========================= */
 
 * { box-sizing: border-box; }
+
 html, body {
     height: 100%;
     /*scrollbar-gutter: stable;*/
-    background-color: var(--bg);
+    background-color: var(--bg-dark);
     overflow-x: hidden;
 }
 
@@ -70,8 +124,7 @@ body {
     line-height: 1.55;
     color: var(--text);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    /*background: var(--bg);*/
-    background-color: transparent;
+    /*background-color: var(--bg-dark);*/
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -93,12 +146,38 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid color-mix(in oklch, var(--primary) 60%, white);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 3px;
     border-radius: 0.65rem;
 }
 
-.full-width {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+/*.full-width {*/
+/*    width: 100vw;*/
+/*    margin-left: calc(50% - 50vw);*/
+/*}*/
+
+.panel {
+    background: var(--gradient);
+    color: var(--text);
+    border-radius: var(--border-radius);
+    border: var(--border-card);
+    border-top: var(--border-top);
+    padding: var(--padding-fluid);
+    box-shadow: var(--shadow);
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.panel:hover {
+    background: var(--gradient-hover);
+    border-color: var(--border);
+    box-shadow: var(--shadow-hover);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.under-line {
+    border-bottom: solid 1px var(--border);
+    margin-bottom: var(--gap-fluid);
 }

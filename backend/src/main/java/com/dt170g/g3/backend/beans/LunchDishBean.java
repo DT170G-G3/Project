@@ -2,6 +2,7 @@ package com.dt170g.g3.backend.beans;
 
 import com.dt170g.g3.backend.services.LunchDishService;
 import com.dt170g.g3.backend.entities.LunchDish;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -10,8 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named("dish")
-@ViewScoped
-public class LunchDishBean implements Serializable {
+@RequestScoped
+public class LunchDishBean{
 
     @Inject
     private LunchDishService dishService;
