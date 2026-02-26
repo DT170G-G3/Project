@@ -35,25 +35,27 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
         holder.listOfDishesLinearLayout.removeAllViews();
 
-        if(!order.isStartersDone()) {
-            addFood(holder, "Förrätter", order.getStarters(), true, () -> {
+        holder.itemView.setOnClickListener(v -> {
+            if(!order.isStartersDone()) {
                 order.setStartersDone(true);
-                notifyItemChanged(position);
-            });
+            } else if (!order.isMainCoursesDone()) {
+                order.setMainCoursesDone(true);
+            } else if (!order.isDessertsDone()) {
+                order.setDessertsDone(true);
+            }
+            notifyItemChanged(position);
+        });
+
+        if(!order.isStartersDone()) {
+            addFood(holder, "Förrätter", order.getStarters());
         }
 
         if(!order.isMainCoursesDone()) {
-            addFood(holder, "Varmrätter", order.getMainCourses(), order.isStartersDone(), () -> {
-                order.setMainCoursesDone(true);
-                notifyItemChanged(position);
-            });
+            addFood(holder, "Varmrätter", order.getMainCourses());
         }
 
         if(!order.isDessertsDone()) {
-            addFood(holder, "Efterrätter", order.getDesserts(), order.isStartersDone() && order.isMainCoursesDone(), () -> {
-                order.setDessertsDone(true);
-                notifyItemChanged(position);
-            });
+            addFood(holder, "Efterrätter", order.getDesserts());
         }
 
         if (order.isStartersDone() && order.isMainCoursesDone() && order.isDessertsDone()) {
@@ -62,13 +64,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         }
     }
 
-    private void addFood (OrderViewHolder holder, String title, List< String > orderList, boolean showButton, Runnable onClick){
+    private void addFood (OrderViewHolder holder, String title, List< String > orderList){
         Context context = holder.itemView.getContext();
 
-        LinearLayout headerAndButtonContainer = new LinearLayout(context);
-        headerAndButtonContainer.setOrientation(LinearLayout.HORIZONTAL);
-        headerAndButtonContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        headerAndButtonContainer.setGravity((Gravity.CENTER_VERTICAL));
+        LinearLayout headerContainer = new LinearLayout(context);
+        headerContainer.setOrientation(LinearLayout.HORIZONTAL);
+        headerContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        headerContainer.setGravity((Gravity.CENTER_VERTICAL));
 
         //Rubrik för kategir av mat
         TextView header = new TextView(context);
@@ -77,23 +79,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         header.setTypeface(null, Typeface.BOLD);
         header.setPadding(0, 24, 0, 12);
         header.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-        headerAndButtonContainer.addView(header);
+        headerContainer.addView(header);
 
-        if(showButton) {
-            TextView doneButton = new TextView(context);
-            doneButton.setText("KLAR");
-            doneButton.setTextSize(14);
-            doneButton.setPadding(20,10,20,10);
-            doneButton.setBackground(context.getDrawable(R.drawable.done_button));
-            doneButton.setTextColor(context.getColor(R.color.black));
-            doneButton.setOnClickListener(v -> onClick.run());
-            doneButton.setElevation(4f);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(24,0,0,0);
-            doneButton.setLayoutParams(params);
-            headerAndButtonContainer.addView(doneButton);
-        }
-        holder.listOfDishesLinearLayout.addView(headerAndButtonContainer);
+
+        holder.listOfDishesLinearLayout.addView(headerContainer);
 
         //Avdelare i form av streck för struktur
         View divider = new View(context);

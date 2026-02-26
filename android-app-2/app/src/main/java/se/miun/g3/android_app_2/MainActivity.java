@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     OrdersRepository ordersRepo = new OrdersRepository();   // not in use, for later
 
 
-    @Override
+  /*  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -52,7 +52,28 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }*/
+
+    //bara för test!!
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
+        orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
+        List<Orders> testOrders = new ArrayList<>();
+        testOrders.add(new Orders( 1, Arrays.asList("Bruschetta", "Vitlöksbröd"), Arrays.asList("Pasta Carbonara", "Pizza Margherita"), Arrays.asList("Tiramisu", "Pannacotta") ));
+        testOrders.add(new Orders( 2, Arrays.asList("Räksoppa"), Arrays.asList("Laxfilé", "Oxfilé"), Arrays.asList("Glass") )); testOrders.add(new Orders( 3, Arrays.asList("Caprese"), Arrays.asList("Risotto"), Arrays.asList("Chokladfondant") ));
+
+        orderRecyclerView.setAdapter(new OrdersAdapter(testOrders));
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom); return insets; });
     }
+
 
     private Orders orderToOrders(Order backendOrder) {
         List<String> starters = new ArrayList<>();
