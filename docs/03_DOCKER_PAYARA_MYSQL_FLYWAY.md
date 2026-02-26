@@ -14,9 +14,11 @@
 Kör från:
 `infra/docker/`
 
+```xml
 docker compose --env-file .env up -d --build
 docker compose ps
 docker logs -f restaurant-payara
+```
 
 ## Vad som startas
 - `mysql` → databasen
@@ -45,6 +47,9 @@ Payara lägger automatiskt till deploy-kommandon vid start.
 ### När du byggt om WAR
 1) Bygg backend (`mvnw ... package`)
 2) Restart `restaurant-payara` i Docker Desktop
+    ```xml
+    docker compose restart payara
+    ```
 
 ## Flyway (migrations)
 Migrations ligger i:
@@ -61,15 +66,16 @@ Flyway skapar en tabell:
 Kontroll i MySQL:
 Starta Docker Desktop->Containers->restaurant-local->Gå in på mysql->Exec
 
+```xml
 mysql -u root -p
 (Skriv ert root password som ni valt i .env)
 SHOW DATABASES;
 USE restaurant;
 SELECT * FROM flyway_schema_history;
 SHOW TABLES;
+```
 
-
-#### COPY/PASTE vid behov
+# COPY/PASTE vid behov
 
 ## MySQL
 det som ligger i .env.example bör kopieras till en egen fil som heter .env enligt projektstrukturen i fil 02.
@@ -94,7 +100,7 @@ det som ligger i .env.example bör kopieras till en egen fil som heter .env enli
 
 ## Docker-compose.yml
 Det bör finnas en fil under /infra som heter docker-compose.yml om inte skapa den manuellt och kopiera in nedan.
----------
+```xml
     name: ${COMPOSE_PROJECT_NAME:-restaurant-local}
 
     services:
@@ -162,11 +168,11 @@ Det bör finnas en fil under /infra som heter docker-compose.yml om inte skapa d
 
     volumes:
     mysql_data:
-
+```
 
 ## Dockerfile
 Det bör finnas en Dockerfile som ligger direkt under /payara, om inte skapa den filen med namnet "Dockerfile" manuellt och kopiera in nedan.
----------
+```xml
     ARG PAYARA_TAG=7.2026.1
     FROM payara/server-full:${PAYARA_TAG}
 
@@ -178,18 +184,20 @@ Det bör finnas en Dockerfile som ligger direkt under /payara, om inte skapa den
     # 2) Lägg postboot-fil (skrivbar, så Payara kan append:a deploy-kommandon)
     COPY --chown=payara:payara config/post-boot-commands.asadmin \
         /opt/payara/config/post-boot-commands.asadmin
-
+```
 ## payara
 Det bör finna en fil under /config som heter post-boot-commands.asadmin om inte skapa den och kopiera in nedan manuellt.
-----------
+```xml
     create-jdbc-connection-pool --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource --restype javax.sql.DataSource --ping true --property user=${ENV=DB_USER}:password=${ENV=DB_PASSWORD}:serverName=${ENV=DB_HOST}:portNumber=${ENV=DB_PORT}:databaseName=${ENV=DB_NAME}:useSSL=false:allowPublicKeyRetrieval=true AppPool
     create-jdbc-resource --connectionpoolid AppPool jdbc/local_sql
     ping-connection-pool AppPool
+```
 
+## pom.xml ##
 
-## pom.xml
 För att war-filen skall hamna korrekt så sköter IDE'n/MAVEN det själv. detta bör finnas i er /backend/pom.xml
----------
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -305,4 +313,4 @@ För att war-filen skall hamna korrekt så sköter IDE'n/MAVEN det själv. detta
         </plugins>
     </build>
 </project>
-
+```

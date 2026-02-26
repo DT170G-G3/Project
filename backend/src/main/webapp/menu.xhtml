@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/base.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">Á la carte</ui:define>
+
+    <ui:define name="content">
+
+        <section class="panel paper-look paper-torn">
+            <div class="menu-inner">
+                <h1 class="text-center">À la carte meny</h1>
+
+                <!-- KATEGORI -->
+                <ui:repeat value="#{carteDish.groupedDishes.entrySet()}" var="catEntry">
+                    <article class="menu-category">
+                        <h2 class="text-center">#{catEntry.key}</h2>
+
+                        <!-- TYP inom kategori -->
+                        <ui:repeat value="#{catEntry.value.entrySet()}" var="typeEntry">
+
+                            <h:panelGroup rendered="#{not empty typeEntry.key}">
+                                <h3 class="text-center">#{typeEntry.key}</h3>
+                            </h:panelGroup>
+
+                            <!-- RÄTTER inom typ -->
+                            <div class="menu-items">
+                                <ui:repeat value="#{typeEntry.value}" var="item">
+                                    <div class="menu-dish">
+                                        <div class="dish-header">
+                                            <h3>#{item.name}</h3>
+
+                                            <!-- Pris -->
+<!--                                            <span class="dish-price">#{item.price} SEK</span>-->
+
+                                            <span class="dish-price">
+                                                <h:outputText value="#{item.price}">
+                                                    <f:convertNumber type="currency" currencyCode="SEK" pattern="¤&#160;#0"/>
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                        <p>#{item.description}</p>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+
+                        </ui:repeat>
+                    </article>
+                </ui:repeat>
+
+            </div>
+        </section>
+
+    </ui:define>
+
+</ui:composition>

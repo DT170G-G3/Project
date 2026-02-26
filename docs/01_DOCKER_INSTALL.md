@@ -18,10 +18,13 @@
 
 ## Verifiera installationen
 Öppna en terminal (valfri) och kör:
+```xml
     docker version
     docker compose version
     docker run --rm hello-world
     Fungerar allt? bra! annars så blir det lite felsökning
+```
+
 
 ## Felsökning
 Kör ni mysql lokalt? DÅ kanske den tar upp den port som Docker vill använda. Avsluta programmet som tar.
@@ -31,7 +34,7 @@ Oftast "mysql" som tar upp porten, bara att stänga via terminalen.
 Portarna påverkar inte så mycket mer än vart ni skall ansluta emot, så det är fritt att ändra efter behov.
 
 ## Grundkommandon du behöver kunna i docker
-
+```xml
 Lite olika kommandon för docker som kan vara bra att ta med sig:
     docker compose ps               #lista containers och status
     docker compose up -d --build    #bygg och kör upp i bakgrunden
@@ -40,3 +43,4 @@ Lite olika kommandon för docker som kan vara bra att ta med sig:
     docker compose logs -f          #kolla loggar
     docker system df
     docker system prune             #Totalrensning delux
+```

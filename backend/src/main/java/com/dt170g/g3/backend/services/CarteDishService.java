@@ -47,4 +47,14 @@ public class CarteDishService {
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getAll", CarteDish.class);
         return messageQuery.getResultList();
     }
+
+    /**
+     *
+     * @return all dishes on the menu. Ordered by starter, main, dessert.
+     */
+    public List<CarteDish> getMenuDishes() {
+        TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getDishesFromMenuByCategory", CarteDish.class);
+        return messageQuery.getResultList();
+    }
+
 }
