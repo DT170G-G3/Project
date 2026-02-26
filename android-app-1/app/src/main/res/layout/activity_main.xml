@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/appBackground">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
@@ -51,6 +52,8 @@
         android:background="@color/borderColor"
         app:layout_constraintBottom_toTopOf="@+id/sendOrderButton"/>
 
+
+    <!--
     <Button
         android:id="@+id/sendOrderButton"
         android:layout_width="match_parent"
@@ -59,12 +62,36 @@
         android:text="Skicka beställningen"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu" />
+-->
+
+
+    <TextView
+        android:id="@+id/sendOrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/send_order_button"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Skicka beställningen"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/borderColor"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mainColor"
+        android:background="@color/navMenuColor"
         app:menu="@menu/bottom_navigation_menu"
         app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/black"
