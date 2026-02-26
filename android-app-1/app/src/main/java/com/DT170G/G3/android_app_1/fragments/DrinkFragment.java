@@ -4,15 +4,23 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
+import com.DT170G.G3.android_app_1.dishes.Dish;
+import com.DT170G.G3.android_app_1.drinks.Drink;
+import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +28,8 @@ import com.DT170G.G3.android_app_1.classes.OrderItemRow;
  * create an instance of this fragment.
  */
 public class DrinkFragment extends Fragment {
+
+    DrinksRepository drinksRepo = new DrinksRepository();
 
     public DrinkFragment() {
         // Required empty public constructor
@@ -53,6 +63,9 @@ public class DrinkFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //TODO ändra så denna används när API funka
+        //asyncLoadDrinks();
+
         String[] drinks = getResources().getStringArray(R.array.drinkList);
 
         LinearLayout drinkView = view.findViewById(R.id.drinkLayout);
@@ -64,6 +77,26 @@ public class DrinkFragment extends Fragment {
         }
 
     }
+
+    private void asyncLoadDrinks() {
+        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Drink> drinks) {
+                populateDrinksUI(drinks);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("DRINKS", "Fel: " + message);
+            }
+        });
+    }
+
+    private void populateDrinksUI(List<Drink> drinks) {
+        // Your code here
+        Log.d("DRINK", "Size: " +drinks.size());
+    }
+
 
 
 }
