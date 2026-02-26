@@ -12,6 +12,7 @@
  *   - id        : Auto-generated primary key
  *   - createdAt : Timestamp of when the order was created (database-generated)
  *   - orderNo   : Optional order number
+ *   - note      : Optional note
  *   - sitting   : Reference to the Sitting this order belongs to
  *   - dishes    : List of CarteDish items in this order (many-to-many)
  *   - drinks    : List of Drink items in this order (many-to-many)
@@ -34,9 +35,10 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "TableOrder.findBySitting",
-                query = "SELECT o FROM TableOrder o " +
+                query = "SELECT DISTINCT o FROM TableOrder o " +
                         "LEFT JOIN FETCH o.dishes " +
                         "LEFT JOIN FETCH o.drinks " +
+                        "LEFT JOIN FETCH o.sitting " +
                         "WHERE o.sitting.id = :sittingId"
         )
 })
@@ -53,6 +55,9 @@ public class TableOrder {
 
     @Column(name = "order_no")
     private Integer orderNo;
+
+    @Column(name = "note", length = 255)
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "sitting_id", nullable = false)
@@ -109,6 +114,14 @@ public class TableOrder {
 
     public void setOrderNo(Integer orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Sitting getSitting() {
