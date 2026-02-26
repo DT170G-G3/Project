@@ -2,7 +2,6 @@ package se.miun.g3.android_app_2.orders;
 
 import java.util.List;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,6 +11,6 @@ import retrofit2.http.POST;
 public interface OrdersApi {
     @GET("order")
     Call<List<Order>> getOrders();
-    @POST("order")
+    @POST("order/add")
     Call<Order> postOrder(@Body Order order);
 }

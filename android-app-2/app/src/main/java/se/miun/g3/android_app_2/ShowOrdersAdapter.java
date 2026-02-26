@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewHolder> {
-    private List<Orders> orderList;
+public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.OrderViewHolder> {
+    private List<ShowOrders> orderList;
 
-    public OrdersAdapter(List<Orders> orderList) {
+    public ShowOrdersAdapter(List<ShowOrders> orderList) {
         this.orderList = orderList;
     }
 
@@ -29,9 +29,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        Orders order = orderList.get(position);
+        ShowOrders order = orderList.get(position);
+        //String time = order.getCreatedAt().substring(11,16);
         holder.tableTextView.setText("Bord " + order.getTableNumber());
-
+        //holder.timeTextView.setText(time);
         holder.listOfDishesLinearLayout.removeAllViews();
 
         holder.itemView.setOnClickListener(v -> {
@@ -114,11 +115,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
     static class OrderViewHolder extends RecyclerView.ViewHolder {
 
         TextView tableTextView;
+        TextView timeTextView;
         LinearLayout listOfDishesLinearLayout;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tableTextView = itemView.findViewById(R.id.tableTextView);
+            //timeTextView = itemView.findViewById(R.id.timeTextView);
             listOfDishesLinearLayout = itemView.findViewById(R.id.listOfDishesLinearLayout);
         }
     }

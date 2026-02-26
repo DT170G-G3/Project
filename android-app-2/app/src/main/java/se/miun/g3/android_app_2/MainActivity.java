@@ -18,15 +18,11 @@ import java.util.List;
 
 import se.miun.g3.android_app_2.dishes.Dish;
 import se.miun.g3.android_app_2.dishes.DishesRepository;
-import se.miun.g3.android_app_2.drinks.DrinksRepository;
 import se.miun.g3.android_app_2.orders.Order;
 import se.miun.g3.android_app_2.orders.OrdersRepository;
-import se.miun.g3.android_app_2.tables.TablesRepository;
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
-    DrinksRepository drinksRepo = new DrinksRepository();
-    TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
 
 
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private Orders orderToOrders(Order backendOrder) {
+    private ShowOrders orderToShowOrders(Order backendOrder) {
         List<String> starters = new ArrayList<>();
         List<String> mains = new ArrayList<>();
         List<String> desserts = new ArrayList<>();
@@ -74,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         tableNum = backendOrder.sitting.restaurantTable.tableNum;
-        return new Orders(tableNum, starters, mains, desserts);
+        return new ShowOrders(tableNum, starters, mains, desserts);
     }
 
 
@@ -108,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Order> backendOrders) {
                 Log.d("ORDERS", "API gav " + backendOrders.size() + " orders");
-                List<Orders> uiOrders = new ArrayList<>();
+                List<ShowOrders> uiOrders = new ArrayList<>();
                 for (Order o : backendOrders) {
-                    uiOrders.add(orderToOrders(o));
+                    uiOrders.add(orderToShowOrders(o));
                 }
                 RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
-                orderRecyclerView.setAdapter(new OrdersAdapter(uiOrders));
+                orderRecyclerView.setAdapter(new ShowOrdersAdapter(uiOrders));
             }
 
             @Override
@@ -129,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
-        Log.d("DISH", "Size: " +dishes.size()); // Visar i loggen att API:et är åtkomligt
+        Log.d("DISH", "Size: " +dishes.size());
     }
 
 

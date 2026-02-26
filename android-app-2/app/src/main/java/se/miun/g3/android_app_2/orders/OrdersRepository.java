@@ -1,7 +1,6 @@
 package se.miun.g3.android_app_2.orders;
 
 import se.miun.g3.android_app_2.ApiClient;
-import se.miun.g3.android_app_2.dishes.Dish;
 
 import java.util.List;
 
@@ -9,15 +8,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//Used to POST an order
 public class OrdersRepository {
 
+    //Used to POST an Order to database
     public interface PostCallback {
         void onSuccess(Order postedOrder);
         void onError(String message);
     }
 
-    //Used to GET a list of all orders
+    //Used to GET a list of all orders from database
     public interface GetCallback {
         void onSuccess(List<Order> orders);
         void onError(String message);
@@ -42,7 +41,6 @@ public class OrdersRepository {
             }
         });
     }
-
 
     public void getOrders(GetCallback cb) {
         Call<List<Order>> call = ApiClient.ordersApi().getOrders();
