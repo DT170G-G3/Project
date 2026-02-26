@@ -12,9 +12,9 @@ import java.util.List;
 public class MenuViewBean implements Serializable {
 
     // Lista med bilder.
-    // Index 0, 3, 6 = Starters
-    // Index 1, 4, 7 = Mains
-    // Index 2, 5, 8 = Desserts
+    // Index 0, 3, 6, osv. = Starters
+    // Index 1, 4, 7, osv. = Mains
+    // Index 2, 5, 8, osv. = Desserts
     private static final List<String> DIVIDERS = List.of(
             "divider/starters1.png", "divider/mains1.png", "divider/desserts1.png",
             "divider/starters2.png", "divider/mains2.png", "divider/desserts2.png",
