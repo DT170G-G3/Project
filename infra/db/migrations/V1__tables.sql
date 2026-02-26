@@ -35,9 +35,7 @@ CREATE TABLE carte_dish (
     description VARCHAR(255) NOT NULL,
     price DECIMAL(7,2) NOT NULL,
     category_id INT,
-    carte_menu_id INT,
     type_of_id INT,
-    FOREIGN KEY (carte_menu_id) REFERENCES carte_menu(id) ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE,
     FOREIGN KEY (type_of_id) REFERENCES type_of(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -67,6 +65,7 @@ CREATE TABLE table_order(
     id INT AUTO_INCREMENT PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
     order_no INT,
+    note VARCHAR(255) DEFAULT NULL,
     sitting_id INT NOT NULL,
     FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -77,6 +76,7 @@ CREATE TABLE booking(
     start_time TIME NOT NULL,
     duration_minutes INT NOT NULL,
     no_of_people INT NOT NULL,
+    note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100),
     phone_no VARCHAR(30),

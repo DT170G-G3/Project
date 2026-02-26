@@ -61,148 +61,149 @@ INSERT INTO sitting (start_time, date, duration_minutes, restaurant_table_id) VA
 ('17:30:00', '2026-03-02', 120, 7),
 ('19:30:00', '2026-03-03', 120, 7);
 
-INSERT INTO table_order (order_no, sitting_id) VALUES
+
+INSERT INTO table_order (order_no, note, sitting_id) VALUES
 
 -- Sitting 1 (busy lunch)
-(1001, 1),
-(1002, 1),
-(1003, 1),
+(1001, "Nötallergi", 1),
+(1002, "Extra sauce on the side", 1),
+(1003, NULL, 1),
 
 -- Sitting 2
-(1004, 2),
+(1004, NULL, 2),
 
 -- Sitting 3
-(1005, 3),
-(1006, 3),
+(1005, "No onions please", 3),
+(1006, NULL, 3),
 
 -- Sitting 4 (evening rush)
-(1007, 4),
-(1008, 4),
-(1009, 4),
-(1010, 4),
+(1007, NULL, 4),
+(1008, "Gluten-free option", 4),
+(1009, NULL, 4),
+(1010, NULL, 4),
 
 -- Sitting 5
-(1011, 5),
+(1011, NULL, 5),
 
 -- Sitting 6
-(1012, 6),
-(1013, 6),
+(1012, NULL, 6),
+(1013, "Allergic to dairy", 6),
 
 -- Sitting 7
-(1014, 7),
+(1014, NULL, 7),
 
 -- Sitting 8
-(1015, 8),
-(1016, 8),
-(1017, 8),
+(1015, NULL, 8),
+(1016, NULL, 8),
+(1017, "Extra spicy", 8),
 
 -- Sitting 9
-(1018, 9),
+(1018, NULL, 9),
 
 -- Sitting 10 (large table, longer sitting)
-(1019, 10),
-(1020, 10),
-(1021, 10),
+(1019, NULL, 10),
+(1020, "Birthday celebration", 10),
+(1021, NULL, 10),
 
 -- Sitting 11
-(1022, 11),
+(1022, NULL, 11),
 
 -- Sitting 12
-(1023, 12),
-(1024, 12),
+(1023, NULL, 12),
+(1024, NULL, 12),
 
 -- Sitting 13
-(1025, 13),
+(1025, NULL, 13),
 
 -- Sitting 14
-(1026, 14),
-(1027, 14),
+(1026, "Vegetarian", 14),
+(1027, NULL, 14),
 
 -- Sitting 15 (busy dinner)
-(1028, 15),
-(1029, 15),
-(1030, 15),
-(1031, 15),
+(1028, NULL, 15),
+(1029, NULL, 15),
+(1030, "No peanuts", 15),
+(1031, NULL, 15),
 
 -- Sitting 16
-(1032, 16),
+(1032, NULL, 16),
 
 -- Sitting 17
-(1033, 17),
-(1034, 17),
+(1033, NULL, 17),
+(1034, NULL, 17),
 
 -- Sitting 18
-(1035, 18),
+(1035, "Extra napkins", 18),
 
 -- Sitting 19
-(1036, 19),
-(1037, 19),
+(1036, NULL, 19),
+(1037, NULL, 19),
 
 -- Sitting 20
-(1038, 20),
+(1038, NULL, 20),
 
 -- Sitting 21
-(1039, 21),
-(1040, 21),
+(1039, NULL, 21),
+(1040, "Birthday cake later", 21),
 
 -- Sitting 22
-(1041, 22),
+(1041, NULL, 22),
 
 -- Sitting 23
-(1042, 23),
-(1043, 23),
-(1044, 23),
+(1042, NULL, 23),
+(1043, NULL, 23),
+(1044, "Allergy: shellfish", 23),
 
 -- Sitting 24
-(1045, 24),
+(1045, NULL, 24),
 
 -- Sitting 25
-(1046, 25),
+(1046, NULL, 25),
 
 -- Sitting 26
-(1047, 26),
-(1048, 26),
+(1047, NULL, 26),
+(1048, NULL, 26),
 
 -- Sitting 27
-(1049, 27),
+(1049, NULL, 27),
 
 -- Sitting 28
-(1050, 28),
-(1051, 28),
+(1050, NULL, 28),
+(1051, NULL, 28),
 
 -- Sitting 29
-(1052, 29),
+(1052, NULL, 29),
 
 -- Sitting 30
-(1053, 30),
-(1054, 30),
-(1055, 30),
+(1053, NULL, 30),
+(1054, NULL, 30),
+(1055, "No salt", 30),
 
 -- Sitting 31
-(1056, 31),
+(1056, NULL, 31),
 
 -- Sitting 32
-(1057, 32),
+(1057, NULL, 32),
 
 -- Sitting 33
-(1058, 33),
-(1059, 33),
+(1058, NULL, 33),
+(1059, NULL, 33),
 
 -- Sitting 34
-(1060, 34),
+(1060, NULL, 34),
 
 -- Sitting 35
-(1061, 35),
-(1062, 35),
+(1061, NULL, 35),
+(1062, "Extra dressing", 35),
 
 -- Sitting 36
-(1063, 36),
+(1063, NULL, 36),
 
 -- Sitting 37
-(1064, 37),
+(1064, NULL, 37),
 
 -- Sitting 38
-(1065, 38);
+(1065, NULL, 38);
 
 INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id) VALUES
 
@@ -389,50 +390,50 @@ INSERT INTO table_order_drink (table_order_id, drink_id) VALUES
 (65, 15);
 
 INSERT INTO booking
-(date, start_time, duration_minutes, no_of_people, name, email, phone_no, sitting_id)
+(date, start_time, duration_minutes, no_of_people, note, name, email, phone_no, sitting_id)
 VALUES
 
 -- Booking for Sitting 1
-('2026-03-01', '12:00:00', 60, 2, 'Anna Svensson', 'anna.svensson@email.se', '0701234567', 1),
+('2026-03-01', '12:00:00', 60, 2, "Some note", 'Anna Svensson', 'anna.svensson@email.se', '0701234567', 1),
 
 -- Booking for Sitting 3
-('2026-03-01', '17:00:00', 90, 3, 'Johan Karlsson', 'johan.k@email.se', '0731122334', 3),
+('2026-03-01', '17:00:00', 90, 3, "Födelsedagsfirande", 'Johan Karlsson', 'johan.k@email.se', '0731122334', 3),
 
 -- Booking for Sitting 4
-('2026-03-01', '18:45:00', 90, 4, 'Lisa Andersson', 'lisa@email.se', '0723344556', 4),
+('2026-03-01', '18:45:00', 90, 4, NULL, 'Lisa Andersson', 'lisa@email.se', '0723344556', 4),
 
 -- Booking for Sitting 7
-('2026-03-01', '12:15:00', 60, 4, 'Erik Johansson', 'erik.j@email.se', '0739876543', 7),
+('2026-03-01', '12:15:00', 60, 4, NULL, 'Erik Johansson', 'erik.j@email.se', '0739876543', 7),
 
 -- Booking for Sitting 8
-('2026-03-01', '13:30:00', 60, 3, 'Maria Nilsson', NULL, '0761122334', 8),
+('2026-03-01', '13:30:00', 60, 3, NULL, 'Maria Nilsson', NULL, '0761122334', 8),
 
 -- Booking for Sitting 10
-('2026-03-01', '19:30:00', 120, 6, 'Familjen Berg', NULL, '0709988776', 10),
+('2026-03-01', '19:30:00', 120, 6, NULL, 'Familjen Berg', NULL, '0709988776', 10),
 
 -- Booking for Sitting 12
-('2026-03-02', '18:00:00', 120, 6, 'Anders Nyström', 'anders@email.se', '0731112233', 12),
+('2026-03-02', '18:00:00', 120, 6, NULL, 'Anders Nyström', 'anders@email.se', '0731112233', 12),
 
 -- Booking for Sitting 14
-('2026-03-02', '12:00:00', 75, 2, 'Sara Lind', 'sara.l@email.se', '0705544332', 14),
+('2026-03-02', '12:00:00', 75, 2, NULL, 'Sara Lind', 'sara.l@email.se', '0705544332', 14),
 
 -- Booking for Sitting 15
-('2026-03-02', '13:45:00', 75, 5, 'Oskar Pettersson', NULL, '0766655443', 15),
+('2026-03-02', '13:45:00', 75, 5, NULL, 'Oskar Pettersson', NULL, '0766655443', 15),
 
 -- Booking for Sitting 17
-('2026-03-02', '18:00:00', 120, 6, 'Karin Holm', 'karin@email.se', NULL, 17),
+('2026-03-02', '18:00:00', 120, 6, NULL, 'Karin Holm', 'karin@email.se', NULL, 17),
 
 -- Booking for Sitting 18
-('2026-03-02', '19:50:00', 120, 4, 'Mikael Fors', NULL, '0702223344', 18),
+('2026-03-02', '19:50:00', 120, 4, NULL, 'Mikael Fors', NULL, '0702223344', 18),
 
 -- Booking for Sitting 22
-('2026-03-03', '18:15:00', 120, 3, 'Niklas Öberg', NULL, NULL, 22),
+('2026-03-03', '18:15:00', 120, 3, NULL, 'Niklas Öberg', NULL, NULL, 22),
 
 -- Booking for Sitting 28
-('2026-03-03', '12:45:00', 75, 2, 'Per Andersson', NULL, '0704433221', 28),
+('2026-03-03', '12:45:00', 75, 2, NULL, 'Per Andersson', NULL, '0704433221', 28),
 
 -- Booking for Sitting 30
-('2026-03-03', '17:45:00', 120, 6, 'Helena Sjöberg', 'helena@email.se', '0739998877', 30),
+('2026-03-03', '17:45:00', 120, 6, NULL, 'Helena Sjöberg', 'helena@email.se', '0739998877', 30),
 
 -- Booking for Sitting 35
-('2026-03-03', '19:30:00', 120, 5, 'Camilla Dahl', 'camilla@email.se', '0763344556', 35);
+('2026-03-03', '19:30:00', 120, 5, NULL, 'Camilla Dahl', 'camilla@email.se', '0763344556', 35);

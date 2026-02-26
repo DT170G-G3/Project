@@ -1,9 +1,11 @@
 package com.dt170g.g3.backend.services;
 
+import com.dt170g.g3.backend.beans.LunchDishBean;
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
 import jakarta.ejb.Local;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
@@ -21,6 +23,10 @@ import java.util.List;
 public class LunchMenuService {
     @PersistenceContext
     EntityManager entityManager;
+    @Inject
+    private LunchDishBean dishBean;
+    @Inject
+    private LunchDishService lunchDishService;
 
     /*Creates a query for the database, and returns all the dishes for the current day*/
     public List<LunchDish> getLunchDishesToday() {
@@ -60,13 +66,15 @@ public class LunchMenuService {
      * @param menuId the id of the LunchMenu from which the Dish will be removed
      */
     @Transactional
-    public void removeDishFromMenu(int dishId, int menuId) {
+    public void removeDishFromMenu(String localDate, LunchDish dish) {
+        LocalDate date = LocalDate.parse(localDate);
 
-        LunchMenu menu = entityManager.find(LunchMenu.class, menuId);
-        LunchDish dish = entityManager.find(LunchDish.class, dishId);
+        LunchMenu menu = getLunchMenuByDate(date);
+        LunchMenu managedMenu = entityManager.find(LunchMenu.class, menu.getId());
+        LunchDish managedDish = entityManager.find(LunchDish.class, dish.getId());
 
-        if (menu != null && dish != null) {
-            menu.getDishes().remove(dish);  // tar bort raden i dish_lunch_menu
+        if (managedMenu != null && managedDish != null) {
+            managedMenu.getDishes().remove(managedDish);  // tar bort raden i dish_lunch_menu
         }
     }
 
@@ -87,9 +95,7 @@ public class LunchMenuService {
      */
     public LunchMenu getLunchMenuByDate(LocalDate date) {
         try {
-            return entityManager.createQuery(
-                            "SELECT menu FROM LunchMenu menu WHERE menu.date = :targetDate",
-                            LunchMenu.class)
+            return entityManager.createNamedQuery("Lunch.getLunchByDate", LunchMenu.class)
                     .setParameter("targetDate", date)
                     .getSingleResult();
 
@@ -107,8 +113,6 @@ public class LunchMenuService {
         LunchMenu menu = getLunchMenuByDate(date);
         return menu.getDishes();
     }
-
-
 
     /**
      * Checks if a LunchMenu already exists for the given date.
@@ -159,7 +163,6 @@ public class LunchMenuService {
         LunchMenu menu = new LunchMenu();
         menu.setDate(menuDate);  // Uses default yyyy-MM-dd format
 
-
         List<LunchDish> dishes = entityManager.createQuery(
                         "SELECT d FROM LunchDish d WHERE d.id IN :ids", LunchDish.class)
                 .setParameter("ids", selectedDishIds)
@@ -169,6 +172,23 @@ public class LunchMenuService {
         entityManager.persist(menu);
         selectedDate = null;
         selectedDishIds.clear();
+    }
+
+    /* This or the one above? */
+    @Transactional
+    public void saveDishToLunchMenu(String localDate ){
+        LocalDate date = LocalDate.parse(localDate);
+        if(!menuExistsForDate(date)){
+            createLunchMenu(date);
+        }
+        LunchMenu menu = getLunchMenuByDate(date);
+        LunchDish dish = dishBean.getNewDish();
+        if(!lunchDishService.checkIfDishExist(dish)){
+            lunchDishService.saveDish(dish);
+        }
+        menu.addDish(dish);
+
+        dishBean.reset();
     }
 
 
@@ -182,4 +202,8 @@ public class LunchMenuService {
     public void setSelectedDate(String selectedDate) {
         this.selectedDate = selectedDate;
     }
+
+    
+
+
 }
