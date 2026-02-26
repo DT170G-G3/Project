@@ -65,7 +65,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        //asyncCreateOrder(order);
+
+        // EXAMPLE how to POST an Order
+        // Only ID is required for drinks, sitting and dishes
+
+        //Create new order, initialize new Lists
+        Order order = new Order();
+        order.dishes = new ArrayList<>();
+        order.drinks = new ArrayList<>();
+
+        Dish dish = new Dish();
+        dish.id = 3;
+
+        Drink drink = new Drink();
+        drink.id = 1;
+
+        Sitting sit = new Sitting();
+        sit.id = 1;
+
+        order.dishes.add(dish);
+        order.drinks.add(drink);
+        order.sitting = sit;
+
+        asyncCreateOrder(order);
         //-----/POST--------
 
         //-------GET--------
@@ -74,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
         //asyncLoadDishes();
         //asyncLoadDrinks();
         //------/GET--------
-
-
     }
 
     public void sendOrderButtonListener(){
@@ -225,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void asyncCreateOrder(Order order) {
         //asynchronous post the order to the database
         ordersRepo.postOrder(order, new OrdersRepository.PostCallback() {
@@ -239,20 +260,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
     }
     private void populateOrdersUI(List<Order> orders) {
-        // Your code here
+        // EXAMPLE how to get Order object
         Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
         for (int i = 0; i < 1; i++) {
             Order order = orders.get(i);
-            //asyncCreateOrder(order);
             Sitting sitting = order.sitting;
             Table table = sitting.restaurantTable;
             Log.d("ORDER ID", "" + order.id);
