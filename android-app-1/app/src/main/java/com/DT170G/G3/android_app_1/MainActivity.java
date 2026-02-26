@@ -33,6 +33,7 @@ import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.orders.OrdersRepository;
+import com.DT170G.G3.android_app_1.orders.Sitting;
 import com.DT170G.G3.android_app_1.tables.Table;
 import com.DT170G.G3.android_app_1.tables.TablesRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //-------GET--------
-        asyncLoadTables();
+        //asyncLoadTables();
+        asyncLoadOrders();
+        //asyncLoadDishes();
         //asyncLoadDrinks();
-        asyncLoadDishes();
         //------/GET--------
+
+        //------POST--------
+        //-----/POST--------
     }
 
     public void sendOrderButtonListener(){
@@ -202,15 +207,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void asyncLoadDrinks() {
-        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+    private void asyncLoadOrders() {
+        ordersRepo.getOrders(new OrdersRepository.GetCallback() {
             @Override
-            public void onSuccess(List<Drink> drinks) {
-                populateDrinksUI(drinks);
+            public void onSuccess(List<Order> orders) {
+                populateOrdersUI(orders);
             }
             @Override
             public void onError(String message) {
-                Log.e("DRINKS", "Fel: " + message);
+                Log.e("ORDERS", "Fel: " + message);
             }
         });
     }
@@ -219,18 +224,32 @@ public class MainActivity extends AppCompatActivity {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
     }
-    private void populateDrinksUI(List<Drink> drinks) {
+    private void populateOrdersUI(List<Order> orders) {
         // Your code here
-        Log.d("DRINK", "Size: " +drinks.size());
+        //Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
+        for (int i = 0; i < 5; i++) {
+            Order order = orders.get(i);
+            Sitting sitting = order.sitting;
+            Table table = sitting.restaurantTable;
+            Log.d("ORDER ID", "" + order.id);
+            Log.d("ORDER: TABLE NUM", "" + table.tableNum);
+
+            for (Dish dish : order.dishes) {
+                Log.d("DISH", "" + dish.name);
+                Log.d("DISH CATEGORY", "" + dish.category.name);
+            }
+            for (Drink drink : order.drinks) {
+                Log.d("DRINK", "" + drink.name);
+            }
+        }
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
         Log.d("DISH", "Size: " +dishes.size());
     }
 
-
-
     // Methods used for testing below
+    /*
     private void createOrder() {
         Order first = new Order();
         first.note = "Extra salt";
@@ -333,5 +352,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
 }
 
