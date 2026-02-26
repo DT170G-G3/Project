@@ -3,12 +3,9 @@ package com.dt170g.g3.backend.services;
 import com.dt170g.g3.backend.beans.LunchDishBean;
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.entities.LunchMenu;
-import jakarta.ejb.Local;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
@@ -93,19 +90,20 @@ public class LunchMenuService {
      *  - IllegalStateException if no menu exists for the date
      *  - IllegalStateException if multiple menus exist (data integrity issue)
      */
+    @Transactional
     public LunchMenu getLunchMenuByDate(LocalDate date) {
-        try {
-            return entityManager.createNamedQuery("Lunch.getLunchByDate", LunchMenu.class)
-                    .setParameter("targetDate", date)
-                    .getSingleResult();
-
-        } catch (NoResultException e) {
-            throw new IllegalStateException("No lunch menu exists for date: " + date);
-        } catch (NonUniqueResultException e) {
-            throw new IllegalStateException("Multiple lunch menus exist for date: " + date);
+        List<LunchMenu> result = entityManager.createNamedQuery("Lunch.getLunchByDate", LunchMenu.class)
+                .setParameter("targetDate",date)
+                .getResultList();
+        if (result.isEmpty()){
+            LunchMenu menu = new LunchMenu(date);
+            entityManager.persist(menu);
+            return menu;
         }
+        return result.get(0);
     }
 
+    @Transactional
     public List<LunchDish> getLunchDishesByDate(LocalDate date){
         if (!menuExistsForDate(date)) {
             return Collections.emptyList();

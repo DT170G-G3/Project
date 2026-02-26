@@ -60,7 +60,7 @@ public class WeekBean implements Serializable {
         return weekdays;
     }
     /* The method used by the facelet. */
-    public List<LocalDate> getDaysOfWeek(){
+    public List<LocalDate> getDaysOfWeekLunch(){
         return getDaysOfWeek(weekNumber);
     }
 
