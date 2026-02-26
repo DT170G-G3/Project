@@ -26,7 +26,7 @@ public class DishesCache {
     // Searches the list for a specific Dish, returns the Dish object with a matching ID
     public static Dish getDishById(int id) {
         for (Dish d : cacheList) {
-            if (id == d.categoryId) {
+            if (id == d.id) {
                 return d;
             }
         }

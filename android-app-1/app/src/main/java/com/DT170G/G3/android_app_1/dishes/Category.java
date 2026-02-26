@@ -4,4 +4,8 @@ public class Category {
     public int id;
     public String name;
     public int displayOrder;
+
+    public int getCategoryId(){
+        return id;
+    }
 }

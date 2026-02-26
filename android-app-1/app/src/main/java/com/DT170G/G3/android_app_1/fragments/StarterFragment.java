@@ -1,5 +1,8 @@
 package com.DT170G.G3.android_app_1.fragments;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,13 +13,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +34,7 @@ import java.util.List;
  */
 public class StarterFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
+    private List<TextView> allStarterCounters = new ArrayList<>();
 
     public StarterFragment() {
         // Required empty public constructor
@@ -59,50 +68,57 @@ public class StarterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO Ändra så att denna används när API är färdigt
-        //asyncLoadDishes();
-
-        String[] starters = getResources().getStringArray(R.array.starterList);
-
-        LinearLayout starterView = view.findViewById(R.id.starterLayout);
-
-        OrderItemRow orderItemRow = new OrderItemRow();
-
-        for(String starter : starters){
-            starterView.addView(orderItemRow.createItemRow(requireContext(), starter));
-        }
-
+        asyncLoadStarters();
+        starterNotesSwitchListener();
     }
-    private void asyncLoadDishes() {
-        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+
+    private void starterNotesSwitchListener(){
+        Switch starterSwitch = requireView().findViewById(R.id.starterNotesSwitch);
+        EditText starterNotes = requireView().findViewById(R.id.starterNotes);
+
+        starterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
-                populateDishesUI(dishes);
-            }
-            @Override
-            public void onError(String message) {
-                Log.e("DISHES", "Fel: " + message);
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    starterNotes.setVisibility(VISIBLE);
+                } else{
+                    starterNotes.setVisibility(GONE);
+                }
             }
         });
     }
 
-    public void populateDishesUI(List<Dish> dishes) {
+    public void resetStarterCounter(){
+        for(TextView starterCounter : allStarterCounters){
+            starterCounter.setText("0");
+        }
+    }
+    private void asyncLoadStarters() {
+        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Dish> dishes) {
+                //DishesCache.setCache(dishes);   //om vi ska använda cache
+                populateStartersUI(dishes);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("STARTER", "Fel: " + message);
+            }
+        });
+    }
+
+    private void populateStartersUI(List<Dish> dishes) {
         LinearLayout starterView = requireView().findViewById(R.id.starterLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
         for(Dish dish : dishes){
-            int catId = dish.getCategoryId();
-            //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
-            // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
-            /**
-             if(catId != 1){
-             continue;
+            int catId = dish.getDishCategoryId();
+            //Lägger till alla med katergori 1 som är förrätter
+             if(catId != 1) {
+                 continue;
              }
-             */
-            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getName()));
+            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allStarterCounters));
         }
-        Log.d("DISH STARTER", "Size: " +dishes.size());
     }
 
 }

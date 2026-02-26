@@ -31,11 +31,11 @@ public class OrdersRepository {
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     cb.onSuccess(response.body());
-                }
-                else {
+                } else {
                     cb.onError("HTTP " + response.code());
                 }
             }
+
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
                 cb.onError(t.getMessage());
