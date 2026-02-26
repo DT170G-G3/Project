@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Eriks Tite3jjoijeel</title>
+<!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>-->
+
+</h:head>
+<h:body>
+    <div class="container">
+
+        <h1>Test igen om det fungerar Erik, sienna</h1>
+        <div id="message-box">
+
+            <ui:repeat value="#{carteDish.groupedDishes.entrySet()}" var="catEntry">
+
+                <!-- Kategori-rubrik -->
+                <h2>#{catEntry.key}</h2>
+
+                <ui:repeat value="#{catEntry.value.entrySet()}" var="typeEntry">
+
+                    <!-- Typ-rubrik (visa bara om inte "Alla"/"Annat" om du vill) -->
+                    <h3>#{typeEntry.key}</h3>
+
+                    <!-- Lista rätter -->
+                    <ui:repeat value="#{typeEntry.value}" var="item">
+                        <p>#{item.name}</p>
+                        <p>#{item.description}</p>
+                        <p>#{item.price}</p>
+
+                    </ui:repeat>
+
+                </ui:repeat>
+
+            </ui:repeat>
+
+
+
+
+
+        </div>
+    </div>
+</h:body>
+
+</html>

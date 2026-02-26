@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-      xmlns:ui="jakarta.faces.facelets">
+      xmlns:ui="jakarta.faces.facelets" >
 
 <h:head>
     <meta charset="UTF-8" />
@@ -15,7 +15,7 @@
             <p>#{menuToday.description} </p>
         </ui:repeat>
 
-        <h1>Test igen om det fungerar, sienna</h1>
+        <h1>Det Stora Testområdet</h1>
         <div id="message-box">
             <ui:repeat value="#{lunch.menuWeek}" var="menu">
                 <h2>#{menu.day}</h2>
@@ -26,6 +26,64 @@
 
                 </ui:repeat>
             </ui:repeat>
+
+            <h:form>
+                <ui:repeat value="#{week.weekNumbers}" var="w">
+                    <h:commandButton value="V.#{w}"
+                    action="#{week.setWeekNumber(w)}"/>
+                </ui:repeat>
+            </h:form>
+
+                <ui:repeat value="#{week.daysOfWeek}" var="day">
+                    <h:form>
+                        <div class="day-box">
+                        #{day}
+                            <h:panelGrid columns="2">
+
+                                <h:outputLabel value="Name" />
+                                <h:inputText value="#{dish.newDish.name}" required="true" />
+
+                                <h:outputLabel value="Description" />
+                                <h:inputText value="#{dish.newDish.description}" />
+
+                                <h:outputLabel value="Price" />
+                                <h:inputText value="#{dish.newDish.price}" />
+
+                            </h:panelGrid>
+                            <h:commandButton value="Save" action="#{lunch.saveToMenu(day)}" />
+                        </div>
+                    </h:form>
+                </ui:repeat>
+
+
+
+
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Add dishes to menu:" />
+                    <h:outputLabel value="Date (YYYY-MM-DD):" />
+                    <h:inputText value="#{lunch.selectedDate}" required="true" />
+
+                    <h:outputLabel value="Select Dish IDs:" />
+                    <h:selectManyListbox value="#{lunch.selectedDishIds}" size="5">
+                        <f:selectItem itemValue="1" itemLabel="Dish 1" />
+                        <f:selectItem itemValue="2" itemLabel="Dish 2" />
+                        <f:selectItem itemValue="3" itemLabel="Dish 3" />
+                        <f:selectItem itemValue="4" itemLabel="Dish 4" />
+                        <f:selectItem itemValue="5" itemLabel="Dish 5" />
+                        <f:selectItem itemValue="6" itemLabel="Dish 6" />
+                        <f:selectItem itemValue="7" itemLabel="Dish 7" />
+                        <f:selectItem itemValue="8" itemLabel="Dish 8" />
+                        <f:selectItem itemValue="9" itemLabel="Dish 9" />
+                        <f:selectItem itemValue="10" itemLabel="Dish 10" />
+                    </h:selectManyListbox>
+
+                </h:panelGrid>
+
+                <h:commandButton value="Save Menu" action="#{lunch.editLunch}" />
+            </h:form>
+
+
 
         </div>
     </div>

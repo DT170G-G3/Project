@@ -52,7 +52,7 @@
     justify-self: end;
     white-space: nowrap;
     font-weight: 700;
-    color: var(--text);
+    /*color: var(--text);*/
 }
 
 .menu-dish p {
