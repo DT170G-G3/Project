@@ -73,10 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return employees.indexOf(name) % NUMBER_OF_EMPLOYEES;
     }
 
-    /**
-     * Everything past this will be changed later, after getting proper database connections.
-     */
-
     function makeChip(name, inZone) {
         const idx = avatarIndex(name);
         const chip = document.createElement('div');
@@ -156,47 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         sched.evening.forEach(name => {
             document.getElementById(`zone-${day.name}-evening`).appendChild(makeChip(name, true));
         });
-    });
-
-    const menuGrid = document.getElementById('menu-grid');
-
-    days.forEach(day => {
-        const dishes = initialMenu[day.key] || [];
-        const card = document.createElement('div');
-        card.className = 'menu-day-card';
-
-        const body = document.createElement('div');
-        body.className = 'menu-day-body';
-
-        dishes.forEach(dish => {
-            const row = document.createElement('div');
-            row.className = 'menu-item-row';
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = dish;
-            input.placeholder = 'Rättens namn…';
-            row.appendChild(input);
-            body.appendChild(row);
-        });
-
-        const addBtn = document.createElement('button');
-        addBtn.className = 'add-dish-btn';
-        addBtn.textContent = '+ Lägg till';
-        addBtn.addEventListener('click', () => {
-            const row = document.createElement('div');
-            row.className = 'menu-item-row';
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.placeholder = 'Rättens namn…';
-            row.appendChild(input);
-            body.insertBefore(row, addBtn);
-            input.focus();
-        });
-        body.appendChild(addBtn);
-
-        card.innerHTML = `<div class="menu-day-header">${day.name}</div>`;
-        card.appendChild(body);
-        menuGrid.appendChild(card);
     });
 
     Sortable.create(pool, {
