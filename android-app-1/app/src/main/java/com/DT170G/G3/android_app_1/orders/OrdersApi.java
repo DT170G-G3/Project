@@ -10,6 +10,6 @@ import retrofit2.http.POST;
 public interface OrdersApi {
     @GET("order")
     Call<List<Order>> getOrders();
-    @POST("order")
+    @POST("order/add")
     Call<Order> postOrder(@Body Order order);
 }

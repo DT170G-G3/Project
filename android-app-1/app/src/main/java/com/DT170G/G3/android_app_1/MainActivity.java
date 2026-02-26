@@ -2,37 +2,45 @@ package com.DT170G.G3.android_app_1;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static androidx.core.content.ContentProviderCompat.requireContext;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.classes.PagerAdapter;
+import com.DT170G.G3.android_app_1.dishes.Dish;
+import com.DT170G.G3.android_app_1.dishes.DishesRepository;
+import com.DT170G.G3.android_app_1.drinks.Drink;
+import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
+import com.DT170G.G3.android_app_1.orders.Order;
+import com.DT170G.G3.android_app_1.orders.OrdersRepository;
+import com.DT170G.G3.android_app_1.orders.Sitting;
+import com.DT170G.G3.android_app_1.tables.Table;
+import com.DT170G.G3.android_app_1.tables.TablesRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
-
-//Temporära imports
-import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
-import com.DT170G.G3.android_app_1.orders.OrdersRepository;
-import com.DT170G.G3.android_app_1.tables.TablesRepository;
-import com.DT170G.G3.android_app_1.dishes.DishesRepository;
-import com.DT170G.G3.android_app_1.dishes.Dish;
-import com.DT170G.G3.android_app_1.tables.Table;
-import com.DT170G.G3.android_app_1.drinks.Drink;
-import com.DT170G.G3.android_app_1.orders.Order;
 import java.util.List;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Temporärt test
     DishesRepository dishesRepo = new DishesRepository();
     DrinksRepository drinksRepo = new DrinksRepository();
     TablesRepository tablesRepo = new TablesRepository();
@@ -46,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
                     Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
                     v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
             return insets;
         });
 
@@ -54,15 +61,19 @@ public class MainActivity extends AppCompatActivity {
         sendOrderButtonListener();
 
 
-        //------GET--------
-        asyncLoadTables();
-        asyncLoadDrinks();
-        asyncLoadDishes();
+        //-------GET--------
+        //asyncLoadTables();
+        asyncLoadOrders();
+        //asyncLoadDishes();
+        //asyncLoadDrinks();
         //------/GET--------
+
+        //------POST--------
+        //-----/POST--------
     }
 
     public void sendOrderButtonListener(){
-        //ViewPager2 viewPager = findViewById(R.id.viewPager);
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
         BottomNavigationView bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
 
         //Resest form - ändra så att den skickar till databasen oxå
@@ -108,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             if(id == R.id.tableTab && sendOrderButton.getVisibility() == VISIBLE){
                 sendOrderButton.setVisibility(INVISIBLE);
                 TextView tv1 = findViewById(R.id.tableBorderTop);
-                TextView tv2 = findViewById(R.id.selectedTable);
+                TextView tv2 = findViewById(R.id.tableHeader);
                 TextView tv3 = findViewById(R.id.tableBorderBottom);
                 tv1.setVisibility(INVISIBLE);
                 tv2.setVisibility(INVISIBLE);
@@ -118,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 sendOrderButton.setVisibility(VISIBLE);
 
                 TextView tv1 = findViewById(R.id.tableBorderTop);
-                TextView tv2 = findViewById(R.id.selectedTable);
+                TextView tv2 = findViewById(R.id.tableHeader);
                 TextView tv3 = findViewById(R.id.tableBorderBottom);
                 tv1.setVisibility(VISIBLE);
                 tv2.setVisibility(VISIBLE);
@@ -169,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void asyncLoadDishes() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -194,15 +207,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void asyncLoadDrinks() {
-        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+    private void asyncLoadOrders() {
+        ordersRepo.getOrders(new OrdersRepository.GetCallback() {
             @Override
-            public void onSuccess(List<Drink> drinks) {
-                populateDrinksUI(drinks);
+            public void onSuccess(List<Order> orders) {
+                populateOrdersUI(orders);
             }
             @Override
             public void onError(String message) {
-                Log.e("DRINKS", "Fel: " + message);
+                Log.e("ORDERS", "Fel: " + message);
             }
         });
     }
@@ -210,20 +223,33 @@ public class MainActivity extends AppCompatActivity {
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
-
     }
-    private void populateDrinksUI(List<Drink> drinks) {
+    private void populateOrdersUI(List<Order> orders) {
         // Your code here
-        Log.d("DRINK", "Size: " +drinks.size());
+        //Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
+        for (int i = 0; i < 5; i++) {
+            Order order = orders.get(i);
+            Sitting sitting = order.sitting;
+            Table table = sitting.restaurantTable;
+            Log.d("ORDER ID", "" + order.id);
+            Log.d("ORDER: TABLE NUM", "" + table.tableNum);
+
+            for (Dish dish : order.dishes) {
+                Log.d("DISH", "" + dish.name);
+                Log.d("DISH CATEGORY", "" + dish.category.name);
+            }
+            for (Drink drink : order.drinks) {
+                Log.d("DRINK", "" + drink.name);
+            }
+        }
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
         Log.d("DISH", "Size: " +dishes.size());
     }
 
-
-
     // Methods used for testing below
+    /*
     private void createOrder() {
         Order first = new Order();
         first.note = "Extra salt";
@@ -326,6 +352,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    */
 }
+
