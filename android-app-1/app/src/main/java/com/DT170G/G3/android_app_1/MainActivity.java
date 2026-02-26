@@ -3,12 +3,15 @@ package com.DT170G.G3.android_app_1;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -33,9 +36,6 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
 
     // Temporärt test
-    DishesRepository dishesRepo = new DishesRepository();
-    DrinksRepository drinksRepo = new DrinksRepository();
-
     OrdersRepository ordersRepo = new OrdersRepository();
 
     @Override
@@ -54,19 +54,16 @@ public class MainActivity extends AppCompatActivity {
         sendOrderButtonListener();
 
 
-        //-------GET--------
-        //asyncLoadTables();
-        //asyncLoadDrinks();
-        //asyncLoadDishes();
-        //------/GET--------
     }
+
+
 
     public void sendOrderButtonListener(){
         //ViewPager2 viewPager = findViewById(R.id.viewPager);
         BottomNavigationView bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
 
         //Resest form - ändra så att den skickar till databasen oxå
-        Button sendButton = findViewById(R.id.sendOrderButton);
+        TextView sendButton = findViewById(R.id.sendOrderButton);
 
 
         sendButton.setOnClickListener(buttonClicked -> {
@@ -102,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationMenu.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-            Button sendOrderButton = findViewById(R.id.sendOrderButton);
+            TextView sendOrderButton = findViewById(R.id.sendOrderButton);
 
             //Döljer eller visar Skicka beställningsknappen beroende på sida som visas
             if(id == R.id.tableTab && sendOrderButton.getVisibility() == VISIBLE){
@@ -168,45 +165,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-
-    private void asyncLoadDishes() {
-        dishesRepo.getDishes(new DishesRepository.GetCallback() {
-            @Override
-            public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
-                populateDishesUI(dishes);
-            }
-            @Override
-            public void onError(String message) {
-                Log.e("DISHES", "Fel: " + message);
-            }
-        });
-    }
-
-    private void asyncLoadDrinks() {
-        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
-            @Override
-            public void onSuccess(List<Drink> drinks) {
-                populateDrinksUI(drinks);
-            }
-            @Override
-            public void onError(String message) {
-                Log.e("DRINKS", "Fel: " + message);
-            }
-        });
-    }
-
-
-    private void populateDrinksUI(List<Drink> drinks) {
-        // Your code here
-        Log.d("DRINK", "Size: " +drinks.size());
-    }
-    public void populateDishesUI(List<Dish> dishes) {
-        // Your UI code
-        Log.d("DISH", "Size: " +dishes.size());
-    }
-
-
 
     // Methods used for testing below
     private void createOrder() {
