@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="31717063-d77d-49bc-8077-4a0a96ff1f62" name="Changes" comment="Tog bort lördag från dagens">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/MenuViewBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/MenuViewBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/images/Drink-picture.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/images/bottles-picture.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/images/burgers.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/images/fish.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/divider_img.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/divider_img.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,18 +38,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Vergiliuz"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vergiliuz&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DT170G-G3/Project.git",
-    "accountId": "372f1999-b99a-4e16-80c6-37c60084ca79"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DT170G-G3/Project.git&quot;,
+    &quot;accountId&quot;: &quot;372f1999-b99a-4e16-80c6-37c60084ca79&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -71,7 +70,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "strid__FE__db__merge",
+    "git-widget-placeholder": "strid__FE__NEW",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -139,12 +138,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java</url>
-          <line>45</line>
+          <line>46</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/beans/LunchMenuBean.java</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
