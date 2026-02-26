@@ -36,7 +36,7 @@
             </h:form>
 
             <!-- Adding a dish to the lunchmenueeee -->
-            <ui:repeat value="#{week.daysOfWeek}" var="day">
+            <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
                 <div class="day-box">
                     #{day}
                 </div>
@@ -72,8 +72,10 @@
                     </ui:repeat>
                 </ul>
                 </h:form>
-
             </ui:repeat>
+
+
+
         </div>
     </div>
 </h:body>
