@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -74,28 +75,24 @@ public class TableFragment extends Fragment {
     }
 
     public Button createButton(String item){
-        //Skapar Button
+        //Skapar knappen
         Button tableButton = new Button(requireContext());
         tableButton.setAllCaps(false);
         tableButton.setText("Bord " + item);
         tableButton.setTextColor(Color.parseColor("#000000"));
 
         //Ändrar färg och form på knappen
-        GradientDrawable gd = new GradientDrawable();
-        gd.setColor(Color.parseColor("#737373"));
-        //gd.setCornerRadius(75);
-        tableButton.setBackground(gd);
+        tableButton.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_ripple));
 
-
+        //Lägger till margins till knappen
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        buttonParams.setMargins(0,20,0,20);
+        buttonParams.setMargins(35,20,35,20);
         tableButton.setLayoutParams(buttonParams);
-        //tableButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ));
 
-
+        //Funktion för tryck på knapp, ändrar text för valt bord till valda bordet samt ändrar till dryckessidan
         tableButton.setOnClickListener(buttonClicked -> {
             //Ändra text för valt bord
-            TextView tv = requireActivity().findViewById(R.id.tableHeader);
+            TextView tv = requireActivity().findViewById(R.id.selectedTable);
             tv.setText("Bord " + item);
 
             //Ändrar vy till Drinkvy
