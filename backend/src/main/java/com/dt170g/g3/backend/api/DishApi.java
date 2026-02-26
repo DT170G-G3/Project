@@ -55,7 +55,4 @@ public class DishApi {
     public CarteDish getDishById(@PathParam("id") int id) {
         return dishHandler.getDishById(id);
     }
-
-
-
 }

@@ -38,7 +38,6 @@ public class DrinkService {
         return entityManager.find(Drink.class, id);
     }
     public Drink getDrinkByName(String name){
-
         TypedQuery<Drink> messageQuery = entityManager.createNamedQuery("Drink.findByName", Drink.class);
         messageQuery.setParameter("name", name);
         return messageQuery.getSingleResult();
