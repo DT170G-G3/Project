@@ -7,6 +7,7 @@
  *   - findAllSittings()             : Retrieve all sittings from the database
  *   - findSittingsByDate(LocalDate) : Retrieve sittings for a specific date
  *   - findSittingsByTable(int id)   : Retrieve sittings for a specific table
+ *   - addSitting(Sitting s)         : Add a new Sitting entry to the DB
  *
  * Uses JPA EntityManager to perform database operations.
  * Methods are application-scoped and can be injected into REST API resources.
@@ -28,6 +29,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import com.dt170g.g3.backend.entities.Sitting;
+import com.dt170g.g3.backend.entities.RestaurantTable;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.time.LocalDate;
@@ -54,5 +56,14 @@ public class SittingService {
         TypedQuery<Sitting> messageQuery = entityManager.createNamedQuery("Sitting.findByTable", Sitting.class);
         messageQuery.setParameter("tableId", id);
         return messageQuery.getResultList();
+    }
+
+    @Transactional
+    public void addSitting(Sitting s) {
+        RestaurantTable table = entityManager.find(
+                RestaurantTable.class, s.getRestaurantTable().getId()
+        );
+        s.setRestaurantTable(table);
+        entityManager.persist(s);
     }
 }
