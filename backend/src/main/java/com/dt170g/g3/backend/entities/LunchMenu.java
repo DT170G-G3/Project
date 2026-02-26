@@ -20,7 +20,10 @@ import java.util.ArrayList;
 
         @NamedQuery(name = "Lunch.getWeeklyMenues",
                     query = "SELECT menu FROM LunchMenu menu  WHERE menu.date BETWEEN :start AND :end " +
-                    "ORDER BY menu.date")
+                    "ORDER BY menu.date"),
+
+        @NamedQuery(name= "Lunch.getLunchByDate",
+                    query= "SELECT menu FROM LunchMenu menu WHERE menu.date = :targetDate")
 
 })
 /*
@@ -68,6 +71,8 @@ public class LunchMenu {
     public LocalDate getDate() {
         return date;
     }
+
+    public int getId() {return id;}
 
     public void setDishes(List<LunchDish> dishes) {
         this.dishes.clear();
