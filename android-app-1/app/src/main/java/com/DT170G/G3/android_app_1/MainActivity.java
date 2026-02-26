@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             if(id == R.id.tableTab && sendOrderButton.getVisibility() == VISIBLE){
                 sendOrderButton.setVisibility(INVISIBLE);
                 TextView tv1 = findViewById(R.id.tableBorderTop);
-                TextView tv2 = findViewById(R.id.tableHeader);
+                TextView tv2 = findViewById(R.id.selectedTable);
                 TextView tv3 = findViewById(R.id.tableBorderBottom);
                 tv1.setVisibility(INVISIBLE);
                 tv2.setVisibility(INVISIBLE);
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 sendOrderButton.setVisibility(VISIBLE);
 
                 TextView tv1 = findViewById(R.id.tableBorderTop);
-                TextView tv2 = findViewById(R.id.tableHeader);
+                TextView tv2 = findViewById(R.id.selectedTable);
                 TextView tv3 = findViewById(R.id.tableBorderBottom);
                 tv1.setVisibility(VISIBLE);
                 tv2.setVisibility(VISIBLE);
