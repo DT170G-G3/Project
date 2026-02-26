@@ -1,6 +1,5 @@
 /*
-    Thank you Claude for this stylesheet.
-    It's lunacy, but we'll fix it later.
+   Change later to match other pages?
 */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -176,7 +175,6 @@ header .weekDiv {
     background: var(--border);
 }
 
-/* ── Day Cards ── */
 .daysList {
     display: flex;
     flex-direction: column;
@@ -276,7 +274,6 @@ header .weekDiv {
     padding: 2px 4px;
 }
 
-/* ── Menu Section ── */
 .section-divider {
     margin: 36px 0 22px;
     font-family: 'Playfair Display', serif;
