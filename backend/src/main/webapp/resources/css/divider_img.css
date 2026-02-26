@@ -1,0 +1,48 @@
+.menu-divider{
+    display: flex;
+    justify-content: center;
+    margin: var(--space-fluid) 0;
+    opacity: 0.9;
+}
+
+.menu-divider__img{
+    width: min(1000px, 85%);
+    height: auto;
+    filter: var(--paper-shadow);
+}
+
+/* =========================
+   Karusell för bilder just nu anpassad för 3 bilder per kategori
+   ========================= */
+
+.divider-carousel {
+    display: grid;
+    place-items: center;
+    margin-block: var(--space-fluid);
+}
+
+.divider-carousel__img {
+    grid-area: 1 / 1;
+    width: min(900px, 85%);
+    height: auto;
+    /*filter: var(--paper-shadow);*/
+    opacity: 0;
+
+    animation-name: dividerFade;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.divider-carousel__img.slide-0 { animation-delay: 0s; }
+.divider-carousel__img.slide-1 { animation-delay: 10s; }
+.divider-carousel__img.slide-2 { animation-delay: 20s; }
+/*.divider-carousel__img.slide-3 { animation-delay: 30s; } */
+
+
+@keyframes dividerFade {
+    0%      { opacity: 0; }
+    6%      { opacity: 1; }
+    33%     { opacity: 1; }
+    42%     { opacity: 0; }
+    100%    { opacity: 0; }
+}
