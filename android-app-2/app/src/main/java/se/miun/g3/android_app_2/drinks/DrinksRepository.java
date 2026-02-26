@@ -1,25 +1,25 @@
-package se.miun.g3.android_app_2.dishes;
-
+package se.miun.g3.android_app_2.drinks;
 import se.miun.g3.android_app_2.ApiClient;
 
-import retrofit2.Call;
-import retrofit2.Response;
 import java.util.List;
-import retrofit2.Callback;
 
-public class DishesRepository {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class DrinksRepository {
 
     public interface GetCallback {
-        void onSuccess(List<Dish> dishes);
+        void onSuccess(List<Drink> drinks);
         void onError(String message);
     }
 
 
-    public void getDishes(GetCallback cb) {
-        Call<List<Dish>> call = ApiClient.dishesApi().getDishes();
-        call.enqueue(new Callback<List<Dish>>() {
+    public void getDrinks(se.miun.g3.android_app_2.drinks.DrinksRepository.GetCallback cb) {
+        Call<List<Drink>> call = ApiClient.drinksApi().getDrinks();
+        call.enqueue(new Callback<List<Drink>>() {
             @Override
-            public void onResponse(Call<List<Dish>> call, Response<List<Dish>> response) {
+            public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     cb.onSuccess(response.body());
                 }
@@ -29,7 +29,7 @@ public class DishesRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Dish>> call, Throwable t) {
+            public void onFailure(Call<List<Drink>> call, Throwable t) {
                 cb.onError(t.getMessage());
             }
         });

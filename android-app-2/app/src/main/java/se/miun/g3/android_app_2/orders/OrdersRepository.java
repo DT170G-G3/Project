@@ -1,6 +1,7 @@
 package se.miun.g3.android_app_2.orders;
 
 import se.miun.g3.android_app_2.ApiClient;
+import se.miun.g3.android_app_2.dishes.Dish;
 
 import java.util.List;
 

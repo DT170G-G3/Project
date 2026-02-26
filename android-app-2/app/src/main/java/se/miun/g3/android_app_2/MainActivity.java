@@ -1,7 +1,6 @@
 package se.miun.g3.android_app_2;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
@@ -13,89 +12,69 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 import se.miun.g3.android_app_2.dishes.Dish;
 import se.miun.g3.android_app_2.dishes.DishesRepository;
+import se.miun.g3.android_app_2.drinks.DrinksRepository;
 import se.miun.g3.android_app_2.orders.Order;
 import se.miun.g3.android_app_2.orders.OrdersRepository;
+import se.miun.g3.android_app_2.tables.TablesRepository;
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
-    OrdersRepository ordersRepo = new OrdersRepository();   // not in use, for later
+    DrinksRepository drinksRepo = new DrinksRepository();
+    TablesRepository tablesRepo = new TablesRepository();
+    OrdersRepository ordersRepo = new OrdersRepository();
 
 
-  /*  @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-
-        // Hämtar rätter från backend när appen startar.
-        // När svaret kommer tillbaka (efter en stund) kallas populateDishesUI(...) automatiskt.
-        asyncLoadDishes();
-
-        asyncLoadOrders();
-
         RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+        asyncLoadDishes();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }*/
-
-    //bara för test!!
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
-        orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-
-        List<Orders> testOrders = new ArrayList<>();
-        testOrders.add(new Orders( 1, Arrays.asList("Bruschetta", "Vitlöksbröd"), Arrays.asList("Pasta Carbonara", "Pizza Margherita"), Arrays.asList("Tiramisu", "Pannacotta") ));
-        testOrders.add(new Orders( 2, Arrays.asList("Räksoppa"), Arrays.asList("Laxfilé", "Oxfilé"), Arrays.asList("Glass") )); testOrders.add(new Orders( 3, Arrays.asList("Caprese"), Arrays.asList("Risotto"), Arrays.asList("Chokladfondant") ));
-
-        orderRecyclerView.setAdapter(new OrdersAdapter(testOrders));
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom); return insets; });
     }
-
 
     private Orders orderToOrders(Order backendOrder) {
         List<String> starters = new ArrayList<>();
         List<String> mains = new ArrayList<>();
         List<String> desserts = new ArrayList<>();
 
-        for (Order.OrderItem item : backendOrder.orderedItems) {
-            String dishName = "Rätt " + item.dishId;
+        int tableNum = 0;
+        for (Dish d : backendOrder.dishes) {
+            if (d.category == null) {
+                continue;
+            }
 
-            switch (item.category) {
+            switch (d.category.id) {
                 case 1:
-                    starters.add(dishName);
+                    starters.add(d.name);
                     break;
                 case 2:
-                    mains.add(dishName);
+                    mains.add(d.name);
                     break;
                 case 3:
-                    desserts.add(dishName);
+                    desserts.add(d.name);
                     break;
+                default:
+                    Log.w("ORDER", "Okänd kategori: " + d.category.id);
             }
         }
-        return new Orders(backendOrder.tableId, starters, mains, desserts);
+        tableNum = backendOrder.sitting.restaurantTable.tableNum;
+        return new Orders(tableNum, starters, mains, desserts);
     }
 
 
@@ -115,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
             public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
-                populateDishesUI(dishes);
+                Log.d("DISH", "Size: " + dishes.size());
+                asyncLoadOrders();
             }
             @Override
             public void onError(String message) {
@@ -133,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 for (Order o : backendOrders) {
                     uiOrders.add(orderToOrders(o));
                 }
-                //RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
-                //orderRecyclerView.setAdapter(new OrdersAdapter(uiOrders));
+                RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
+                orderRecyclerView.setAdapter(new OrdersAdapter(uiOrders));
             }
 
             @Override

@@ -1,16 +1,16 @@
 package se.miun.g3.android_app_2.orders;
 
+import se.miun.g3.android_app_2.dishes.Dish;
+import se.miun.g3.android_app_2.drinks.Drink;
 import java.util.List;
+import java.time.LocalDateTime;
 
-//Everything set to public until connected to database as refactoring will be necessary anyway
-// NOTE: This App2 Order class has an id field.
-//which App1's Order class does not.
+
 public class Order {
-    public String note;
-    public int tableId;
-    public List<OrderItem> orderedItems;
-    public static class OrderItem {
-        public int dishId;
-        public int category; //temp: 1 for appetizer, 2 for main course, 3 for dessert
-    }
+    public String createdAt;
+    public List<Dish> dishes;
+    public List<Drink> drinks;
+    public int id;
+    public int orderNo;
+    public Sitting sitting;
 }

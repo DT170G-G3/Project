@@ -9,23 +9,23 @@ import java.util.List;
 // Used by Servitor and Cook apps for quick lookup
 // without unnecessary retrofit calls
 public class DishesCache {
-    private static List<Dish> cache = new ArrayList<>();
+    private static List<Dish> cacheList = new ArrayList<>();
 
     // Sets the cache through Retrofit call
     public static void setCache(List<Dish> dishes) {
-        cache.clear();
-        cache.addAll(dishes);
+        cacheList.clear();
+        cacheList.addAll(dishes);
     }
 
     //Returns a list that is read only (edits are done elsewhere)
     // Dish objects are still modifiable (deal with this later)
     public static List<Dish> getCache() {
-        return Collections.unmodifiableList(cache);
+        return Collections.unmodifiableList(cacheList);
     }
 
     // Searches the list for a specific Dish, returns the Dish object with a matching ID
-    public static Dish getDishById(long id) {
-        for (Dish d : cache) {
+    public static Dish getDishById(int id) {
+        for (Dish d : cacheList) {
             if (id == d.id) {
                 return d;
             }
