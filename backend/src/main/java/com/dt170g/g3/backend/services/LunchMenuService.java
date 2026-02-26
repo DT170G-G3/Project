@@ -101,6 +101,9 @@ public class LunchMenuService {
     }
 
     public List<LunchDish> getLunchDishesByDate(LocalDate date){
+        if (!menuExistsForDate(date)) {
+            return Collections.emptyList();
+        }
         LunchMenu menu = getLunchMenuByDate(date);
         return menu.getDishes();
     }

@@ -1,46 +1,54 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Adminpanel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-    <h:outputStylesheet library="css" name="admin.css"/>
-</h:head>
-    <h:body>
-        <header>
-            <h1>Antons Skafferi - Adminpanel</h1>
-            <span>Veckoplanering</span>
-            <div class="weekDiv">Vecka 8 — 16–22 Feb 2025</div>
-        </header>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/admin_base.xhtml">
 
-        <div class="workspace">
+    <ui:define name="title">Adminpanel - Veckomeny</ui:define>
 
-            <aside class="poolPanel">
-                <h2>Anställda</h2>
-                <div class="employeePool" id="pool">
-                </div>
-            </aside>
+    <ui:define name="content">
+        <!-- Week selector buttons -->
+        <h:form>
+            <ui:repeat value="#{week.weekNumbers}" var="w">
+                <h:commandButton value="V.#{w}"
+                                 action="#{week.setWeekNumber(w)}"/>
+            </ui:repeat>
+        </h:form>
 
-            <main class="scheduleArea">
+        <!-- For each day, show dishes and allow adding/removing -->
+        <ui:repeat value="#{week.daysOfWeek}" var="day">
+            <div class="day-box">
+                #{day}
+            </div>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Name" />
+                    <h:inputText value="#{dish.newDish.name}" required="true" />
+                    <h:outputLabel value="Description" />
+                    <h:inputText value="#{dish.newDish.description}" />
+                    <h:outputLabel value="Price" />
+                    <h:inputText value="#{dish.newDish.price}" />
+                </h:panelGrid>
+                <h:commandButton value="Save"
+                                 action="#{lunch.saveToMenu(day)}">
+                    <f:ajax execute="@form" render="@all" />
+                </h:commandButton>
+            </h:form>
+            <h:form>
+                <ul class="dishList">
+                    <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
+                        <li>#{dayDish.name}
+                            <h:commandLink
+                                    value="Remove"
+                                    action="#{lunch.removeDish(day,dayDish)}">
+                                <f:ajax execute="@this" render="@all" />
+                            </h:commandLink>
+                        </li>
+                    </ui:repeat>
+                </ul>
+            </h:form>
+        </ui:repeat>
 
-                <div class="weekTitle">Schema</div>
+    </ui:define>
 
-                <div class="daysList" id="days-list"></div>
-
-                <div class="section-divider">Veckomeny</div>
-
-                <div class="menuGrid" id="menu-grid"></div>
-
-                <div class="saveBar">
-                    <button class="btn btnSecondary">Återställ</button>
-                    <button class="btn btnPrimary">Spara veckoplanering</button>
-                </div>
-
-            </main>
-        </div>
-        <h:outputScript library="js" name="admin.js"/>
-    </h:body>
-</html>
+</ui:composition>
