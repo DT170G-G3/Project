@@ -65,29 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
+        exampleCreateOrder();
 
-        // EXAMPLE how to POST an Order
-        // Only ID is required for drinks, sitting and dishes
-
-        //Create new order, initialize new Lists
-        Order order = new Order();
-        order.dishes = new ArrayList<>();
-        order.drinks = new ArrayList<>();
-
-        Dish dish = new Dish();
-        dish.id = 3;
-
-        Drink drink = new Drink();
-        drink.id = 1;
-
-        Sitting sit = new Sitting();
-        sit.id = 1;
-
-        order.dishes.add(dish);
-        order.drinks.add(drink);
-        order.sitting = sit;
-
-        asyncCreateOrder(order);
         //-----/POST--------
 
         //-------GET--------
@@ -208,6 +187,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public void exampleCreateOrder() {
+        // EXAMPLE how to POST an Order
+        // Only ID is required for drinks, sitting and dishes
+
+        //Create new order, initialize new Lists
+        Order order = new Order();
+        order.dishes = new ArrayList<>();
+        order.drinks = new ArrayList<>();
+
+        Dish dish = new Dish();
+        dish.id = 3;
+
+        Drink drink = new Drink();
+        drink.id = 1;
+
+        Sitting sit = new Sitting();
+        sit.id = 1;
+
+        order.dishes.add(dish);
+        order.drinks.add(drink);
+        order.sitting = sit;
+
+        asyncCreateOrder(order);
+    }
+
     private void asyncLoadDishes() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -245,7 +249,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void asyncLoadDrinks() {
+        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Drink> drinks) {
+                populateDrinksUI(drinks);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("ORDERS", "Fel: " + message);
+            }
+        });
 
+    }
     private void asyncCreateOrder(Order order) {
         //asynchronous post the order to the database
         ordersRepo.postOrder(order, new OrdersRepository.PostCallback() {
@@ -267,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     private void populateOrdersUI(List<Order> orders) {
         // EXAMPLE how to get Order object
         Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
-        for (int i = 0; i < 1; i++) {
+        for (int i = 68; i < 69; i++) {
             Order order = orders.get(i);
             Sitting sitting = order.sitting;
             Table table = sitting.restaurantTable;
@@ -282,10 +298,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("DRINK", "" + drink.name);
             }
         }
+
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
         Log.d("DISH", "Size: " +dishes.size());
+    }
+    public void populateDrinksUI(List<Drink> drinks) {
+        // YOur UI code
+        Log.d("DRINK", "Size: " + drinks.size());
     }
 }
 
