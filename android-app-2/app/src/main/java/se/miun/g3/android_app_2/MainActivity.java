@@ -12,17 +12,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 
 import se.miun.g3.android_app_2.dishes.Dish;
 import se.miun.g3.android_app_2.dishes.DishesRepository;
+import se.miun.g3.android_app_2.drinks.Drink;
+import se.miun.g3.android_app_2.drinks.DrinksRepository;
 import se.miun.g3.android_app_2.orders.Order;
 import se.miun.g3.android_app_2.orders.OrdersRepository;
+import se.miun.g3.android_app_2.orders.Sitting;
+import se.miun.g3.android_app_2.tables.Table;
+import se.miun.g3.android_app_2.tables.TablesRepository;
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
+    DrinksRepository drinksRepo = new DrinksRepository();
+    TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
 
 
@@ -35,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView orderRecyclerView = findViewById(R.id.orderRecyclerView);
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        asyncLoadDishes();
+        //------POST--------
+        //exampleCreateOrder();
+
+        //-----/POST--------
+
+        //-------GET--------
+        //asyncLoadTables();
+        asyncLoadOrders();
+        //asyncLoadDishes();
+        //asyncLoadDrinks();
+        //------/GET--------
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -86,16 +101,55 @@ public class MainActivity extends AppCompatActivity {
      * - Den här metoden ger INTE tillbaka en lista direkt.
      * - Anropet tar tid (pga nätverk), så listan kommer först i onSuccess(...).
      */
+
+    public void exampleCreateOrder() {
+        // EXAMPLE how to POST an Order
+        // Only ID is required for drinks, sitting and dishes
+
+        //Create new order, initialize new Lists
+        Order order = new Order();
+        order.dishes = new ArrayList<>();
+        order.drinks = new ArrayList<>();
+
+        Dish dish = new Dish();
+        dish.id = 3;
+
+        Drink drink = new Drink();
+        drink.id = 1;
+
+        Sitting sit = new Sitting();
+        sit.id = 1;
+
+        order.dishes.add(dish);
+        order.drinks.add(drink);
+        order.sitting = sit;
+
+        asyncCreateOrder(order);
+    }
+
     private void asyncLoadDishes() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
             public void onSuccess(List<Dish> dishes) {
-                Log.d("DISH", "Size: " + dishes.size());
-                asyncLoadOrders();
+                //DishesCache.setCache(dishes);   //om vi ska använda cache
+                populateDishesUI(dishes);
             }
             @Override
             public void onError(String message) {
                 Log.e("DISHES", "Fel: " + message);
+            }
+        });
+    }
+
+    private void asyncLoadTables() {
+        tablesRepo.getTables(new TablesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Table> tables) {
+                populateTablesUI(tables);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("TABLES", "Fel: " + message);
             }
         });
     }
@@ -119,13 +173,50 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void asyncLoadDrinks() {
+        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Drink> drinks) {
+                populateDrinksUI(drinks);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("ORDERS", "Fel: " + message);
+            }
+        });
+
+    }
+
+    private void asyncCreateOrder(Order order) {
+        //asynchronous post the order to the database
+        ordersRepo.postOrder(order, new OrdersRepository.PostCallback() {
+            @Override
+            public void onSuccess(Order postOrder) {
+                Log.d("ORDER", "SUCCESSFULLY POSTED ORDER");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("ORDER", "FAILED TO POST: " + message);
+            }
+        });
+    }
 
     /**
      * Tar emot listan med rätter och uppdaterar UI så köket kan se dem.
      */
+    private void populateTablesUI(List<Table> tables) {
+        // Your code here
+        Log.d("TABLE", "Size: " +tables.size());
+    }
+    private void populateOrdersUI(List<Order> orders) {
+    }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
         Log.d("DISH", "Size: " +dishes.size());
+    }
+    public void populateDrinksUI(List<Drink> drinks) {
+        // YOur UI code
+        Log.d("DRINK", "Size: " + drinks.size());
     }
 
 

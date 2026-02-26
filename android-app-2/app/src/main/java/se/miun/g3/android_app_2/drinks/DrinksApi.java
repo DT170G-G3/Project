@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 //Retrofit interface (endpoint)
 public interface DrinksApi {
-    @GET("drinks")
+    @GET("drink")
     Call<List<Drink>> getDrinks();
 }
