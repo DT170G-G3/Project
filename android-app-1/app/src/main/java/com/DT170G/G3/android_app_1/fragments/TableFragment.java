@@ -61,8 +61,8 @@ public class TableFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //asyncLoadTables();
-
+        asyncLoadTables();
+/**
          String[] tables = getResources().getStringArray(R.array.tableList);
 
         LinearLayout tableView = view.findViewById(R.id.tableLayout);
@@ -70,7 +70,7 @@ public class TableFragment extends Fragment {
         for(String table : tables){
             tableView.addView(createButton(table));
         }
-
+*/
 
     }
 
@@ -119,17 +119,11 @@ public class TableFragment extends Fragment {
     }
 
     private void populateTablesUI(List<Table> tables) {
-
         LinearLayout tableView = requireView().findViewById(R.id.tableLayout);
 
-
         for(Table table : tables){
-
             String tableNumber = String.valueOf(table.getTableId());
-            Log.d("TABLE", "table number funktion: " + table.getTableId());
-            tableView.addView(createButton(tableNumber));
+                        tableView.addView(createButton(tableNumber));
         }
-        Log.d("TABLE", "Size: " +tables.size());
-
     }
 }

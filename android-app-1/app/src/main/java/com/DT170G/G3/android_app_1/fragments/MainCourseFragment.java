@@ -1,4 +1,7 @@
 package com.DT170G.G3.android_app_1.fragments;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,13 +12,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +33,7 @@ import java.util.List;
  */
 public class MainCourseFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
+    private List<TextView> allMainCounters = new ArrayList<>();
 
     public MainCourseFragment() {
         // Required empty public constructor
@@ -60,69 +69,57 @@ public class MainCourseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        asyncLoadDishes();
-
-
-/**
-        String[] mainCourses = getResources().getStringArray(R.array.mainCourseList);
-
-        LinearLayout mainCourseView = view.findViewById(R.id.mainCourseLayout);
-
-        OrderItemRow orderItemRow = new OrderItemRow();
-
-        for(String mainCourse : mainCourses){
-            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), mainCourse));
-        }
-
- */
-
+        asyncLoadMainDishes();
+        mainCourseNotesSwitchListener();
     }
 
-    private void asyncLoadDishes() {
-        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+    private void mainCourseNotesSwitchListener(){
+        Switch mainCourseSwitch = requireView().findViewById(R.id.mainCourseNotesSwitch);
+        EditText mainCourseNotes = requireView().findViewById(R.id.mainCourseNotes);
+
+        mainCourseSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
-                populateDishesUI(dishes);
-            }
-            @Override
-            public void onError(String message) {
-                Log.e("DISHES", "Fel: " + message);
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mainCourseNotes.setVisibility(VISIBLE);
+                } else{
+                    mainCourseNotes.setVisibility(GONE);
+                }
             }
         });
     }
 
-    public void populateDishesUI(List<Dish> dishes) {
+    public void resetMainCounter(){
+        for(TextView mainCounter : allMainCounters){
+            mainCounter.setText("0");
+        }
+    }
 
+    private void asyncLoadMainDishes() {
+        dishesRepo.getDishes(new DishesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Dish> dishes) {
+                //DishesCache.setCache(dishes);   //om vi ska använda cache
+                populateMainDishesUI(dishes);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("MAINDISHES", "Fel: " + message);
+            }
+        });
+    }
+
+    private void populateMainDishesUI(List<Dish> dishes) {
         LinearLayout mainCourseView = requireView().findViewById(R.id.mainCourseLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        //TEMP
-        int counter = 0;
-
         for(Dish dish : dishes){
-            //TEMP
-            if(counter == 9){
-                return;
-            }
-
-            int catId = dish.getCategoryId();
-            //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
-            // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
-            /**
-            if(catId != 2){
+            int catId = dish.getDishCategoryId();
+            //Lägger till alla med kategori 2 som är Varmrätter
+            if(catId != 2) {
                 continue;
             }
-             */
-            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getName()));
-
-            //TEMP
-            counter++;
+            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allMainCounters));
         }
-
-        Log.d("DISH MAIN", "Size: " +dishes.size());
-
     }
-
 }

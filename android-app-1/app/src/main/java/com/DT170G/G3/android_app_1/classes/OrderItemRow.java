@@ -20,6 +20,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.DT170G.G3.android_app_1.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple class for creating
  * LinearLayout with order items
@@ -27,7 +30,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  *
  */
 public class OrderItemRow {
-
     public OrderItemRow() {
         // Required empty public constructor
     }
@@ -38,7 +40,7 @@ public class OrderItemRow {
      *
      * @return A LinearLayout with a button and counter for items that can be ordered.
      */
-    public LinearLayout createItemRow(Context context, String item){
+    public LinearLayout createItemRow(Context context, String item, List<TextView> allItemCounters){
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout itemRow = new LinearLayout(context);
         itemRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -68,6 +70,9 @@ public class OrderItemRow {
         LinearLayout.LayoutParams counterParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         counterParams.setMargins(50,0,0,0);
         itemCounter.setLayoutParams(counterParams);
+
+        //Lägg till räknaren i lista för enklare rensning av formuläret
+        allItemCounters.add(itemCounter);
 
 
         // Lyssnare för korta klick - Ökar antalet med ett

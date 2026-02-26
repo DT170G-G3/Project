@@ -4,4 +4,8 @@ public class Drink {
     public int id;
     public String name;
     public double price;
+
+    public String getName() {
+        return name;
+    }
 }

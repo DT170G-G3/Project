@@ -1,25 +1,30 @@
 package com.DT170G.G3.android_app_1.fragments;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
-import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +35,7 @@ import java.util.List;
 public class DrinkFragment extends Fragment {
 
     DrinksRepository drinksRepo = new DrinksRepository();
+    private List<TextView> allDrinkCounters = new ArrayList<>();
 
     public DrinkFragment() {
         // Required empty public constructor
@@ -62,20 +68,30 @@ public class DrinkFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        asyncLoadDrinks();
+        drinkNotesSwitchListener();
+    }
 
-        //TODO ändra så denna används när API funka
-        //asyncLoadDrinks();
+    private void drinkNotesSwitchListener(){
+        Switch drinkSwitch = requireView().findViewById(R.id.drinkNotesSwitch);
+        EditText drinkNotes = requireView().findViewById(R.id.drinkNotes);
 
-        String[] drinks = getResources().getStringArray(R.array.drinkList);
+        drinkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    drinkNotes.setVisibility(VISIBLE);
+                } else{
+                    drinkNotes.setVisibility(GONE);
+                }
+            }
+        });
+    }
 
-        LinearLayout drinkView = view.findViewById(R.id.drinkLayout);
-
-        OrderItemRow orderItemRow = new OrderItemRow();
-
-        for(String drink : drinks){
-            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink));
+    public void resetDrinkCounter(){
+        for(TextView drinkCounter : allDrinkCounters){
+            drinkCounter.setText("0");
         }
-
     }
 
     private void asyncLoadDrinks() {
@@ -93,10 +109,11 @@ public class DrinkFragment extends Fragment {
     }
 
     private void populateDrinksUI(List<Drink> drinks) {
-        // Your code here
-        Log.d("DRINK", "Size: " +drinks.size());
+        LinearLayout drinkView = requireView().findViewById(R.id.drinkLayout);
+        OrderItemRow orderItemRow = new OrderItemRow();
+
+        for(Drink drink : drinks){
+            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getName(), allDrinkCounters));
+        }
     }
-
-
-
 }

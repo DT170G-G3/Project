@@ -1,5 +1,8 @@
 package com.DT170G.G3.android_app_1.fragments;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,13 +13,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +34,7 @@ import java.util.List;
  */
 public class DessertFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
+    private List<TextView> allDessertCounters = new ArrayList<>();
 
     public DessertFragment() {
         // Required empty public constructor
@@ -59,51 +68,56 @@ public class DessertFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        //TODO Ändra så att denna används när API är färdigt
-        //asyncLoadDishes();
-
-        String[] desserts = getResources().getStringArray(R.array.dessertList);
-
-        LinearLayout dessertView = view.findViewById(R.id.dessertLayout);
-
-        OrderItemRow orderItemRow = new OrderItemRow();
-
-        for(String dessert : desserts){
-            dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert));
-        }
-
+        asyncLoadDesserts();
+        dessertNotesSwitchListener();
     }
 
-    private void asyncLoadDishes() {
+    private void dessertNotesSwitchListener(){
+        Switch dessertSwitch = requireView().findViewById(R.id.dessertNotesSwitch);
+        EditText dessertNotes = requireView().findViewById(R.id.dessertNotes);
+
+        dessertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    dessertNotes.setVisibility(VISIBLE);
+                } else{
+                    dessertNotes.setVisibility(GONE);
+                }
+            }
+        });
+    }
+    public void resetDessertCounter(){
+        for(TextView dessertCounter : allDessertCounters){
+            dessertCounter.setText("0");
+        }
+    }
+
+    private void asyncLoadDesserts() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
             public void onSuccess(List<Dish> dishes) {
                 //DishesCache.setCache(dishes);   //om vi ska använda cache
-                populateDishesUI(dishes);
+                populateDessertUI(dishes);
             }
             @Override
             public void onError(String message) {
-                Log.e("DISHES", "Fel: " + message);
+                Log.e("DESSERT", "Fel: " + message);
             }
         });
     }
 
-    public void populateDishesUI(List<Dish> dishes) {
-        LinearLayout starterView = requireView().findViewById(R.id.starterLayout);
+    private void populateDessertUI(List<Dish> dishes) {
+        LinearLayout dessertView = requireView().findViewById(R.id.dessertLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        for(Dish dish : dishes){
-            int catId = dish.getCategoryId();
-            //Log.d("DEBUG", "Dish: " + dish.getName() + " catId: " + catId);
-            // TODO Lägg till igen när den hämtar från a la carte och inte lunch menyn
-            /**
-             if(catId != 3){
-             continue;
-             }
-             */
-            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getName()));
+        for(Dish dish : dishes) {
+            int catId = dish.getDishCategoryId();
+            //Lägger till alla med katergori 3 som är Desserter
+            if (catId != 3) {
+                continue;
+            }
+            dessertView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allDessertCounters));
         }
-        Log.d("DISH STARTER", "Size: " +dishes.size());
     }
 }

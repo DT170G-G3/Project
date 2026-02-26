@@ -12,6 +12,11 @@ import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.fragments.TableFragment;
 
 public class PagerAdapter extends FragmentStateAdapter {
+    private DrinkFragment drinkFragment = new DrinkFragment();
+    private TableFragment tableFragment = new TableFragment();
+    private StarterFragment starterFragment = new StarterFragment();
+    private MainCourseFragment mainCourseFragment = new MainCourseFragment();
+    private DessertFragment dessertFragment = new DessertFragment();
 
     public PagerAdapter(@NonNull FragmentActivity fragmentActivity){
         super(fragmentActivity);
@@ -22,17 +27,17 @@ public class PagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position){
         switch(position) {
             case 0:
-                return new TableFragment();
+                return tableFragment;
             case 1:
-                return new DrinkFragment();
+                return drinkFragment;
             case 2:
-                return new StarterFragment();
+                return starterFragment;
             case 3:
-                return new MainCourseFragment();
+                return mainCourseFragment;
             case 4:
-                return new DessertFragment();
+                return dessertFragment;
             default:
-                return new TableFragment();
+                return tableFragment;
         }
     }
 
@@ -41,5 +46,20 @@ public class PagerAdapter extends FragmentStateAdapter {
         return 5;
     }
 
+    public DrinkFragment getDrinkFragment() {
+        return drinkFragment;
+    }
+
+    public StarterFragment getStarterFragment() {
+        return starterFragment;
+    }
+
+    public MainCourseFragment getMainCourseFragment() {
+        return mainCourseFragment;
+    }
+
+    public DessertFragment getDessertFragment() {
+        return dessertFragment;
+    }
 
 }

@@ -64,22 +64,35 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu" />
 -->
 
+    <TextView
+        android:id="@+id/resetOrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/manage_button"
+        android:padding="15dp"
+        android:text="Rensa beställning"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/sendOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/send_order_button"
-        android:gravity="center"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/manage_button"
         android:padding="15dp"
         android:text="Skicka beställningen"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationMenu"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:layout_width="match_parent"
