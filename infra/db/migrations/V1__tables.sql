@@ -35,9 +35,7 @@ CREATE TABLE carte_dish (
     description VARCHAR(255) NOT NULL,
     price DECIMAL(7,2) NOT NULL,
     category_id INT,
-    carte_menu_id INT,
     type_of_id INT,
-    FOREIGN KEY (carte_menu_id) REFERENCES carte_menu(id) ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE,
     FOREIGN KEY (type_of_id) REFERENCES type_of(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;

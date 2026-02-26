@@ -78,7 +78,6 @@ public class LunchMenu {
 
     public void addDish(LunchDish dish){
         this.dishes.add(dish);
-
     }
 
 }
