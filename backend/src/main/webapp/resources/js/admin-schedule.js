@@ -172,6 +172,23 @@ document.addEventListener('DOMContentLoaded', function() {
             dragClass: 'sortable-drag',
             onAdd(evt) {
                 const chip = evt.item;
+                const name = chip.dataset.name;
+                const targetZone = evt.to;
+                const sourceZone = evt.from;
+
+                const existing = [...targetZone.querySelectorAll('.chip')].filter(c => c !== chip && c.dataset.name === name);
+                if (existing.length > 0) {
+                    if (sourceZone === pool) {
+                        // Was cloned from pool, just remove the clone
+                        chip.remove();
+                    } else {
+                        // Was moved from another zone, return it
+                        sourceZone.appendChild(chip);
+                    }
+                    updateEmptyHints();
+                    return;
+                }
+
                 if (!chip.querySelector('.remove-btn')) {
                     const btn = document.createElement('button');
                     btn.className = 'remove-btn';
