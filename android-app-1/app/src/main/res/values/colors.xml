@@ -13,10 +13,10 @@
     <color name="navMenuColor">#E9E9E9</color>
     <color name="itemsButtonColor">#FFFFFF</color>
 
-    <color name="sendOrderButtonColor">#415a77</color>
-    <color name="sendOrderRippleColor">#1b263b</color>
+    <color name="manageButtonColor">#415a77</color>
+    <color name="manageRippleColor">#1b263b</color>
 
-    <color name="rippleColor">#9D9C9C</color>
+    <color name="rippleColor">#8D9FB6</color>
 </resources>
 
 

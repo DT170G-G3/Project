@@ -62,23 +62,21 @@ public class TableFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadTables();
-/**
-         String[] tables = getResources().getStringArray(R.array.tableList);
-
-        LinearLayout tableView = view.findViewById(R.id.tableLayout);
-
-        for(String table : tables){
-            tableView.addView(createButton(table));
-        }
-*/
-
     }
 
-    public Button createButton(String item){
+    /**
+     * Funktion som skapar knapp av bordsnummret
+     * Skapas i vy val av bord
+     *
+     * @param tableNumber bordsnumret
+     * @return
+     */
+    public Button createButton(String tableNumber){
         //Skapar knappen
         Button tableButton = new Button(requireContext());
         tableButton.setAllCaps(false);
-        tableButton.setText("Bord " + item);
+        tableButton.setText("Bord " + tableNumber);
+        tableButton.setTextSize(16);
         tableButton.setTextColor(Color.parseColor("#000000"));
 
         //Ändrar färg och form på knappen
@@ -93,7 +91,7 @@ public class TableFragment extends Fragment {
         tableButton.setOnClickListener(buttonClicked -> {
             //Ändra text för valt bord
             TextView tv = requireActivity().findViewById(R.id.selectedTable);
-            tv.setText("Bord " + item);
+            tv.setText("Bord " + tableNumber);
 
             //Ändrar vy till Drinkvy
             ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
@@ -118,6 +116,11 @@ public class TableFragment extends Fragment {
         });
     }
 
+    /**
+     * Kallar på funktion som skapar knapparna
+     *
+     * @param tables
+     */
     private void populateTablesUI(List<Table> tables) {
         LinearLayout tableView = requireView().findViewById(R.id.tableLayout);
 
