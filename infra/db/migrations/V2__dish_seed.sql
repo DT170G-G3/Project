@@ -31,41 +31,31 @@ INSERT INTO lunch_dish (name, description, price) VALUES
 
 INSERT INTO carte_menu () VALUES ();
 
-INSERT INTO carte_dish (name, description, price, category_id, carte_menu_id) VALUES
+INSERT INTO carte_dish (name, description, price, category_id) VALUES
 
-('Vitlöksbröd', 'Rostat bröd med vitlökssmör och persilja', 55.00, 1,1),
-('Bruschetta', 'Grillat bröd med tomat, vitlök och basilika', 65.00, 1, 1),
-('Räkcocktail', 'Handskalade räkor med krispig sallad och Rhode Island-sås', 95.00, 1, 1),
-('Toast Skagen', 'Räkröra med dill och citron på rostat bröd', 110.00, 1, 1),
-('Caprese', 'Mozzarella, tomater och basilika med olivolja', 85.00, 1, 1),
-('Svampsoppa', 'Krämig svampsoppa toppad med färska örter', 75.00, 1, 1),
+('Vitlöksbröd', 'Rostat bröd med vitlökssmör och persilja', 55.00, 1),
+('Bruschetta', 'Grillat bröd med tomat, vitlök och basilika', 65.00, 1),
+('Räkcocktail', 'Handskalade räkor med krispig sallad och Rhode Island-sås', 95.00, 1),
+('Toast Skagen', 'Räkröra med dill och citron på rostat bröd', 110.00, 1),
+('Caprese', 'Mozzarella, tomater och basilika med olivolja', 85.00, 1),
+('Svampsoppa', 'Krämig svampsoppa toppad med färska örter', 75.00, 1),
 
--- ('Oxfilé', 'Grillad oxfilé med rödvinssås och potatisgratäng', 295.00, 2, 1),
--- ('Entrecôte', 'Saftig entrecôte med bearnaisesås och pommes frites', 265.00, 2, 1),
--- ('Grillad Laxfilé', 'Lax serverad med citronsås och säsongens grönsaker', 225.00, 1, 1),
--- ('Kycklingfilé', 'Grillad kycklingfilé med örtsås och rostade rotfrukter', 195.00, 2, 1),
--- ('Vegetarisk Lasagne', 'Lasagne med grönsaker, tomatsås och ost', 175.00, 2, 1),
--- ('Risotto med Tryffel', 'Krämig risotto med tryffelolja och parmesan', 210.00, 2, 1),
--- ('Torskrygg', 'Ugnsbakad torskrygg med smörsås och potatis', 235.00, 2, 1),
--- ('Lammracks', 'Örtkryddade lammracks med vitlökssky', 285.00, 2, 1),
+('Crème Brûlée', 'Vaniljkräm med karamelliserat socker', 85.00, 3),
+('Chokladfondant', 'Varm chokladkaka med rinnande kärna', 95.00, 3),
+('Pannacotta', 'Vaniljpannacotta med bärsås', 75.00, 3),
+('Äppelpaj', 'Serveras varm med vaniljsås', 70.00, 3),
+('Glass och Sorbet', 'Urval av glass och sorbet', 65.00, 3),
+('Tiramisu', 'Klassisk italiensk dessert med kaffe och mascarpone', 90.00, 3);
 
-
-('Crème Brûlée', 'Vaniljkräm med karamelliserat socker', 85.00, 3, 1),
-('Chokladfondant', 'Varm chokladkaka med rinnande kärna', 95.00, 3, 1),
-('Pannacotta', 'Vaniljpannacotta med bärsås', 75.00, 3, 1),
-('Äppelpaj', 'Serveras varm med vaniljsås', 70.00, 3, 1),
-('Glass och Sorbet', 'Urval av glass och sorbet', 65.00, 3, 1),
-('Tiramisu', 'Klassisk italiensk dessert med kaffe och mascarpone', 90.00, 3, 1);
-
-INSERT INTO carte_dish (name, description, price, category_id, carte_menu_id, type_of_id) VALUES
-('Oxfilé', 'Grillad oxfilé med rödvinssås och potatisgratäng', 295.00, 2, 1, 1),
-('Entrecôte', 'Saftig entrecôte med bearnaisesås och pommes frites', 265.00, 2, 1, 1),
-('Grillad Laxfilé', 'Lax serverad med citronsås och säsongens grönsaker', 225.00, 2, 1, 2),
-('Kycklingfilé', 'Grillad kycklingfilé med örtsås och rostade rotfrukter', 195.00, 2, 1, 1),
-('Vegetarisk Lasagne', 'Lasagne med grönsaker, tomatsås och ost', 175.00, 2, 1, 3),
-('Risotto med Tryffel', 'Krämig risotto med tryffelolja och parmesan', 210.00, 2, 1, 3),
-('Torskrygg', 'Ugnsbakad torskrygg med smörsås och potatis', 235.00, 2, 1, 2),
-('Lammracks', 'Örtkryddade lammracks med vitlökssky', 285.00, 2, 1, 1);
+INSERT INTO carte_dish (name, description, price, category_id, type_of_id) VALUES
+('Oxfilé', 'Grillad oxfilé med rödvinssås och potatisgratäng', 295.00, 2, 1),
+('Entrecôte', 'Saftig entrecôte med bearnaisesås och pommes frites', 265.00, 2, 1),
+('Grillad Laxfilé', 'Lax serverad med citronsås och säsongens grönsaker', 225.00, 2, 2),
+('Kycklingfilé', 'Grillad kycklingfilé med örtsås och rostade rotfrukter', 195.00, 2, 1),
+('Vegetarisk Lasagne', 'Lasagne med grönsaker, tomatsås och ost', 175.00, 2, 3),
+('Risotto med Tryffel', 'Krämig risotto med tryffelolja och parmesan', 210.00, 2, 3),
+('Torskrygg', 'Ugnsbakad torskrygg med smörsås och potatis', 235.00, 2, 2),
+('Lammracks', 'Örtkryddade lammracks med vitlökssky', 285.00, 2, 1);
 
 
 INSERT INTO drink (name, price) VALUES

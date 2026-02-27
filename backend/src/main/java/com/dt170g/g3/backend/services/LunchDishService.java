@@ -61,7 +61,7 @@ public class LunchDishService {
         }
     }
 
-    public boolean checkIfDishExist(LunchDish dish){
+    public LunchDish findExistingDish(LunchDish dish){
         List<LunchDish> existing = entityManager.createQuery(
                             "SELECT m FROM LunchDish m WHERE lower(m.name) = lower(:name) AND " +
                                 "lower(m.description) = lower(:description) AND " +
@@ -70,11 +70,9 @@ public class LunchDishService {
                 .setParameter("description", dish.getDescription())
                 .setParameter("price", dish.getPrice())
                 .getResultList();
-        return !existing.isEmpty();
+        if (existing.isEmpty()){
+            return null;
+        }
+        return existing.get(0);
     }
-
-
-
-
 }
-
