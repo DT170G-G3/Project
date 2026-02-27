@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        exampleCreateOrder();
+        //exampleCreateOrder();
 
 
     }

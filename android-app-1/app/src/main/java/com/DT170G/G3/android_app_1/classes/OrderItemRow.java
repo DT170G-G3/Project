@@ -44,8 +44,8 @@ public class OrderItemRow {
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout itemRow = new LinearLayout(context);
         itemRow.setOrientation(LinearLayout.HORIZONTAL);
+
         itemRow.setPadding(35, 10,10,5);
-        //itemRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rowParams.setMargins(0,10,0,10);
         itemRow.setLayoutParams(rowParams);
