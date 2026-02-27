@@ -357,6 +357,26 @@ header .weekDiv {
     box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
 }
 
+.inputText{
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    width: 200px;
+    box-shadow: inset 0 2px 2px #f0f0f0;
+}
+
+.inputText:hover{
+    border-color: dodgerblue;
+}
+
+inputText:focus{
+    border-color: dodgerblue !important;
+    box-shadow: outset 0 2px 2px dodgerblue;
+}
+
 .weekSelector {
     display: flex;
     gap: 8px;

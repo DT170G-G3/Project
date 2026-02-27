@@ -178,36 +178,32 @@ public class LunchMenuService {
         LocalDate date = LocalDate.parse(localDate);
         LunchDish dish = dishBean.getNewDish();
 
-        // 1. Hämta/skapa meny om den inte finns
+        // Hämta/skapa meny om den inte finns
         LunchMenu menu;
         if (!menuExistsForDate(date)) {
             menu = new LunchMenu();
             menu.setDate(date);
-            entityManager.persist(menu); // Skapa menyn först
+            entityManager.persist(menu);
         } else {
             menu = getLunchMenuByDate(date);
         }
 
-        // 2. Hantera rätten - SÖK efter existerande rätter först
-        // Detta förhindrar Rollback pga "Duplicate Entry" på namn-kolumnen
+        // Sök efter rätten
         LunchDish dishToLink;
         List<LunchDish> existing = entityManager.createQuery(
                         "SELECT d FROM LunchDish d WHERE d.name = :name", LunchDish.class)
                 .setParameter("name", dish.getName())
                 .getResultList();
 
+        // Har listan element behandlas första elementet som en tidigare skapad rätt.
         if (!existing.isEmpty()) {
-            // Rätten finns! Uppdatera den om användaren ändrat beskrivning/pris
             LunchDish dbDish = existing.get(0);
-            dbDish.setDescription(dish.getDescription());
-            dbDish.setPrice(dish.getPrice());
             dishToLink = entityManager.merge(dbDish);
         } else {
-            // Helt ny rätt!
             dishToLink = entityManager.merge(dish);
         }
 
-        // 3. Koppla ihop
+        // Koppla ihop och lägg rätt i menyn
         if (!menu.getDishes().contains(dishToLink)) {
             menu.getDishes().add(dishToLink);
             entityManager.merge(menu); // Uppdatera kopplingen
