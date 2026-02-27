@@ -130,7 +130,7 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         header.setPadding(0, 24, 0, 12);
 
         if(isDone) {
-            header.setTextColor(context.getColor(R.color.buttonColor));
+            header.setTextColor(context.getColor(R.color.doneColor));
             DateTimeFormatter timeDateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
             String timeString = doneTime.format(timeDateTimeFormatter);
             header.setText(title + "   " + timeString);
@@ -153,16 +153,12 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
     }
 
     static class OrderViewHolder extends RecyclerView.ViewHolder {
-
         TextView tableTextView;
-        TextView timeTextView;
         LinearLayout listOfDishesLinearLayout;
-
         TextView notesTextView;
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tableTextView = itemView.findViewById(R.id.tableTextView);
-            //timeTextView = itemView.findViewById(R.id.timeTextView);
             listOfDishesLinearLayout = itemView.findViewById(R.id.listOfDishesLinearLayout);
             notesTextView = itemView.findViewById(R.id.noteTextView);
         }

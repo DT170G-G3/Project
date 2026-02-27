@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> mains = new ArrayList<>();
         List<String> desserts = new ArrayList<>();
 
-        int tableNum = 0;
+        int tableNum;
         String notes;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
