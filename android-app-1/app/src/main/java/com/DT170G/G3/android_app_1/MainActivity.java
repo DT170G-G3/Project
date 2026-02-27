@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     private void populateOrdersUI(List<Order> orders) {
         // EXAMPLE how to get Order object
         Log.d("ORDER", "TOTAL ORDERS: " +orders.size());
-        for (int i = 68; i < 69; i++) {
+        for (int i = 0; i < 3; i++) {
             Order order = orders.get(i);
             Sitting sitting = order.sitting;
             Table table = sitting.restaurantTable;
