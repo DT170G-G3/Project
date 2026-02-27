@@ -14,7 +14,7 @@
                 <div class="weekSelector">
                     <ui:repeat value="#{week.weekNumbers}" var="w">
                         <h:commandButton value="V.#{w}"
-                                         styleClass="btn btnSecondary"
+                                         styleClass="btn #{w == week.weekNumber ? 'btnPrimary' : 'btnSecondary'}"
                                          action="#{week.setWeekNumber(w)}"/>
                     </ui:repeat>
                 </div>
@@ -39,7 +39,7 @@
                                             <h:commandLink
                                                     value="Ta bort"
                                                     action="#{lunch.removeDish(day,dayDish)}">
-                                                <f:ajax execute="@this" render="@all" />
+                                                 <f:ajax execute="@this" render="@all" />
                                             </h:commandLink>
                                         </li>
                                     </ui:repeat>
