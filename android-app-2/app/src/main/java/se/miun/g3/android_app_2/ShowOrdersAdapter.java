@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 
 public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.OrderViewHolder> {
@@ -36,20 +37,23 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         holder.itemView.setOnClickListener(v -> {
             if(!order.getStarters().isEmpty() && !order.isStartersDone()) {
                 order.setStartersDone(true);
-                order.setStarterDoneTime(LocalTime.now());
-                notifyItemChanged(position);
+                order.setStarterDoneTime(System.currentTimeMillis());
+                order.setSortTime(System.currentTimeMillis());
+                reSort();
                 return;
             }
             if(!order.getMainCourses().isEmpty() && !order.isMainCoursesDone()) {
                 order.setMainCoursesDone(true);
-                order.setMainCourseDoneTime(LocalTime.now());
-                notifyItemChanged(position);
+                order.setMainCourseDoneTime(System.currentTimeMillis());
+                order.setSortTime(System.currentTimeMillis());
+                reSort();
                 return;
             }
             if(!order.getDesserts().isEmpty() && !order.isDessertsDone()) {
                 order.setDessertsDone(true);
-                order.setDessertDoneTime(LocalTime.now());
-                notifyItemChanged(position);
+                order.setDessertDoneTime(System.currentTimeMillis());
+                order.setSortTime(System.currentTimeMillis());
+                reSort();
             }
         });
 
@@ -58,9 +62,9 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
             return;
         }
-        //String time = order.getCreatedAt().substring(11,16);
-        //holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
-        holder.tableTextView.setText("Bord " + order.getTableNumber());
+        String time = order.getCreatedAt().substring(11,16);
+        holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
+        //holder.tableTextView.setText("Bord " + order.getTableNumber());
 
         if(order.getNotes() != null && !order.getNotes().isEmpty()) {
             holder.notesTextView.setVisibility(View.VISIBLE);
@@ -93,7 +97,6 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
             }
         }
 
-
         boolean starterDone = order.getStarters().isEmpty() || order.isStartersDone();
         boolean mainDone = order.getMainCourses().isEmpty() || order.isMainCoursesDone();
         boolean dessertDone = order.getDesserts().isEmpty() || order.isDessertsDone();
@@ -102,6 +105,11 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
+    }
+
+    private void reSort() {
+        orderList.sort(Comparator.comparingLong(ShowOrders::getSortTime));
+        notifyDataSetChanged();
     }
 
     private void addFood(OrderViewHolder holder, List<String> items) {
@@ -119,7 +127,7 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         holder.listOfDishesLinearLayout.addView(space);
     }
 
-    private void addCategoryHeader(OrderViewHolder holder, String title, boolean isDone, LocalTime doneTime) {
+    private void addCategoryHeader(OrderViewHolder holder, String title, boolean isDone, long doneTime) {
         Context context = holder.itemView.getContext();
 
         TextView header = new TextView(context);
@@ -131,8 +139,7 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
 
         if(isDone) {
             header.setTextColor(context.getColor(R.color.doneColor));
-            DateTimeFormatter timeDateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-            String timeString = doneTime.format(timeDateTimeFormatter);
+            String timeString = new java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault()).format(new java.util.Date(doneTime));
             header.setText(title + "   " + timeString);
         }
 
@@ -145,7 +152,6 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         divider.setBackgroundColor(context.getColor(R.color.headerColor));
         holder.listOfDishesLinearLayout.addView(divider);
     }
-
 
     @Override
     public int getItemCount () {
