@@ -4,6 +4,7 @@ package com.dt170g.g3.backend.beans;
 
 
 import com.dt170g.g3.backend.entities.CarteDish;
+import com.dt170g.g3.backend.entities.Category;
 import com.dt170g.g3.backend.services.CarteDishService;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -36,12 +37,22 @@ public class CarteDishBean implements Serializable {
     CarteDishService carteDishService;
 
     private List<CarteDish> dishes;
+    private CarteDish dish = new CarteDish();
+
+
 
 
     @PostConstruct
     public void init(){
         this.dishes = carteDishService.getMenuDishes(); // getMenuDishes return all dishes on the many in specific order
     }
+
+    public CarteDish getDish() {
+        return dish;
+    }
+
+
+
 
 
     /**
@@ -80,6 +91,11 @@ public class CarteDishBean implements Serializable {
 
         }
         return menu;
+    }
+
+    public void saveToMenu(){
+
+        carteDishService.saveToMenu(dish);
     }
 
 

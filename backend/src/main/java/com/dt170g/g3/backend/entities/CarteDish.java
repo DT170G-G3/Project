@@ -61,6 +61,9 @@ public class CarteDish {
     private String description;
     private double price;
 
+
+
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
@@ -107,6 +110,8 @@ public class CarteDish {
         this.name = name;
     }
 
+
+
     public String getDescription() {
         return description;
     }
@@ -135,5 +140,7 @@ public class CarteDish {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 
 }

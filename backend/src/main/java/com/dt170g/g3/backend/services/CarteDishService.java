@@ -45,6 +45,7 @@ public class CarteDishService {
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.findByCategory", CarteDish.class);
         messageQuery.setParameter("category", category);
         return messageQuery.getResultList();
+
     }
     public List<CarteDish> findAllDishes(){
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getAll", CarteDish.class);
@@ -58,6 +59,18 @@ public class CarteDishService {
     public List<CarteDish> getMenuDishes() {
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getDishesFromMenuByCategory", CarteDish.class);
         return messageQuery.getResultList();
+    }
+
+
+    @Transactional
+    public void saveToMenu(CarteDish dish){
+        //entityManager.persist(dish);
+       saveToDatabase(dish);
+    }
+
+
+    private void saveToDatabase(CarteDish dish){
+        entityManager.persist(dish);
     }
 
 }
