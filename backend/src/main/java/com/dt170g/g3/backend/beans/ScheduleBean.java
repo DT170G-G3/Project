@@ -5,16 +5,18 @@ import com.dt170g.g3.backend.entities.Shift;
 import com.dt170g.g3.backend.services.ShiftService;
 import jakarta.enterprise.context.RequestScoped;
 
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
 @Named("schedule")
-@RequestScoped
-public class ScheduleBean {
+@ViewScoped
+public class ScheduleBean implements Serializable {
     @Inject
     private ShiftService shiftService;
 
@@ -24,6 +26,13 @@ public class ScheduleBean {
 
     public Set<Employee> getEmployeesShift(Shift shift){
         return shiftService.getEmployeesByShift(shift);
+    }
+
+    public void addEmployeeToShift(int empId, int shiftId){
+        shiftService.assignEmployeeToShift(empId,shiftId);
+    }
+    public void removeEmployeeFromShift(int empId, int shiftId){
+        shiftService.removeEmployeeFromShift(empId,shiftId);
     }
 
 }
