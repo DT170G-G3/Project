@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.shift-drop-zone').forEach(zone => {
         Sortable.create(zone, {
-            group: { name: 'staff', pull: false, put: true },
+            group: { name: 'staff', pull: true, put: true },
             animation: 150,
             ghostClass: 'sortable-ghost',
             dragClass: 'sortable-drag',

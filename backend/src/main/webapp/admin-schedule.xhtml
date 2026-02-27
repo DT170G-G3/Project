@@ -7,6 +7,17 @@
 
     <ui:define name="extra-head">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+        <!--
+        <script>
+            //<![CDATA[
+            const employees = [
+                <ui:repeat value="#{employeeBean.employees}" var="emp">
+                    { id: #{emp.id}, name: "#{emp.name}" },
+                </ui:repeat>
+            ];
+            //]]>
+        </script>
+        -->
         <h:outputScript library="js" name="admin-schedule.js"/>
     </ui:define>
 
