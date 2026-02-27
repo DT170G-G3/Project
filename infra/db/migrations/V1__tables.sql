@@ -52,24 +52,6 @@ CREATE TABLE restaurant_table (
     table_no INT NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
-CREATE TABLE sitting(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    start_time TIME NOT NULL,
-    date DATE NOT NULL,
-    duration_minutes INT NOT NULL,
-    restaurant_table_id INT NOT NULL,
-    FOREIGN KEY(restaurant_table_id) REFERENCES restaurant_table(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE table_order(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    order_no INT,
-    note VARCHAR(255) DEFAULT NULL,
-    sitting_id INT NOT NULL,
-    FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
 CREATE TABLE booking(
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE NOT NULL,
@@ -79,7 +61,25 @@ CREATE TABLE booking(
     note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100),
-    phone_no VARCHAR(30),
+    phone_no VARCHAR(30)
+) ENGINE=InnoDB;
+
+CREATE TABLE sitting(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    date DATE NOT NULL,
+    restaurant_table_id INT NOT NULL,
+    booking_id INT,
+    FOREIGN KEY(restaurant_table_id) REFERENCES restaurant_table(id) ON DELETE CASCADE,
+    FOREIGN KEY(booking_id) REFERENCES booking(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE table_order(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    order_no INT,
+    note VARCHAR(255) DEFAULT NULL,
     sitting_id INT NOT NULL,
     FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
