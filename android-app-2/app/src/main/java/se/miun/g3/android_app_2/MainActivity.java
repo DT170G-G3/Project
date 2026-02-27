@@ -23,6 +23,7 @@ import se.miun.g3.android_app_2.orders.OrdersRepository;
 import se.miun.g3.android_app_2.orders.Sitting;
 import se.miun.g3.android_app_2.tables.Table;
 import se.miun.g3.android_app_2.tables.TablesRepository;
+import se.miun.g3.android_app_2.waiters.WaitersRepository;
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         //-------GET--------
         //asyncLoadTables();
-        asyncLoadOrders();
-        //asyncLoadDishes();
+        //asyncLoadOrders();
+        asyncLoadDishes();
         //asyncLoadDrinks();
         //------/GET--------
 
@@ -128,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
         asyncCreateOrder(order);
     }
-
     private void asyncLoadDishes() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void asyncLoadTables() {
         tablesRepo.getTables(new TablesRepository.GetCallback() {
             @Override
@@ -174,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void asyncLoadDrinks() {
         drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
             @Override
@@ -188,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
     private void asyncCreateOrder(Order order) {
         //asynchronous post the order to the database
         ordersRepo.postOrder(order, new OrdersRepository.PostCallback() {

@@ -17,7 +17,7 @@ public class TablesRepository {
     }
 
 
-    public void getTables(com.DT170G.G3.android_app_1.tables.TablesRepository.GetCallback cb) {
+    public void getTables(TablesRepository.GetCallback cb) {
         Call<List<Table>> call = ApiClient.tablesApi().getTables();
         call.enqueue(new Callback<List<Table>>() {
             @Override

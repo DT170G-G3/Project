@@ -33,9 +33,7 @@ public final class ApiClient {
     public static DishesApi dishesApi() {
         return retrofit.create(DishesApi.class);
     }
-    public static WaitersApi waiterApi() {
-        return retrofit.create(WaitersApi.class);
-    }
+
     public static OrdersApi ordersApi() {
         return retrofit.create(OrdersApi.class);
     }
@@ -44,6 +42,9 @@ public final class ApiClient {
     }
     public static TablesApi tablesApi() {
         return retrofit.create(TablesApi.class);
+    }
+    public static WaitersApi waitersApi() {
+        return retrofit.create(WaitersApi.class);
     }
 
 

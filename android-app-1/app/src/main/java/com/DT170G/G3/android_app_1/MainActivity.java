@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     MainCourseFragment mainCourseFragment = new MainCourseFragment();
     DessertFragment dessertFragment = new DessertFragment();
 
+
     private PagerAdapter pagerAdapter;
     private ViewPager2 viewPager2;
 
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         //------POST--------
         //exampleCreateOrder();
 
+        //------GET---------
+        //exampleGetDishes();
 
     }
 
@@ -239,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
         Dish dish = new Dish();
         dish.id = 3;
 
-        
         Drink drink = new Drink();
         drink.id = 1;
 
@@ -251,6 +253,9 @@ public class MainActivity extends AppCompatActivity {
         order.sitting = sit;
 
         asyncCreateOrder(order);
+    }
+    public void exampleGetDishes() {
+
     }
 
     private void asyncCreateOrder(Order order) {

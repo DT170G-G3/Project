@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 
 //Retrofit interface (endpoint)
 public interface DishesApi {
-    @GET("dish")  // dishes for json server, dish for payara DATABASE
+    @GET("dish")  // http://localhost:8080/restaurant/api/menu/carte/menu/1 fungerar inte
     Call<List<Dish>> getDishes();
 }

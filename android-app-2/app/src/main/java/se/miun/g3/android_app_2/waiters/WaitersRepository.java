@@ -1,10 +1,13 @@
 package se.miun.g3.android_app_2.waiters;
-import se.miun.g3.android_app_2.ApiClient;
+
 import android.util.Log;
-import retrofit2.Call;
-import retrofit2.Response;
+
 import java.util.List;
+
+import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
+import se.miun.g3.android_app_2.ApiClient;
 
 public class WaitersRepository {
     public interface WaitersCallback {
@@ -14,7 +17,7 @@ public class WaitersRepository {
 
 
     public void getWaiters(WaitersCallback cb) {
-        Call<List<Waiter>> listWaiters = ApiClient.waiterApi().getWaiters();
+        Call<List<Waiter>> listWaiters = ApiClient.waitersApi().getWaiters();
         listWaiters.enqueue(new Callback<List<Waiter>>() {
             @Override
             public void onResponse(Call<List<Waiter>> call, Response<List<Waiter>> response) {
