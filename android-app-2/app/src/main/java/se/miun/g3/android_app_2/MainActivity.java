@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         //-----/POST--------
 
         //-------GET--------
-        //asyncLoadTables();
-        //asyncLoadOrders();
+        asyncLoadTables();
+        asyncLoadOrders();
         asyncLoadDishes();
-        //asyncLoadDrinks();
+        asyncLoadDrinks();
         //------/GET--------
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
