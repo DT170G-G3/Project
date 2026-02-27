@@ -31,6 +31,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import com.dt170g.g3.backend.services.LunchMenuService;
 import com.dt170g.g3.backend.entities.LunchDish;
 import com.dt170g.g3.backend.services.CarteMenuService;
@@ -50,24 +51,44 @@ public class MenuApi {
     @GET
     @Path("/lunch")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<LunchDish> getLunchMenu() {
-        return lunchHandler.getLunchDishesToday();
+    public Response getLunchMenu() {
+        return Response.ok(lunchHandler.getLunchDishesToday()).build();
     }
 
     @GET
     @Path("/lunch/{date}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<LunchDish> getLunchMenu(@PathParam("date") String date) {
-        return lunchHandler.getLunchDishesByDate(LocalDate.parse(date));
+        LocalDate parsedDate;
+
+        try {
+            parsedDate = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new BadRequestException(
+                    "Invalid date format. Use YYYY-MM-DD."
+            );
+        }
+        List<LunchDish> dishes = lunchHandler.getLunchDishesByDate(parsedDate);
+
+        if (dishes == null || dishes.isEmpty()) {
+            throw new NotFoundException("No lunch menu found for date: " + date);
+        }
+        return dishes;
     }
 
     @GET
     @Path("/carte/menu/{menuId}/category/{categoryId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CarteDish> getCarteMenuByCategory(
+    public Response getCarteMenuByCategory(
             @PathParam("menuId") int menuId,
             @PathParam("categoryId") int categoryId) {
-        return carteHandler.findByCategory(menuId, categoryId);
+        List<CarteDish> dishes = carteHandler.findByCategory(menuId, categoryId);
+
+        if (dishes.isEmpty()) {
+            throw new NotFoundException("No dishes found");
+        }
+
+        return Response.ok(dishes).build();
     }
 
     @GET
