@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Order {
     public int id;
-    //Database handles DateTime
+    public String createdAt;
     public int orderNo;
     public String note;
     public Sitting sitting;
