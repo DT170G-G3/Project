@@ -2,6 +2,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/admin_base.xhtml">
 
     <ui:define name="title">Adminpanel - Veckomeny</ui:define>
@@ -29,9 +30,7 @@
                         <div class="day-header">
                             <span class="day-name">#{day}</span>
                         </div>
-
                         <div class="menu-day-body">
-
                             <!-- Current dishes for this day -->
                             <h:form>
                                 <ul class="dishList">
@@ -51,19 +50,27 @@
                             <h:form>
                                 <h:panelGrid columns="2">
                                     <h:outputLabel value="Name" />
-                                    <h:inputText value="#{dish.newDish.name}" required="true" />
+                                    <p:autoComplete id="name" value="#{dish.newDish.name}"
+                                                    completeMethod="#{dish.completeDish}"
+                                                    dropdown="true"
+                                                    forceSelection="false">
+                                        <p:ajax event="itemSelect"
+                                                listener="#{dish.onDishSelect}"
+                                                update="name description price" />
+                                    </p:autoComplete>
                                     <h:outputLabel value="Description" />
-                                    <h:inputText value="#{dish.newDish.description}" />
+                                    <h:inputText id="description" value="#{dish.newDish.description}" />
                                     <h:outputLabel value="Price" />
-                                    <h:inputText value="#{dish.newDish.price}" />
+                                    <h:inputText id="price" value="#{dish.newDish.price}" />
                                 </h:panelGrid>
+
                                 <h:commandButton value="Lägg till"
                                                  styleClass="btn btnPrimary"
                                                  action="#{lunch.saveToMenu(day)}">
                                     <f:ajax execute="@form" render="@all" />
                                 </h:commandButton>
-                            </h:form>
 
+                            </h:form>
                         </div>
                     </div>
                 </ui:repeat>
