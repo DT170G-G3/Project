@@ -180,12 +180,14 @@ public class LunchMenuService {
             createLunchMenu(date);
         }
         LunchMenu menu = getLunchMenuByDate(date);
-        LunchDish dish = dishBean.getNewDish();
-        if(!lunchDishService.checkIfDishExist(dish)){
-            lunchDishService.saveDish(dish);
-        }
-        menu.addDish(dish);
 
+        LunchDish inputDish = dishBean.getNewDish();
+        LunchDish managedDish = lunchDishService.findExistingDish(inputDish);
+        if(managedDish == null){
+            lunchDishService.saveDish(inputDish);
+            managedDish = inputDish;
+        }
+        menu.addDish(managedDish);
         dishBean.reset();
     }
 
