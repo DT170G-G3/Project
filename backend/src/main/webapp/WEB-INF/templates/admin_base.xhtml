@@ -9,9 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>
-        <ui:insert name="title">Anton's Skafferi</ui:insert>
+        <ui:insert name="title">Anton's Skafferi - Admin</ui:insert>
     </title>
 
+    <h:outputStylesheet library="css" name="admin.css?v=${build.version}" />
+    <!--
     <h:outputStylesheet library="css" name="base.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="layout.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="components.css?v=${build.version}" />
@@ -19,17 +21,23 @@
     <h:outputStylesheet library="css" name="paper-look.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="menu.css?v=${build.version}" />
     <h:outputStylesheet library="css" name="mobile.css?v=${build.version}" />
+    -->
 
     <ui:insert name="extra-head" />
 </h:head>
 
 <h:body>
-    <!--    sidor som man döper till name="content" kommer att laddas här under-->
-    <main id="main-content" class="main-container">
-        <ui:insert name="content">
-            <p>Innehåll saknas.</p>
-        </ui:insert>
-    </main>
+    <header>
+        <h1>Antons Skafferi - Adminpanel</h1>
+        <nav>
+            <h:link outcome="admin" value="Start" />
+            <h:link outcome="admin-schedule" value="Schema" />
+        </nav>
+        <div class="weekDiv">Vecka X - DAG-DAG MÅNAD ÅR</div>
+    </header>
 
+    <main>
+        <ui:insert name="content"/>
+    </main>
 </h:body>
 </html>

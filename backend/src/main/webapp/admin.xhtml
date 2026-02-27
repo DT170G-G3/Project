@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/admin_base.xhtml">
+
+    <ui:define name="title">Adminpanel - Veckomeny</ui:define>
+
+    <ui:define name="content">
+        <div class="lunchMenuWrapper">
+            <!-- Week selector buttons -->
+            <h:form>
+                <div class="weekSelector">
+                    <ui:repeat value="#{week.weekNumbers}" var="w">
+                        <h:commandButton value="V.#{w}"
+                                         styleClass="btn btnSecondary"
+                                         action="#{week.setWeekNumber(w)}"/>
+                    </ui:repeat>
+                </div>
+            </h:form>
+
+            <div class="weekTitle">Lunchmeny</div>
+
+            <!-- For each day, show dishes and allow adding/removing -->
+
+            <div class="daysList">
+                <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-name">#{day}</span>
+                        </div>
+
+                        <div class="menu-day-body">
+
+                            <!-- Current dishes for this day -->
+                            <h:form>
+                                <ul class="dishList">
+                                    <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
+                                        <li>#{dayDish.name}
+                                            <h:commandLink
+                                                    value="Ta bort"
+                                                    action="#{lunch.removeDish(day,dayDish)}">
+                                                <f:ajax execute="@this" render="@all" />
+                                            </h:commandLink>
+                                        </li>
+                                    </ui:repeat>
+                                </ul>
+                            </h:form>
+
+                            <!-- Add a dish to this day -->
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Name" />
+                                    <h:inputText value="#{dish.newDish.name}" required="true" />
+                                    <h:outputLabel value="Description" />
+                                    <h:inputText value="#{dish.newDish.description}" />
+                                    <h:outputLabel value="Price" />
+                                    <h:inputText value="#{dish.newDish.price}" />
+                                </h:panelGrid>
+                                <h:commandButton value="Lägg till"
+                                                 styleClass="btn btnPrimary"
+                                                 action="#{lunch.saveToMenu(day)}">
+                                    <f:ajax execute="@form" render="@all" />
+                                </h:commandButton>
+                            </h:form>
+
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
