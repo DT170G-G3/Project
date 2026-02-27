@@ -1,5 +1,7 @@
 package se.miun.g3.android_app_2;
 
+import static java.util.Collections.replaceAll;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     DrinksRepository drinksRepo = new DrinksRepository();
     TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
+    private long  stringToLongTime;
 
 
     @Override
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         int tableNum;
         String time;
         String notes;
+        long stringToLongTime;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -215,8 +220,6 @@ public class MainActivity extends AppCompatActivity {
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
-    }
-    private void populateOrdersUI(List<Order> orders) {
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
