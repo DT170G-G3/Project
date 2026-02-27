@@ -27,6 +27,7 @@
                 </ui:repeat>
             </ui:repeat>
 
+            <!-- Buttons for the current and upcomming weeks -->
             <h:form>
                 <ui:repeat value="#{week.weekNumbers}" var="w">
                     <h:commandButton value="V.#{w}"
@@ -34,7 +35,8 @@
                 </ui:repeat>
             </h:form>
 
-            <ui:repeat value="#{week.daysOfWeek}" var="day">
+            <!-- Adding a dish to the lunchmenueeee -->
+            <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
                 <div class="day-box">
                     #{day}
                 </div>
@@ -56,6 +58,20 @@
                     </h:commandButton>
                 </h:form>
 
+                <!-- List up the dishes for the day, and add a remove button. -->
+                <h:form>
+                <ul class="dishList">
+                    <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
+                        <li>#{dayDish.name}
+                            <h:commandLink
+                                value="Remove"
+                                action="#{lunch.removeDish(day,dayDish)}">
+                                <f:ajax execute="@this" render="@all" />
+                            </h:commandLink>
+                        </li>
+                    </ui:repeat>
+                </ul>
+                </h:form>
             </ui:repeat>
 
 

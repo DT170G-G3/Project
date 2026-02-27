@@ -16,7 +16,6 @@
  *  - "Sitting.getAll"              : Retrieve all sittings
  *  - "Sitting.findByDate"          : Retrieve sittings for a specific date
  *  - "Sitting.findByTable"         : Retrieve sittings for a specific table
- *  - "Sitting.findByDateAndTable"  : Retrieve sittings by date and table
  *
  * Example usage:
  *   Sitting sitting = new Sitting(startTime, date, 90, table);
@@ -47,13 +46,7 @@ import java.time.LocalTime;
         @NamedQuery(
                 name = "Sitting.findByTable",
                 query = "SELECT s FROM Sitting s WHERE s.restaurantTable.id = :tableId"
-        ),
-
-        @NamedQuery(
-                name = "Sitting.findByDateAndTable",
-                query = "SELECT s FROM Sitting s WHERE s.date = :date AND s.restaurantTable.id = :tableId"
         )
-
 })
 
 @Entity

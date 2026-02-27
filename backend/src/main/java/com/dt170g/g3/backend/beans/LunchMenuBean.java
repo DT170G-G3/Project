@@ -17,13 +17,9 @@ import java.util.List;
 @Named("lunch")
 @ViewScoped
 public class LunchMenuBean implements Serializable {
-
     @Inject
     private LunchMenuService lunchMenuService;
-    @Inject
-    private LunchDishService lunchDishService;
-    @Inject
-    private LunchDishBean dishBean;
+
     private String selectedDate;
     private List<Integer> selectedDishIds = new ArrayList<>();
 
@@ -64,21 +60,12 @@ public class LunchMenuBean implements Serializable {
     * -Mulle Meck
     *  */
 
+    public void saveToMenu(String localDate){
+        lunchMenuService.saveDishToLunchMenu(localDate);
+    }
 
-        @Transactional
-        public void saveToMenu(String localDate){
-            LocalDate date = LocalDate.parse(localDate);
-            if(!lunchMenuService.menuExistsForDate(date)){
-                lunchMenuService.createLunchMenu(date);
-            }
-            LunchMenu menu = lunchMenuService.getLunchMenuByDate(date);
-            LunchDish dish = dishBean.getNewDish();
-            if(!lunchDishService.checkIfDishExist(dish)){
-                lunchDishService.saveDish(dish);
-            }
-            menu.addDish(dish);
-    
-            dishBean.reset();
-        }
+    public void removeDish(String localDate, LunchDish dish){
+        lunchMenuService.removeDishFromMenu(localDate,dish);
+    }
 
 }
