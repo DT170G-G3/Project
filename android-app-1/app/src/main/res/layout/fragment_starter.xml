@@ -27,7 +27,7 @@
             android:id="@+id/starterNotesSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="158dp"
             android:text="Noteringar"/>
 
     </LinearLayout>

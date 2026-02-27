@@ -7,18 +7,16 @@
     OLD GREY RIPPLE COLOR
     <color name="rippleColor">#E7E7E7</color> -->
 
-    <color name="appBackground">#FFFFFF</color>
+    <color name="appBackground">#F4F4F4</color>
     <color name="borderColor">#575757</color>
 
-    <color name="navMenuColor">#EDEDED</color>
-    <color name="itemsButtonColor">#D9D9D9</color>
+    <color name="navMenuColor">#E9E9E9</color>
+    <color name="itemsButtonColor">#FFFFFF</color>
 
     <color name="sendOrderButtonColor">#415a77</color>
     <color name="sendOrderRippleColor">#1b263b</color>
 
     <color name="rippleColor">#9D9C9C</color>
-
-
 </resources>
 
 
