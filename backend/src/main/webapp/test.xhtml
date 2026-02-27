@@ -6,26 +6,10 @@
     <meta charset="UTF-8" />
     <title>En Ganska Kass Titel</title>
     <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>
-
 </h:head>
 <h:body>
     <div class="container">
-        <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
-            <h2>#{menuToday.name}</h2>
-            <p>#{menuToday.description} </p>
-        </ui:repeat>
-
-        <h1>Det Stora Testområdet</h1>
         <div id="message-box">
-            <ui:repeat value="#{lunch.menuWeek}" var="menu">
-                <h2>#{menu.day}</h2>
-                <ui:repeat value="#{menu.dishes}" var="item">
-                <h2>#{item.name}</h2>
-
-                <p>#{item.description}</p>
-
-                </ui:repeat>
-            </ui:repeat>
 
             <!-- Buttons for the current and upcomming weeks -->
             <h:form>
@@ -34,50 +18,49 @@
                     action="#{week.setWeekNumber(w)}"/>
                 </ui:repeat>
             </h:form>
-
-            <!-- Adding a dish to the lunchmenueeee -->
-            <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
-                <div class="day-box">
-                    #{day}
-                </div>
-                <h:form>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Name" />
-                        <h:inputText value="#{dish.newDish.name}" required="true" />
-
-                        <h:outputLabel value="Description" />
-                        <h:inputText value="#{dish.newDish.description}" />
-
-                        <h:outputLabel value="Price" />
-                        <h:inputText value="#{dish.newDish.price}" />
-
-                    </h:panelGrid>
-                    <h:commandButton value="Save"
-                                     action="#{lunch.saveToMenu(day)}">
-                        <f:ajax execute="@form" render="@all" />
-                    </h:commandButton>
-                </h:form>
-
-                <!-- List up the dishes for the day, and add a remove button. -->
-                <h:form>
-                <ul class="dishList">
-                    <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
-                        <li>#{dayDish.name}
-                            <h:commandLink
-                                value="Remove"
-                                action="#{lunch.removeDish(day,dayDish)}">
-                                <f:ajax execute="@this" render="@all" />
-                            </h:commandLink>
-                        </li>
-                    </ui:repeat>
-                </ul>
-                </h:form>
-            </ui:repeat>
-
-
-
         </div>
+        <h1>SCHEDULE</h1>
+        <ui:repeat value="#{emp.employees}" var="e">
+            <h3>#{e.name}</h3>
+        </ui:repeat>
+        <ui:repeat value="#{week.daysOfWeekSchedule}" var="day">
+            <div class="day-box">
+                #{day}
+                <ui:repeat value="#{schedule.getShifts(day)}" var="shift">
+                    <b>#{shift.shiftType.name}</b>
+                    <ui:repeat value="#{schedule.getEmployeesShift(shift)}" var="worker">
+                        #{worker.name}
+                    </ui:repeat>
+                </ui:repeat>
+            </div>
+        </ui:repeat>
     </div>
+
+
+    <!-- Adding a dish to the lunchmenueeee -->
+    <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
+        <div class="day-box">
+            #{day}
+        </div>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Name" />
+                <h:inputText value="#{dish.newDish.name}" required="true" />
+
+                <h:outputLabel value="Description" />
+                <h:inputText value="#{dish.newDish.description}" />
+
+                <h:outputLabel value="Price" />
+                <h:inputText value="#{dish.newDish.price}" />
+
+            </h:panelGrid>
+            <h:commandButton value="Save"
+                             action="#{lunch.saveToMenu(day)}">
+                <f:ajax execute="@form" render="@all" />
+            </h:commandButton>
+        </h:form>
+
+    </ui:repeat>
 </h:body>
 
 </html>

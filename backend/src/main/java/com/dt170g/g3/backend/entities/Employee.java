@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.getAll",
-                query = "SELECT d FROM Employee d"
+                query = "SELECT e FROM Employee e"
         ),
         @NamedQuery(
                 name = "Employee.findById",
-                query = "SELECT d FROM Drink d WHERE d.id = :id"
+                query = "SELECT e FROM Employee e WHERE e.id = :id"
         )
 })
 @Entity
-@Table(name = "employee")
+@Table(name ="employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
