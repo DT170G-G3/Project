@@ -174,21 +174,45 @@ public class LunchMenuService {
 
     /* This or the one above? */
     @Transactional
-    public void saveDishToLunchMenu(String localDate ){
+    public void saveDishToLunchMenu(String localDate){
         LocalDate date = LocalDate.parse(localDate);
-        if(!menuExistsForDate(date)){
-            createLunchMenu(date);
-        }
-        LunchMenu menu = getLunchMenuByDate(date);
         LunchDish dish = dishBean.getNewDish();
-        if(!lunchDishService.checkIfDishExist(dish)){
-            lunchDishService.saveDish(dish);
+
+        // 1. Hämta/skapa meny om den inte finns
+        LunchMenu menu;
+        if (!menuExistsForDate(date)) {
+            menu = new LunchMenu();
+            menu.setDate(date);
+            entityManager.persist(menu); // Skapa menyn först
+        } else {
+            menu = getLunchMenuByDate(date);
         }
-        menu.addDish(dish);
 
-        dishBean.reset();
+        // 2. Hantera rätten - SÖK efter existerande rätter först
+        // Detta förhindrar Rollback pga "Duplicate Entry" på namn-kolumnen
+        LunchDish dishToLink;
+        List<LunchDish> existing = entityManager.createQuery(
+                        "SELECT d FROM LunchDish d WHERE d.name = :name", LunchDish.class)
+                .setParameter("name", dish.getName())
+                .getResultList();
+
+        if (!existing.isEmpty()) {
+            // Rätten finns! Uppdatera den om användaren ändrat beskrivning/pris
+            LunchDish dbDish = existing.get(0);
+            dbDish.setDescription(dish.getDescription());
+            dbDish.setPrice(dish.getPrice());
+            dishToLink = entityManager.merge(dbDish);
+        } else {
+            // Helt ny rätt!
+            dishToLink = entityManager.merge(dish);
+        }
+
+        // 3. Koppla ihop
+        if (!menu.getDishes().contains(dishToLink)) {
+            menu.getDishes().add(dishToLink);
+            entityManager.merge(menu); // Uppdatera kopplingen
+        }
     }
-
 
     // Getters and setters for JSF binding
     public List<Integer> getSelectedDishIds() { return selectedDishIds; }

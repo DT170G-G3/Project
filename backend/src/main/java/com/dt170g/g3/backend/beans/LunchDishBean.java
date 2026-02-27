@@ -43,7 +43,7 @@ public class LunchDishBean implements Serializable{
         String selectedName = event.getObject();
 
         // Logik för att hitta rätten i din databas/lista
-        LunchDish results = dishService.searchByName(selectedName);
+        List<LunchDish> results = dishService.searchByName(selectedName);
 
         if (results != null && !results.isEmpty()) {
             LunchDish dish = results.get(0);
