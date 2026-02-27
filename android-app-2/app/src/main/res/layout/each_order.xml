@@ -36,4 +36,13 @@
         android:layout_height="wrap_content">
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/noteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:paddingTop="6dp">
+    </TextView>
+
 </LinearLayout>

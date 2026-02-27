@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> desserts = new ArrayList<>();
 
         int tableNum = 0;
+        String notes;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -85,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         tableNum = backendOrder.sitting.restaurantTable.tableNum;
-        return new ShowOrders(tableNum, starters, mains, desserts);
+        notes = backendOrder.note;
+        return new ShowOrders(tableNum, starters, mains, desserts, notes);
     }
 
 

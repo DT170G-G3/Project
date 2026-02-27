@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.OrderViewHolder> {
@@ -30,38 +32,73 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         ShowOrders order = orderList.get(position);
-        //String time = order.getCreatedAt().substring(11,16);
-        holder.tableTextView.setText("Bord " + order.getTableNumber());
-        //holder.timeTextView.setText(time);
-        holder.listOfDishesLinearLayout.removeAllViews();
 
         holder.itemView.setOnClickListener(v -> {
-            if(!order.isStartersDone()) {
+            if(!order.getStarters().isEmpty() && !order.isStartersDone()) {
                 order.setStartersDone(true);
-            } else if (!order.isMainCoursesDone()) {
-                order.setMainCoursesDone(true);
-            } else if (!order.isDessertsDone()) {
-                order.setDessertsDone(true);
+                order.setStarterDoneTime(LocalTime.now());
+                notifyItemChanged(position);
+                return;
             }
-            notifyItemChanged(position);
+            if(!order.getMainCourses().isEmpty() && !order.isMainCoursesDone()) {
+                order.setMainCoursesDone(true);
+                order.setMainCourseDoneTime(LocalTime.now());
+                notifyItemChanged(position);
+                return;
+            }
+            if(!order.getDesserts().isEmpty() && !order.isDessertsDone()) {
+                order.setDessertsDone(true);
+                order.setDessertDoneTime(LocalTime.now());
+                notifyItemChanged(position);
+            }
         });
 
-        addCategoryHeader(holder, "Förrätter", order.isStartersDone());
-        if(!order.isStartersDone()) {
-            addFood(holder, order.getMainCourses());
+        if(order.getStarters().isEmpty() && order.getMainCourses().isEmpty() && order.getDesserts().isEmpty()) {
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
+            return;
+        }
+        //String time = order.getCreatedAt().substring(11,16);
+        //holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
+        holder.tableTextView.setText("Bord " + order.getTableNumber());
+
+        if(order.getNotes() != null && !order.getNotes().isEmpty()) {
+            holder.notesTextView.setVisibility(View.VISIBLE);
+            holder.notesTextView.setText("Notering: " + order.getNotes());
+        } else {
+            holder.notesTextView.setVisibility(View.GONE);
         }
 
-        addCategoryHeader(holder, "Varmrätter", order.isMainCoursesDone());
-        if(!order.isMainCoursesDone()) {
-            addFood(holder, order.getDesserts());
+        holder.listOfDishesLinearLayout.removeAllViews();
+
+
+        if(!order.getStarters().isEmpty()){
+            addCategoryHeader(holder, "Förrätter", order.isStartersDone(), order.getStarterDoneTime());
+            if(!order.isStartersDone()) {
+                addFood(holder, order.getStarters());
+            }
         }
 
-        addCategoryHeader(holder, "Efterrätter", order.isDessertsDone());
-        if(!order.isDessertsDone()) {
-            addFood(holder, order.getDesserts());
+        if(!order.getMainCourses().isEmpty()){
+            addCategoryHeader(holder, "Varmrätter", order.isMainCoursesDone(), order.getMainCourseDoneTime());
+            if(!order.isMainCoursesDone()) {
+                addFood(holder, order.getMainCourses());
+            }
         }
 
-        if (order.isStartersDone() && order.isMainCoursesDone() && order.isDessertsDone()) {
+        if(!order.getDesserts().isEmpty()){
+            addCategoryHeader(holder, "Efterrätter", order.isDessertsDone(), order.getDessertDoneTime());
+            if(!order.isDessertsDone()) {
+                addFood(holder, order.getDesserts());
+            }
+        }
+
+
+        boolean starterDone = order.getStarters().isEmpty() || order.isStartersDone();
+        boolean mainDone = order.getMainCourses().isEmpty() || order.isMainCoursesDone();
+        boolean dessertDone = order.getDesserts().isEmpty() || order.isDessertsDone();
+
+        if (starterDone && mainDone && dessertDone) {
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
@@ -82,12 +119,11 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         holder.listOfDishesLinearLayout.addView(space);
     }
 
-    private void addCategoryHeader(OrderViewHolder holder, String title, boolean isDone) {
+    private void addCategoryHeader(OrderViewHolder holder, String title, boolean isDone, LocalTime doneTime) {
         Context context = holder.itemView.getContext();
 
         TextView header = new TextView(context);
         //Rubrik för kategir av mat
-        TextView category = new TextView(context);
         header.setText(title);
         header.setTextSize(22);
         header.setTypeface(null, Typeface.BOLD);
@@ -95,9 +131,13 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
 
         if(isDone) {
             header.setTextColor(context.getColor(R.color.buttonColor));
+            DateTimeFormatter timeDateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            String timeString = doneTime.format(timeDateTimeFormatter);
+            header.setText(title + "   " + timeString);
         }
 
         holder.listOfDishesLinearLayout.addView(header);
+
 
         //Avdelare i form av streck för struktur
         View divider = new View(context);
@@ -118,11 +158,13 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         TextView timeTextView;
         LinearLayout listOfDishesLinearLayout;
 
+        TextView notesTextView;
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tableTextView = itemView.findViewById(R.id.tableTextView);
             //timeTextView = itemView.findViewById(R.id.timeTextView);
             listOfDishesLinearLayout = itemView.findViewById(R.id.listOfDishesLinearLayout);
+            notesTextView = itemView.findViewById(R.id.noteTextView);
         }
     }
 }
