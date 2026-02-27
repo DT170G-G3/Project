@@ -40,15 +40,6 @@ INSERT INTO carte_dish (name, description, price, category_id, carte_menu_id) VA
 ('Caprese', 'Mozzarella, tomater och basilika med olivolja', 85.00, 1, 1),
 ('Svampsoppa', 'Krämig svampsoppa toppad med färska örter', 75.00, 1, 1),
 
--- ('Oxfilé', 'Grillad oxfilé med rödvinssås och potatisgratäng', 295.00, 2, 1),
--- ('Entrecôte', 'Saftig entrecôte med bearnaisesås och pommes frites', 265.00, 2, 1),
--- ('Grillad Laxfilé', 'Lax serverad med citronsås och säsongens grönsaker', 225.00, 1, 1),
--- ('Kycklingfilé', 'Grillad kycklingfilé med örtsås och rostade rotfrukter', 195.00, 2, 1),
--- ('Vegetarisk Lasagne', 'Lasagne med grönsaker, tomatsås och ost', 175.00, 2, 1),
--- ('Risotto med Tryffel', 'Krämig risotto med tryffelolja och parmesan', 210.00, 2, 1),
--- ('Torskrygg', 'Ugnsbakad torskrygg med smörsås och potatis', 235.00, 2, 1),
--- ('Lammracks', 'Örtkryddade lammracks med vitlökssky', 285.00, 2, 1),
-
 
 ('Crème Brûlée', 'Vaniljkräm med karamelliserat socker', 85.00, 3, 1),
 ('Chokladfondant', 'Varm chokladkaka med rinnande kärna', 95.00, 3, 1),

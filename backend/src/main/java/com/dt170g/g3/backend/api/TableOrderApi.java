@@ -38,7 +38,6 @@ import java.util.List;
 public class TableOrderApi {
     @Inject
     private TableOrderService orderHandler;
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<TableOrder> getAllOrders() {
