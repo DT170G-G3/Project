@@ -19,7 +19,7 @@ public class ShowOrders {
     private LocalTime mainCourseDoneTime;
     private LocalTime dessertDoneTime;
 
-    public ShowOrders(int tableNumber, List<String> starters, List<String> mainCourses, List<String> desserts, String notes) {
+    public ShowOrders(int tableNumber, List<String> starters, List<String> mainCourses, List<String> desserts, String notes, String createdAt) {
         this.tableNumber = tableNumber;
         this.starters = starters;
         this.mainCourses = mainCourses;

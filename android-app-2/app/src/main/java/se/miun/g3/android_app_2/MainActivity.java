@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import se.miun.g3.android_app_2.dishes.Dish;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> desserts = new ArrayList<>();
 
         int tableNum;
+        String time;
         String notes;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
@@ -87,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         }
         tableNum = backendOrder.sitting.restaurantTable.tableNum;
         notes = backendOrder.note;
-        return new ShowOrders(tableNum, starters, mains, desserts, notes);
+        time = backendOrder.createdAt;
+        return new ShowOrders(tableNum, starters, mains, desserts, notes, time);
     }
 
 
@@ -160,6 +163,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Order> backendOrders) {
                 Log.d("ORDERS", "API gav " + backendOrders.size() + " orders");
+
+                backendOrders.sort(Comparator.comparing(o -> o.createdAt));
+
                 List<ShowOrders> uiOrders = new ArrayList<>();
                 for (Order o : backendOrders) {
                     uiOrders.add(orderToShowOrders(o));

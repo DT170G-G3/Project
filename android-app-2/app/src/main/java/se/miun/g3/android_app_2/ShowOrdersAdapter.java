@@ -58,9 +58,9 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
             return;
         }
-        //String time = order.getCreatedAt().substring(11,16);
-        //holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
-        holder.tableTextView.setText("Bord " + order.getTableNumber());
+        String time = order.getCreatedAt().substring(11,16);
+        holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
+        //holder.tableTextView.setText("Bord " + order.getTableNumber());
 
         if(order.getNotes() != null && !order.getNotes().isEmpty()) {
             holder.notesTextView.setVisibility(View.VISIBLE);
@@ -92,7 +92,6 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
                 addFood(holder, order.getDesserts());
             }
         }
-
 
         boolean starterDone = order.getStarters().isEmpty() || order.isStartersDone();
         boolean mainDone = order.getMainCourses().isEmpty() || order.isMainCoursesDone();
