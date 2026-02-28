@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 
 //Retrofit interface (endpoint)
 public interface DishesApi {
-    @GET("dish")  // http://localhost:8080/restaurant/api/menu/carte/menu/1
+    @GET("menu/carte/menu/1")  // http://localhost:8080/restaurant/api/menu/carte/menu/1
     Call<List<Dish>> getDishes();
 }
