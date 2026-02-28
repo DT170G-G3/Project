@@ -16,7 +16,6 @@
         <param-value>0</param-value>
     </context-param>
 <!--- Ta bort fram till hit -->
-
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
