@@ -30,6 +30,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.MediaType;
 import com.dt170g.g3.backend.services.LunchMenuService;
 import com.dt170g.g3.backend.entities.LunchDish;
@@ -64,17 +65,19 @@ public class MenuApi {
     @GET
     @Path("/carte/menu/{menuId}/category/{categoryId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CarteDish> getCarteMenuByCategory(
+    public Response getCarteMenuByCategory(
             @PathParam("menuId") int menuId,
             @PathParam("categoryId") int categoryId) {
-        return carteHandler.findByCategory(menuId, categoryId);
+        List<CarteDish> dishes = carteHandler.findByCategory(menuId, categoryId);
+        return Response.ok(dishes).build();
     }
 
     @GET
     @Path("/carte/menu/{menuId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public CarteMenu getCarteMenuByCategory(@PathParam("menuId") int id) {
-        return carteHandler.findById(id);
+    public Response getCarteMenuByCategory(@PathParam("menuId") int id) {
+        CarteMenu menu = carteHandler.findById(id);
+        return Response.ok(menu.getDishes()).build();
     }
 
     @GET

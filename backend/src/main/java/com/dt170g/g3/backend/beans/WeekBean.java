@@ -49,21 +49,25 @@ public class WeekBean implements Serializable {
         return weekNumbers;
     }
     /* To recives the dates of mon-fri for any given weeknumber */
-    private List<LocalDate> getDaysOfWeek(int week){
+    private List<LocalDate> getDaysOfWeek(int week, int dayAmount){
         WeekFields weekFields = WeekFields.ISO;
         LocalDate startOfWeek = LocalDate.now()
                 .withYear(LocalDate.now().getYear())
                 .with(weekFields.weekOfYear(),week)
                 .with(DayOfWeek.MONDAY);
         List<LocalDate> weekdays = new ArrayList<>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < dayAmount; i++){
             weekdays.add(startOfWeek.plusDays(i));
         }
         return weekdays;
     }
     /* The method used by the facelet. */
     public List<LocalDate> getDaysOfWeekLunch(){
-        return getDaysOfWeek(weekNumber);
+        return getDaysOfWeek(weekNumber,5);
+    }
+
+    public List<LocalDate> getDaysOfWeekSchedule(){
+        return getDaysOfWeek(weekNumber,6);
     }
 
     // returnerar vilken dag i veckan
