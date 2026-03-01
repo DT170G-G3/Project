@@ -78,11 +78,13 @@ CREATE TABLE booking(
     no_of_people INT NOT NULL,
     note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
-    email VARCHAR(100),
-    phone_no VARCHAR(30),
-    sitting_id INT NOT NULL,
-    FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
+    email VARCHAR(100) NOT NULL,
+    phone_no VARCHAR(30) NOT NULL,
+    CONSTRAINT uq_booking_slot_phone UNIQUE (date, start_time, phone_no),
+    CONSTRAINT uq_booking_slot_email UNIQUE (date, start_time, email)
 ) ENGINE=InnoDB;
+
+CREATE INDEX ix_booking_date_time ON booking(date, start_time);
 
 -- Junction Tables
 
