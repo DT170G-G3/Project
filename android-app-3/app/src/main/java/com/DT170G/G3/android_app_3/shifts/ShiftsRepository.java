@@ -2,10 +2,6 @@ package com.DT170G.G3.android_app_3.shifts;
 
 import android.util.Log;
 
-import com.DT170G.G3.android_app_3.ApiClient;
-import com.DT170G.G3.android_app_3.employees.Employee;
-import com.DT170G.G3.android_app_3.employees.EmployeesRepository;
-
 import java.util.List;
 
 import retrofit2.Call;

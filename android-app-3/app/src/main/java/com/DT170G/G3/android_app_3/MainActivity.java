@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    DrinksRepository drinksRepo = new DrinksRepository();
+    ShiftsRepository shiftsRepo = new ShiftsRepository();
 
 
     @Override
