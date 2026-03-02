@@ -22,7 +22,7 @@ public class SchemaRow {
      *
      * @return A LinearLayout with a button and counter for items that can be ordered.
      */
-    public LinearLayout createSchemaRow(Context context, String[] names, String weekdayName) {
+    public LinearLayout createSchemaRow(Context context, String[] staff, String weekdayName) {
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout schemaRow = new LinearLayout(context);
         schemaRow.setOrientation(LinearLayout.HORIZONTAL);

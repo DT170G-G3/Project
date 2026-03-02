@@ -35,6 +35,7 @@ import java.util.List;
 public class StarterFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allStarterCounters = new ArrayList<>();
+    private List<Integer> allOrderedStarters = new ArrayList<>();
 
     public StarterFragment() {
         // Required empty public constructor
@@ -93,6 +94,10 @@ public class StarterFragment extends Fragment {
             starterCounter.setText("0");
         }
     }
+
+    public List<Integer> getAllOrderedStarters(){
+        return allOrderedStarters;
+    }
     private void asyncLoadStarters() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -117,7 +122,7 @@ public class StarterFragment extends Fragment {
              if(catId != 1) {
                  continue;
              }
-            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allStarterCounters));
+            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allStarterCounters, allOrderedStarters));
         }
     }
 
