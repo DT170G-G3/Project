@@ -1,6 +1,8 @@
 package com.DT170G.G3.android_app_3;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -10,7 +12,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_3.classes.PagerAdapter;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    DrinksRepository drinksRepo = new DrinksRepository();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,4 +37,24 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
+
+    private void asyncLoadShifts() {
+        drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Drink> drinks) {
+                populateDrinksUI(drinks);
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("ORDERS", "Fel: " + message);
+            }
+        });
+
     }
+
+    public void populateShiftsUI(List<Shift> dishes) {
+        // Your UI code
+        Log.d("SHIFT", "Size: " +dishes.size());
+    }
+
+}
