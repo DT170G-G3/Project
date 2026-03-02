@@ -60,8 +60,8 @@ public class CarteDish {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name="type_of_id")
-    private TypeOf typeGroup;
+    @JoinColumn(name="food_type_id")
+    private FoodType foodType;
 
 
 
@@ -119,8 +119,12 @@ public class CarteDish {
         return category;
     }
 
-    public TypeOf getTypeGroup() {
-        return typeGroup;
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
     }
 
     public void setCategory(Category category) {

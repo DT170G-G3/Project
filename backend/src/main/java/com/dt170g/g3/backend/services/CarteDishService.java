@@ -60,13 +60,7 @@ public class CarteDishService {
 
 
     @Transactional
-    public void saveToMenu(CarteDish dish){
-        //entityManager.persist(dish);
-       saveToDatabase(dish);
-    }
-
-
-    private void saveToDatabase(CarteDish dish){
+    public void saveToDatabase(CarteDish dish){
         entityManager.persist(dish);
     }
 
