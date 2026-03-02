@@ -28,6 +28,7 @@ import jakarta.persistence.TypedQuery;
 import com.dt170g.g3.backend.entities.Drink;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import jakarta.persistence.NoResultException;
 
 @ApplicationScoped
 public class DrinkService {
@@ -38,9 +39,13 @@ public class DrinkService {
         return entityManager.find(Drink.class, id);
     }
     public Drink getDrinkByName(String name){
-        TypedQuery<Drink> messageQuery = entityManager.createNamedQuery("Drink.findByName", Drink.class);
-        messageQuery.setParameter("name", name);
-        return messageQuery.getSingleResult();
+        try {
+            TypedQuery<Drink> messageQuery = entityManager.createNamedQuery("Drink.findByName", Drink.class);
+            messageQuery.setParameter("name", name);
+            return messageQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     public List<Drink> findAllDrinks(){
         TypedQuery<Drink> messageQuery = entityManager.createNamedQuery("Drink.getAll", Drink.class);
