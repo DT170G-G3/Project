@@ -5,8 +5,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-
 /**
  * A simple class for creating
  * LinearLayout with order items
@@ -36,7 +34,7 @@ public class SchemaRow {
         LinearLayout morningColumn = new LinearLayout(context);
         morningColumn.setOrientation(LinearLayout.VERTICAL);
         morningColumn.setPadding(0, 0, 0, 0);
-        LinearLayout.LayoutParams columnParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams columnParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         columnParams.setMargins(0, 10, 0, 0);
         morningColumn.setLayoutParams(columnParams);
 
