@@ -1,5 +1,7 @@
 package se.miun.g3.android_app_2;
 
+import static java.util.Collections.replaceAll;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import se.miun.g3.android_app_2.dishes.Dish;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     DrinksRepository drinksRepo = new DrinksRepository();
     TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
+    private long  stringToLongTime;
 
 
     @Override
@@ -66,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         List<String> desserts = new ArrayList<>();
 
         int tableNum;
+        String time;
         String notes;
+        long stringToLongTime;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -88,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         }
         tableNum = backendOrder.table.tableNum;
         notes = backendOrder.note;
-        return new ShowOrders(tableNum, starters, mains, desserts, notes);
+        time = backendOrder.createdAt;
+        return new ShowOrders(tableNum, starters, mains, desserts, notes, time);
     }
 
 
@@ -159,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Order> backendOrders) {
                 Log.d("ORDERS", "API gav " + backendOrders.size() + " orders");
+
+                backendOrders.sort(Comparator.comparing(o -> o.createdAt));
                 List<ShowOrders> uiOrders = new ArrayList<>();
                 for (Order o : backendOrders) {
                     uiOrders.add(orderToShowOrders(o));
@@ -206,8 +216,6 @@ public class MainActivity extends AppCompatActivity {
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
-    }
-    private void populateOrdersUI(List<Order> orders) {
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
