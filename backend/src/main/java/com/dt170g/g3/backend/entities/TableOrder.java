@@ -38,8 +38,8 @@ import java.util.List;
                 query = "SELECT DISTINCT o FROM TableOrder o " +
                         "LEFT JOIN FETCH o.dishes " +
                         "LEFT JOIN FETCH o.drinks " +
-                        "LEFT JOIN FETCH o.sitting " +
-                        "WHERE o.sitting.id = :sittingId"
+                        "LEFT JOIN FETCH o.table " +
+                        "WHERE o.table.id = :sittingId"
         )
 })
 
