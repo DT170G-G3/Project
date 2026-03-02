@@ -52,13 +52,16 @@ public class CarteDish {
     private String description;
     private double price;
 
+
+
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name="type_of_id")
-    private TypeOf typeGroup;
+    @JoinColumn(name="food_type_id")
+    private FoodType foodType;
 
 
     // =====================
@@ -93,6 +96,8 @@ public class CarteDish {
         this.name = name;
     }
 
+
+
     public String getDescription() {
         return description;
     }
@@ -113,12 +118,18 @@ public class CarteDish {
         return category;
     }
 
-    public TypeOf getTypeGroup() {
-        return typeGroup;
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
     }
 
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 
 }

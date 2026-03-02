@@ -10,7 +10,13 @@ public class ShiftType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private LocalTime start;
-    private LocalTime end;
+    private LocalTime start_time;
+    private LocalTime end_time;
+    public String getName(){
+        return this.name;
+    }
+    public int getId(){
+        return this.id;
+    }
 
 }

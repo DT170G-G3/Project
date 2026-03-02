@@ -20,6 +20,7 @@
  */
 package com.dt170g.g3.backend.services;
 
+import com.dt170g.g3.backend.beans.CarteMenuBean;
 import com.dt170g.g3.backend.entities.CarteMenu;
 import com.dt170g.g3.backend.entities.CarteDish;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -51,5 +52,29 @@ public class CarteMenuService {
                 .createNamedQuery("CarteMenu.findById", CarteMenu.class)
                 .setParameter("id", id)
                 .getSingleResult();
+    }
+
+    public List<CarteDish> getMenuDishes() {
+        System.out.println("--------------------------------jhjhih");
+        return entityManager
+                .createNamedQuery("CarteMenu.getDishesOnMenu", CarteDish.class)
+                .setParameter("menuId", 1)
+                .getResultList();
+    }
+
+
+    @Transactional
+    public void addDishToMenu(CarteDish dish){
+        CarteMenu menu = entityManager.find(CarteMenu.class, 1);
+        menu.getDishes().add(dish);
+        System.out.println("Adding dish to menu");
+    }
+
+    @Transactional
+    public void removeDishfromMenu(int id){
+        CarteMenu menu = entityManager.find(CarteMenu.class, 1);
+        CarteDish dish = entityManager.find(CarteDish.class, id);
+        menu.getDishes().remove(dish);
+
     }
 }

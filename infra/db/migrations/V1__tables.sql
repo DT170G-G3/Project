@@ -13,7 +13,7 @@ CREATE TABLE drink (
     price DECIMAL(6,2) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE type_of (
+CREATE TABLE food_type (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
@@ -35,9 +35,9 @@ CREATE TABLE carte_dish (
     description VARCHAR(255) NOT NULL,
     price DECIMAL(7,2) NOT NULL,
     category_id INT,
-    type_of_id INT,
+    food_type_id INT,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE,
-    FOREIGN KEY (type_of_id) REFERENCES type_of(id) ON DELETE CASCADE
+    FOREIGN KEY (food_type_id) REFERENCES food_type(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE lunch_menu(
