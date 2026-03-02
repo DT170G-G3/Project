@@ -24,6 +24,7 @@
  */
 package com.dt170g.g3.backend.entities;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -37,15 +38,25 @@ import java.util.List;
                 name = "CarteMenu.getAll",
                 query = "SELECT DISTINCT m FROM CarteMenu m LEFT JOIN FETCH m.dishes"
         ),
-        /*@NamedQuery(
-                name = "CarteDish.getDishesFromMenuByCategory",
-                query = "SELECT cd FROM CarteDish cd " +
-                        "JOIN cd.carteMenu m " +
-                        "JOIN cd.category c " +
-                        "LEFT JOIN cd.typeGroup t " +
-                        "WHERE m.id = 1 " +
-                        "ORDER BY c.displayOrder ASC"
-        ),*/
+//        @NamedQuery(
+//                name = "CarteDish.getDishesFromMenuByCategory",
+//                query = "SELECT cd FROM CarteDish cd " +
+//                        "JOIN cd.carteMenu m " +
+//                        "JOIN cd.category c " +
+//                        "LEFT JOIN cd.typeGroup t " +
+//                        "WHERE m.id = 1 " +
+//                        "ORDER BY c.displayOrder ASC"
+//        ),
+        @NamedQuery(
+                name = "CarteMenu.getDishesOnMenu",
+                query =
+                        "SELECT cd FROM CarteMenu m " +
+                                "JOIN m.dishes cd " +
+                                "JOIN cd.category c " +
+                                "LEFT JOIN cd.foodType ft " +
+                                "WHERE m.id = :menuId " +
+                                "ORDER BY c.displayOrder ASC"
+        ),
         @NamedQuery(
                 name = "CarteMenu.findDishesByCategoryId",
                 query = "SELECT d FROM CarteMenu m JOIN m.dishes d " +
@@ -69,6 +80,8 @@ public class CarteMenu {
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
     private List<CarteDish> dishes;
+
+
 
     // ----------------------
     // Constructors

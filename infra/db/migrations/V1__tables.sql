@@ -13,7 +13,7 @@ CREATE TABLE drink (
     price DECIMAL(6,2) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE type_of (
+CREATE TABLE food_type (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
@@ -35,9 +35,9 @@ CREATE TABLE carte_dish (
     description VARCHAR(255) NOT NULL,
     price DECIMAL(7,2) NOT NULL,
     category_id INT,
-    type_of_id INT,
+    food_type_id INT,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE,
-    FOREIGN KEY (type_of_id) REFERENCES type_of(id) ON DELETE CASCADE
+    FOREIGN KEY (food_type_id) REFERENCES food_type(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE lunch_menu(
@@ -50,15 +50,6 @@ CREATE TABLE restaurant_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     seats INT NOT NULL,
     table_no INT NOT NULL UNIQUE
-) ENGINE=InnoDB;
-
-CREATE TABLE sitting(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    start_time TIME NOT NULL,
-    date DATE NOT NULL,
-    duration_minutes INT NOT NULL,
-    restaurant_table_id INT NOT NULL,
-    FOREIGN KEY(restaurant_table_id) REFERENCES restaurant_table(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE table_order(
@@ -79,9 +70,7 @@ CREATE TABLE booking(
     note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100),
-    phone_no VARCHAR(30),
-    sitting_id INT NOT NULL,
-    FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
+    phone_no VARCHAR(30)
 ) ENGINE=InnoDB;
 
 -- Junction Tables
