@@ -4,4 +4,10 @@ public class Table {
     public int id;
     public int seats;
     public int tableNum;
+    public int getTableNumber(){
+        return tableNum;
+    }
+    public int getTableId(){
+        return id;
+    }
 }

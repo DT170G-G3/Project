@@ -1,11 +1,11 @@
 package se.miun.g3.android_app_2.drinks;
-import se.miun.g3.android_app_2.ApiClient;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import se.miun.g3.android_app_2.ApiClient;
 
 public class DrinksRepository {
 
@@ -15,7 +15,7 @@ public class DrinksRepository {
     }
 
 
-    public void getDrinks(se.miun.g3.android_app_2.drinks.DrinksRepository.GetCallback cb) {
+    public void getDrinks(GetCallback cb) {
         Call<List<Drink>> call = ApiClient.drinksApi().getDrinks();
         call.enqueue(new Callback<List<Drink>>() {
             @Override

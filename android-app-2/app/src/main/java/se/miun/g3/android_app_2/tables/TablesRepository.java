@@ -1,11 +1,11 @@
 package se.miun.g3.android_app_2.tables;
-import se.miun.g3.android_app_2.ApiClient;
-import se.miun.g3.android_app_2.drinks.Drink;
+
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import se.miun.g3.android_app_2.ApiClient;
 
 public class TablesRepository {
 
