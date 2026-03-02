@@ -51,7 +51,7 @@ public class TableOrder {
     private int id;
 
     @Column(name = "created_at", insertable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now(); // DETTA FUNGERAR, MEN ÄR DET OK??
 
     @Column(name = "order_no")
     private Integer orderNo;

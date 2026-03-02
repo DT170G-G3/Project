@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     DrinksRepository drinksRepo = new DrinksRepository();
     TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
-    private long  stringToLongTime;
+
 
 
     @Override
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         int tableNum;
         String time;
         String notes;
-        long stringToLongTime;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
