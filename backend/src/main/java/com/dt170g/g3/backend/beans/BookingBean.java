@@ -49,6 +49,7 @@ public class BookingBean implements Serializable {
             return;
         }
 
+        //OWASP regex-key
         if (email == null || !email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
             addError("Ange en giltig e-postadress.");
             return;
@@ -58,6 +59,8 @@ public class BookingBean implements Serializable {
             addError("Du kan inte boka bord för en tid som är bakåt i tiden.");
             return;
         }
+
+
 
         // Parse tid
         LocalTime startTime;

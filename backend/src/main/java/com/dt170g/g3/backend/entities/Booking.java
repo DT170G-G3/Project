@@ -18,6 +18,7 @@ import java.time.LocalTime;
                 query = "SELECT b FROM Booking b WHERE b.date = :date"
         )
 })
+
 public class Booking {
 
     @Id
