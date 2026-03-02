@@ -7,17 +7,6 @@
 
     <ui:define name="extra-head">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-        <!--
-        <script>
-            //<![CDATA[
-            const employees = [
-                <ui:repeat value="#{employeeBean.employees}" var="emp">
-                    { id: #{emp.id}, name: "#{emp.name}" },
-                </ui:repeat>
-            ];
-            //]]>
-        </script>
-        -->
         <h:outputScript library="js" name="admin-schedule.js"/>
     </ui:define>
 
@@ -26,6 +15,11 @@
             <aside class="poolPanel">
                 <h2>Anställda</h2>
                 <div class="employeePool" id="pool">
+                    <ui:repeat value="#{emp.employees}" var="employee">
+                        <div class="chip" data-id="#{employee.id}" data-name="#{employee.name}">
+                            #{employee.name}
+                        </div>
+                    </ui:repeat>
                 </div>
             </aside>
 

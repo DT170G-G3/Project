@@ -7,15 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const NUMBER_OF_EMPLOYEES = 11;
 
     /**
-     * Replace this with an actual list from the database.
-     * @type {string[]}
-     */
-    const employees = [
-        "Alice", "Bob", "Eve", "Mike", "Lisa",
-        "Johan", "Elsa", "Lars", "Karin", "Emil", "Maria"
-    ];
-
-    /**
      * This isn't needed, we'll handle multiple weeks differently going forward.
      * @type {[{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},null]}
      */
@@ -29,38 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     /**
-     * This is just a placeholder - it's not needed in the final product.
-     * @type {{Monday: {lunch: string[], evening: string[]}, Tuesday: {lunch: string[], evening: string[]}, Wednesday: {lunch: string[], evening: string[]}, Thursday: {lunch: string[], evening: string[]}, Friday: {lunch: string[], evening: string[]}, Saturday: {lunch: string[], evening: string[]}}}
-     */
-    const initialSchedule = {
-        Monday:    { lunch: ["Alice", "Bob"],        evening: ["Mike", "Lisa", "Johan"] },
-        Tuesday:   { lunch: ["Eve", "Elsa"],         evening: ["Lars", "Karin"] },
-        Wednesday: { lunch: ["Alice", "Emil"],        evening: ["Bob", "Maria", "Mike"] },
-        Thursday:  { lunch: ["Johan", "Eve"],         evening: ["Lisa", "Elsa"] },
-        Friday:    { lunch: ["Karin", "Lars"],        evening: ["Alice", "Bob", "Eve"] },
-        Saturday:  { lunch: ["Emil", "Maria"],        evening: ["Mike", "Johan", "Lars"] },
-    };
-
-    /**
-     * Same, this is just a placeholder - not needed in the final product.
-     * @type {{Monday: string[], Tuesday: string[], Wednesday: string[], Thursday: string[], Friday: string[], Saturday: string[]}}
-     */
-    const initialMenu = {
-        Monday:    ["Pasta Carbonara", "Grillad Lax"],
-        Tuesday:   ["Risotto ai Funghi", "Chicken Milanese"],
-        Wednesday: ["Gnocchi al Pesto", "Branzino"],
-        Thursday:  ["Tagliatelle Bolognese", "Veal Piccata"],
-        Friday:    ["Linguine alle Vongole", "Ossobuco"],
-        Saturday:  ["Ravioli Burro e Salvia", "Bistecca Fiorentina"],
-    };
-
-    /**
      * Might need to change this if someone has the same first name.
      * (First name + last name in the end, possibly?)
      * @param name
      * @returns {string}
      */
-    function initials(name) {
+    function initial(name) {
         return name.at(0).toUpperCase();
     }
 
@@ -73,13 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return employees.indexOf(name) % NUMBER_OF_EMPLOYEES;
     }
 
+    /*
     function makeChip(name, inZone) {
         const idx = avatarIndex(name);
         const chip = document.createElement('div');
         chip.className = 'chip';
         chip.dataset.name = name;
         chip.innerHTML = `
-        <span class="chip-avatar av-${idx}">${initials(name)}</span>
+        <span class="chip-avatar av-${idx}">${initial(name)}</span>
         ${name}
         ${inZone ? `<button class="remove-btn" title="Ta bort">✕</button>` : ''}
       `;
@@ -92,6 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return chip;
     }
+
+     */
+
+    document.querySelectorAll('#pool .chip').forEach((chip, idx) => {
+        const name = chip.dataset.name;
+        chip.innerHTML = `
+        <span class="chip-avatar av-${idx % NUMBER_OF_EMPLOYEES}">${name.at(0).toUpperCase()}</span>
+        ${name}
+    `;
+    });
 
     function updateEmptyHints() {
         document.querySelectorAll('.shift-drop-zone').forEach(zone => {
