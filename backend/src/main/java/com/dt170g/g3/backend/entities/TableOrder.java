@@ -60,8 +60,8 @@ public class TableOrder {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name = "sitting_id", nullable = false)
-    private Sitting sitting;
+    @JoinColumn(name = "table_id", nullable = false)
+    private RestaurantTable table;
 
     @ManyToMany
     @JoinTable(
@@ -86,9 +86,9 @@ public class TableOrder {
     public TableOrder() {
     }
 
-    public TableOrder(Integer orderNo, Sitting sitting) {
+    public TableOrder(Integer orderNo, RestaurantTable table) {
         this.orderNo = orderNo;
-        this.sitting = sitting;
+        this.table = table;
     }
 
     // =====================
@@ -124,12 +124,12 @@ public class TableOrder {
         this.note = note;
     }
 
-    public Sitting getSitting() {
-        return sitting;
+    public RestaurantTable getTable() {
+        return table;
     }
 
-    public void setSitting(Sitting sitting) {
-        this.sitting = sitting;
+    public void setTable(RestaurantTable table) {
+        this.table = table;
     }
 
     public List<CarteDish> getDishes() { return dishes; }
