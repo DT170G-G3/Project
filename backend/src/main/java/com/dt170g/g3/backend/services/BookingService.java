@@ -33,13 +33,9 @@ public class BookingService {
 
         // Är det färre krockar än bord? OK!
         if (overlappingCount < TOTAL_TABLES) {
-            try {
-                em.persist(newBooking);
-                em.flush(); // Tvingar fram SQL-anropet för att validera constraints direkt
-                return true;
-            } catch (PersistenceException e) {
-                return false; // Fångar constraint-fel (t.ex. dubbelbokning)
-            }
+            em.persist(newBooking);
+            em.flush(); // Tvingar fram SQL-anropet. Om constraint krockar kastas PersistenceException här.
+            return true;
         }
 
         return false; // Fullbokat

@@ -94,14 +94,21 @@ public class BookingBean implements Serializable {
         b.setPhoneNo(phone == null ? null : phone.trim());
 
         // Försök skapa bokning
-        boolean created = bookingService.createIfAvailable(b);
-        if (!created) {
-            addError("Tyvärr, det finns inga lediga bord för " + guests + " personer den " + date + " kl " + time + ".");
-            return;
-        }
+        try {
+            boolean created = bookingService.createIfAvailable(b);
+            if (!created) {
+                //Om det inte finns lediga bord
+                addError("Tyvärr, det finns inga lediga bord för " + guests + " personer den " + date + " kl " + time + ".");
+                return;
+            }
+            
+            msgSuccess(buildSuccessMessage(name, date, time));
+            clearForm();
 
-        msgSuccess(buildSuccessMessage(name, date, time));
-        clearForm();
+        } catch (Exception e) {
+            // Finns det en dublett-bokning?
+            addError("Du har redan bokat ett bord för " + guests + " personer i namnet " + name + " denna dag.");
+        }
     }
 
     //rensas formuläret
