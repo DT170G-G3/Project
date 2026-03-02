@@ -6,6 +6,7 @@
  *   - findAllOrders()             : Retrieve all table orders
  *   - getOrderById(int id)        : Retrieve a single table order by its ID
  *   - findAllOrdersBySitting(int id) : Retrieve all orders for a specific sitting, including associated dishes and drinks
+ *   - addOrder(TableOrder o)   : Add a new TableOrder entry to the DB
  *
  * Uses JPA EntityManager to perform database operations.
  * Methods are application-scoped and can be injected into REST API resources.
@@ -48,7 +49,7 @@ public class TableOrderService {
     }
 
     @Transactional
-    public void addOrder(TableOrder order) {
-        entityManager.persist(order);
+    public void addOrder(TableOrder o) {
+        entityManager.persist(o);
     }
 }

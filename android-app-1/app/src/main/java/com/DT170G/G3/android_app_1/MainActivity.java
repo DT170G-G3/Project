@@ -3,8 +3,6 @@ package com.DT170G.G3.android_app_1;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -25,7 +23,7 @@ import com.DT170G.G3.android_app_1.fragments.DrinkFragment;
 import com.DT170G.G3.android_app_1.fragments.MainCourseFragment;
 import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.orders.Order;
-import com.DT170G.G3.android_app_1.orders.Sitting;
+import com.DT170G.G3.android_app_1.tables.Table;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,7 +31,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     StarterFragment starterFragment = new StarterFragment();
     MainCourseFragment mainCourseFragment = new MainCourseFragment();
     DessertFragment dessertFragment = new DessertFragment();
+
 
     private PagerAdapter pagerAdapter;
     private ViewPager2 viewPager2;
@@ -70,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        //exampleCreateOrder();
+        exampleCreateOrder();
 
+        //------GET---------
+        //exampleGetDishes();
 
     }
 
@@ -242,14 +242,18 @@ public class MainActivity extends AppCompatActivity {
         Drink drink = new Drink();
         drink.id = 1;
 
-        Sitting sit = new Sitting();
-        sit.id = 1;
+        Table table = new Table();
+        table.tableNum = 1;
+        table.id = 1;
 
         order.dishes.add(dish);
         order.drinks.add(drink);
-        order.sitting = sit;
+        order.table = table;
 
         asyncCreateOrder(order);
+    }
+    public void exampleGetDishes() {
+
     }
 
     private void asyncCreateOrder(Order order) {

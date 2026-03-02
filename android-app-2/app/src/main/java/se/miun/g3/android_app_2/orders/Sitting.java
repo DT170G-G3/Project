@@ -1,7 +1,5 @@
-package com.DT170G.G3.android_app_1.orders;
-
-import com.DT170G.G3.android_app_1.tables.Table;
-
+package se.miun.g3.android_app_2.orders;
+import se.miun.g3.android_app_2.tables.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
