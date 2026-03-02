@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         int tableNum;
         String notes;
+        String time;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -90,9 +91,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.w("ORDER", "Okänd kategori: " + d.category.id);
             }
         }
-        tableNum = backendOrder.sitting.restaurantTable.tableNum;
+        tableNum = backendOrder.table.tableNum;
         notes = backendOrder.note;
-        return new ShowOrders(tableNum, starters, mains, desserts, notes);
+        time = backendOrder.createdAt;
+        return new ShowOrders(tableNum, starters, mains, desserts, notes, time);
     }
 
 
