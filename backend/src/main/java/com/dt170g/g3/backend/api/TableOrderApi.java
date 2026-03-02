@@ -4,7 +4,7 @@
  * REST API resource for managing TableOrder entities.
  * Provides endpoints to:
  *   - GET /order             : Retrieve all table orders
- *   - GET /order/sitting/{id} : Retrieve all orders for a specific sitting
+ *   - GET /order/table/{id} : Retrieve all orders for a specific table
  *   - GET /order/id/{id}     : Retrieve a single order by its ID
  *   - POST /order/add  : Creates a new table order from the provided JSON payload
  *
@@ -46,10 +46,10 @@ public class TableOrderApi {
     }
 
     @GET
-    @Path("/sitting/{id}")
+    @Path("/table/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TableOrder> getOrderBySitting(@PathParam("id") int id) {
-        return orderHandler.findAllOrdersBySitting(id);
+    public List<TableOrder> getOrderByTable(@PathParam("id") int id) {
+        return orderHandler.findAllOrdersByTable(id);
     }
     @GET
     @Path("/id/{id}")

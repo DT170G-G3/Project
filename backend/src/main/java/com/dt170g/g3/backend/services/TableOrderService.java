@@ -42,9 +42,9 @@ public class TableOrderService {
     public TableOrder getOrderById(int id){
         return entityManager.find(TableOrder.class, id);
     }
-    public List<TableOrder> findAllOrdersBySitting(int id) {
-        TypedQuery<TableOrder> query = entityManager.createNamedQuery("TableOrder.findBySitting", TableOrder.class);
-        query.setParameter("sittingId", id);
+    public List<TableOrder> findAllOrdersByTable(int id) {
+        TypedQuery<TableOrder> query = entityManager.createNamedQuery("TableOrder.findByTable", TableOrder.class);
+        query.setParameter("tableId", id);
         return query.getResultList();
     }
 

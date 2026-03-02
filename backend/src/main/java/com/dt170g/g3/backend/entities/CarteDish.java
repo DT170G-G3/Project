@@ -61,7 +61,6 @@ public class CarteDish {
     private TypeOf typeGroup;
 
 
-
     // =====================
     // Constructors
     // =====================
