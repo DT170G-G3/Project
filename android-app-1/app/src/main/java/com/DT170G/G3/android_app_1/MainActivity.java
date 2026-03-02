@@ -237,10 +237,10 @@ public class MainActivity extends AppCompatActivity {
         order.drinks = new ArrayList<>();
 
         Dish dish = new Dish();
-        dish.id = 3;
+        dish.id = 2;
 
         Drink drink = new Drink();
-        drink.id = 1;
+        drink.id = 2;
 
         Table table = new Table();
         table.tableNum = 1;
@@ -251,9 +251,6 @@ public class MainActivity extends AppCompatActivity {
         order.table = table;
 
         asyncCreateOrder(order);
-    }
-    public void exampleGetDishes() {
-
     }
 
     private void asyncCreateOrder(Order order) {

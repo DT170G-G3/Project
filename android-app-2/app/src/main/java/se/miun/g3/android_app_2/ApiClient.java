@@ -26,7 +26,6 @@ public final class ApiClient {
     public static DishesApi dishesApi() {
         return retrofit.create(DishesApi.class);
     }
-
     public static OrdersApi ordersApi() {
         return retrofit.create(OrdersApi.class);
     }
