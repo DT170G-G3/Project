@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.w("ORDER", "Okänd kategori: " + d.category.id);
             }
         }
-        tableNum = backendOrder.sitting.restaurantTable.tableNum;
+        tableNum = backendOrder.table.tableNum;
         notes = backendOrder.note;
         return new ShowOrders(tableNum, starters, mains, desserts, notes);
     }
@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         Drink drink = new Drink();
         drink.id = 1;
 
-        Sitting sit = new Sitting();
-        sit.id = 1;
+        Table table = new Table();
+        table.id = 1;
 
         order.dishes.add(dish);
         order.drinks.add(drink);
-        order.sitting = sit;
+        order.table = table;
 
         asyncCreateOrder(order);
     }
