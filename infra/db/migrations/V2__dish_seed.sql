@@ -1,4 +1,4 @@
-INSERT INTO type_of (name) VALUES
+INSERT INTO food_type (name) VALUES
                                ('Meat'),
                                ('Fish'),
                                ('Vegetarian');
@@ -47,7 +47,7 @@ INSERT INTO carte_dish (name, description, price, category_id) VALUES
 ('Glass och Sorbet', 'Urval av glass och sorbet', 65.00, 3),
 ('Tiramisu', 'Klassisk italiensk dessert med kaffe och mascarpone', 90.00, 3);
 
-INSERT INTO carte_dish (name, description, price, category_id, type_of_id) VALUES
+INSERT INTO carte_dish (name, description, price, category_id, food_type_id) VALUES
 ('Oxfilé', 'Grillad oxfilé med rödvinssås och potatisgratäng', 295.00, 2, 1),
 ('Entrecôte', 'Saftig entrecôte med bearnaisesås och pommes frites', 265.00, 2, 1),
 ('Grillad Laxfilé', 'Lax serverad med citronsås och säsongens grönsaker', 225.00, 2, 2),

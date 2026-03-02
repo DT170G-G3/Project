@@ -42,4 +42,12 @@ public class Shift {
     public int getId(){
         return id;
     }
+
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
+    public void setType(ShiftType shiftType){
+        this.type = shiftType;
+    }
 }
