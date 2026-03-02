@@ -62,7 +62,7 @@ INSERT INTO sitting (start_time, date, duration_minutes, restaurant_table_id) VA
 ('19:30:00', '2026-03-03', 120, 7);
 
 
-INSERT INTO table_order (order_no, note, sitting_id) VALUES
+INSERT INTO table_order (order_no, note, table_id) VALUES
 
 -- Sitting 1 (busy lunch)
 (1001, "Nötallergi", 1),
