@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.OrderViewHolder> {
     private List<ShowOrders> orderList;
@@ -64,7 +66,6 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         }
         String time = order.getCreatedAt().substring(11,16);
         holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
-        //holder.tableTextView.setText("Bord " + order.getTableNumber());
 
         if(order.getNotes() != null && !order.getNotes().isEmpty()) {
             holder.notesTextView.setVisibility(View.VISIBLE);

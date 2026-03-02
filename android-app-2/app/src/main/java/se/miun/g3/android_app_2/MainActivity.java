@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.w("ORDER", "Okänd kategori: " + d.category.id);
             }
         }
-        tableNum = backendOrder.sitting.restaurantTable.tableNum;
+        tableNum = backendOrder.table.tableNum;
         notes = backendOrder.note;
         time = backendOrder.createdAt;
         return new ShowOrders(tableNum, starters, mains, desserts, notes, time);
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
         order.dishes.add(dish);
         order.drinks.add(drink);
-        order.sitting = sit;
+        //order.sitting = sit;
 
         asyncCreateOrder(order);
     }
@@ -169,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ORDERS", "API gav " + backendOrders.size() + " orders");
 
                 backendOrders.sort(Comparator.comparing(o -> o.createdAt));
-
                 List<ShowOrders> uiOrders = new ArrayList<>();
                 for (Order o : backendOrders) {
                     uiOrders.add(orderToShowOrders(o));
