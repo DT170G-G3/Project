@@ -9,9 +9,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.DT170G.G3.android_app_3.fragments.NextWeekFragment;
 import com.DT170G.G3.android_app_3.fragments.ThisWeekFragment;
 
-public class PagerAdapter extends FragmentStateAdapter {
+public class WeekPagerAdapter extends FragmentStateAdapter {
 
-    public PagerAdapter(@NonNull FragmentActivity fragmentActivity){
+    public WeekPagerAdapter(@NonNull FragmentActivity fragmentActivity){
         super(fragmentActivity);
     }
 

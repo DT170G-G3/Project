@@ -8,9 +8,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.DT170G.G3.android_app_3.classes.PagerAdapter;
+import com.DT170G.G3.android_app_3.classes.WeekPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
+    private WeekPagerAdapter weekPagerAdapter;
+    private ViewPager2 viewPager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
-        PagerAdapter adapter = new PagerAdapter(this);
-        viewPager2.setAdapter(adapter);
+        viewPager2 = findViewById(R.id.viewPager);
+        weekPagerAdapter = new WeekPagerAdapter(this);
+        viewPager2.setAdapter(weekPagerAdapter);
 
    }
 
-    }
+}
