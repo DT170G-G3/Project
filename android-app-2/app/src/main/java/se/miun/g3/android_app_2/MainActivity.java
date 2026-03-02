@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     DrinksRepository drinksRepo = new DrinksRepository();
     TablesRepository tablesRepo = new TablesRepository();
     OrdersRepository ordersRepo = new OrdersRepository();
-    private long  stringToLongTime;
 
 
     @Override
@@ -71,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> desserts = new ArrayList<>();
 
         int tableNum;
-        String time;
         String notes;
-        long stringToLongTime;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -93,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.w("ORDER", "Okänd kategori: " + d.category.id);
             }
         }
-        tableNum = backendOrder.table.tableNum;
+        tableNum = backendOrder.sitting.restaurantTable.tableNum;
         notes = backendOrder.note;
-        time = backendOrder.createdAt;
-        return new ShowOrders(tableNum, starters, mains, desserts, notes, time);
+        return new ShowOrders(tableNum, starters, mains, desserts, notes);
     }
 
 
@@ -128,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
         Drink drink = new Drink();
         drink.id = 1;
 
-        Sitting sit = new Sitting();
-        sit.id = 1;
+        Table table = new Table();
+        table.id = 1;
 
         order.dishes.add(dish);
         order.drinks.add(drink);
-        //order.sitting = sit;
+        order.table = table;
 
         asyncCreateOrder(order);
     }
@@ -216,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
+    }
+    private void populateOrdersUI(List<Order> orders) {
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code
