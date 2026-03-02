@@ -26,12 +26,26 @@ import jakarta.persistence.TypedQuery;
 import com.dt170g.g3.backend.entities.Category;
 import jakarta.inject.Inject;
 
+import java.util.List;
+
 @ApplicationScoped
 public class CategoryService {
-    @Inject
+    @PersistenceContext
     private EntityManager em;
 
     public boolean categoryExists(int categoryId) {
         return em.find(Category.class, categoryId) != null;
     }
+
+    public List<Category> findAllCategories() {
+        return em.createNamedQuery("Category.getAll", Category.class)
+                .getResultList();
+    }
+
+    public Category findById(int id){
+        return em.find(Category.class,id);
+    }
+
+
+
 }
