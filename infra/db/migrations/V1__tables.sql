@@ -66,8 +66,8 @@ CREATE TABLE table_order(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
     order_no INT,
     note VARCHAR(255) DEFAULT NULL,
-    sitting_id INT NOT NULL,
-    FOREIGN KEY (sitting_id) REFERENCES sitting(id) ON DELETE CASCADE
+    table_id INT NOT NULL,
+    FOREIGN KEY (table_id) REFERENCES restaurant_table(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE booking(
