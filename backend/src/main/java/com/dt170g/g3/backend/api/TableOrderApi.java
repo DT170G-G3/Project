@@ -45,6 +45,7 @@ public class TableOrderApi {
         return orderHandler.findAllOrders();
     }
 
+
     @GET
     @Path("/sitting/{id}")
     @Produces(MediaType.APPLICATION_JSON)
