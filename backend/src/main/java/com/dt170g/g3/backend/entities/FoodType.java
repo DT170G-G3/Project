@@ -2,9 +2,16 @@ package com.dt170g.g3.backend.entities;
 
 import jakarta.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "FoodType.getAll",
+                query = "SELECT fType FROM FoodType fType"
+        )
+})
+
 @Entity
-@Table(name = "type_of")
-public class TypeOf {
+@Table(name = "food_type")
+public class FoodType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +21,9 @@ public class TypeOf {
     private String name;
 
     // Constructors
-    public TypeOf(){}
+    public FoodType(){}
 
-    public TypeOf(String name) {
+    public FoodType(String name) {
         this.name = name;
     }
 
