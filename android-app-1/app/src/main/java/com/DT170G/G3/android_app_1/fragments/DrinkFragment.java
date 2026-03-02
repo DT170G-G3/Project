@@ -95,6 +95,10 @@ public class DrinkFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedDrinks(){
+        allOrderedDrinks.clear();
+    }
+
     public List<Integer> getAllOrderedDrinks(){
         return allOrderedDrinks;
     }

@@ -91,7 +91,7 @@ public class OrderItemRow {
                 //Minska räknaren
                 itemCounter.setText(String.valueOf(currentNumber - 1));
                 //Ta bort från listan över beställda drinkar
-                allOrderedItems.remove(item);
+                allOrderedItems.remove(Integer.valueOf(itemId));
             }
             return true;
         });

@@ -95,6 +95,10 @@ public class StarterFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedStarters(){
+        allOrderedStarters.clear();
+    }
+
     public List<Integer> getAllOrderedStarters(){
         return allOrderedStarters;
     }

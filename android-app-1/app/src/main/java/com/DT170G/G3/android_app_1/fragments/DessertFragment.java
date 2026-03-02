@@ -94,6 +94,10 @@ public class DessertFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedDesserts(){
+        allOrderedDesserts.clear();
+    }
+
     public List<Integer> getAllOrderedDesserts(){
         return allOrderedDesserts;
     }

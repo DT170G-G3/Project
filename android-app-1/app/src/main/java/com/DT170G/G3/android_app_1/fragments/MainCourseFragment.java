@@ -96,6 +96,10 @@ public class MainCourseFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedMainCourses(){
+        allOrderedMainCourses.clear();
+    }
+
     public List<Integer> getAllOrderedMainCourses(){
         return allOrderedMainCourses;
     }
