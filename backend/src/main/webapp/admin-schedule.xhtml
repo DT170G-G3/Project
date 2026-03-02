@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/templates/admin_base.xhtml">
 
     <ui:define name="title">Adminpanel - Schema</ui:define>
@@ -27,7 +28,34 @@
 
                 <div class="weekTitle">Schema</div>
 
-                <div class="daysList" id="days-list"></div>
+                <div class="daysList" id="days-list">
+                    <ui:repeat value="#{week.daysOfWeekSchedule}" var="day">
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-name">#{day}</span>
+                            </div>
+                            <div class="shifts">
+                                <ui:repeat value="#{schedule.getShifts(day)}" var="shift">
+                                    <div class="shift-row #{shift.shiftType.name == 'Lunch' ? 'lunch' : 'evening'}">
+                                        <div class="shift-label">
+                                            <span class="shift-dot"></span>
+                                            <span>#{shift.shiftType.name}</span>
+                                        </div>
+                                        <div class="shift-drop-zone #{shift.shiftType.name == 'Lunch' ? 'lunch-zone' : 'evening-zone'}"
+                                             id="zone-#{shift.id}"
+                                             data-shift-id="#{shift.id}">
+                                            <ui:repeat value="#{schedule.getEmployeesShift(shift)}" var="worker">
+                                                <div class="chip" data-id="#{worker.id}" data-name="#{worker.name}">
+                                                    #{worker.name}
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
 
                 <div class="saveBar">
                     <button class="btn btnSecondary">Återställ</button>
@@ -36,6 +64,21 @@
 
             </main>
         </div>
+
+        <!-- Hidden form for backend calls -->
+        <h:form id="scheduleForm">
+            <h:inputHidden id="empId" value="#{schedule.selectedEmpId}" />
+            <h:inputHidden id="shiftId" value="#{schedule.selectedShiftId}" />
+            <h:commandButton id="addBtn" style="display:none"
+                             action="#{schedule.addEmployeeToShift(schedule.selectedEmpId, schedule.selectedShiftId)}">
+                <f:ajax execute="@form" render="@none" />
+            </h:commandButton>
+            <h:commandButton id="removeBtn" style="display:none"
+                             action="#{schedule.removeEmployeeFromShift(schedule.selectedEmpId, schedule.selectedShiftId)}">
+                <f:ajax execute="@form" render="@none" />
+            </h:commandButton>
+        </h:form>
+
     </ui:define>
 
 </ui:composition>

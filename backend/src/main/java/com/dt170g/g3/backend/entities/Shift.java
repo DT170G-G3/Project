@@ -38,4 +38,8 @@ public class Shift {
     public Set<Employee> getEmployeeList(){
         return employeeList;
     }
+
+    public int getId(){
+        return id;
+    }
 }

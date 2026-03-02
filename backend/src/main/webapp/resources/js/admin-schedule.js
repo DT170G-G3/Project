@@ -1,72 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    /**
-     * There's A LOT to change here later.
-     */
-
-    const NUMBER_OF_EMPLOYEES = 11;
-
-    /**
-     * This isn't needed, we'll handle multiple weeks differently going forward.
-     * @type {[{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},{name: string, key: string, date: string},null]}
-     */
-    const days = [
-        { name: "Måndag",   key: "Monday",    date: "16 Feb" },
-        { name: "Tisdag",   key: "Tuesday",   date: "17 Feb" },
-        { name: "Onsdag",   key: "Wednesday", date: "18 Feb" },
-        { name: "Torsdag",  key: "Thursday",  date: "19 Feb" },
-        { name: "Fredag",   key: "Friday",    date: "20 Feb" },
-        { name: "Lördag",   key: "Saturday",  date: "21 Feb" },
-    ];
-
-    /**
-     * Might need to change this if someone has the same first name.
-     * (First name + last name in the end, possibly?)
-     * @param name
-     * @returns {string}
-     */
-    function initial(name) {
-        return name.at(0).toUpperCase();
-    }
-
-    /**
-     * Get employee index from name. Will be changed later.
-     * @param name
-     * @returns {number}
-     */
-    function avatarIndex(name) {
-        return employees.indexOf(name) % NUMBER_OF_EMPLOYEES;
-    }
-
-    /*
-    function makeChip(name, inZone) {
-        const idx = avatarIndex(name);
-        const chip = document.createElement('div');
-        chip.className = 'chip';
-        chip.dataset.name = name;
-        chip.innerHTML = `
-        <span class="chip-avatar av-${idx}">${initial(name)}</span>
-        ${name}
-        ${inZone ? `<button class="remove-btn" title="Ta bort">✕</button>` : ''}
-      `;
-        if (inZone) {
-            chip.querySelector('.remove-btn').addEventListener('click', e => {
-                e.stopPropagation();
-                chip.remove();
-                updateEmptyHints();
-            });
-        }
-        return chip;
-    }
-
-     */
-
+    // Enhance pool chips with avatar styling
     document.querySelectorAll('#pool .chip').forEach((chip, idx) => {
         const name = chip.dataset.name;
         chip.innerHTML = `
-        <span class="chip-avatar av-${idx % NUMBER_OF_EMPLOYEES}">${name.at(0).toUpperCase()}</span>
-        ${name}
-    `;
+            <span class="chip-avatar av-${idx % 11}">${name.at(0).toUpperCase()}</span>
+            ${name}
+        `;
+    });
+
+    // Enhance zone chips with avatar styling and remove button
+    document.querySelectorAll('.shift-drop-zone .chip').forEach((chip, idx) => {
+        const name = chip.dataset.name;
+        chip.innerHTML = `
+            <span class="chip-avatar av-${idx % 11}">${name.at(0).toUpperCase()}</span>
+            ${name}
+            <button class="remove-btn" title="Ta bort">✕</button>
+        `;
+        chip.querySelector('.remove-btn').addEventListener('click', e => {
+            e.stopPropagation();
+            const shiftId = chip.closest('.shift-drop-zone').dataset.shiftId;
+            const empId = chip.dataset.id;
+            triggerBackend('remove', empId, shiftId);
+            chip.remove();
+            updateEmptyHints();
+        });
     });
 
     function updateEmptyHints() {
@@ -86,49 +44,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function triggerBackend(action, empId, shiftId) {
+        document.getElementById('scheduleForm:empId').value = empId;
+        document.getElementById('scheduleForm:shiftId').value = shiftId;
+        if (action === 'add') {
+            document.getElementById('scheduleForm:addBtn').click();
+        } else {
+            document.getElementById('scheduleForm:removeBtn').click();
+        }
+    }
+
     const pool = document.getElementById('pool');
-    employees.forEach(name => {
-        pool.appendChild(makeChip(name, false));
-    });
-
-    const daysList = document.getElementById('days-list');
-
-    days.forEach(day => {
-        const sched = initialSchedule[day.key] || { lunch: [], evening: [] };
-
-        const card = document.createElement('div');
-        card.className = 'day-card';
-        card.innerHTML = `
-        <div class="day-header">
-          <span class="day-name">${day.name}</span>
-          <span class="day-date">${day.date}</span>
-        </div>
-        <div class="shifts">
-          <div class="shift-row lunch">
-            <div class="shift-label">
-              <span class="shift-dot"></span>
-              <span>Lunch</span>
-            </div>
-            <div class="shift-drop-zone lunch-zone" id="zone-${day.name}-lunch"></div>
-          </div>
-          <div class="shift-row evening">
-            <div class="shift-label">
-              <span class="shift-dot"></span>
-              <span>Middag</span>
-            </div>
-            <div class="shift-drop-zone evening-zone" id="zone-${day.name}-evening"></div>
-          </div>
-        </div>
-      `;
-        daysList.appendChild(card);
-
-        sched.lunch.forEach(name => {
-            document.getElementById(`zone-${day.name}-lunch`).appendChild(makeChip(name, true));
-        });
-        sched.evening.forEach(name => {
-            document.getElementById(`zone-${day.name}-evening`).appendChild(makeChip(name, true));
-        });
-    });
 
     Sortable.create(pool, {
         group: { name: 'staff', pull: 'clone', put: false },
@@ -136,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         animation: 150,
         ghostClass: 'sortable-ghost',
         dragClass: 'sortable-drag',
-        onClone(evt) {
-        }
+        onClone(evt) {}
     });
 
     document.querySelectorAll('.shift-drop-zone').forEach(zone => {
@@ -155,16 +80,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const existing = [...targetZone.querySelectorAll('.chip')].filter(c => c !== chip && c.dataset.name === name);
                 if (existing.length > 0) {
                     if (sourceZone === pool) {
-                        // Was cloned from pool, just remove the clone
                         chip.remove();
                     } else {
-                        // Was moved from another zone, return it
                         sourceZone.appendChild(chip);
                     }
                     updateEmptyHints();
                     return;
                 }
 
+                // Add remove button if not present
                 if (!chip.querySelector('.remove-btn')) {
                     const btn = document.createElement('button');
                     btn.className = 'remove-btn';
@@ -172,11 +96,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     btn.textContent = '✕';
                     btn.addEventListener('click', e => {
                         e.stopPropagation();
+                        const shiftId = chip.closest('.shift-drop-zone').dataset.shiftId;
+                        const empId = chip.dataset.id;
+                        triggerBackend('remove', empId, shiftId);
                         chip.remove();
                         updateEmptyHints();
                     });
                     chip.appendChild(btn);
                 }
+
+                // Trigger add on backend
+                const shiftId = targetZone.dataset.shiftId;
+                const empId = chip.dataset.id;
+                triggerBackend('add', empId, shiftId);
+
+                // If moved from another zone, trigger remove from source
+                if (sourceZone !== pool) {
+                    const sourceShiftId = sourceZone.dataset.shiftId;
+                    triggerBackend('remove', empId, sourceShiftId);
+                }
+
                 updateEmptyHints();
             },
             onRemove() {
@@ -190,19 +129,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     updateEmptyHints();
-
-    document.querySelector('.btnPrimary').addEventListener('click', () => {
-        const result = {};
-        days.forEach(day => {
-            result[day.name] = {
-                lunch:   [...document.querySelectorAll(`#zone-${day.name}-lunch .chip`)].map(c => c.dataset.name),
-                evening: [...document.querySelectorAll(`#zone-${day.name}-evening .chip`)].map(c => c.dataset.name),
-            };
-        });
-        /**
-         * "Save" to console for now. This needs to be serialized later, in order to be usable against the
-         * backend and database.
-         */
-        console.log('Sparat schema:', result);
-    });
 });
