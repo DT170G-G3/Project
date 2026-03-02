@@ -110,22 +110,10 @@ public class MainActivity extends AppCompatActivity {
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
-            int selectedMenuId = bottomNavigationMenu.getSelectedItemId();
+            exampleCreateOrder();
 
-            //TODO ändra så att beställningen skickas till databasen den man står på plus de föregående sidorna (om något är ifyllt).
+            Snackbar.make(findViewById(R.id.main), "Beställningen skickas", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
 
-            if (selectedMenuId == R.id.drinkTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas DRINK", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else if (selectedMenuId == R.id.starterTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas FÖRRÄTT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else if (selectedMenuId == R.id.mainCourseTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas VARMRÄTT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else{
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas DESSERT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
         });
 
     }

@@ -103,8 +103,10 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         boolean dessertDone = order.getDesserts().isEmpty() || order.isDessertsDone();
 
         if (starterDone && mainDone && dessertDone) {
+            int pos = holder.getAbsoluteAdapterPosition();
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            orderList.remove(pos);
         }
     }
 
