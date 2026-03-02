@@ -20,6 +20,7 @@ public class ShiftService {
 
     @Transactional
     public List<Shift> getShiftsByDate(LocalDate date) {
+        System.out.println("Running getShiftsByDate!");
         List<Shift> shifts = entityManager.createNamedQuery("Shift.getShiftByDate", Shift.class)
                 .setParameter("targetDate", date)
                 .getResultList();

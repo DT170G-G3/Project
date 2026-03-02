@@ -11,7 +11,7 @@
 
             <div class="weekTitle">À La Carte</div>
 
-            <ui:repeat value="#{carteDish.groupedDishes.entrySet().toArray()}" var="categoryEntry">
+            <ui:repeat value="#{carteMenu.groupedDishes.entrySet().toArray()}" var="categoryEntry">
                 <details class="carte-category">
                     <summary class="carte-category-header">
                         #{categoryEntry.key}
