@@ -41,3 +41,5 @@ yarn-error.log*
 *.lnk
 .ai/
 .idea/
+backend/mvnw
+
