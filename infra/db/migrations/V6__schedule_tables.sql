@@ -27,6 +27,8 @@ CREATE TABLE employee_works_shift(
     FOREIGN KEY (shift_id) REFERENCES shift(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- Prevent duplicates
+ALTER TABLE shift ADD UNIQUE (date, type_id);
 
 -- Insert Into Employee
 INSERT INTO employee (name) VALUES
