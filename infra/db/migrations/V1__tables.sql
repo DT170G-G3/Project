@@ -61,6 +61,24 @@ CREATE TABLE table_order(
     FOREIGN KEY (table_id) REFERENCES restaurant_table(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE dish_order(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity INT NOT NULL DEFAULT 1,
+    table_order_id INT NOT NULL,
+    dish_id INT NOT NULL,
+    FOREIGN KEY (table_order_id) REFERENCES  table_order(id) ON DELETE CASCADE,
+    FOREIGN KEY(dish_id) REFERENCES carte_dish(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE drink_order(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity INT NOT NULL DEFAULT 1,
+    table_order_id INT NOT NULL,
+    drink_id INT NOT NULL,
+    FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
+    FOREIGN KEY (drink_id) REFERENCES drink(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE booking(
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE NOT NULL,
@@ -91,18 +109,3 @@ CREATE TABLE dish_lunch_menu(
     FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE table_order_carte_dish(
-    table_order_id INT NOT NULL,
-    carte_dish_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, carte_dish_id),
-    FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
-    FOREIGN KEY (carte_dish_id) REFERENCES carte_dish(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE table_order_drink(
-    table_order_id INT NOT NULL,
-    drink_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, drink_id),
-    FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
-    FOREIGN KEY (drink_id) REFERENCES drink(id) ON DELETE CASCADE
-) ENGINE=InnoDB;

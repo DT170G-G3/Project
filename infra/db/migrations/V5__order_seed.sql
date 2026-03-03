@@ -16,45 +16,76 @@ INSERT INTO table_order (order_no, note, table_id) VALUES
 (1006, 'Business dinner', 6),
 (1007, NULL, 7);
 
-INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id) VALUES
-(1, 1),
-(1, 13),
+INSERT INTO dish_order (quantity, table_order_id, dish_id) VALUES
 
-(2, 2),
-(2, 14),
+-- Order 1 (Table 1)
+(1, 1, 1),   -- Vitlöksbröd
+(2, 1, 13),  -- Oxfilé
+(1, 1, 7),   -- Crème Brûlée
 
-(3, 5),
-(3, 17),
+-- Order 2 (Table 2)
+(1, 2, 2),   -- Bruschetta
+(1, 2, 15),  -- Grillad Laxfilé
+(1, 2, 9),   -- Pannacotta
 
-(4, 4),
-(4, 20),
+-- Order 3 (Table 3)
+(2, 3, 3),   -- Räkcocktail
+(2, 3, 14),  -- Entrecôte
 
-(5, 3),
-(5, 15),
+-- Order 4 (Birthday - Table 4)
+(2, 4, 4),   -- Toast Skagen
+(3, 4, 20),  -- Lammracks
+(2, 4, 8),   -- Chokladfondant
 
-(6, 6),
-(6, 18),
+-- Order 5 (Table 5)
+(1, 5, 5),   -- Caprese
+(1, 5, 17),  -- Vegetarisk Lasagne
 
-(7, 1),
-(7, 16);
+-- Order 6 (Business dinner - Table 6)
+(2, 6, 6),   -- Svampsoppa
+(2, 6, 13),  -- Oxfilé
+(1, 6, 19),  -- Torskrygg
 
-INSERT INTO table_order_drink (table_order_id, drink_id) VALUES
-(1, 1),
-(1, 4),
+-- Order 7 (Table 7)
+(1, 7, 1),   -- Vitlöksbröd
+(1, 7, 18),  -- Risotto med Tryffel
+(1, 7, 10);  -- Äppelpaj
 
-(2, 2),
+INSERT INTO drink_order (quantity, table_order_id, drink_id) VALUES
 
-(3, 3),
+-- Order 1
+(2, 1, 1),   -- Coca-Cola
+(1, 1, 16),  -- House Red Wine
 
-(4, 1),
-(4, 2),
+-- Order 2
+(2, 2, 6),   -- Sparkling Water
+(1, 2, 17),  -- House White Wine
 
-(5, 4),
+-- Order 3
+(2, 3, 20),  -- Draft Beer
+(1, 3, 21),  -- IPA Beer
 
-(6, 2),
-(6, 3),
+-- Order 4 (Birthday)
+(1, 4, 19),  -- Champagne
+(3, 4, 26),  -- Mojito
+(2, 4, 11),  -- Coffee
 
-(7, 1);
+-- Order 5
+(2, 5, 5),   -- Still Water
+(1, 5, 10),  -- Iced Tea
+
+-- Order 6 (Business dinner)
+(1, 6, 18),  -- Prosecco
+(2, 6, 16),  -- House Red Wine
+(2, 6, 29),  -- Irish Coffee
+
+-- Order 7
+(1, 7, 3),   -- Fanta
+(1, 7, 4),   -- Sprite
+(1, 7, 12);  -- Espresso
+
+
+
 
 INSERT INTO booking
 (date, start_time, duration_minutes, no_of_people, note, name, email, phone_no)
