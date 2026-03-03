@@ -38,4 +38,16 @@ public class Shift {
     public Set<Employee> getEmployeeList(){
         return employeeList;
     }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
+    public void setType(ShiftType shiftType){
+        this.type = shiftType;
+    }
 }

@@ -2,6 +2,7 @@ package com.dt170g.g3.backend.services;
 
 import com.dt170g.g3.backend.entities.Employee;
 import com.dt170g.g3.backend.entities.Shift;
+import com.dt170g.g3.backend.entities.ShiftType;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -17,10 +18,27 @@ public class ShiftService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Shift> getShiftsByDate(LocalDate date){
-        TypedQuery<Shift> messageQuery = entityManager.createNamedQuery("Shift.getShiftByDate", Shift.class)
-                .setParameter("targetDate",date);
-        return messageQuery.getResultList();
+    @Transactional
+    public List<Shift> getShiftsByDate(LocalDate date) {
+        System.out.println("Running getShiftsByDate!");
+        List<Shift> shifts = entityManager.createNamedQuery("Shift.getShiftByDate", Shift.class)
+                .setParameter("targetDate", date)
+                .getResultList();
+
+        if (shifts.isEmpty()) {
+            List<ShiftType> types = entityManager.createQuery(
+                    "SELECT st FROM ShiftType st", ShiftType.class).getResultList();
+
+            for (ShiftType type : types) {
+                Shift shift = new Shift();
+                shift.setDate(date);
+                shift.setType(type);
+                entityManager.persist(shift);
+                shifts.add(shift);
+            }
+        }
+
+        return shifts;
     }
 
     public Set<Employee> getEmployeesByShift(Shift shift){
