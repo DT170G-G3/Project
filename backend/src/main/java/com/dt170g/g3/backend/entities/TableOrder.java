@@ -6,14 +6,14 @@
  *
  * NamedQueries provided:
  *   - TableOrder.getAll        : Retrieve all table orders
- *   - TableOrder.findBySitting : Retrieve all orders for a specific sitting, including associated dishes and drinks
+ *   - TableOrder.findByTable   : Retrieve all orders for a specific table
  *
  * Fields:
  *   - id        : Auto-generated primary key
  *   - createdAt : Timestamp of when the order was created (database-generated)
  *   - orderNo   : Optional order number
  *   - note      : Optional note
- *   - sitting   : Reference to the Sitting this order belongs to
+ *   - table     : Reference to the table this order belongs to
  *   - dishes    : List of CarteDish items in this order (many-to-many)
  *   - drinks    : List of Drink items in this order (many-to-many)
  *
@@ -34,12 +34,12 @@ import java.util.List;
                 query = "SELECT o FROM TableOrder o"
         ),
         @NamedQuery(
-                name = "TableOrder.findBySitting",
+                name = "TableOrder.findByTable",
                 query = "SELECT DISTINCT o FROM TableOrder o " +
                         "LEFT JOIN FETCH o.dishes " +
                         "LEFT JOIN FETCH o.drinks " +
-                        "LEFT JOIN FETCH o.sitting " +
-                        "WHERE o.sitting.id = :sittingId"
+                        "LEFT JOIN FETCH o.table " +
+                        "WHERE o.table.id = :tableId"
         )
 })
 
@@ -60,8 +60,8 @@ public class TableOrder {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name = "sitting_id", nullable = false)
-    private Sitting sitting;
+    @JoinColumn(name = "table_id", nullable = false)
+    private RestaurantTable table;
 
     @ManyToMany
     @JoinTable(
@@ -86,9 +86,9 @@ public class TableOrder {
     public TableOrder() {
     }
 
-    public TableOrder(Integer orderNo, Sitting sitting) {
+    public TableOrder(Integer orderNo, RestaurantTable table) {
         this.orderNo = orderNo;
-        this.sitting = sitting;
+        this.table = table;
     }
 
     // =====================
@@ -124,12 +124,12 @@ public class TableOrder {
         this.note = note;
     }
 
-    public Sitting getSitting() {
-        return sitting;
+    public RestaurantTable getTable() {
+        return table;
     }
 
-    public void setSitting(Sitting sitting) {
-        this.sitting = sitting;
+    public void setTable(RestaurantTable table) {
+        this.table = table;
     }
 
     public List<CarteDish> getDishes() { return dishes; }

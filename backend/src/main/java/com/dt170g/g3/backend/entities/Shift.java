@@ -6,6 +6,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name= "Shift.getShiftByDate",
+                query= "SELECT shift FROM Shift shift WHERE shift.date = :targetDate")
+})
+
 @Entity
 @Table(name = "shift")
 public class Shift {
@@ -25,4 +30,24 @@ public class Shift {
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
     private Set<Employee> employeeList = new HashSet<>(); //The employees working that shift.
+
+    public ShiftType getShiftType(){
+        return type;
+    }
+
+    public Set<Employee> getEmployeeList(){
+        return employeeList;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
+    public void setType(ShiftType shiftType){
+        this.type = shiftType;
+    }
 }
