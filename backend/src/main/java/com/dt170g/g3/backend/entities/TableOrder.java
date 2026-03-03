@@ -26,6 +26,7 @@ import jakarta.persistence.*;
 import com.dt170g.g3.backend.entities.CarteDish;
 import com.dt170g.g3.backend.entities.Drink;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @NamedQueries({
@@ -63,21 +64,12 @@ public class TableOrder {
     @JoinColumn(name = "table_id", nullable = false)
     private RestaurantTable table;
 
-    @ManyToMany
-    @JoinTable(
-            name = "table_order_carte_dish",
-            joinColumns = @JoinColumn(name = "table_order_id"),
-            inverseJoinColumns = @JoinColumn(name = "carte_dish_id")
-    )
-    private List<CarteDish> dishes;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderCarteDish> dishes = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderDrink> drinks = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "table_order_drink",
-            joinColumns = @JoinColumn(name = "table_order_id"),
-            inverseJoinColumns = @JoinColumn(name = "drink_id")
-    )
-    private List<Drink> drinks;
+
 
     // =====================
     // Constructors
@@ -132,9 +124,9 @@ public class TableOrder {
         this.table = table;
     }
 
-    public List<CarteDish> getDishes() { return dishes; }
-    public void setDishes(List<CarteDish> dishes) { this.dishes = dishes; }
+    public List<OrderCarteDish> getDishes() { return dishes; }
+    public void setDishes(List<OrderCarteDish> dishes) { this.dishes = dishes; }
 
-    public List<Drink> getDrinks() { return drinks; }
-    public void setDrinks(List<Drink> drinks) { this.drinks = drinks; }
+    public List<OrderDrink> getDrinks() { return drinks; }
+    public void setDrinks(List<OrderDrink> drinks) { this.drinks = drinks; }
 }
