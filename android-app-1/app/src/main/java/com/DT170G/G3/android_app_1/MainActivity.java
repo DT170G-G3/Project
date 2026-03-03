@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
         table.id = tableNumber;
         order.table = table;
 
-        //resetItemCountersAndAllOrderedItems();
+        resetItemCountersAndAllOrderedItems();
         asyncCreateOrder(order);
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
