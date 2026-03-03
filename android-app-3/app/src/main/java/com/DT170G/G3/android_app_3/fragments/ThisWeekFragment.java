@@ -55,14 +55,15 @@ public class ThisWeekFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         String[] weekdays = getResources().getStringArray(R.array.weekdays);
-        String[] staff = getResources().getStringArray(R.array.morningteam1);
+        String[] morningStaff = getResources().getStringArray(R.array.morningteam1);
+        String[] afternoonStaff = getResources().getStringArray(R.array.afternoonteam1);
 
-        LinearLayout mainCourseView = view.findViewById(R.id.thisWeekLayout);
+        LinearLayout thisView = view.findViewById(R.id.thisWeekLayout);
 
         SchemaRow row = new SchemaRow();
 
         for(String weekday : weekdays) {
-            mainCourseView.addView(row.createSchemaRow(requireContext(), staff, weekday));
+            thisView.addView(row.createSchemaRow(requireContext(), weekday, morningStaff, afternoonStaff));
         }
     }
 }

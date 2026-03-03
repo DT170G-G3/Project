@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private WeekPagerAdapter weekPagerAdapter;
     private ViewPager2 viewPager2;
 
-    ShiftsRepository shiftsRepo = new ShiftsRepository();
+    //ShiftsRepository shiftsRepo = new ShiftsRepository();
 
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-
+/**
     private void asyncLoadShifts() {
         drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
             @Override
@@ -58,5 +58,5 @@ public class MainActivity extends AppCompatActivity {
         // Your UI code
         Log.d("SHIFT", "Size: " +dishes.size());
     }
-
+*/
 }
