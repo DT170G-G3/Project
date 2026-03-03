@@ -34,6 +34,7 @@ import java.util.List;
 public class MainCourseFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allMainCounters = new ArrayList<>();
+    private List<Integer> allOrderedMainCourses = new ArrayList<>();
 
     public MainCourseFragment() {
         // Required empty public constructor
@@ -95,6 +96,14 @@ public class MainCourseFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedMainCourses(){
+        allOrderedMainCourses.clear();
+    }
+
+    public List<Integer> getAllOrderedMainCourses(){
+        return allOrderedMainCourses;
+    }
+
     private void asyncLoadMainDishes() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -119,7 +128,7 @@ public class MainCourseFragment extends Fragment {
             if(catId != 2) {
                 continue;
             }
-            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allMainCounters));
+            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allMainCounters, allOrderedMainCourses));
         }
     }
 }

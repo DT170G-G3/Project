@@ -10,13 +10,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.DT170G.G3.android_app_3.classes.PagerAdapter;
+import com.DT170G.G3.android_app_3.classes.WeekPagerAdapter;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private WeekPagerAdapter weekPagerAdapter;
+    private ViewPager2 viewPager2;
 
-    ShiftsRepository shiftsRepo = new ShiftsRepository();
+    //ShiftsRepository shiftsRepo = new ShiftsRepository();
 
 
     @Override
@@ -31,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
-        PagerAdapter adapter = new PagerAdapter(this);
-        viewPager2.setAdapter(adapter);
+        viewPager2 = findViewById(R.id.viewPager);
+        weekPagerAdapter = new WeekPagerAdapter(this);
+        viewPager2.setAdapter(weekPagerAdapter);
 
    }
 
-
+/**
     private void asyncLoadShifts() {
         drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
             @Override
@@ -56,5 +58,5 @@ public class MainActivity extends AppCompatActivity {
         // Your UI code
         Log.d("SHIFT", "Size: " +dishes.size());
     }
-
+*/
 }

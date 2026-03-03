@@ -3,7 +3,7 @@ package com.DT170G.G3.android_app_3.shifts;
 import android.util.Log;
 
 import java.util.List;
-
+/**
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,3 +37,5 @@ public class ShiftsRepository {
         });
     }
 }
+
+ */

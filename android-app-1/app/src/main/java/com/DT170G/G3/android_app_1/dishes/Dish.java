@@ -12,7 +12,10 @@ public class Dish {
         return name;
     }
     public int getDishCategoryId() {
-        int catId = category.getCategoryId();
-        return catId;
+        return category.getCategoryId();
+    }
+
+    public int getId(){
+        return id;
     }
 }
