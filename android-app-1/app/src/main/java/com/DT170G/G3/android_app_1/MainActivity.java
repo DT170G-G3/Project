@@ -3,8 +3,6 @@ package com.DT170G.G3.android_app_1;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -25,7 +23,7 @@ import com.DT170G.G3.android_app_1.fragments.DrinkFragment;
 import com.DT170G.G3.android_app_1.fragments.MainCourseFragment;
 import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.orders.Order;
-import com.DT170G.G3.android_app_1.orders.Sitting;
+import com.DT170G.G3.android_app_1.tables.Table;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,7 +31,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        //exampleCreateOrder();
+        exampleCreateOrder();
 
         //------GET---------
         //exampleGetDishes();
@@ -110,22 +107,10 @@ public class MainActivity extends AppCompatActivity {
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
-            int selectedMenuId = bottomNavigationMenu.getSelectedItemId();
+            exampleCreateOrder();
 
-            //TODO ändra så att beställningen skickas till databasen den man står på plus de föregående sidorna (om något är ifyllt).
+            Snackbar.make(findViewById(R.id.main), "Beställningen skickas", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
 
-            if (selectedMenuId == R.id.drinkTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas DRINK", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else if (selectedMenuId == R.id.starterTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas FÖRRÄTT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else if (selectedMenuId == R.id.mainCourseTab){
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas VARMRÄTT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
-            else{
-                Snackbar.make(findViewById(R.id.main), "Beställningen skickas DESSERT", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-            }
         });
 
     }
@@ -240,22 +225,20 @@ public class MainActivity extends AppCompatActivity {
         order.drinks = new ArrayList<>();
 
         Dish dish = new Dish();
-        dish.id = 3;
+        dish.id = 2;
 
         Drink drink = new Drink();
-        drink.id = 1;
+        drink.id = 2;
 
-        Sitting sit = new Sitting();
-        sit.id = 1;
+        Table table = new Table();
+        table.tableNum = 1;
+        table.id = 1;
 
         order.dishes.add(dish);
         order.drinks.add(drink);
-        order.sitting = sit;
+        order.table = table;
 
         asyncCreateOrder(order);
-    }
-    public void exampleGetDishes() {
-
     }
 
     private void asyncCreateOrder(Order order) {

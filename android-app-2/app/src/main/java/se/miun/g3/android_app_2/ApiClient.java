@@ -15,13 +15,6 @@ import se.miun.g3.android_app_2.waiters.WaitersRepository;
 public final class ApiClient {
     private static String BASE_URL = "http://10.0.2.2:8080/restaurant/api/";
 
-    //FÖR JSON SERVER
-    /*
-    private static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-    */
 
     // FÖR PAYARA DATABASEN
     private static final Retrofit retrofit = new Retrofit.Builder()
@@ -33,7 +26,6 @@ public final class ApiClient {
     public static DishesApi dishesApi() {
         return retrofit.create(DishesApi.class);
     }
-
     public static OrdersApi ordersApi() {
         return retrofit.create(OrdersApi.class);
     }
