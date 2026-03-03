@@ -48,6 +48,8 @@ INSERT INTO shift_type (name, start_time, end_time) VALUES
 ('Lunch', '10:00:00', '15:00:00'),
 ('Middag', '16:00:00', '22:00:00');
 
+ALTER TABLE shift ADD UNIQUE (date, type_id);
+
 -- Insert Into Shift
 INSERT INTO shift (date, type_id) VALUES
 ('2026-02-27', 1),

@@ -8,7 +8,7 @@ import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name= "Shift.getShiftByDate",
-                query= "SELECT shift FROM Shift shift WHERE shift.date = :targetDate")
+                query= "SELECT shift FROM Shift shift WHERE shift.date = :targetDate ORDER BY shift.type.id ASC")
 })
 
 @Entity
