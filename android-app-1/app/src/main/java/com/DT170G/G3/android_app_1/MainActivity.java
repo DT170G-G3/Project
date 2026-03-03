@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         sendButton.setOnClickListener(buttonClicked -> {
             createOrder();
+            viewPager2.setCurrentItem(0);
         });
 
     }
@@ -318,9 +320,35 @@ public class MainActivity extends AppCompatActivity {
         table.id = tableNumber;
         order.table = table;
 
-        resetItemCountersAndAllOrderedItems();
-        asyncCreateOrder(order);
-        Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
+        //NOTES
+        String orderNote = "";
+
+        EditText sNotes = findViewById(R.id.starterNotes);
+        String sNotesString = sNotes.getText().toString();
+        if(!sNotesString.matches("")){
+            orderNote = orderNote + sNotesString;
+        }
+
+        EditText mNotes = findViewById(R.id.mainCourseNotes);
+        String mNotesString = mNotes.getText().toString();
+        if(!mNotesString.matches("")){
+            orderNote = orderNote + mNotesString;
+        }
+
+        EditText dNotes = findViewById(R.id.dessertNotes);
+        String dNotesString = dNotes.getText().toString();
+        if(!dNotesString.matches("")){
+            orderNote = orderNote + dNotesString;
+        }
+
+        order.note = orderNote;
+
+        Log.d("CREATE ORDER", "NOTES: " + orderNote);
+
+
+        //resetItemCountersAndAllOrderedItems();
+        //asyncCreateOrder(order);
+        //Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
 
 
