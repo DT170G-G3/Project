@@ -5,7 +5,9 @@ public class Drink {
     public String name;
     public double price;
 
-    public String getName() {
-        return name;
+    public String getName() { return name; }
+
+    public int getId(){
+        return id;
     }
 }

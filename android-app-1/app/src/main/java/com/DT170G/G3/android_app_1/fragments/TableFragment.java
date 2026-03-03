@@ -31,6 +31,8 @@ import java.util.List;
 public class TableFragment extends Fragment {
     TablesRepository tablesRepo = new TablesRepository();
 
+    private int selectedTableNumber;
+
     public TableFragment() {
         // Required empty public constructor
     }
@@ -69,7 +71,7 @@ public class TableFragment extends Fragment {
      * Skapas i vy val av bord
      *
      * @param tableNumber bordsnumret
-     * @return
+     * @return Button med bordsnummer
      */
     public Button createButton(String tableNumber){
         //Skapar knappen
@@ -92,13 +94,12 @@ public class TableFragment extends Fragment {
             //Ändra text för valt bord
             TextView tv = requireActivity().findViewById(R.id.selectedTable);
             tv.setText("Bord " + tableNumber);
+            selectedTableNumber = Integer.parseInt(tableNumber);
 
             //Ändrar vy till Drinkvy
             ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
             viewPager.setCurrentItem(1);
         });
-
-
         return tableButton;
     }
 
@@ -114,6 +115,10 @@ public class TableFragment extends Fragment {
                 Log.e("TABLES", "Fel: " + message);
             }
         });
+    }
+
+    public int getSelectedTable() {
+        return selectedTableNumber;
     }
 
     /**

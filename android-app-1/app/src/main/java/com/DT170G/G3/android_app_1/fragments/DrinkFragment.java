@@ -36,6 +36,7 @@ public class DrinkFragment extends Fragment {
 
     DrinksRepository drinksRepo = new DrinksRepository();
     private List<TextView> allDrinkCounters = new ArrayList<>();
+    private List<Integer> allOrderedDrinks = new ArrayList<>();
 
     public DrinkFragment() {
         // Required empty public constructor
@@ -94,6 +95,14 @@ public class DrinkFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedDrinks(){
+        allOrderedDrinks.clear();
+    }
+
+    public List<Integer> getAllOrderedDrinks(){
+        return allOrderedDrinks;
+    }
+
     private void asyncLoadDrinks() {
         drinksRepo.getDrinks(new DrinksRepository.GetCallback() {
             @Override
@@ -113,7 +122,7 @@ public class DrinkFragment extends Fragment {
         OrderItemRow orderItemRow = new OrderItemRow();
 
         for(Drink drink : drinks){
-            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getName(), allDrinkCounters));
+            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getId() , drink.getName(), allDrinkCounters, allOrderedDrinks));
         }
     }
 }

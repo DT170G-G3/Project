@@ -3,27 +3,31 @@ package com.DT170G.G3.android_app_1;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.classes.PagerAdapter;
-
 import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.fragments.DessertFragment;
 import com.DT170G.G3.android_app_1.fragments.DrinkFragment;
 import com.DT170G.G3.android_app_1.fragments.MainCourseFragment;
 import com.DT170G.G3.android_app_1.fragments.StarterFragment;
+import com.DT170G.G3.android_app_1.fragments.TableFragment;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.tables.Table;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     StarterFragment starterFragment = new StarterFragment();
     MainCourseFragment mainCourseFragment = new MainCourseFragment();
     DessertFragment dessertFragment = new DessertFragment();
+    TableFragment tableFragment = new TableFragment();
 
 
     private PagerAdapter pagerAdapter;
@@ -68,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        exampleCreateOrder();
+        //exampleCreateOrder();
 
         //------GET---------
         //exampleGetDishes();
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         resetButton.setOnClickListener(buttonClicked -> {
-            resetItemCounters();
+            resetItemCountersAndAllOrderedItems();
 
             Snackbar.make(findViewById(R.id.main), "Beställningen rensad", Snackbar.LENGTH_SHORT).setAnchorView(resetButton).show();
 
@@ -101,16 +107,11 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void sendOrderButtonListener(){
-        BottomNavigationView bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
-
         //Resest form - ändra så att den skickar till databasen oxå
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
-            exampleCreateOrder();
-
-            Snackbar.make(findViewById(R.id.main), "Beställningen skickas", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
-
+            createOrder();
         });
 
     }
@@ -201,45 +202,127 @@ public class MainActivity extends AppCompatActivity {
         tv3.setVisibility(VISIBLE);
     }
 
-    private void resetItemCounters(){
+    /**
+     * Funktion som resettar alla counters för drink, förrätt, varmrätt och efterrätt
+     * @return void
+     */
+    private void resetItemCountersAndAllOrderedItems(){
         drinkFragment = pagerAdapter.getDrinkFragment();
         drinkFragment.resetDrinkCounter();
+        drinkFragment.clearAllOrderedDrinks();
 
         starterFragment = pagerAdapter.getStarterFragment();
         starterFragment.resetStarterCounter();
+        starterFragment.clearAllOrderedStarters();
 
         mainCourseFragment = pagerAdapter.getMainCourseFragment();
         mainCourseFragment.resetMainCounter();
+        mainCourseFragment.clearAllOrderedMainCourses();
 
         dessertFragment = pagerAdapter.getDessertFragment();
         dessertFragment.resetDessertCounter();
+        dessertFragment.clearAllOrderedDesserts();
     }
 
-    public void exampleCreateOrder() {
+    /**
+     * Funktion som skapar en order och lägger till den i databasen
+     * Enbart id krävs för bord, drink, förrätter, varmrätter och desserter
+     *
+     *
+     * @return void
+     */
+    public void createOrder() {
         // EXAMPLE how to POST an Order
         // Only ID is required for drinks, sitting and dishes
 
         //Create new order, initialize new Lists
+
+
+        //Kollar om Table är valt annars be att välja bord
+        tableFragment = pagerAdapter.getTableFragment();
+        int tableNumber = tableFragment.getSelectedTable();
+        TextView sendButton = findViewById(R.id.sendOrderButton);
+        if (tableNumber == 0) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Vänligen välj ett bord", Snackbar.LENGTH_SHORT);
+            snackbar.setAnchorView(sendButton);
+            snackbar.getView().setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.redSnackbar)));
+            snackbar.show();
+            return;
+        }
+
+
         Order order = new Order();
         order.dishes = new ArrayList<>();
         order.drinks = new ArrayList<>();
 
-        Dish dish = new Dish();
-        dish.id = 2;
+        //DRINKS
+        drinkFragment = pagerAdapter.getDrinkFragment();
+        List<Integer> allOrderedDrinks = drinkFragment.getAllOrderedDrinks();
+        if (!allOrderedDrinks.isEmpty()) {
+            for (int drinkId : allOrderedDrinks) {
+                Drink orderedDrink = new Drink();
+                orderedDrink.id = drinkId;
+                order.drinks.add(orderedDrink);
+                Log.d("CREATE ORDER", "DRINK: " + drinkId);
+            }
+            Log.d("CREATE ORDER", "DRINKS SIZE: " + order.drinks.size());
+        }
 
-        Drink drink = new Drink();
-        drink.id = 2;
+        //STARTERS
+        starterFragment = pagerAdapter.getStarterFragment();
+        List<Integer> allOrderedStarters = starterFragment.getAllOrderedStarters();
+        if (!allOrderedStarters.isEmpty()) {
+            for (int starterId : allOrderedStarters) {
+                Dish orderedStarter = new Dish();
+                orderedStarter.id = starterId;
+                order.dishes.add(orderedStarter);
+                Log.d("CREATE ORDER", "STARTER: " + starterId);
+            }
+            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
+        }
 
+        //MAIN COURSES
+        mainCourseFragment = pagerAdapter.getMainCourseFragment();
+        List<Integer> allOrderedMainCourses = mainCourseFragment.getAllOrderedMainCourses();
+        if (!allOrderedMainCourses.isEmpty()) {
+            for (int mainCourseId : allOrderedMainCourses) {
+                Dish orderedMainCourse = new Dish();
+                orderedMainCourse.id = mainCourseId;
+                order.dishes.add(orderedMainCourse);
+                Log.d("CREATE ORDER", "MAIN: " + mainCourseId);
+            }
+            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
+        }
+
+        //DESSERTS
+        dessertFragment = pagerAdapter.getDessertFragment();
+        List<Integer> allOrderedDesserts = dessertFragment.getAllOrderedDesserts();
+        if (!allOrderedDesserts.isEmpty()) {
+            for (int dessertId : allOrderedDesserts) {
+                Dish orderedDessert = new Dish();
+                orderedDessert.id = dessertId;
+                order.dishes.add(orderedDessert);
+                Log.d("CREATE ORDER", "DESSERT: " + dessertId);
+            }
+            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
+        }
+
+        if (allOrderedDrinks.isEmpty() && allOrderedStarters.isEmpty() && allOrderedMainCourses.isEmpty() && allOrderedDesserts.isEmpty()){
+            Snackbar.make(findViewById(R.id.main), "Tom order", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
+            return;
+        }
+
+        //TABLE
         Table table = new Table();
-        table.tableNum = 1;
-        table.id = 1;
-
-        order.dishes.add(dish);
-        order.drinks.add(drink);
+        table.tableNum = tableNumber;
+        table.id = tableNumber;
         order.table = table;
 
+        resetItemCountersAndAllOrderedItems();
         asyncCreateOrder(order);
+        Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
+
 
     private void asyncCreateOrder(Order order) {
         //asynchronous post the order to the database

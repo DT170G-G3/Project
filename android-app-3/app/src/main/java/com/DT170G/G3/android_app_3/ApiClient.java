@@ -1,5 +1,5 @@
 package com.DT170G.G3.android_app_3;
-
+/**
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,3 +20,4 @@ public class ApiClient {
         return retrofit.create(ShiftsApi.class);
     }
 }
+*/

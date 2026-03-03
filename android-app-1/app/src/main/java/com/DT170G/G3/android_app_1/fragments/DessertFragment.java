@@ -35,6 +35,7 @@ import java.util.List;
 public class DessertFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allDessertCounters = new ArrayList<>();
+    private List<Integer> allOrderedDesserts = new ArrayList<>();
 
     public DessertFragment() {
         // Required empty public constructor
@@ -93,6 +94,14 @@ public class DessertFragment extends Fragment {
         }
     }
 
+    public void clearAllOrderedDesserts(){
+        allOrderedDesserts.clear();
+    }
+
+    public List<Integer> getAllOrderedDesserts(){
+        return allOrderedDesserts;
+    }
+
     private void asyncLoadDesserts() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
@@ -117,7 +126,7 @@ public class DessertFragment extends Fragment {
             if (catId != 3) {
                 continue;
             }
-            dessertView.addView(orderItemRow.createItemRow(requireContext(), dish.getName(), allDessertCounters));
+            dessertView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allDessertCounters, allOrderedDesserts));
         }
     }
 }

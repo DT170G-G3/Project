@@ -40,7 +40,7 @@ public class OrderItemRow {
      *
      * @return A LinearLayout with a button and counter for items that can be ordered.
      */
-    public LinearLayout createItemRow(Context context, String item, List<TextView> allItemCounters){
+    public LinearLayout createItemRow(Context context, int itemId, String item, List<TextView> allItemCounters, List<Integer> allOrderedItems){
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout itemRow = new LinearLayout(context);
         itemRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -78,14 +78,20 @@ public class OrderItemRow {
         // Lyssnare för korta klick - Ökar antalet med ett
         itemButton.setOnClickListener(buttonClicked -> {
             int currentNumber = Integer.parseInt(itemCounter.getText().toString());
+            //Öka räknaren
             itemCounter.setText(String.valueOf(currentNumber +1));
+            //Lägg till i listan över beställda drinkar
+            allOrderedItems.add(itemId);
         });
 
         // Lyssnare för långa klick - Minskar antalet med ett
         itemButton.setOnLongClickListener(buttonClicked -> {
             int currentNumber = Integer.parseInt(itemCounter.getText().toString());
             if (currentNumber > 0) {
+                //Minska räknaren
                 itemCounter.setText(String.valueOf(currentNumber - 1));
+                //Ta bort från listan över beställda drinkar
+                allOrderedItems.remove(Integer.valueOf(itemId));
             }
             return true;
         });

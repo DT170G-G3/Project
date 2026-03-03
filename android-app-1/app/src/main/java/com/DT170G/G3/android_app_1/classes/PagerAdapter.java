@@ -46,6 +46,10 @@ public class PagerAdapter extends FragmentStateAdapter {
         return 5;
     }
 
+    public TableFragment getTableFragment() {
+        return tableFragment;
+    }
+
     public DrinkFragment getDrinkFragment() {
         return drinkFragment;
     }
