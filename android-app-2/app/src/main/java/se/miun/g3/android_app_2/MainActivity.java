@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     OrdersRepository ordersRepo = new OrdersRepository();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> desserts = new ArrayList<>();
 
         int tableNum;
-        String time;
         String notes;
+        String time;
         for (Dish d : backendOrder.dishes) {
             if (d.category == null) {
                 continue;
@@ -215,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
     private void populateTablesUI(List<Table> tables) {
         // Your code here
         Log.d("TABLE", "Size: " +tables.size());
+    }
+    private void populateOrdersUI(List<Order> orders) {
     }
     public void populateDishesUI(List<Dish> dishes) {
         // Your UI code

@@ -11,12 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.OrderViewHolder> {
     private List<ShowOrders> orderList;
@@ -37,33 +33,43 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         ShowOrders order = orderList.get(position);
 
         holder.itemView.setOnClickListener(v -> {
+            boolean changed = false;
             if(!order.getStarters().isEmpty() && !order.isStartersDone()) {
                 order.setStartersDone(true);
                 order.setStarterDoneTime(System.currentTimeMillis());
                 order.setSortTime(System.currentTimeMillis());
-                reSort();
-                return;
+                changed = true;
             }
-            if(!order.getMainCourses().isEmpty() && !order.isMainCoursesDone()) {
+            else if(!order.getMainCourses().isEmpty() && !order.isMainCoursesDone()) {
                 order.setMainCoursesDone(true);
                 order.setMainCourseDoneTime(System.currentTimeMillis());
                 order.setSortTime(System.currentTimeMillis());
-                reSort();
-                return;
+                changed = true;
             }
-            if(!order.getDesserts().isEmpty() && !order.isDessertsDone()) {
+            else if(!order.getDesserts().isEmpty() && !order.isDessertsDone()) {
                 order.setDessertsDone(true);
                 order.setDessertDoneTime(System.currentTimeMillis());
                 order.setSortTime(System.currentTimeMillis());
+                changed = true;
+            }
+
+            boolean starterDone = order.getStarters().isEmpty() || order.isStartersDone();
+            boolean mainDone = order.getMainCourses().isEmpty() || order.isMainCoursesDone();
+            boolean dessertDone = order.getDesserts().isEmpty() || order.isDessertsDone();
+
+            if(starterDone && mainDone && dessertDone) {
+                int pos = holder.getBindingAdapterPosition();
+                if(pos != RecyclerView.NO_POSITION) {
+                    orderList.remove(pos);
+                    notifyItemRemoved(pos);
+                }
+                return;
+            }
+            if(changed) {
                 reSort();
             }
         });
 
-        if(order.getStarters().isEmpty() && order.getMainCourses().isEmpty() && order.getDesserts().isEmpty()) {
-            holder.itemView.setVisibility(View.GONE);
-            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
-            return;
-        }
         String time = order.getCreatedAt().substring(11,16);
         holder.tableTextView.setText("Bord " + order.getTableNumber() + "   " + time);
 
@@ -97,22 +103,11 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
                 addFood(holder, order.getDesserts());
             }
         }
-
-        boolean starterDone = order.getStarters().isEmpty() || order.isStartersDone();
-        boolean mainDone = order.getMainCourses().isEmpty() || order.isMainCoursesDone();
-        boolean dessertDone = order.getDesserts().isEmpty() || order.isDessertsDone();
-
-        if (starterDone && mainDone && dessertDone) {
-            int pos = holder.getAbsoluteAdapterPosition();
-            holder.itemView.setVisibility(View.GONE);
-            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
-            orderList.remove(pos);
-        }
     }
 
     private void reSort() {
         orderList.sort(Comparator.comparingLong(ShowOrders::getSortTime));
-        notifyDataSetChanged();
+        notifyItemRangeChanged(0, orderList.size());
     }
 
     private void addFood(OrderViewHolder holder, List<String> items) {
@@ -149,7 +144,7 @@ public class ShowOrdersAdapter extends RecyclerView.Adapter<ShowOrdersAdapter.Or
         holder.listOfDishesLinearLayout.addView(header);
 
 
-        //Avdelare i form av streck för struktur
+//Avdelare i form av streck för struktur
         View divider = new View(context);
         divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
         divider.setBackgroundColor(context.getColor(R.color.headerColor));
