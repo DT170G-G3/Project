@@ -43,33 +43,13 @@ INSERT INTO employee (name) VALUES
 ('Konan Barbaren'),
 ('Katjakaj'),
 ('Bentebent'),
-('En Tallrik Musli');
+('Mike');
 
 -- Insert Into Shift Type
 INSERT INTO shift_type (name, start_time, end_time) VALUES
 ('Lunch', '10:00:00', '15:00:00'),
 ('Middag', '16:00:00', '22:00:00');
 
+-- Prevent duplicate shifts
 ALTER TABLE shift ADD UNIQUE (date, type_id);
 
--- Insert Into Shift
-INSERT INTO shift (date, type_id) VALUES
-('2026-02-27', 1),
-('2026-02-27', 2),
-('2026-02-28', 1),
-('2026-02-28', 2);
-
--- Insert Into Employee Works Shift
-INSERT INTO employee_works_shift (employee_id, shift_id) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 4),
-(11, 4),
-(12, 4);

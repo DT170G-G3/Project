@@ -8,6 +8,7 @@
 
     <ui:define name="content">
         <div class="menuWrapper">
+
             <!-- Week selector buttons -->
             <h:form>
                 <div class="weekSelector">
@@ -19,9 +20,7 @@
                 </div>
             </h:form>
 
-            <div class="weekTitle">Lunchmeny</div>
-
-            <!-- For each day, show dishes and allow adding/removing -->
+            <div class="contentTitle">Lunchmeny</div>
 
             <div class="daysList">
                 <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
@@ -32,29 +31,32 @@
 
                         <div class="menu-day-body">
 
-                            <!-- Current dishes for this day -->
+                            <!-- Current dishes as cards -->
                             <h:form>
-                                <ul class="dishList">
+                                <div class="dishCards">
                                     <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
-                                        <li>#{dayDish.name}
-                                            <h:commandLink
-                                                    value="Ta bort"
-                                                    action="#{lunch.removeDish(day,dayDish)}">
-                                                 <f:ajax execute="@this" render="@all" />
+                                        <div class="dishCard">
+                                            <h:commandLink styleClass="dishCard-remove"
+                                                           action="#{lunch.removeDish(day,dayDish)}">
+                                                ✕
+                                                <f:ajax execute="@this" render="@all" />
                                             </h:commandLink>
-                                        </li>
+                                            <div class="dishCard-name">#{dayDish.name}</div>
+                                            <div class="dishCard-desc">#{dayDish.description}</div>
+                                            <div class="dishCard-price">#{dayDish.price} kr</div>
+                                        </div>
                                     </ui:repeat>
-                                </ul>
+                                </div>
                             </h:form>
 
                             <!-- Add a dish to this day -->
                             <h:form>
                                 <h:panelGrid columns="2">
-                                    <h:outputLabel value="Name" />
+                                    <h:outputLabel value="Namn" />
                                     <h:inputText value="#{dish.newDish.name}" required="true" />
-                                    <h:outputLabel value="Description" />
+                                    <h:outputLabel value="Beskrivning" />
                                     <h:inputText value="#{dish.newDish.description}" />
-                                    <h:outputLabel value="Price" />
+                                    <h:outputLabel value="Pris" />
                                     <h:inputText value="#{dish.newDish.price}" />
                                 </h:panelGrid>
                                 <h:commandButton value="Lägg till"
@@ -69,7 +71,6 @@
                 </ui:repeat>
             </div>
         </div>
-
     </ui:define>
 
 </ui:composition>
