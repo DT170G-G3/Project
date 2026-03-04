@@ -1,12 +1,140 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/templates/base.xhtml">
 
-    <ui:define name="title">'Events'</ui:define>
+    <ui:define name="title">Events</ui:define>
 
-    <ui:define name="content">
-        <h1>Events och happenings</h1>
-        <p>Här lägger vi alla events och historik. Kalendervy?</p>
+    <ui:define name="hero">
+        <section class="hero events-hero"
+                 style="
+               --events-hero-img-1: url('#{resource[&quot;images:event/hero/4in1.png&quot;]}');
+               --events-hero-img-2: url('#{resource[&quot;images:event/hero/company.png&quot;]}');
+               --events-hero-img-3: url('#{resource[&quot;images:event/hero/playing.png&quot;]}');
+               --events-hero-img-4: url('#{resource[&quot;images:event/hero/salut.png&quot;]}');
+             ">
+
+            <div class="hero-slides" aria-hidden="true">
+                <span class="hero-slide events-s1"></span>
+                <span class="hero-slide events-s2"></span>
+                <span class="hero-slide events-s3"></span>
+                <span class="hero-slide events-s4"></span>
+            </div>
+
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-inner-event">
+                <h1>#{eventBean.heroTitle}</h1>
+                <p>#{eventBean.heroDescription}</p>
+                <h2>#{eventBean.heroDateText}</h2>
+            </div>
+        </section>
     </ui:define>
 
+    <ui:define name="content">
+
+        <section class="panel paper-look paper-torn events-page">
+
+            <header class="events-head">
+                <div>
+                    <h1>Tidigare events</h1>
+                </div>
+
+            </header>
+
+            <h:panelGroup id="page" layout="block" styleClass="events-layout">
+
+<!--                laddar tidigare events-->
+                <h:form id="navForm" styleClass="events-sidebar">
+                    <h2 class="section-title">Datum</h2>
+
+                    <ui:repeat value="#{eventBean.pastEvents}" var="e">
+                        <h:commandButton value="#{e.folder}"
+                                         action="#{eventBean.selectPastEvent(e.id)}"
+                                         styleClass="#{eventBean.selectedPastEventId eq e.id ? 'item active' : 'item'}">
+                            <f:ajax execute="@this" render=":page"/>
+                        </h:commandButton>
+                    </ui:repeat>
+
+<!--                    Finns det inga datum-mappar så visas det här meddelandet:-->
+                    <ui:fragment rendered="#{empty eventBean.pastEvents}">
+                        <p class="muted">Inga datum-mappar hittades under <code>assets/events/past/</code>.</p>
+                    </ui:fragment>
+
+                </h:form>
+
+                <section class="events-main">
+                    <ui:fragment rendered="#{not empty eventBean.selectedPastEvent}">
+                        <div class="event-meta">
+                            <h2>#{eventBean.selectedPastEvent.title}</h2>
+<!--                            ladda tidigare eventets titel, datum och beskrivning här-->
+                            <p>#{eventBean.selectedPastEvent.description}</p>
+                        </div>
+
+                        <ui:fragment rendered="#{empty eventBean.selectedPosts}">
+                            <p class="muted">Inga bilder hittades i den här mappen.</p>
+                        </ui:fragment>
+
+                        <div class="img-grid">
+                            <ui:repeat value="#{eventBean.selectedPosts}" var="p">
+                                <figure class="img-card">
+                                    <img src="#{p.imgUrl}" alt="#{p.imgFile}" />
+                                </figure>
+                            </ui:repeat>
+                        </div>
+
+                        <section class="event-comments">
+
+<!--                            KOmmentarformulär-->
+                            <h3>Kommentarer</h3>
+                            <h:form id="commentForm" styleClass="comment-form">
+                                <h:panelGroup id="msgs" layout="block">
+                                    <h:messages globalOnly="true" styleClass="form-messages"/>
+                                </h:panelGroup>
+
+                                <div class="form-row">
+                                    <h:outputLabel for="name" value="Namn (valfritt)"/>
+                                    <h:inputText id="name" value="#{eventBean.newCommentName}" styleClass="input"/>
+                                </div>
+
+                                <div class="form-row">
+                                    <h:outputLabel for="notes" value="Kommentar"/>
+                                    <h:inputTextarea id="notes" value="#{eventBean.newCommentNotes}" styleClass="textarea" rows="4"/>
+                                </div>
+
+                                <h:commandButton value="Skicka kommentar" action="#{eventBean.addComment}" styleClass="btn">
+                                    <f:ajax execute="@form" render=":page :commentForm:msgs"/>
+                                </h:commandButton>
+                            </h:form>
+<!--                            -->
+<!--                            Finnd det inga kommentarer så visas det här meddelandet:-->
+                            <ui:fragment rendered="#{empty eventBean.selectedComments}">
+                                <p class="muted">Inga kommentarer ännu, bli först med att kommentera.</p>
+                            </ui:fragment>
+
+<!--                            Laddar in kommentarerna här-->
+                            <ui:repeat value="#{eventBean.selectedComments}" var="c">
+                                <article class="comment">
+                                    <header class="comment-head">
+                                        <h3><strong>#{empty c.name ? 'Gäst' : c.name}</strong></h3>
+                                        <span class="muted">#{c.createdAtText}</span>
+                                    </header>
+                                    <p class="comment-body">#{c.notes}</p>
+                                </article>
+                            </ui:repeat>
+
+                        </section>
+
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{empty eventBean.selectedPastEvent}">
+                        <p class="muted">Välj ett datum till vänster.</p>
+                    </ui:fragment>
+
+                </section>
+
+            </h:panelGroup>
+        </section>
+    </ui:define>
 </ui:composition>
