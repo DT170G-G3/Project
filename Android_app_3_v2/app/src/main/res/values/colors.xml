@@ -8,4 +8,5 @@
     <color name="backgroundColor">#F2F5F8</color>
     <color name="TextContainerColor">#FAFCFF</color>
     <color name="buttonTextColor">#2A3A45</color>
+    <color name="personColor">#D5DDE4</color>
 </resources>

@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/weekTextView"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/TextContainerColor" />
+        app:tint="@color/buttonTextColor" />
 
     <TextView
         android:id="@+id/weekTextView"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toEndOf="@id/weekTextView"
         app:layout_constraintTop_toTopOf="@id/weekTextView"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/TextContainerColor" />
+        app:tint="@color/buttonTextColor" />
 
 
     <Button
@@ -182,7 +182,7 @@
     <LinearLayout
         android:id="@+id/dayScheduleContainer"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="275dp"
         android:orientation="vertical"
         android:background="@drawable/schedule_container"
         app:layout_constraintTop_toBottomOf="@id/saturdayButton"
@@ -195,7 +195,7 @@
     <LinearLayout
         android:id="@+id/nightScheduleContainer"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="275dp"
         android:orientation="vertical"
         android:background="@drawable/schedule_container"
         app:layout_constraintTop_toBottomOf="@id/dayScheduleContainer"
