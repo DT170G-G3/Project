@@ -73,6 +73,29 @@ CREATE TABLE booking(
     phone_no VARCHAR(30)
 ) ENGINE=InnoDB;
 
+CREATE TABLE event (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    start_time DATETIME NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE posts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    image_path VARCHAR(500),
+    event_id INT NOT NULL,
+    FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE comments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    comment TEXT NOT NULL,
+    date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- Junction Tables
 
 CREATE TABLE dish_carte_menu(
@@ -106,3 +129,4 @@ CREATE TABLE table_order_drink(
     FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
     FOREIGN KEY (drink_id) REFERENCES drink(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
