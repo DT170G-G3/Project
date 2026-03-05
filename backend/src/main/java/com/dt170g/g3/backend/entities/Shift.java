@@ -21,6 +21,7 @@ public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private LocalDate date;
 
     @ManyToOne
