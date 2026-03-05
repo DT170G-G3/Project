@@ -22,8 +22,8 @@ public class Comment {
     private LocalDateTime dateAndTime;
 
     @ManyToOne
-    @JoinColumn(name="post_id", nullable=false)
-    private Post post;
+    @JoinColumn(name="event_id", nullable=false)
+    Event event;
 
     public Comment(){}
 
@@ -65,11 +65,11 @@ public class Comment {
     }
 
 
-    public Post getPost() {
-        return post;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public Event getEvent() {
+        return event;
     }
 }
