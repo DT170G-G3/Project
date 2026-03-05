@@ -23,6 +23,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.TypedQuery;
 import com.dt170g.g3.backend.entities.CarteDish;
 import com.dt170g.g3.backend.entities.CarteMenu;
@@ -62,6 +63,7 @@ public class CarteDishService {
     @Transactional
     public void saveToDatabase(CarteDish dish){
         entityManager.persist(dish);
+
     }
 
 }

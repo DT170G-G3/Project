@@ -16,24 +16,12 @@ import java.util.List;
 @ViewScoped
 @Named("carteMenu")
 public class CarteMenuBean implements Serializable {
+
     @Inject
     CarteMenuService carteMenuService;
 
-    private List<CarteDish> dishes;
-    private CarteDish dish = new CarteDish();
-
-    @PostConstruct
-    public void init(){
-        this.dishes = carteMenuService.getMenuDishes(); // getMenuDishes return all dishes on the many in specific order
-    }
-
-    //Getters and setters
-    public List<CarteDish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<CarteDish> dishes) {
-        this.dishes = dishes;
+    public List<CarteDish> getDishes(){
+        return carteMenuService.getMenuDishes();
     }
 
 
@@ -47,6 +35,8 @@ public class CarteMenuBean implements Serializable {
      *         then by type, preserving insertion order.
      */
     public LinkedHashMap<String, LinkedHashMap<String, List<CarteDish>>> getGroupedDishes(){
+
+        List<CarteDish> dishes = getDishes();
         LinkedHashMap<String, LinkedHashMap<String, List<CarteDish>>> menu = new LinkedHashMap<>();
 
         for(CarteDish dish : dishes){
@@ -74,11 +64,6 @@ public class CarteMenuBean implements Serializable {
         }
         return menu;
     }
-
-
-
-
-
 
     public void removeDishfromMenu(int id){
         carteMenuService.removeDishfromMenu(id);

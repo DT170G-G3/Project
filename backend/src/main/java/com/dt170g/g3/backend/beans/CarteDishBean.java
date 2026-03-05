@@ -49,13 +49,13 @@ public class CarteDishBean implements Serializable {
     @Inject
     private FoodTypeService foodTypeService;
 
-    private List<CarteDish> dishes;
+
     private CarteDish dish = new CarteDish();
     private int selectedCategoryId;
     private int selectedFoodTypeId;
     private List<Category> categories;
     private List<FoodType> foodTypes;
-    //private List<CarteDish> dishes;
+
 
 
 
@@ -63,7 +63,6 @@ public class CarteDishBean implements Serializable {
 
     @PostConstruct
     public void init(){
-        //this.dishes = carteDishService.getMenuDishes(); // getMenuDishes return all dishes on the many in specific order
         this.categories = categoryService.findAllCategories();
         this.foodTypes = foodTypeService.findAllFoodTypes();
 
@@ -72,53 +71,6 @@ public class CarteDishBean implements Serializable {
     public CarteDish getDish() {
         return dish;
     }
-
-
-
-
-
-    /**
-     * Groups dishes by their category name and type of food.
-     * This method creates a LinkedHashMap where each key represents
-     * a category and the value represents a LinkedHashMap with a key of type of
-     * food name and a value of a List of CarteDishes.
-     *
-     * @return a LinkedHashMap grouping dishes first by category,
-     *         then by type, preserving insertion order.
-     */
-//    public LinkedHashMap<String, LinkedHashMap<String, List<CarteDish>>> getGroupedDishes(){
-//        LinkedHashMap<String, LinkedHashMap<String, List<CarteDish>>> menu = new LinkedHashMap<>();
-//
-//        for(CarteDish dish : dishes){
-//            String categoryName = dish.getCategory().getName();
-//            if(!menu.containsKey(categoryName)){
-//                menu.put(categoryName, new LinkedHashMap<>());
-//            }
-//
-//            LinkedHashMap<String, List<CarteDish>> typeMap = menu.get(categoryName); // reference to value of menu
-//
-//            String typeName;
-//            if(dish.getFoodType() != null){ // Only mains have types
-//                typeName = dish.getFoodType().getName();
-//            } else{
-//                typeName = "";
-//            }
-//
-//            if(!typeMap.containsKey(typeName)){
-//                typeMap.put(typeName, new ArrayList<>());
-//            }
-//
-//
-//            typeMap.get(typeName).add(dish); // add dish to the value of the value of menu
-//
-//        }
-//        return menu;
-//    }
-
-//    public void saveToMenu(){
-//
-//        carteDishService.saveToMenu(dish);
-//    }
 
 
     /**

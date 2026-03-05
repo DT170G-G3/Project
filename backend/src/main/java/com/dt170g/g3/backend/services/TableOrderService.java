@@ -110,4 +110,13 @@ public class TableOrderService {
 
         entityManager.persist(order);
     }
+
+    @Transactional
+    public void deleteOrderById(int id) {
+        TableOrder order = entityManager.find(TableOrder.class, id);
+        if (order == null) {
+            throw new IllegalArgumentException("Order with id " + id + " does not exist");
+        }
+        entityManager.remove(order);
+    }
 }

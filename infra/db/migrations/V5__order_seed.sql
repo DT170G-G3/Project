@@ -112,32 +112,11 @@ VALUES
 -- Booking for Sitting 7
 ('2026-03-01', '12:15:00', 60, 4, NULL, 'Erik Johansson', 'erik.j@email.se', '0739876543'),
 
--- Booking for Sitting 8
-('2026-03-01', '13:30:00', 60, 3, NULL, 'Maria Nilsson', NULL, '0761122334'),
-
--- Booking for Sitting 10
-('2026-03-01', '19:30:00', 120, 6, NULL, 'Familjen Berg', NULL, '0709988776'),
-
 -- Booking for Sitting 12
 ('2026-03-02', '18:00:00', 120, 6, NULL, 'Anders Nyström', 'anders@email.se', '0731112233'),
 
 -- Booking for Sitting 14
 ('2026-03-02', '12:00:00', 75, 2, NULL, 'Sara Lind', 'sara.l@email.se', '0705544332'),
-
--- Booking for Sitting 15
-('2026-03-02', '13:45:00', 75, 5, NULL, 'Oskar Pettersson', NULL, '0766655443'),
-
--- Booking for Sitting 17
-('2026-03-02', '18:00:00', 120, 6, NULL, 'Karin Holm', 'karin@email.se', NULL),
-
--- Booking for Sitting 18
-('2026-03-02', '19:50:00', 120, 4, NULL, 'Mikael Fors', NULL, '0702223344'),
-
--- Booking for Sitting 22
-('2026-03-03', '18:15:00', 120, 3, NULL, 'Niklas Öberg', NULL, NULL),
-
--- Booking for Sitting 28
-('2026-03-03', '12:45:00', 75, 2, NULL, 'Per Andersson', NULL, '0704433221'),
 
 -- Booking for Sitting 30
 ('2026-03-03', '17:45:00', 120, 6, NULL, 'Helena Sjöberg', 'helena@email.se', '0739998877'),
