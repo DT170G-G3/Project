@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,20 +27,17 @@ import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.fragments.TableFragment;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.tables.Table;
+import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-//TODO Temporära imports
-import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    // TODO Temporärt test
     OrdersRepository ordersRepo = new OrdersRepository();
     DrinkFragment drinkFragment = new DrinkFragment();
     StarterFragment starterFragment = new StarterFragment();
@@ -72,14 +68,6 @@ public class MainActivity extends AppCompatActivity {
         changeTabListener();
         sendOrderButtonListener();
         resetOrderButtonListener();
-
-
-        //------POST--------
-        //exampleCreateOrder();
-
-        //------GET---------
-        //exampleGetDishes();
-
     }
 
     /**
@@ -96,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
             Snackbar.make(findViewById(R.id.main), "Beställningen rensad", Snackbar.LENGTH_SHORT).setAnchorView(resetButton).show();
 
-            //Ändrar vy till val av bord
             viewPager2.setCurrentItem(0);
         });
 
@@ -226,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
         dessertFragment.clearAllOrderedDesserts();
     }
 
+
     /**
      * Funktion som skapar en order och lägger till den i databasen
      * Enbart id krävs för bord, drink, förrätter, varmrätter och desserter
@@ -234,12 +222,6 @@ public class MainActivity extends AppCompatActivity {
      * @return void
      */
     public void createOrder() {
-        // EXAMPLE how to POST an Order
-        // Only ID is required for drinks, sitting and dishes
-
-        //Create new order, initialize new Lists
-
-
         //Kollar om Table är valt annars be att välja bord
         tableFragment = pagerAdapter.getTableFragment();
         int tableNumber = tableFragment.getSelectedTable();
@@ -265,9 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 Drink orderedDrink = new Drink();
                 orderedDrink.id = drinkId;
                 order.drinks.add(orderedDrink);
-                Log.d("CREATE ORDER", "DRINK: " + drinkId);
             }
-            Log.d("CREATE ORDER", "DRINKS SIZE: " + order.drinks.size());
         }
 
         //STARTERS
@@ -278,9 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedStarter = new Dish();
                 orderedStarter.id = starterId;
                 order.dishes.add(orderedStarter);
-                Log.d("CREATE ORDER", "STARTER: " + starterId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //MAIN COURSES
@@ -291,9 +269,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedMainCourse = new Dish();
                 orderedMainCourse.id = mainCourseId;
                 order.dishes.add(orderedMainCourse);
-                Log.d("CREATE ORDER", "MAIN: " + mainCourseId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //DESSERTS
@@ -304,9 +280,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedDessert = new Dish();
                 orderedDessert.id = dessertId;
                 order.dishes.add(orderedDessert);
-                Log.d("CREATE ORDER", "DESSERT: " + dessertId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         if (allOrderedDrinks.isEmpty() && allOrderedStarters.isEmpty() && allOrderedMainCourses.isEmpty() && allOrderedDesserts.isEmpty()){
@@ -343,12 +317,9 @@ public class MainActivity extends AppCompatActivity {
 
         order.note = orderNote;
 
-        Log.d("CREATE ORDER", "NOTES: " + orderNote);
-
-
-        //resetItemCountersAndAllOrderedItems();
-        //asyncCreateOrder(order);
-        //Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
+        resetItemCountersAndAllOrderedItems();
+        asyncCreateOrder(order);
+        Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
 
 
