@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         String[] personArray = allPersons.toArray(new String[0]);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Byt pass för " + personName);
+        builder.setTitle("Byt pass för " + personName + " till: ");
 
         builder.setItems(personArray, (dialog, which) -> {
             String selectedPerson = personArray[which];

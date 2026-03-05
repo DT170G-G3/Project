@@ -2,9 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <color name="rippleColor">#8D9FB6</color>
-    <color name="shiftButtonColor">#FFFFFF</color>
-
-    <color name="appBackground">#F4F4F4</color>
+    <color name="grey">#D3BCBC</color>
+    <color name="markedButtonColor">#3A6EA5</color>
+    <color name="dayButtonColor">#D5DDE4</color>
+    <color name="backgroundColor">#F2F5F8</color>
+    <color name="TextContainerColor">#FAFCFF</color>
+    <color name="buttonTextColor">#2A3A45</color>
+    <color name="personColor">#D5DDE4</color>
 </resources>
