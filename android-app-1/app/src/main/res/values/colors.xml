@@ -2,10 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <!-- <color name="mainColor">#8A1313</color>
-
-    OLD GREY RIPPLE COLOR
-    <color name="rippleColor">#E7E7E7</color> -->
 
     <color name="appBackground">#F4F4F4</color>
     <color name="borderColor">#575757</color>
@@ -20,20 +16,3 @@
 
     <color name="redSnackbar">#7C0000</color>
 </resources>
-
-
-
-<!--   BRUNT
-
-<color name="rippleColor">#e3dfd8</color>
-<color name="accentColor">#737373</color>
-
-<color name="borderColor">#3A2B20</color>
-<color name="mainColor">#3A2B20</color>
-
-<color name="sendRippleColor">#523E32</color>
-<color name="navMenuColor">#B7A996</color>
-<color name="itemsButtonColor">#F5F2EC</color>
-
-<color name="boxBackground">#E3D5CA</color>
-<color name="sendOrderButtonColor">#756A52</color> -->
