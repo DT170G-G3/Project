@@ -24,10 +24,9 @@ import se.miun.g3.android_app_2.drinks.Drink;
 import se.miun.g3.android_app_2.drinks.DrinksRepository;
 import se.miun.g3.android_app_2.orders.Order;
 import se.miun.g3.android_app_2.orders.OrdersRepository;
-import se.miun.g3.android_app_2.orders.Sitting;
 import se.miun.g3.android_app_2.tables.Table;
 import se.miun.g3.android_app_2.tables.TablesRepository;
-import se.miun.g3.android_app_2.waiters.WaitersRepository;
+
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
