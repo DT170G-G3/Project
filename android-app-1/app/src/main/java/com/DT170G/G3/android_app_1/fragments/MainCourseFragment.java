@@ -71,24 +71,8 @@ public class MainCourseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadMainDishes();
-        mainCourseNotesSwitchListener();
     }
 
-    private void mainCourseNotesSwitchListener(){
-        Switch mainCourseSwitch = requireView().findViewById(R.id.mainCourseNotesSwitch);
-        EditText mainCourseNotes = requireView().findViewById(R.id.mainCourseNotes);
-
-        mainCourseSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    mainCourseNotes.setVisibility(VISIBLE);
-                } else{
-                    mainCourseNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
 
     public void resetMainCounter(){
         for(TextView mainCounter : allMainCounters){

@@ -70,24 +70,8 @@ public class DessertFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadDesserts();
-        dessertNotesSwitchListener();
     }
 
-    private void dessertNotesSwitchListener(){
-        Switch dessertSwitch = requireView().findViewById(R.id.dessertNotesSwitch);
-        EditText dessertNotes = requireView().findViewById(R.id.dessertNotes);
-
-        dessertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    dessertNotes.setVisibility(VISIBLE);
-                } else{
-                    dessertNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
     public void resetDessertCounter(){
         for(TextView dessertCounter : allDessertCounters){
             dessertCounter.setText("0");

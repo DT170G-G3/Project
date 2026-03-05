@@ -12,10 +12,25 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tableBorderTop"
+        app:layout_constraintBottom_toTopOf="@+id/orderNotes"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/orderNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="5dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Skriv en notering till Kocken"
+        android:inputType="textMultiLine"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/tableBorderTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="15dp"/>
 
 
     <TextView
@@ -40,6 +55,16 @@
         android:layout_marginBottom="20dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/sendOrderButton"/>
+
+    <Switch
+        android:id="@+id/notesSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Noteringar"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableBorderTop" />
 
     <TextView
         android:id="@+id/tableBorderBottom"

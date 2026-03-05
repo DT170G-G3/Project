@@ -1,15 +1,19 @@
 package com.DT170G.G3.android_app_1;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         changeTabListener();
         sendOrderButtonListener();
         resetOrderButtonListener();
+        notesSwitchListener();
     }
 
     /**
@@ -175,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(INVISIBLE);
         tv2.setVisibility(INVISIBLE);
         tv3.setVisibility(INVISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(INVISIBLE);
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setVisibility(INVISIBLE);
+        notes.setText("");
+
     }
 
     private void showManagebles(){
@@ -189,6 +202,14 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(VISIBLE);
         tv2.setVisibility(VISIBLE);
         tv3.setVisibility(VISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(VISIBLE);
+
+        if(noteSwitch.isChecked()){
+            noteSwitch.setChecked(false);
+        }
+
     }
 
     /**
@@ -211,6 +232,9 @@ public class MainActivity extends AppCompatActivity {
         dessertFragment = pagerAdapter.getDessertFragment();
         dessertFragment.resetDessertCounter();
         dessertFragment.clearAllOrderedDesserts();
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setText("");
     }
 
 
@@ -297,30 +321,36 @@ public class MainActivity extends AppCompatActivity {
         //NOTES
         String orderNote = "";
 
-        EditText sNotes = findViewById(R.id.starterNotes);
-        String sNotesString = sNotes.getText().toString();
-        if(!sNotesString.matches("")){
-            orderNote = orderNote + sNotesString;
-        }
-
-        EditText mNotes = findViewById(R.id.mainCourseNotes);
-        String mNotesString = mNotes.getText().toString();
-        if(!mNotesString.matches("")){
-            orderNote = orderNote + mNotesString;
-        }
-
-        EditText dNotes = findViewById(R.id.dessertNotes);
-        String dNotesString = dNotes.getText().toString();
-        if(!dNotesString.matches("")){
-            orderNote = orderNote + dNotesString;
+        EditText notes = findViewById(R.id.orderNotes);
+        String notesString = notes.getText().toString();
+        if(!notesString.matches("")){
+            orderNote = orderNote + notesString;
         }
 
         order.note = orderNote;
 
+        Log.d("NOTES",orderNote);
         resetItemCountersAndAllOrderedItems();
         asyncCreateOrder(order);
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
+
+    private void notesSwitchListener(){
+        Switch orderSwitch = findViewById(R.id.notesSwitch);
+        EditText notes = findViewById(R.id.orderNotes);
+
+        orderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    notes.setVisibility(VISIBLE);
+                } else{
+                    notes.setVisibility(GONE);
+                }
+            }
+        });
+    }
+
 
 
     private void asyncCreateOrder(Order order) {

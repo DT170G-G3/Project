@@ -70,24 +70,8 @@ public class DrinkFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadDrinks();
-        drinkNotesSwitchListener();
     }
 
-    private void drinkNotesSwitchListener(){
-        Switch drinkSwitch = requireView().findViewById(R.id.drinkNotesSwitch);
-        EditText drinkNotes = requireView().findViewById(R.id.drinkNotes);
-
-        drinkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    drinkNotes.setVisibility(VISIBLE);
-                } else{
-                    drinkNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
 
     public void resetDrinkCounter(){
         for(TextView drinkCounter : allDrinkCounters){
