@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         noteSwitch.setVisibility(INVISIBLE);
 
         EditText notes = findViewById(R.id.orderNotes);
-        notes.setVisibility(INVISIBLE);
+        notes.setVisibility(GONE);
         notes.setText("");
 
     }

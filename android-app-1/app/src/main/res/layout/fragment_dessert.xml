@@ -7,22 +7,18 @@
     android:orientation="vertical"
     android:id="@+id/dessertLayout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/dessertHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:paddingTop="15dp"
-            android:text="Desserter" />
+    <TextView
+        android:id="@+id/dessertHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="Efterrätter" />
 
-    </LinearLayout>
 
     <TextView
         android:id="@+id/dessertBorderHeader"

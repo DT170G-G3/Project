@@ -6,22 +6,17 @@
     tools:context=".fragments.DrinkFragment"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/drinkHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:paddingTop="15dp"
-            android:text="Dryck" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/drinkHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="Dryck" />
 
     <TextView
         android:id="@+id/drinkBorderHeader"
@@ -41,7 +36,8 @@
             android:id="@+id/drinkLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

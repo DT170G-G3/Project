@@ -7,21 +7,17 @@
     android:orientation="vertical"
     android:id="@+id/starterLayout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/starterHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:paddingTop="15dp"
-            android:text="Förrätter" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/starterHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="Förrätter" />
 
     <TextView
         android:id="@+id/starterBorderHeader"
