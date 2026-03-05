@@ -38,15 +38,6 @@ import java.util.List;
                 name = "CarteMenu.getAll",
                 query = "SELECT DISTINCT m FROM CarteMenu m LEFT JOIN FETCH m.dishes"
         ),
-//        @NamedQuery(
-//                name = "CarteDish.getDishesFromMenuByCategory",
-//                query = "SELECT cd FROM CarteDish cd " +
-//                        "JOIN cd.carteMenu m " +
-//                        "JOIN cd.category c " +
-//                        "LEFT JOIN cd.typeGroup t " +
-//                        "WHERE m.id = 1 " +
-//                        "ORDER BY c.displayOrder ASC"
-//        ),
         @NamedQuery(
                 name = "CarteMenu.getDishesOnMenu",
                 query =
