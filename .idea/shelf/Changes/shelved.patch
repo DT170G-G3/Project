@@ -1,0 +1,1917 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_2026-02-16_09_42_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_2026-02-16_09_42_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_2026-02-16_09_42_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_2026-02-16_09_42_[Changes]/shelved.patch	(revision 924a7171c657a629588c8aae9314075b90cb37d2)
++++ /dev/null	(revision 924a7171c657a629588c8aae9314075b90cb37d2)
+@@ -1,1694 +0,0 @@
+-Index: backend/src/main/webapp/menu.xhtml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><ui:composition xmlns=\"http://www.w3.org/1999/xhtml\"\r\n                xmlns:ui=\"http://xmlns.jcp.org/jsf/facelets\"\r\n                template=\"/WEB-INF/templates/base.xhtml\">\r\n\r\n    <ui:define name=\"title\">Á la carte</ui:define>\r\n\r\n    <ui:define name=\"content\">\r\n        <h1>Á la carte meny</h1>\r\n\r\n        <section class=\"category-grid\">\r\n            <ui:repeat value=\"#{lunch.menuWeek}\" var=\"menu\">\r\n\r\n                <article class=\"card lunch-menu\">\r\n                    <div class=\"card-header\">\r\n                        <h2>#{menu.day}</h2>\r\n                    </div>\r\n\r\n                    <div class=\"card-content\">\r\n                        <ui:repeat value=\"#{menu.dishes}\" var=\"item\">\r\n                            <div class=\"dish\">\r\n                                <h3>#{item.name}</h3>\r\n                                <p>#{item.description}</p>\r\n                            </div>\r\n                        </ui:repeat>\r\n\r\n                        <p class=\"muted\">Här lägger vi ut menyn</p>\r\n                    </div>\r\n\r\n                </article>\r\n\r\n            </ui:repeat>\r\n        </section>\r\n    </ui:define>\r\n\r\n</ui:composition>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/menu.xhtml b/backend/src/main/webapp/menu.xhtml
+---- a/backend/src/main/webapp/menu.xhtml	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/menu.xhtml	(date 1771230167743)
+-@@ -6,30 +6,7 @@
+- 
+-     <ui:define name="content">
+-         <h1>Á la carte meny</h1>
+--
+--        <section class="category-grid">
+--            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+--
+--                <article class="card lunch-menu">
+--                    <div class="card-header">
+--                        <h2>#{menu.day}</h2>
+--                    </div>
+--
+--                    <div class="card-content">
+--                        <ui:repeat value="#{menu.dishes}" var="item">
+--                            <div class="dish">
+--                                <h3>#{item.name}</h3>
+--                                <p>#{item.description}</p>
+--                            </div>
+--                        </ui:repeat>
+--
+--                        <p class="muted">Här lägger vi ut menyn</p>
+--                    </div>
+--
+--                </article>
+--
+--            </ui:repeat>
+--        </section>
+-+        <p class="muted">Här lägger vi ut menyn</p>
+-     </ui:define>
+- 
+--</ui:composition>
+-+</ui:composition>
+-\ No newline at end of file
+-Index: backend/src/main/webapp/lunch.xhtml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><ui:composition xmlns=\"http://www.w3.org/1999/xhtml\"\r\n                xmlns:ui=\"http://xmlns.jcp.org/jsf/facelets\"\r\n                template=\"/WEB-INF/templates/base.xhtml\">\r\n\r\n    <ui:define name=\"title\">Dagens lunch</ui:define>\r\n\r\n    <ui:define name=\"content\">\r\n        <h1>Dagens lunch</h1>\r\n\r\n        <section class=\"category-grid\">\r\n            <ui:repeat value=\"#{lunch.menuWeek}\" var=\"menu\">\r\n\r\n                <article class=\"card lunch-menu\">\r\n                    <div class=\"card-header\">\r\n                        <h2>#{menu.day}</h2>\r\n                    </div>\r\n\r\n                    <div class=\"card-content\">\r\n                        <ui:repeat value=\"#{menu.dishes}\" var=\"item\">\r\n                            <div class=\"dish\">\r\n                                <h3>#{item.name}</h3>\r\n                                <p>#{item.description}</p>\r\n                            </div>\r\n                        </ui:repeat>\r\n\r\n                    </div>\r\n\r\n                </article>\r\n\r\n            </ui:repeat>\r\n        </section>\r\n    </ui:define>\r\n\r\n</ui:composition>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/lunch.xhtml b/backend/src/main/webapp/lunch.xhtml
+---- a/backend/src/main/webapp/lunch.xhtml	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/lunch.xhtml	(date 1770802032539)
+-@@ -1,34 +1,11 @@
+--<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+--                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+--                template="/WEB-INF/templates/base.xhtml">
+-+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+-+    template="/WEB-INF/templates/base.xhtml">
+- 
+-     <ui:define name="title">Dagens lunch</ui:define>
+- 
+-     <ui:define name="content">
+-         <h1>Dagens lunch</h1>
+--
+--        <section class="category-grid">
+--            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+--
+--                <article class="card lunch-menu">
+--                    <div class="card-header">
+--                        <h2>#{menu.day}</h2>
+--                    </div>
+--
+--                    <div class="card-content">
+--                        <ui:repeat value="#{menu.dishes}" var="item">
+--                            <div class="dish">
+--                                <h3>#{item.name}</h3>
+--                                <p>#{item.description}</p>
+--                            </div>
+--                        </ui:repeat>
+--
+--                    </div>
+--
+--                </article>
+--
+--            </ui:repeat>
+--        </section>
+-+        <p class="muted">Dagens lunch + veckovy kommer här.</p>
+-     </ui:define>
+- 
+--</ui:composition>
+-+</ui:composition>
+-\ No newline at end of file
+-Index: backend/src/main/webapp/WEB-INF/templates/base.xhtml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"\r\n      xmlns:h=\"http://xmlns.jcp.org/jsf/html\"\r\n      xmlns:ui=\"http://xmlns.jcp.org/jsf/facelets\"\r\n      xmlns:f=\"http://xmlns.jcp.org/jsf/core\">\r\n\r\n<h:head>\r\n    <meta charset=\"UTF-8\"/>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\r\n\r\n    <script>\r\n        (function () {\r\n            const saved = localStorage.getItem(\"theme\"); // \"dark\" | \"light\"\r\n            if (saved === \"dark\" || saved === \"light\") {\r\n                document.documentElement.dataset.theme = saved;\r\n            } else {\r\n            }\r\n        })();\r\n    </script>\r\n\r\n    <title>\r\n        <ui:insert name=\"title\">Anton's Skafferi</ui:insert>\r\n    </title>\r\n\r\n    <h:outputStylesheet library=\"css\" name=\"base.css?v=${build.version}\" />\r\n    <h:outputStylesheet library=\"css\" name=\"layout.css?v=${build.version}\" />\r\n    <h:outputStylesheet library=\"css\" name=\"components.css?v=${build.version}\" />\r\n    <h:outputStylesheet library=\"css\" name=\"landing.css?v=${build.version}\" />\r\n<!--    <h:outputStylesheet library=\"css\" name=\"style.css?v=${build.version}\" />-->\r\n\r\n    <ui:insert name=\"extra-head\" />\r\n</h:head>\r\n\r\n<h:body>\r\n    <header class=\"header full-width\">\r\n        <div class=\"logo\">\r\n            <h:link outcome=\"index\">Anton's Skafferi</h:link>\r\n\r\n            <button id=\"themeToggle\"\r\n                    type=\"button\"\r\n                    class=\"theme-toggle\"\r\n                    aria-label=\"Växla tema\"\r\n                    aria-pressed=\"false\">\r\n            \uD83C\uDF19\r\n            </button>\r\n        </div>\r\n\r\n        <nav class=\"nav-links\">\r\n            <h:link outcome=\"index\" value=\"Hem\" styleClass=\"nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}\"/>\r\n            <h:link outcome=\"lunch\" value=\"Lunch\" styleClass=\"nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}\"/>\r\n            <h:link outcome=\"menu\" value=\"Á La Carte\" styleClass=\"nav-link #{view.viewId == '/menu.xhtml' ? 'active' : ''}\"/>\r\n            <h:link outcome=\"booking\" value=\"Boka bord\" styleClass=\"nav-link #{view.viewId == '/booking.xhtml' ? 'active' : ''}\"/>\r\n            <h:link outcome=\"events\" value=\"Events\" styleClass=\"nav-link #{view.viewId == '/events.xhtml' ? 'active' : ''}\"/>\r\n        </nav>\r\n    </header>\r\n\r\n    <ui:insert name=\"hero\"/>\r\n<!--    sidor som man döper till name=\"content\" kommer att laddas här under-->\r\n    <main id=\"main-content\" class=\"main-container\">\r\n        <ui:insert name=\"content\">\r\n            <p>Innehåll saknas.</p>\r\n        </ui:insert>\r\n    </main>\r\n<!-- fram till hit..-->\r\n\r\n    <footer class=\"footer full-width\">\r\n        <div class=\"footer-inner\">\r\n            <p>© 2026 Anton's Skafferi</p>\r\n        </div>\r\n    </footer>\r\n\r\n    <script>\r\n        (function () {\r\n            const KEY = \"theme\";\r\n            const root = document.documentElement;\r\n            const btn = document.getElementById(\"themeToggle\");\r\n            if (!btn) return;\r\n\r\n            function apply(theme) {\r\n                root.dataset.theme = theme;\r\n                const isLight = theme === \"light\";\r\n                btn.setAttribute(\"aria-pressed\", String(isLight));\r\n                btn.textContent = isLight ? \"☀\uFE0F\" : \"\uD83C\uDF19\";\r\n            }\r\n            const saved = localStorage.getItem(KEY);\r\n            if (saved === \"dark\" || saved === \"light\") {\r\n                apply(saved);\r\n            } else {\r\n                const prefersLight = matchMedia(\"(prefers-color-scheme: light)\").matches;\r\n                apply(prefersLight ? \"light\" : \"dark\");\r\n                localStorage.setItem(KEY, prefersLight ? \"light\" : \"dark\");\r\n            }\r\n\r\n            btn.addEventListener(\"click\", () => {\r\n                const current = root.dataset.theme === \"light\" ? \"light\" : \"dark\";\r\n                const next = current === \"light\" ? \"dark\" : \"light\";\r\n                localStorage.setItem(KEY, next);\r\n                apply(next);\r\n            });\r\n        })();\r\n    </script>\r\n\r\n</h:body>\r\n</html>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/WEB-INF/templates/base.xhtml b/backend/src/main/webapp/WEB-INF/templates/base.xhtml
+---- a/backend/src/main/webapp/WEB-INF/templates/base.xhtml	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/WEB-INF/templates/base.xhtml	(date 1771230167743)
+-@@ -8,16 +8,6 @@
+-     <meta charset="UTF-8"/>
+-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+- 
+--    <script>
+--        (function () {
+--            const saved = localStorage.getItem("theme"); // "dark" | "light"
+--            if (saved === "dark" || saved === "light") {
+--                document.documentElement.dataset.theme = saved;
+--            } else {
+--            }
+--        })();
+--    </script>
+--
+-     <title>
+-         <ui:insert name="title">Anton's Skafferi</ui:insert>
+-     </title>
+-@@ -35,16 +25,7 @@
+-     <header class="header full-width">
+-         <div class="logo">
+-             <h:link outcome="index">Anton's Skafferi</h:link>
+--
+--            <button id="themeToggle"
+--                    type="button"
+--                    class="theme-toggle"
+--                    aria-label="Växla tema"
+--                    aria-pressed="false">
+--            🌙
+--            </button>
+-         </div>
+--
+-         <nav class="nav-links">
+-             <h:link outcome="index" value="Hem" styleClass="nav-link #{view.viewId == '/index.xhtml' ? 'active' : ''}"/>
+-             <h:link outcome="lunch" value="Lunch" styleClass="nav-link #{view.viewId == '/lunch.xhtml' ? 'active' : ''}"/>
+-@@ -68,37 +49,5 @@
+-             <p>© 2026 Anton's Skafferi</p>
+-         </div>
+-     </footer>
+--
+--    <script>
+--        (function () {
+--            const KEY = "theme";
+--            const root = document.documentElement;
+--            const btn = document.getElementById("themeToggle");
+--            if (!btn) return;
+--
+--            function apply(theme) {
+--                root.dataset.theme = theme;
+--                const isLight = theme === "light";
+--                btn.setAttribute("aria-pressed", String(isLight));
+--                btn.textContent = isLight ? "☀️" : "🌙";
+--            }
+--            const saved = localStorage.getItem(KEY);
+--            if (saved === "dark" || saved === "light") {
+--                apply(saved);
+--            } else {
+--                const prefersLight = matchMedia("(prefers-color-scheme: light)").matches;
+--                apply(prefersLight ? "light" : "dark");
+--                localStorage.setItem(KEY, prefersLight ? "light" : "dark");
+--            }
+--
+--            btn.addEventListener("click", () => {
+--                const current = root.dataset.theme === "light" ? "light" : "dark";
+--                const next = current === "light" ? "dark" : "light";
+--                localStorage.setItem(KEY, next);
+--                apply(next);
+--            });
+--        })();
+--    </script>
+--
+- </h:body>
+- </html>
+-\ No newline at end of file
+-Index: backend/src/main/webapp/resources/css/base.css
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>/* =========================\r\n   Anton's Skafferi - Design Tokens\r\n   ========================= */\r\n\r\n/* dARK SOM Default */\r\n:root {\r\n    --bg-dark: oklch(0.1 0.025 264);\r\n    --bg: oklch(0.15 0.025 264);\r\n    --bg-light: oklch(0.2 0.025 264);\r\n\r\n    --text: oklch(0.96 0.05 264);\r\n    --text-muted: oklch(0.76 0.05 264);\r\n\r\n    --highlight: oklch(0.5 0.05 264);\r\n\r\n    --border: oklch(0.4 0.05 264);\r\n    --border-muted: oklch(0.3 0.05 264);\r\n\r\n    --primary: oklch(0.76 0.1 264);\r\n    --secondary: oklch(0.76 0.1 84);\r\n\r\n    --danger: oklch(0.7 0.05 30);\r\n    --warning: oklch(0.7 0.05 100);\r\n    --success: oklch(0.7 0.05 160);\r\n    --info: oklch(0.7 0.05 260);\r\n\r\n    /* Effects */\r\n    --shadow: 0 18px 55px rgba(0,0,0,0.35);\r\n    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);\r\n\r\n    --focus-ring: color-mix(in oklch, var(--primary) 60%, white);\r\n\r\n    /* Typography */\r\n    --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);\r\n    --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);\r\n    --font-size-h2: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);\r\n    --font-size-h3: clamp(1.1rem, 1.0rem + 0.7vw, 1.45rem);\r\n\r\n    /* Spacing  */\r\n    --padding-fluid: clamp(0.9rem, 0.6rem + 1.1vw, 1.6rem);\r\n    --gap-fluid: clamp(0.75rem, 0.5rem + 1vw, 1.35rem);\r\n    --space-fluid: clamp(1.2rem, 0.9rem + 1.6vw, 2.6rem);\r\n\r\n    /* Layout */\r\n    --container-width: clamp(20rem, 92vw, 81.25rem);\r\n    --border-radius: clamp(0.85rem, 0.7rem + 0.7vw, 1.25rem);\r\n\r\n    --header-height: clamp(3.8rem, 3.3rem + 1.2vw, 4.6rem);\r\n    --footer-height: clamp(3.5rem, 3rem + 1vw, 4.2rem);\r\n    --hero-height: clamp(22rem, 42vh, 34rem);\r\n\r\n\r\n    /* Scale */\r\n    --scale-on-hover: 1.015;\r\n\r\n    --surface: color-mix(in oklch, var(--bg-light) 28%, transparent);\r\n    --surface-hover: color-mix(in oklch, var(--bg-light) 40%, transparent);\r\n    --surface-border: color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n    --surface-border-hover: var(--border-muted);\r\n\r\n    color-scheme: dark;\r\n}\r\n\r\n/* LIGHT MODE */\r\n\r\n:root[data-theme=\"light\"] {\r\n    --bg-dark: oklch(0.95 0.01 264);\r\n    --bg: oklch(0.985 0.008 264);\r\n    --bg-light: oklch(0.995 0.006 264);\r\n\r\n    --text: oklch(0.2 0.02 264);\r\n    --text-muted: oklch(0.42 0.02 264);\r\n\r\n    --highlight: oklch(0.9 0.02 264);\r\n\r\n    --border: oklch(0.8 0.02 264);\r\n    --border-muted: oklch(0.88 0.015 264);\r\n\r\n    --primary: oklch(0.48 0.12 264);\r\n    --secondary: oklch(0.52 0.12 84);\r\n\r\n    --danger: oklch(0.52 0.12 30);\r\n    --warning: oklch(0.56 0.12 100);\r\n    --success: oklch(0.5 0.1 160);\r\n    --info: oklch(0.5 0.1 260);\r\n\r\n    --shadow: 0 18px 55px rgba(0, 0, 0, 0.12);\r\n    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);\r\n\r\n    --focus-ring: color-mix(in oklch, var(--primary) 55%, black);\r\n\r\n    --surface: color-mix(in oklch, var(--bg-dark) 55%, var(--bg));\r\n    --surface-hover: color-mix(in oklch, var(--bg-dark) 70%, var(--bg));\r\n    --surface-border-hover: var(--border);\r\n\r\n    color-scheme: light;\r\n}\r\n\r\n\r\n/* =========================\r\n   Base / Reset\r\n   ========================= */\r\n\r\n* { box-sizing: border-box; }\r\n\r\nhtml, body {\r\n    height: 100%;\r\n    /*scrollbar-gutter: stable;*/\r\n    background-color: var(--bg);\r\n    overflow-x: hidden;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    font-size: var(--font-size-base);\r\n    line-height: 1.55;\r\n    color: var(--text);\r\n    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;\r\n    /*background: var(--bg);*/\r\n    background-color: transparent;\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-height: 100vh;\r\n\r\n}\r\n\r\nh1, h2, h3 { margin: 0 0 0.5em; line-height: 1.1; }\r\nh1 { font-size: var(--font-size-h1); }\r\nh2 { font-size: var(--font-size-h2); }\r\nh3 { font-size: var(--font-size-h3); }\r\n\r\np { margin: 0 0 1em; color: var(--text-muted); }\r\n\r\na {\r\n    color: inherit;\r\n    text-decoration: none;\r\n}\r\n\r\na:focus-visible,\r\nbutton:focus-visible,\r\ninput:focus-visible {\r\n    outline: 3px solid var(--focus-ring);\r\n    outline-offset: 3px;\r\n    border-radius: 0.65rem;\r\n}\r\n\r\n.full-width {\r\n    width: 100vw;\r\n    margin-left: calc(50% - 50vw);\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/resources/css/base.css b/backend/src/main/webapp/resources/css/base.css
+---- a/backend/src/main/webapp/resources/css/base.css	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/resources/css/base.css	(date 1771230167743)
+-@@ -2,7 +2,6 @@
+-    Anton's Skafferi - Design Tokens
+-    ========================= */
+- 
+--/* dARK SOM Default */
+- :root {
+-     --bg-dark: oklch(0.1 0.025 264);
+-     --bg: oklch(0.15 0.025 264);
+-@@ -24,12 +23,6 @@
+-     --success: oklch(0.7 0.05 160);
+-     --info: oklch(0.7 0.05 260);
+- 
+--    /* Effects */
+--    --shadow: 0 18px 55px rgba(0,0,0,0.35);
+--    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+--
+--    --focus-ring: color-mix(in oklch, var(--primary) 60%, white);
+--
+-     /* Typography */
+-     --font-size-base: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
+-     --font-size-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+-@@ -49,60 +42,21 @@
+-     --footer-height: clamp(3.5rem, 3rem + 1vw, 4.2rem);
+-     --hero-height: clamp(22rem, 42vh, 34rem);
+- 
+-+    /* Effects */
+-+    --shadow: 0 18px 55px rgba(0,0,0,0.35);
+-+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+- 
+-     /* Scale */
+-     --scale-on-hover: 1.015;
+- 
+--    --surface: color-mix(in oklch, var(--bg-light) 28%, transparent);
+--    --surface-hover: color-mix(in oklch, var(--bg-light) 40%, transparent);
+--    --surface-border: color-mix(in oklch, var(--border-muted) 60%, transparent);
+--    --surface-border-hover: var(--border-muted);
+--
+-     color-scheme: dark;
+- }
+- 
+--/* LIGHT MODE */
+--
+--:root[data-theme="light"] {
+--    --bg-dark: oklch(0.95 0.01 264);
+--    --bg: oklch(0.985 0.008 264);
+--    --bg-light: oklch(0.995 0.006 264);
+--
+--    --text: oklch(0.2 0.02 264);
+--    --text-muted: oklch(0.42 0.02 264);
+--
+--    --highlight: oklch(0.9 0.02 264);
+--
+--    --border: oklch(0.8 0.02 264);
+--    --border-muted: oklch(0.88 0.015 264);
+--
+--    --primary: oklch(0.48 0.12 264);
+--    --secondary: oklch(0.52 0.12 84);
+--
+--    --danger: oklch(0.52 0.12 30);
+--    --warning: oklch(0.56 0.12 100);
+--    --success: oklch(0.5 0.1 160);
+--    --info: oklch(0.5 0.1 260);
+--
+--    --shadow: 0 18px 55px rgba(0, 0, 0, 0.12);
+--    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+--
+--    --focus-ring: color-mix(in oklch, var(--primary) 55%, black);
+--
+--    --surface: color-mix(in oklch, var(--bg-dark) 55%, var(--bg));
+--    --surface-hover: color-mix(in oklch, var(--bg-dark) 70%, var(--bg));
+--    --surface-border-hover: var(--border);
+--
+--    color-scheme: light;
+--}
+--
+--
+- /* =========================
+-    Base / Reset
+-    ========================= */
+- 
+- * { box-sizing: border-box; }
+--
+- html, body {
+-     height: 100%;
+-     /*scrollbar-gutter: stable;*/
+-@@ -139,7 +93,7 @@
+- a:focus-visible,
+- button:focus-visible,
+- input:focus-visible {
+--    outline: 3px solid var(--focus-ring);
+-+    outline: 3px solid color-mix(in oklch, var(--primary) 60%, white);
+-     outline-offset: 3px;
+-     border-radius: 0.65rem;
+- }
+-@@ -147,4 +101,4 @@
+- .full-width {
+-     width: 100vw;
+-     margin-left: calc(50% - 50vw);
+--}
+-+}
+-\ No newline at end of file
+-Index: backend/src/main/webapp/resources/css/components.css
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>/* =========================\r\n   Cards grid + Subgrid alignment\r\n   ========================= */\r\n\r\n.category-grid {\r\n    margin-top: var(--space-fluid);\r\n    display: grid;\r\n    gap: var(--gap-fluid);\r\n\r\n    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));\r\n    align-items: stretch;\r\n}\r\n\r\n/* Fallback om inte subgrid fungerar */\r\n.card {\r\n    display: grid;\r\n    grid-template-rows: auto 1fr auto;\r\n    gap: 0.75rem;\r\n\r\n    padding: var(--space-fluid);\r\n    border-radius: var(--border-radius);\r\n\r\n    background-color: var(--surface);\r\n    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n    box-shadow: var(--shadow-soft);\r\n    /*transition: ease-in-out 0.2s;*/\r\n\r\n    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;\r\n}\r\n\r\n.card:hover {\r\n    /*transform: scale(var(--scale-on-hover)); */\r\n\r\n    background: var(--surface-hover);\r\n    border-color: var(--surface-border-hover);\r\n    box-shadow: var(--shadow);\r\n}\r\n\r\n.card-header h3 { color: var(--text); margin: 0; }\r\n.card-content p { margin: 0; }\r\n\r\n.card-link a {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.35em;\r\n\r\n    font-weight: 700;\r\n    color: color-mix(in oklch, var(--primary) 85%, var(--text));\r\n}\r\n\r\n.card-link a:hover {\r\n    text-decoration: underline;\r\n}\r\n\r\n/*\r\n  Subgrid-enhancement (om browser stödjer):\r\n  Parent får \"3 rader per kort\", korten span:3 och använder subgrid.\r\n*/\r\n@supports (grid-template-rows: subgrid) {\r\n    .category-grid {\r\n        grid-auto-rows: auto;\r\n    }\r\n\r\n    .card {\r\n        grid-row: span 3;\r\n        grid-template-rows: subgrid;\r\n    }\r\n\r\n    .card-header { grid-row: 1; }\r\n    .card-content { grid-row: 2; }\r\n    .card-link { grid-row: 3; }\r\n}\r\n\r\n\r\n@media (prefers-reduced-motion: reduce) {\r\n    * { transition: none !important; animation: none !important; }\r\n}\r\n\r\n/* =========================\r\n   Concept section\r\n   ========================= */\r\n\r\n.concept-section{\r\n    margin-top: var(--space-fluid);\r\n    padding: var(--space-fluid);\r\n    border-radius: var(--border-radius);\r\n\r\n    background-color: var(--surface);\r\n    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n    box-shadow: var(--shadow-soft);\r\n    /*transition: ease-in-out 0.2s;*/\r\n    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;\r\n\r\n}\r\n\r\n.concept-section:hover {\r\n    /*transform: scale(var(--scale-on-hover));*/\r\n    /*border-color: var(--border-muted);*/\r\n    background: var(--surface-hover);\r\n    border-color: var(--surface-border-hover);\r\n    box-shadow: var(--shadow);\r\n}\r\n\r\n.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }\r\n.concept-section strong { color: var(--text); }\r\n.concept-section h2 { color: var(--secondary); }\r\n\r\n\r\n/* =========================\r\n   kanpp för att byta tema\r\n   ========================= */\r\n\r\n.theme-toggle{\r\n    width: 2.4rem;\r\n    height: 2.4rem;\r\n    border-radius: 999px;\r\n    border: 1px solid var(--border);\r\n    background: color-mix(in oklch, var(--bg-light) 70%, transparent);\r\n    color: var(--text);\r\n    display: inline-grid;\r\n    place-items: center;\r\n    box-shadow: var(--shadow-soft);\r\n    cursor: pointer;\r\n    transition: transform 120ms ease;\r\n}\r\n\r\n.theme-toggle:hover{ transform: scale(var(--scale-on-hover)); }\r\n.theme-toggle:active{ transform: scale(0.98); }\r\n\r\n.lunch-menu .dish + .dish{\r\n    margin-top: 0.9rem;\r\n    padding-top: 0.9rem;\r\n    border-top: 1px solid color-mix(in oklch, var(--border-muted) 45%, transparent);\r\n}\r\n\r\n.lunch-menu h2 { margin: 0; }\r\n.lunch-menu h3 { margin: 0 0 0.25rem; color: var(--text); }\r\n\r\n.muted{\r\n    color: var(--text-muted);\r\n    margin-top: 1rem;\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/resources/css/components.css b/backend/src/main/webapp/resources/css/components.css
+---- a/backend/src/main/webapp/resources/css/components.css	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/resources/css/components.css	(date 1771230167751)
+-@@ -20,20 +20,13 @@
+-     padding: var(--space-fluid);
+-     border-radius: var(--border-radius);
+- 
+--    background-color: var(--surface);
+-+    background: color-mix(in oklch, var(--bg-light) 28%, transparent);
+-     border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+-     box-shadow: var(--shadow-soft);
+--    /*transition: ease-in-out 0.2s;*/
+--
+--    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+-+    transition: ease-in-out 0.2s;
+- }
+- 
+--.card:hover {
+--    /*transform: scale(var(--scale-on-hover)); */
+--
+--    background: var(--surface-hover);
+--    border-color: var(--surface-border-hover);
+--    box-shadow: var(--shadow);
+-+.card:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted);
+- }
+- 
+- .card-header h3 { color: var(--text); margin: 0; }
+-@@ -75,68 +68,3 @@
+- @media (prefers-reduced-motion: reduce) {
+-     * { transition: none !important; animation: none !important; }
+- }
+--
+--/* =========================
+--   Concept section
+--   ========================= */
+--
+--.concept-section{
+--    margin-top: var(--space-fluid);
+--    padding: var(--space-fluid);
+--    border-radius: var(--border-radius);
+--
+--    background-color: var(--surface);
+--    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+--    box-shadow: var(--shadow-soft);
+--    /*transition: ease-in-out 0.2s;*/
+--    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+--
+--}
+--
+--.concept-section:hover {
+--    /*transform: scale(var(--scale-on-hover));*/
+--    /*border-color: var(--border-muted);*/
+--    background: var(--surface-hover);
+--    border-color: var(--surface-border-hover);
+--    box-shadow: var(--shadow);
+--}
+--
+--.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
+--.concept-section strong { color: var(--text); }
+--.concept-section h2 { color: var(--secondary); }
+--
+--
+--/* =========================
+--   kanpp för att byta tema
+--   ========================= */
+--
+--.theme-toggle{
+--    width: 2.4rem;
+--    height: 2.4rem;
+--    border-radius: 999px;
+--    border: 1px solid var(--border);
+--    background: color-mix(in oklch, var(--bg-light) 70%, transparent);
+--    color: var(--text);
+--    display: inline-grid;
+--    place-items: center;
+--    box-shadow: var(--shadow-soft);
+--    cursor: pointer;
+--    transition: transform 120ms ease;
+--}
+--
+--.theme-toggle:hover{ transform: scale(var(--scale-on-hover)); }
+--.theme-toggle:active{ transform: scale(0.98); }
+--
+--.lunch-menu .dish + .dish{
+--    margin-top: 0.9rem;
+--    padding-top: 0.9rem;
+--    border-top: 1px solid color-mix(in oklch, var(--border-muted) 45%, transparent);
+--}
+--
+--.lunch-menu h2 { margin: 0; }
+--.lunch-menu h3 { margin: 0 0 0.25rem; color: var(--text); }
+--
+--.muted{
+--    color: var(--text-muted);
+--    margin-top: 1rem;
+--}
+-Index: backend/src/main/webapp/resources/css/layout.css
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>\r\n/* Container helper */\r\n.main-container {\r\n    width: var(--container-width);\r\n    margin-inline: auto;\r\n    padding: var(--space-fluid) var(--padding-fluid);\r\n    background: var(--bg);\r\n    z-index: 1;\r\n    flex: 1;\r\n}\r\n\r\n/* =========================\r\n   Header (sticky)\r\n   ========================= */\r\n\r\n.header {\r\n    position: sticky;\r\n    top: 0;\r\n    z-index: 50;\r\n\r\n    min-height: var(--header-height);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: var(--gap-fluid);\r\n\r\n    padding: calc(var(--padding-fluid) * 0.75) var(--padding-fluid);\r\n\r\n    background: color-mix(in oklch, var(--bg-dark) 75%, transparent);\r\n    border-bottom: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n    backdrop-filter: blur(10px);\r\n}\r\n\r\n.footer{\r\n    margin-top: auto;\r\n    background: var(--bg-dark);\r\n    border-top: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n}\r\n\r\n.footer-inner{\r\n    width: 100%;\r\n    margin-inline: auto;\r\n    padding: calc(var(--space-fluid) * 0.75) var(--padding-fluid);\r\n    text-align: center;\r\n    color: var(--text-muted);\r\n}\r\n\r\n.logo {\r\n    font-weight: 800;\r\n    letter-spacing: 0.02em;\r\n    color: var(--text);\r\n    font-size: var(--font-size-h3);\r\n\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.65rem;\r\n}\r\n\r\n\r\n.nav-links {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    gap: 0.4rem;\r\n}\r\n\r\n.nav-link {\r\n    position: relative;\r\n    padding: 0.55em 0.8em;\r\n    border-radius: 999px;\r\n    border: 1px solid transparent;\r\n    color: color-mix(in oklch, var(--text) 92%, transparent);\r\n    transition: color 0.3s ease;\r\n}\r\n\r\n.nav-link:hover {\r\n    background: color-mix(in oklch, var(--bg-light) 55%, transparent);\r\n    border-color: color-mix(in oklch, var(--border-muted) 60%, transparent);\r\n}\r\n\r\n/* Själva linjen */\r\n.nav-link.active::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    bottom: 4px;      /* Hur långt ner från texten den ska ligga */\r\n    left: 0.8em;       /* Matchar din padding så linjen linjerar med texten */\r\n    right: 0.8em;\r\n    height: 2px;       /* Tjockleken du bad om */\r\n    background-color: var(--secondary);\r\n    border-radius: 2px;\r\n    box-shadow: 0 0 8px color-mix(in oklch, var(--secondary) 40%, transparent); /* Valfritt: ger ett litet \"glow\" */\r\n}\r\n\r\n/* Gör texten lite tydligare när den är aktiv */\r\n.nav-link.active {\r\n    color: var(--text);\r\n    font-weight: 600;\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/resources/css/layout.css b/backend/src/main/webapp/resources/css/layout.css
+---- a/backend/src/main/webapp/resources/css/layout.css	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/resources/css/layout.css	(date 1771230167479)
+-@@ -50,12 +50,7 @@
+-     letter-spacing: 0.02em;
+-     color: var(--text);
+-     font-size: var(--font-size-h3);
+--
+--    display: flex;
+--    align-items: center;
+--    gap: 0.65rem;
+- }
+--
+- 
+- .nav-links {
+-     display: flex;
+-Index: backend/src/main/webapp/resources/css/landing.css
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>\r\n/* =========================\r\n   Hero med bild animation\r\n   ========================= */\r\n\r\n.hero{\r\n    width: 100%;\r\n    min-height: clamp(40vh, 50vh, 90vh);\r\n    position: relative;\r\n    overflow: hidden;\r\n    background: var(--bg-dark);\r\n    display: grid;\r\n    place-items: center;\r\n    text-align: center;\r\n    padding: var(--space-fluid);\r\n}\r\n\r\n/* Bildlager */\r\n.hero-slides{\r\n    position: absolute;\r\n    inset: 0;\r\n    z-index: 0;\r\n}\r\n\r\n.hero-slide{\r\n    position: absolute;\r\n    inset: 0;\r\n    background-position: center;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    /*background-attachment: fixed; */\r\n\r\n    opacity: 0;\r\n    /* ändra duration här, fint om det är jämnt delbart på antal bildder) */\r\n    animation: heroFade 40s ease-in-out infinite;\r\n}\r\n\r\n/* Bilder för animation */\r\n.hero-slide.s1{ background-image: url(\"#{resource['images:burgers.jpeg']}\"); }\r\n.hero-slide.s2{ background-image: url(\"#{resource['images:Drink-picture.jpg']}\"); }\r\n.hero-slide.s3{ background-image: url(\"#{resource['images:bottles-picture.jpg']}\"); }\r\n.hero-slide.s4{ background-image: url(\"#{resource['images:fish.jpg']}\"); }\r\n\r\n/* Förskjut tiden för att matcha antalet bilder mot animationen */\r\n.hero-slide.s1{ animation-delay: 0s; }\r\n.hero-slide.s2{ animation-delay: 10s; }\r\n.hero-slide.s3{ animation-delay: 20s; }\r\n.hero-slide.s4{ animation-delay: 30s; }\r\n\r\n/* Fade-form */\r\n@keyframes heroFade{\r\n    0%      { opacity: 0; }\r\n    10%     { opacity: 1; }\r\n    28%     { opacity: 1; }\r\n    35%     { opacity: 0; }\r\n    100%    { opacity: 0; }\r\n}\r\n\r\n/* Gradient overlay (alltid ovanpå bilderna) */\r\n.hero-overlay{\r\n    position: absolute;\r\n    inset: 0;\r\n    z-index: 1;\r\n    pointer-events: none;\r\n\r\n    background: linear-gradient(\r\n            to bottom,\r\n            rgba(0,0,0,0.15) 0%,\r\n            rgba(0,0,0,0.25) 45%,\r\n            var(--bg-dark) 100%\r\n    );\r\n}\r\n\r\n/* Innehåll ovanpå allt i hero */\r\n.hero-inner{\r\n\r\n    /*glaseffekt*/\r\n    background: rgba(0,0,0,0.10);\r\n    backdrop-filter: blur(5px);\r\n    -webkit-backdrop-filter: blur(12px);\r\n    border-radius: var(--border-radius);\r\n\r\n\r\n    position: relative;\r\n    z-index: 2;\r\n\r\n    display: grid;\r\n    place-items: center;\r\n    padding: var(--space-fluid) var(--padding-fluid);\r\n    max-width: var(--container-width);\r\n}\r\n\r\n/* Reduced motion */\r\n@media (prefers-reduced-motion: reduce){\r\n    .hero-slide{ animation: none; }\r\n    .hero-slide.s1{ opacity: 1; } /* visa bara första bilden */\r\n    .hero-slide:not(.s1){ opacity: 0; }\r\n}\r\n\r\n.hero-inner h1 {\r\n    color: var(--secondary);\r\n    text-shadow:\r\n            1px 1px 3px rgba(0,0,0,0.8),\r\n            0 10px 30px rgba(0,0,0,0.5);\r\n    margin-bottom: 0.35em;\r\n}\r\n\r\n.hero-inner p {\r\n    max-width: 60ch;\r\n    margin-inline: auto;\r\n    color: var(--text);\r\n    margin-bottom: 1.2em;\r\n}\r\n\r\n\r\n.hero-btn {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n\r\n    padding: 0.85em 1.15em;\r\n    border-radius: 999px;\r\n\r\n    background: linear-gradient(135deg, var(--primary), color-mix(in oklch, var(--secondary) 55%, var(--primary)));\r\n    color: oklch(0.12 0.02 264);\r\n\r\n    border: 1px solid color-mix(in oklch, var(--primary) 40%, var(--border));\r\n    box-shadow: var(--shadow-soft);\r\n\r\n    font-weight: 700;\r\n}\r\n\r\n.hero-btn:hover {\r\n    transform: translateY(-1px);\r\n}\r\n\r\n/* Credits till respektive bild */\r\n.hero-credits {\r\n    position: absolute;\r\n    bottom: 20px;\r\n    right: 20px;\r\n    z-index: 10;\r\n    /*pointer-events: none;*/\r\n}\r\n\r\n.hero-credit {\r\n    position: absolute;\r\n    bottom: 0;\r\n    right: 0;\r\n    white-space: nowrap;\r\n    color: rgba(255, 255, 255, 0.7);\r\n    font-size: 0.8rem;\r\n    font-family: sans-serif;\r\n\r\n    opacity: 0;\r\n    /*Denna duration MÅSTE vara samma som animationen för bilderna*/\r\n    animation: heroFade 40s ease-in-out infinite;\r\n}\r\n\r\n/* Matchar delay som bildern har */\r\n.hero-credit.c1 { animation-delay: 0s; }\r\n.hero-credit.c2 { animation-delay: 10s; }\r\n.hero-credit.c3 { animation-delay: 20s; }\r\n.hero-credit.c4 { animation-delay: 30s; }\r\n\r\n\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/webapp/resources/css/landing.css b/backend/src/main/webapp/resources/css/landing.css
+---- a/backend/src/main/webapp/resources/css/landing.css	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/webapp/resources/css/landing.css	(date 1771230167751)
+-@@ -50,7 +50,7 @@
+- /* Fade-form */
+- @keyframes heroFade{
+-     0%      { opacity: 0; }
+--    10%     { opacity: 1; }
+-+    10%      { opacity: 1; }
+-     28%     { opacity: 1; }
+-     35%     { opacity: 0; }
+-     100%    { opacity: 0; }
+-@@ -108,7 +108,7 @@
+- .hero-inner p {
+-     max-width: 60ch;
+-     margin-inline: auto;
+--    color: var(--text);
+-+    color: color-mix(in oklch, var(--text) 80%, transparent);
+-     margin-bottom: 1.2em;
+- }
+- 
+-@@ -164,4 +164,23 @@
+- .hero-credit.c4 { animation-delay: 30s; }
+- 
+- 
+-+/* =========================
+-+   Concept section
+-+   ========================= */
+-+
+-+.concept-section {
+-+    margin-top: var(--space-fluid);
+-+    padding: var(--space-fluid);
+-+    border-radius: var(--border-radius);
+- 
+-+    background: color-mix(in oklch, var(--bg-light) 35%, transparent);
+-+    border: 1px solid color-mix(in oklch, var(--border-muted) 60%, transparent);
+-+    box-shadow: var(--shadow-soft);
+-+    transition: ease-in-out 0.2s;
+-+}
+-+
+-+.concept-section:hover { transform: scale(var(--scale-on-hover)); border-color: var(--border-muted); }
+-+
+-+.concept-section p { color: color-mix(in oklch, var(--text) 85%, var(--text-muted)); }
+-+.concept-section strong { color: var(--text); }
+-+.concept-section h2 { color: var(--secondary); }
+-Index: backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java b/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,40 +0,0 @@
+--package com.dt170g.g3.backend.entities;
+--
+--import jakarta.persistence.*;
+--import jakarta.validation.constraints.NotNull;
+--import jakarta.validation.constraints.Size;
+--
+--@Entity
+--@Table(name = "dish")
+--public class Dish {
+--    @Id
+--    @GeneratedValue(strategy = GenerationType.IDENTITY)
+--    private int id;
+--    private String name;
+--    private String description;
+--    private double price;
+--
+--    public int getId() {
+--        return id;
+--    }
+--
+--    public void setId(int id) {
+--        this.id = id;
+--    }
+--
+--    public String getName() {
+--        return name;
+--    }
+--
+--    public void setName(String name) {
+--        this.name = name;
+--    }
+--
+--    public String getDescription() { return description; }
+--
+--    public void setDescription(String description) { this.description = description; }
+--
+--    public double getPrice() { return price; }
+--
+--    public void setPrice(double price) { this.price = price; }
+--}
+-Index: backend/src/main/java/com/dt170g/g3/backend/DishHandler.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java b/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,36 +0,0 @@
+--package com.dt170g.g3.backend;
+--
+--import jakarta.enterprise.context.ApplicationScoped;
+--import jakarta.inject.Named;
+--import jakarta.persistence.EntityManager;
+--import jakarta.persistence.PersistenceContext;
+--import jakarta.persistence.TypedQuery;
+--import com.dt170g.g3.backend.entities.Dish;
+--import java.util.List;
+--
+--@ApplicationScoped
+--@Named("dish")
+--public class DishHandler {
+--    @PersistenceContext
+--    EntityManager entityManager;
+--
+--    public Dish getDishById(int id){
+--        Dish dish = entityManager.find(Dish.class, id);
+--        return dish;
+--    }
+--    public List<Dish> getDishes(){
+--        TypedQuery<Dish> messageQuery = entityManager.createNamedQuery("Dish.getAll", Dish.class);
+--        List<Dish> resultList = messageQuery.getResultList();
+--        return resultList;
+--    }
+--
+--    public String getDishName(){
+--        Dish dish = getDishById(1);
+--        if(dish.getName().isEmpty()){
+--            return "NO MESSAGES!";
+--        }
+--        return dish.getName();
+--    }
+--
+--}
+--
+-Index: backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java b/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,36 +0,0 @@
+--package com.dt170g.g3.backend.entities;
+--
+--import jakarta.persistence.*;
+--
+--import java.time.DayOfWeek;
+--import java.time.LocalDate;
+--import java.util.Date;
+--import java.util.List;
+--
+--@NamedQueries(
+--        @NamedQuery(name = "Lunch.getDishes", query = "SELECT name FROM Dish name")
+--)
+--@Entity
+--@Table(name="lunch_menu")
+--public class LunchMenu {
+--    @Id
+--    @GeneratedValue(strategy = GenerationType.IDENTITY)
+--    private int id;
+--    private LocalDate date;
+--
+--    @ManyToMany
+--    @JoinTable(
+--            name = "dish_lunch_menu",
+--            joinColumns = @JoinColumn(name = "lunch_menu_id"),
+--            inverseJoinColumns = @JoinColumn(name = "dish_id")
+--    )
+--    private List<Dish> dishes;
+--
+--    public List<Dish> getDishes(){
+--        return dishes;
+--    }
+--
+--    public DayOfWeek getDay() {return date.getDayOfWeek();}
+--
+--
+--}
+-Index: infra/db/migrations/V3__menu_seed.sql
+-===================================================================
+-diff --git a/infra/db/migrations/V3__menu_seed.sql b/infra/db/migrations/V3__menu_seed.sql
+-deleted file mode 100644
+---- a/infra/db/migrations/V3__menu_seed.sql	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,28 +0,0 @@
+--INSERT INTO lunch_menu (date) VALUES
+--('2026-02-10'),
+--('2026-02-11'),
+--('2026-02-12');
+--
+--
+---- =========================
+---- LINK DISHES TO LUNCH MENUS
+---- =========================
+--
+---- Lunch Menu 1 (id = 1)
+--INSERT INTO dish_lunch_menu (dish_id, lunch_menu_id) VALUES
+--(1, 1),
+--(2, 1),
+--(3, 1);
+--
+---- Lunch Menu 2 (id = 2)
+--INSERT INTO dish_lunch_menu (dish_id, lunch_menu_id) VALUES
+--(4, 2),
+--(5, 2),
+--(6, 2);
+--
+---- Lunch Menu 3 (id = 3)
+--INSERT INTO dish_lunch_menu (dish_id, lunch_menu_id) VALUES
+--(7, 3),
+--(8, 3),
+--(9, 3),
+--(10, 3);
+-\ No newline at end of file
+-Index: backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java b/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,52 +0,0 @@
+--package com.dt170g.g3.backend;
+--
+--import com.dt170g.g3.backend.entities.Dish;
+--import com.dt170g.g3.backend.entities.LunchMenu;
+--import jakarta.enterprise.context.ApplicationScoped;
+--import jakarta.inject.Named;
+--import jakarta.persistence.EntityManager;
+--import jakarta.persistence.PersistenceContext;
+--
+--import java.time.DayOfWeek;
+--import java.time.LocalDate;
+--import java.time.temporal.TemporalAdjusters;
+--import java.util.Collections;
+--import java.util.List;
+--
+--@ApplicationScoped
+--@Named("lunch")
+--public class LunchMenuHandler{
+--    @PersistenceContext
+--    EntityManager entityManager;
+--
+--    public List<Dish> getDishesToday() {
+--
+--        List<LunchMenu> dishIDs = entityManager.createQuery(
+--                "SELECT menu FROM LunchMenu menu WHERE menu.date = :today",
+--                LunchMenu.class)
+--                .setParameter("today", LocalDate.now())
+--                .getResultList();
+--
+--        if (dishIDs.isEmpty()) {
+--             return Collections.emptyList();
+--        } else {
+--            return dishIDs.get(0).getDishes();
+--        }
+--    }
+--
+--    public List<LunchMenu> getMenuWeek(){
+--        LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+--        LocalDate saturday = monday.plusDays(5);
+--        List<LunchMenu> weekMenu = entityManager.createQuery(
+--                "SELECT menu FROM LunchMenu menu " +
+--                   "WHERE menu.date BETWEEN :start AND :end " +
+--                   "ORDER BY menu.date",
+--                    LunchMenu.class
+--                )
+--                .setParameter("start",monday)
+--                .setParameter("end", saturday)
+--                .getResultList();
+--
+--        return weekMenu;
+--    }
+--}
+-Index: .idea/Project.iml
+-===================================================================
+-diff --git a/.idea/Project.iml b/.idea/Project.iml
+-deleted file mode 100644
+---- a/.idea/Project.iml	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,11 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<module type="JAVA_MODULE" version="4">
+--  <component name="NewModuleRootManager" inherit-compiler-output="true">
+--    <exclude-output />
+--    <content url="file://$MODULE_DIR$">
+--      <sourceFolder url="file://$MODULE_DIR$/backend/src/main/java" type="java-resource" />
+--    </content>
+--    <orderEntry type="inheritedJdk" />
+--    <orderEntry type="sourceFolder" forTests="false" />
+--  </component>
+--</module>
+-\ No newline at end of file
+-Index: infra/db/migrations/V2__dish_seed.sql
+-===================================================================
+-diff --git a/infra/db/migrations/V2__dish_seed.sql b/infra/db/migrations/V2__dish_seed.sql
+-deleted file mode 100644
+---- a/infra/db/migrations/V2__dish_seed.sql	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,22 +0,0 @@
+--INSERT INTO dish (name, description, price) VALUES
+--('Margherita Pizza', 'Classic pizza with tomato sauce, mozzarella, and basil', 8.50),
+--('Pepperoni Pizza', 'Pizza topped with pepperoni and mozzarella cheese', 9.50),
+--('Spaghetti Carbonara', 'Pasta with eggs, pecorino cheese, pancetta, and pepper', 11.00),
+--('Lasagna Bolognese', 'Layers of pasta with beef ragu and béchamel sauce', 12.50),
+--('Chicken Alfredo', 'Creamy Alfredo pasta with grilled chicken', 11.75),
+--('Caesar Salad', 'Romaine lettuce with Caesar dressing, croutons, and parmesan', 7.25),
+--('Greek Salad', 'Fresh salad with tomatoes, cucumbers, olives, and feta cheese', 7.50),
+--('Beef Burger', 'Grilled beef patty with lettuce, tomato, and cheese', 9.00),
+--('Cheeseburger', 'Classic burger topped with melted cheddar cheese', 9.50),
+--('Chicken Burger', 'Crispy chicken fillet with lettuce and mayo', 8.75),
+--('French Fries', 'Golden fried potato sticks', 3.50),
+--('Chicken Wings', 'Spicy chicken wings served with dipping sauce', 6.75),
+--('Grilled Salmon', 'Fresh salmon fillet grilled with lemon and herbs', 14.50),
+--('Fish and Chips', 'Battered fish served with fries and tartar sauce', 10.50),
+--('Steak Frites', 'Grilled beef steak served with French fries', 16.00),
+--('Mushroom Risotto', 'Creamy risotto with mushrooms and parmesan', 10.75),
+--('Tomato Soup', 'Warm tomato soup served with bread', 5.25),
+--('Chicken Soup', 'Classic chicken soup with vegetables', 5.75),
+--('Pancakes', 'Fluffy pancakes served with syrup', 6.00),
+--('Chocolate Cake', 'Rich chocolate cake with chocolate frosting', 5.50);
+--
+-Index: backend/src/main/java/com/dt170g/g3/backend/Menu.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/Menu.java b/backend/src/main/java/com/dt170g/g3/backend/Menu.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/Menu.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,8 +0,0 @@
+--package com.dt170g.g3.backend;
+--
+--import com.dt170g.g3.backend.entities.Dish;
+--import java.util.List;
+--
+--public interface Menu {
+--    List<Dish> getDishes();
+--}
+-Index: .idea/.gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/.gitignore b/.idea/.gitignore
+-deleted file mode 100644
+---- a/.idea/.gitignore	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,3 +0,0 @@
+--# Default ignored files
+--/shelf/
+--/workspace.xml
+-Index: android-app-2/.idea/.gitignore
+-===================================================================
+-diff --git a/android-app-2/.idea/.gitignore b/android-app-2/.idea/.gitignore
+-deleted file mode 100644
+---- a/android-app-2/.idea/.gitignore	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,2 +0,0 @@
+--*
+--!.gitignore
+-\ No newline at end of file
+-Index: backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java b/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java
+-deleted file mode 100644
+---- a/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,31 +0,0 @@
+--package com.dt170g.g3.backend;
+--
+--import jakarta.inject.Inject;
+--import jakarta.ws.rs.GET;
+--import jakarta.ws.rs.Path;
+--import jakarta.ws.rs.PathParam;
+--import jakarta.ws.rs.Produces;
+--import jakarta.ws.rs.core.MediaType;
+--import com.dt170g.g3.backend.entities.Dish;
+--import java.util.List;
+--
+--@Path("/dish")
+--public class DishApi {
+--    @Inject
+--    private DishHandler dbHandler;
+--
+--    @GET
+--    @Produces(MediaType.APPLICATION_JSON)
+--    public List<Dish> getAllDishes() {
+--        return dbHandler.getDishes();
+--    }
+--
+--    @GET
+--    @Path("/{id}")
+--    @Produces(MediaType.APPLICATION_JSON)
+--    public Dish getDishById(@PathParam("id") int id) {
+--        return dbHandler.getDishById(id);
+--    }
+--
+--
+--}
+-\ No newline at end of file
+-Index: backend/src/main/webapp/test.xhtml
+-===================================================================
+-diff --git a/backend/src/main/webapp/test.xhtml b/backend/src/main/webapp/test.xhtml
+-deleted file mode 100644
+---- a/backend/src/main/webapp/test.xhtml	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,30 +0,0 @@
+--<!DOCTYPE html>
+--<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+--      xmlns:ui="jakarta.faces.facelets">
+--
+--<h:head>
+--    <meta charset="UTF-8" />
+--    <title>En Ganska Kass Titel</title>
+--    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>
+--
+--</h:head>
+--<h:body>
+--    <div class="container">
+--
+--        <h1>Test igen om det fungerar, sienna</h1>
+--        <div id="message-box">
+--            <ui:repeat value="#{lunch.menuWeek}" var="menu">
+--                <h2>#{menu.day}</h2>
+--                <ui:repeat value="#{menu.dishes}" var="item">
+--                <h2>#{item.name}</h2>
+--
+--                <p>#{item.description}</p>
+--
+--                </ui:repeat>
+--            </ui:repeat>
+--
+--        </div>
+--    </div>
+--</h:body>
+--
+--</html>
+-\ No newline at end of file
+-Index: infra/db/migrations/V1__tables.sql
+-===================================================================
+-diff --git a/infra/db/migrations/V1__tables.sql b/infra/db/migrations/V1__tables.sql
+-deleted file mode 100644
+---- a/infra/db/migrations/V1__tables.sql	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ /dev/null	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-@@ -1,49 +0,0 @@
+---- Main Tables
+--
+--CREATE TABLE dish (
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    name VARCHAR(50) NOT NULL UNIQUE ,
+--    description VARCHAR(255) NOT NULL,
+--    price DECIMAL(7,2) NOT NULL
+--) ENGINE=InnoDB;
+--
+--CREATE TABLE category (
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    name VARCHAR(255) NOT NULL UNIQUE
+--) ENGINE=InnoDB;
+--
+--CREATE TABLE carte_menu(
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+--) ENGINE=InnoDB;
+--
+--CREATE TABLE lunch_menu(
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    date DATE NOT NULL UNIQUE ,
+--    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+--) ENGINE=InnoDB;
+--
+---- Junction Tables
+--CREATE TABLE dish_category(
+--    dish_id INT NOT NULL,
+--    category_id INT NOT NULL,
+--    PRIMARY KEY (dish_id, category_id) ,
+--    FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE ,
+--    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
+--) ENGINE=InnoDB;
+--
+--CREATE TABLE dish_carte_menu(
+--    dish_id INT NOT NULL ,
+--    carte_menu_id INT NOT NULL ,
+--    PRIMARY KEY (dish_id, carte_menu_id) ,
+--    FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE ,
+--    FOREIGN KEY (carte_menu_id) REFERENCES carte_menu(id) ON DELETE CASCADE
+--) ENGINE=InnoDB;
+--
+--CREATE TABLE dish_lunch_menu(
+--    dish_id INT NOT NULL ,
+--    lunch_menu_id INT NOT NULL ,
+--    PRIMARY KEY (dish_id, lunch_menu_id) ,
+--    FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE ,
+--    FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu(id) ON DELETE CASCADE
+--) ENGINE=InnoDB;
+-\ No newline at end of file
+-Index: backend/src/main/java/com/dt170g/g3/backend/HelloResource.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java b/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java
+-new file mode 100644
+---- /dev/null	(date 1770802032533)
+-+++ b/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java	(date 1770802032533)
+-@@ -0,0 +1,22 @@
+-+package com.dt170g.g3.backend;
+-+
+-+import jakarta.inject.Inject;
+-+import jakarta.ws.rs.GET;
+-+import jakarta.ws.rs.Path;
+-+import jakarta.ws.rs.Produces;
+-+import jakarta.ws.rs.core.MediaType;
+-+import com.dt170g.g3.backend.entities.Message;
+-+
+-+import java.util.List;
+-+
+-+@Path("/message")
+-+public class HelloResource {
+-+    @Inject
+-+    private DatabaseHandler dbHandler;
+-+
+-+    @GET
+-+    @Produces(MediaType.APPLICATION_JSON)
+-+    public List<Message> getAllMessages() {
+-+        return dbHandler.getMessages();
+-+    }
+-+}
+-\ No newline at end of file
+-Index: backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java b/backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java
+-rename from backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java
+-rename to backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java
+---- a/backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java	(date 1770302237643)
+-@@ -4,6 +4,6 @@
+- import jakarta.ws.rs.core.Application;
+- 
+- @ApplicationPath("/api")
+--public class RestApplication extends Application {
+-+public class HelloApplication extends Application {
+- 
+- }
+-\ No newline at end of file
+-Index: backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java b/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java
+-new file mode 100644
+---- /dev/null	(date 1770381421123)
+-+++ b/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java	(date 1770381421123)
+-@@ -0,0 +1,31 @@
+-+package com.dt170g.g3.backend;
+-+
+-+import jakarta.enterprise.context.ApplicationScoped;
+-+import jakarta.inject.Named;
+-+import jakarta.persistence.EntityManager;
+-+import jakarta.persistence.PersistenceContext;
+-+import jakarta.persistence.TypedQuery;
+-+import com.dt170g.g3.backend.entities.Message;
+-+import java.util.List;
+-+
+-+@ApplicationScoped
+-+@Named("dbHandler")
+-+public class DatabaseHandler {
+-+    @PersistenceContext
+-+    EntityManager entityManager;
+-+
+-+    public List<Message> getMessages(){
+-+        TypedQuery<Message> messageQuery = entityManager.createNamedQuery("Message.getAll", Message.class);
+-+        List<Message> resultList = messageQuery.getResultList();
+-+        return resultList;
+-+    }
+-+
+-+    public String getMessageText(){
+-+        List<Message> messageList = getMessages();
+-+        if(messageList.isEmpty()){
+-+            return "NO MESSAGES!";
+-+        }
+-+        return messageList.get(0).getText();
+-+    }
+-+}
+-+
+-Index: backend/src/main/java/com/dt170g/g3/backend/entities/Message.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java b/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java
+-new file mode 100644
+---- /dev/null	(date 1770381421130)
+-+++ b/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java	(date 1770381421130)
+-@@ -0,0 +1,39 @@
+-+package com.dt170g.g3.backend.entities;
+-+
+-+import jakarta.persistence.*;
+-+import jakarta.validation.constraints.NotNull;
+-+import jakarta.validation.constraints.Size;
+-+
+-+@NamedQueries(
+-+        @NamedQuery(name = "Message.getAll", query = "SELECT message FROM Message message")
+-+)
+-+@Entity
+-+@Table(name = "Message")
+-+public class Message {
+-+    @Id
+-+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+-+    @Column(name = "ID", nullable = false)
+-+    private Integer id;
+-+
+-+    @Size(max = 100)
+-+    @NotNull
+-+    @Column(name = "TEXT", nullable = false)
+-+    private String text;
+-+
+-+    public Integer getId() {
+-+        return id;
+-+    }
+-+
+-+    public void setId(Integer id) {
+-+        this.id = id;
+-+    }
+-+
+-+    public String getText() {
+-+        return text;
+-+    }
+-+
+-+    public void setText(String text) {
+-+        this.text = text;
+-+    }
+-+
+-+}
+-Index: backend/.idea/encodings.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/encodings.xml b/backend/.idea/encodings.xml
+-new file mode 100644
+---- /dev/null	(date 1770302237639)
+-+++ b/backend/.idea/encodings.xml	(date 1770302237639)
+-@@ -0,0 +1,7 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="Encoding">
+-+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+-+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/.gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>*\r\n!.gitignore
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/.gitignore b/android-app-1/.idea/.gitignore
+---- a/android-app-1/.idea/.gitignore	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/android-app-1/.idea/.gitignore	(date 1770381421088)
+-@@ -1,2 +1,8 @@
+--*
+--!.gitignore
+-\ No newline at end of file
+-+# Default ignored files
+-+/shelf/
+-+/workspace.xml
+-+# Editor-based HTTP Client requests
+-+/httpRequests/
+-+# Datasource local storage ignored files
+-+/dataSources/
+-+/dataSources.local.xml
+-Index: backend/.idea/copilot.data.migration.agent.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/copilot.data.migration.agent.xml b/backend/.idea/copilot.data.migration.agent.xml
+-new file mode 100644
+---- /dev/null	(date 1770302237639)
+-+++ b/backend/.idea/copilot.data.migration.agent.xml	(date 1770302237639)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="AgentMigrationStateService">
+-+    <option name="migrationStatus" value="COMPLETED" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/migrations.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/migrations.xml b/android-app-1/.idea/migrations.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421098)
+-+++ b/android-app-1/.idea/migrations.xml	(date 1770381421098)
+-@@ -0,0 +1,10 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="ProjectMigrations">
+-+    <option name="MigrateToGradleLocalJavaHome">
+-+      <set>
+-+        <option value="$PROJECT_DIR$" />
+-+      </set>
+-+    </option>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: backend/.idea/.gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>*\r\n!.gitignore
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/.gitignore b/backend/.idea/.gitignore
+---- a/backend/.idea/.gitignore	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/backend/.idea/.gitignore	(date 1770302237639)
+-@@ -1,2 +1,10 @@
+--*
+--!.gitignore
+-\ No newline at end of file
+-+# Default ignored files
+-+/shelf/
+-+/workspace.xml
+-+# Ignored default folder with query files
+-+/queries/
+-+# Datasource local storage ignored files
+-+/dataSources/
+-+/dataSources.local.xml
+-+# Editor-based HTTP Client requests
+-+/httpRequests/
+-Index: android-app-1/.idea/compiler.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/compiler.xml b/android-app-1/.idea/compiler.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421091)
+-+++ b/android-app-1/.idea/compiler.xml	(date 1770381421091)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="CompilerConfiguration">
+-+    <bytecodeTargetLevel target="21" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: .gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+># Operating System\r\n.DS_Store\r\n.DS_Store?\r\n._*\r\nThumbs.db\r\n\r\n# IDEs and Editors\r\n.vscode/\r\n*.swp\r\n*.swo\r\n*~\r\n\r\n# Environment variables\r\n.env\r\n.env.local\r\n.env.*.local\r\n\r\n# Exe\r\n*.war\r\n\r\n# Logs\r\n*.log\r\nnpm-debug.log*\r\nyarn-debug.log*\r\nyarn-error.log*\r\n\r\n# Temporary files\r\n*.tmp\r\n*.temp\r\n.cache/\r\n\r\n# Ignorera alla WAR-filer oavsett var de ligger\r\n*.war\r\n\r\n# Ignorera Mavens byggmapp\r\n**/target/\r\n\r\n# Ignorera Gradles byggmappar (för Android)\r\n.gradle/\r\n**/build/\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.gitignore b/.gitignore
+---- a/.gitignore	(revision db40cb1066e7367fa75ba7d99be32507dad90203)
+-+++ b/.gitignore	(date 1771230167743)
+-@@ -15,9 +15,6 @@
+- .env.local
+- .env.*.local
+- 
+--# Exe
+--*.war
+--
+- # Logs
+- *.log
+- npm-debug.log*
+-@@ -38,3 +35,5 @@
+- # Ignorera Gradles byggmappar (för Android)
+- .gradle/
+- **/build/
+-+infra/payara/deployments/restaurant.war
+-+backend/.idea/copilot.data.migration.ask2agent.xml
+-Index: android-app-1/.idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/misc.xml b/android-app-1/.idea/misc.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421098)
+-+++ b/android-app-1/.idea/misc.xml	(date 1770381421098)
+-@@ -0,0 +1,8 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-+  <component name="FrameworkDetectionExcludesConfiguration">
+-+    <file type="web" url="file://$PROJECT_DIR$" />
+-+  </component>
+-+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK" />
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/vcs.xml b/android-app-1/.idea/vcs.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421102)
+-+++ b/android-app-1/.idea/vcs.xml	(date 1770381421102)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="VcsDirectoryMappings">
+-+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/deploymentTargetSelector.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/deploymentTargetSelector.xml b/android-app-1/.idea/deploymentTargetSelector.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421095)
+-+++ b/android-app-1/.idea/deploymentTargetSelector.xml	(date 1770381421095)
+-@@ -0,0 +1,10 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="deploymentTargetSelector">
+-+    <selectionStates>
+-+      <SelectionState runConfigName="app">
+-+        <option name="selectionMode" value="DROPDOWN" />
+-+      </SelectionState>
+-+    </selectionStates>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/gradle.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/gradle.xml b/android-app-1/.idea/gradle.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421098)
+-+++ b/android-app-1/.idea/gradle.xml	(date 1770381421098)
+-@@ -0,0 +1,19 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="GradleMigrationSettings" migrationVersion="1" />
+-+  <component name="GradleSettings">
+-+    <option name="linkedExternalProjectsSettings">
+-+      <GradleProjectSettings>
+-+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+-+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+-+        <option name="modules">
+-+          <set>
+-+            <option value="$PROJECT_DIR$" />
+-+            <option value="$PROJECT_DIR$/app" />
+-+          </set>
+-+        </option>
+-+      </GradleProjectSettings>
+-+    </option>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: backend/.idea/dataSources.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/dataSources.xml b/backend/.idea/dataSources.xml
+-new file mode 100644
+---- /dev/null	(date 1770802032516)
+-+++ b/backend/.idea/dataSources.xml	(date 1770802032516)
+-@@ -0,0 +1,17 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+-+    <data-source source="LOCAL" name="@restaurant" uuid="cbc0a402-7c91-4d0c-a264-1e2ad4c5c619">
+-+      <driver-ref>mysql.8</driver-ref>
+-+      <synchronize>true</synchronize>
+-+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+-+      <jdbc-url>jdbc:mysql://restaurant:3306</jdbc-url>
+-+      <jdbc-additional-properties>
+-+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+-+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+-+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+-+      </jdbc-additional-properties>
+-+      <working-dir>$ProjectFileDir$</working-dir>
+-+    </data-source>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/AndroidProjectSystem.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/AndroidProjectSystem.xml b/android-app-1/.idea/AndroidProjectSystem.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421091)
+-+++ b/android-app-1/.idea/AndroidProjectSystem.xml	(date 1770381421091)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="AndroidProjectSystem">
+-+    <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: backend/.idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/vcs.xml b/backend/.idea/vcs.xml
+-new file mode 100644
+---- /dev/null	(date 1770802032522)
+-+++ b/backend/.idea/vcs.xml	(date 1770802032522)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="VcsDirectoryMappings">
+-+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: backend/.idea/webContexts.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/backend/.idea/webContexts.xml b/backend/.idea/webContexts.xml
+-new file mode 100644
+---- /dev/null	(date 1770802032525)
+-+++ b/backend/.idea/webContexts.xml	(date 1770802032525)
+-@@ -0,0 +1,10 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="WebContextManager">
+-+    <option name="state">
+-+      <map>
+-+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.xhtml" value="file://$PROJECT_DIR$/src/main/webapp" />
+-+      </map>
+-+    </option>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: android-app-1/.idea/runConfigurations.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/android-app-1/.idea/runConfigurations.xml b/android-app-1/.idea/runConfigurations.xml
+-new file mode 100644
+---- /dev/null	(date 1770381421102)
+-+++ b/android-app-1/.idea/runConfigurations.xml	(date 1770381421102)
+-@@ -0,0 +1,17 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="RunConfigurationProducerService">
+-+    <option name="ignoredProducers">
+-+      <set>
+-+        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+-+        <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
+-+        <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
+-+        <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
+-+        <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
+-+        <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
+-+        <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
+-+        <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
+-+      </set>
+-+    </option>
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: infra/db/migrations/V4__seed_basic_data.sql
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/infra/db/migrations/V4__seed_basic_data.sql b/infra/db/migrations/V4__seed_basic_data.sql
+-new file mode 100644
+---- /dev/null	(date 1770802032651)
+-+++ b/infra/db/migrations/V4__seed_basic_data.sql	(date 1770802032651)
+-@@ -0,0 +1,110 @@
+-+-- V2__seed_basic_data.sql
+-+
+-+-- Roles
+-+INSERT INTO role (name) VALUES
+-+  ('ADMIN'),
+-+  ('STAFF'),
+-+  ('KITCHEN')
+-+;
+-+
+-+-- Users (OBS: lösenord är "plaintext demo" – byt till hash i appen senare)
+-+INSERT INTO app_user (name, password) VALUES
+-+  ('admin', 'admin'),
+-+  ('staff', 'staff'),
+-+  ('chef',  'chef')
+-+;
+-+
+-+-- User roles
+-+INSERT INTO user_role (user_id, role_id)
+-+SELECT u.id, r.id
+-+FROM app_user u
+-+JOIN role r ON r.name = 'ADMIN'
+-+WHERE u.name = 'admin'
+-+;
+-+
+-+INSERT INTO user_role (user_id, role_id)
+-+SELECT u.id, r.id
+-+FROM app_user u
+-+JOIN role r ON r.name = 'STAFF'
+-+WHERE u.name = 'staff'
+-+;
+-+
+-+INSERT INTO user_role (user_id, role_id)
+-+SELECT u.id, r.id
+-+FROM app_user u
+-+JOIN role r ON r.name = 'KITCHEN'
+-+WHERE u.name = 'chef'
+-+;
+-+
+-+-- Restaurant tables
+-+INSERT INTO restaurant_table (table_number, capacity) VALUES
+-+  (1, 2),
+-+  (2, 2),
+-+  (3, 4),
+-+  (4, 4),
+-+  (5, 6)
+-+;
+-+
+-+-- Categories
+-+INSERT INTO category (name) VALUES
+-+  ('Starter'),
+-+  ('Main'),
+-+  ('Dessert'),
+-+  ('Drink'),
+-+  ('Vegetarian')
+-+;
+-+
+-+-- Dishes
+-+INSERT INTO dish (name, description, price) VALUES
+-+  ('Garlic Bread', 'Toasted bread with garlic butter', 49.00),
+-+  ('Caesar Salad', 'Romaine, parmesan, croutons', 129.00),
+-+  ('Cheeseburger', 'Beef patty, cheddar, fries', 169.00),
+-+  ('Veggie Bowl', 'Seasonal veggies, grains, sauce', 159.00),
+-+  ('Chocolate Cake', 'Rich chocolate cake', 89.00),
+-+  ('Sparkling Water', '33 cl', 29.00)
+-+;
+-+
+-+-- Dish-category links (koppla några rätter)
+-+-- (Använder INSERT..SELECT för att slippa hårdkoda ID:n)
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Garlic Bread' AND c.name='Starter';
+-+
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Caesar Salad' AND c.name IN ('Starter');
+-+
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Cheeseburger' AND c.name='Main';
+-+
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Veggie Bowl' AND c.name IN ('Main','Vegetarian');
+-+
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Chocolate Cake' AND c.name='Dessert';
+-+
+-+INSERT INTO dish_category (dish_id, category_id)
+-+SELECT d.id, c.id FROM dish d JOIN category c
+-+WHERE d.name='Sparkling Water' AND c.name='Drink';
+-+
+-+-- Create today's lunch menu (one per date because of uq constraint in V1)
+-+INSERT INTO lunch_menu (menu_date) VALUES (CURRENT_DATE());
+-+
+-+-- Add two dishes to lunch menu
+-+INSERT INTO lunch_menu_dish (lunch_menu_id, dish_id)
+-+SELECT lm.id, d.id
+-+FROM lunch_menu lm
+-+JOIN dish d ON d.name IN ('Cheeseburger','Veggie Bowl')
+-+WHERE lm.menu_date = CURRENT_DATE();
+-+
+-+-- Create a-la-carte menu (single row)
+-+INSERT INTO a_la_carte_menu () VALUES ();
+-+
+-+-- Add some dishes to a-la-carte
+-+INSERT INTO a_la_carte_menu_dish (a_la_carte_menu_id, dish_id)
+-+SELECT m.id, d.id
+-+FROM a_la_carte_menu m
+-+JOIN dish d ON d.name IN ('Garlic Bread','Caesar Salad','Cheeseburger','Veggie Bowl','Chocolate Cake','Sparkling Water');
+-Index: infra/db/migrations/V1__grund_schema.sql
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/infra/db/migrations/V1__grund_schema.sql b/infra/db/migrations/V1__grund_schema.sql
+-new file mode 100644
+---- /dev/null	(date 1770802032647)
+-+++ b/infra/db/migrations/V1__grund_schema.sql	(date 1770802032647)
+-@@ -0,0 +1,136 @@
+-+-- V1__baseline.sql
+-+
+-+CREATE TABLE app_user (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(100) NOT NULL,
+-+  password VARCHAR(255) NOT NULL,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE role (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(100) NOT NULL UNIQUE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE user_role (
+-+  user_id INT NOT NULL,
+-+  role_id INT NOT NULL,
+-+  PRIMARY KEY (user_id, role_id),
+-+  CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE,
+-+  CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE dish (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(100) NOT NULL,
+-+  description TEXT,
+-+  price DECIMAL(10,2) NOT NULL
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE category (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(100) NOT NULL UNIQUE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE dish_category (
+-+  dish_id INT NOT NULL,
+-+  category_id INT NOT NULL,
+-+  PRIMARY KEY (dish_id, category_id),
+-+  CONSTRAINT fk_dish_category_dish FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE,
+-+  CONSTRAINT fk_dish_category_category FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE lunch_menu (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  menu_date DATE NOT NULL,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+-+  CONSTRAINT uq_lunch_menu_date UNIQUE (menu_date)
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE lunch_menu_dish (
+-+  lunch_menu_id INT NOT NULL,
+-+  dish_id INT NOT NULL,
+-+  PRIMARY KEY (lunch_menu_id, dish_id),
+-+  CONSTRAINT fk_lunch_menu_dish_menu FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu(id) ON DELETE CASCADE,
+-+  CONSTRAINT fk_lunch_menu_dish_dish FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE a_la_carte_menu (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE a_la_carte_menu_dish (
+-+  a_la_carte_menu_id INT NOT NULL,
+-+  dish_id INT NOT NULL,
+-+  PRIMARY KEY (a_la_carte_menu_id, dish_id),
+-+  CONSTRAINT fk_alacarte_menu_dish_menu FOREIGN KEY (a_la_carte_menu_id) REFERENCES a_la_carte_menu(id) ON DELETE CASCADE,
+-+  CONSTRAINT fk_alacarte_menu_dish_dish FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE restaurant_table (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  table_number INT NOT NULL UNIQUE,
+-+  capacity INT NOT NULL
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE sales_order (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  table_id INT NULL,
+-+  status VARCHAR(30) NOT NULL,
+-+  total DECIMAL(10,2) NOT NULL,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+-+  CONSTRAINT fk_sales_order_table FOREIGN KEY (table_id) REFERENCES restaurant_table(id) ON DELETE SET NULL
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE order_dish (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  order_id INT NOT NULL,
+-+  dish_id INT NOT NULL,
+-+  quantity INT NOT NULL,
+-+  price DECIMAL(10,2) NOT NULL,
+-+  CONSTRAINT fk_order_dish_order FOREIGN KEY (order_id) REFERENCES sales_order(id) ON DELETE CASCADE,
+-+  CONSTRAINT fk_order_dish_dish FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE kitchen_order (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  order_id INT NOT NULL,
+-+  status VARCHAR(30) NOT NULL,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+-+  CONSTRAINT fk_kitchen_order_order FOREIGN KEY (order_id) REFERENCES sales_order(id) ON DELETE CASCADE
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE booking (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(100) NOT NULL,
+-+  email VARCHAR(100),
+-+  phone_no VARCHAR(30),
+-+  booking_date DATE NOT NULL,
+-+  start_time TIME NOT NULL,
+-+  end_time TIME NOT NULL,
+-+  no_of_persons INT NOT NULL,
+-+  table_id INT NULL,
+-+  CONSTRAINT fk_booking_table FOREIGN KEY (table_id) REFERENCES restaurant_table(id) ON DELETE SET NULL
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE shift (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  employee_id INT NULL,
+-+  shift_date DATE NOT NULL,
+-+  start_time TIME NOT NULL,
+-+  end_time TIME NOT NULL,
+-+  CONSTRAINT fk_shift_employee FOREIGN KEY (employee_id) REFERENCES app_user(id) ON DELETE SET NULL
+-+) ENGINE=InnoDB;
+-+
+-+CREATE TABLE post (
+-+  id INT AUTO_INCREMENT PRIMARY KEY,
+-+  name VARCHAR(150) NOT NULL,
+-+  description TEXT,
+-+  event_date DATE,
+-+  start_time TIME,
+-+  end_time TIME,
+-+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+-+  created_by INT NULL,
+-+  CONSTRAINT fk_post_created_by FOREIGN KEY (created_by) REFERENCES app_user(id) ON DELETE SET NULL
+-+) ENGINE=InnoDB;
+-Index: infra/db/migrations/V3__seed_message.sql
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/infra/db/migrations/V3__seed_message.sql b/infra/db/migrations/V3__seed_message.sql
+-new file mode 100644
+---- /dev/null	(date 1770802032647)
+-+++ b/infra/db/migrations/V3__seed_message.sql	(date 1770802032647)
+-@@ -0,0 +1,2 @@
+-+INSERT INTO Message (`TEXT`)
+-+VALUES ('Hej! Detta är en testmessage från Flyway ✅');
+-Index: infra/db/migrations/V2__message.sql
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/infra/db/migrations/V2__message.sql b/infra/db/migrations/V2__message.sql
+-new file mode 100644
+---- /dev/null	(date 1770802032647)
+-+++ b/infra/db/migrations/V2__message.sql	(date 1770802032647)
+-@@ -0,0 +1,4 @@
+-+CREATE TABLE Message (
+-+  ID BIGINT PRIMARY KEY AUTO_INCREMENT,
+-+  `TEXT` VARCHAR(255) NOT NULL
+-+);
+-diff --git a/.idea/misc.xml b/backend/.idea/misc.xml
+-rename from .idea/misc.xml
+-rename to backend/.idea/misc.xml
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"fa059aec-d097-430d-bbdd-b2648e7fa4a4\" name=\"Changes\" comment=\"Test merge with dev\">\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/AndroidProjectSystem.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/compiler.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/deploymentTargetSelector.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/gradle.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/migrations.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/runConfigurations.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/android-app-1/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/.idea/copilot.data.migration.agent.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/.idea/dataSources.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/.idea/webContexts.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/infra/db/migrations/V1__grund_schema.sql\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/infra/db/migrations/V2__message.sql\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/infra/db/migrations/V3__seed_message.sql\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/infra/db/migrations/V4__seed_basic_data.sql\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gitignore\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gitignore\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/Project.iml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/android-app-1/.idea/.gitignore\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/android-app-1/.idea/.gitignore\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/android-app-2/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/.idea/.gitignore\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/.idea/.gitignore\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/Menu.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/webapp/test.xhtml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/infra/db/migrations/V1__tables.sql\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/infra/db/migrations/V3__menu_seed.sql\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"CSS File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"39U8j7eNzEv3U3eXz3vsOJDJ1ub\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;JavaScript Debug.index.xhtml.executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\r\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;landing-page&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"fa059aec-d097-430d-bbdd-b2648e7fa4a4\" name=\"Changes\" comment=\"\" />\r\n      <created>1770739446772</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1770739446772</updated>\r\n      <workItem from=\"1770739459315\" duration=\"15531000\" />\r\n      <workItem from=\"1771230209696\" duration=\"1129000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Rewamp styling\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1770801850393</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1770801850393</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Rewamp styling\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1770801860109</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1770801860109</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Test merge with dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1770802198725</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1770802198725</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Rewamp styling\" />\r\n    <MESSAGE value=\"Test merge with dev\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Test merge with dev\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 924a7171c657a629588c8aae9314075b90cb37d2)
++++ b/.idea/workspace.xml	(date 1771850558326)
+@@ -5,51 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="fa059aec-d097-430d-bbdd-b2648e7fa4a4" name="Changes" comment="Test merge with dev">
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/AndroidProjectSystem.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/compiler.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/deploymentTargetSelector.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/gradle.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/migrations.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/runConfigurations.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/android-app-1/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/.idea/dataSources.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/.idea/encodings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/.idea/webContexts.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DatabaseHandler.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloResource.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Message.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V1__grund_schema.sql" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V2__message.sql" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V3__seed_message.sql" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/infra/db/migrations/V4__seed_basic_data.sql" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/android-app-1/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/android-app-1/.idea/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/android-app-2/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/DishHandler.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/LunchMenuHandler.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/Menu.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/DishApi.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/api/RestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/HelloApplication.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/Dish.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/dt170g/g3/backend/entities/LunchMenu.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/WEB-INF/templates/base.xhtml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/lunch.xhtml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/menu.xhtml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/base.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/components.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/landing.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/resources/css/layout.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/test.xhtml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V1__tables.sql" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V2__dish_seed.sql" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/infra/db/migrations/V3__menu_seed.sql" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2026-02-16_09_42_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/webapp/index.xhtml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" beforeDir="false" afterPath="$PROJECT_DIR$/infra/payara/deployments/restaurant.war" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -63,6 +22,7 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="CSS File" />
++        <option value="JavaScript File" />
+       </list>
+     </option>
+   </component>
+@@ -77,29 +37,92 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;JavaScript Debug.index.xhtml.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;landing-page&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+-  }
+-}</component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "JavaScript Debug.index.xhtml.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.cidr.known.project.marker": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.go.formatter.settings.were.checked": "true",
++    "RunOnceActivity.readMode.enableVisualFormatting": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "cf.first.check.clang-format": "false",
++    "cidr.known.project.marker": "true",
++    "git-widget-placeholder": "Admin__Matilda",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/matil/OneDrive/Desktop/School/Applikationsutveckling i Java/Project/Project/backend/src/main/webapp/admin",
++    "list.type.of.created.stylesheet": "CSS",
++    "node.js.detected.package.eslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "vue.rearranger.settings.migration": "true"
++  }
++}]]></component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\webapp\admin" />
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\webapp\WEB-INF\admin" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\java\com\dt170g\g3\backend" />
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\webapp\admin" />
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\webapp" />
++      <recent name="C:\Users\matil\OneDrive\Desktop\School\Applikationsutveckling i Java\Project\Project\backend\src\main\webapp\WEB-INF" />
++    </key>
++  </component>
++  <component name="RunManager">
++    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
++      <module name="Project" />
++      <working_directory value="$PROJECT_DIR$" />
++      <go_parameters value="-i" />
++      <kind />
++      <directory value="$PROJECT_DIR$" />
++      <filePath value="$PROJECT_DIR$" />
++      <method v="2" />
++    </configuration>
++    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
++      <module name="Project" />
++      <working_directory value="$PROJECT_DIR$" />
++      <go_parameters value="-i" />
++      <kind />
++      <directory value="$PROJECT_DIR$" />
++      <filePath value="$PROJECT_DIR$" />
++      <framework value="gotest" />
++      <method v="2" />
++    </configuration>
++    <configuration default="true" type="JetRunConfigurationType">
++      <module name="Project" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
++      <module name="Project" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++  </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+@@ -117,6 +140,7 @@
+       <updated>1770739446772</updated>
+       <workItem from="1770739459315" duration="15531000" />
+       <workItem from="1771230209696" duration="1129000" />
++      <workItem from="1771232171932" duration="38356000" />
+     </task>
+     <task id="LOCAL-00001" summary="Rewamp styling">
+       <option name="closed" value="true" />
+Index: backend/src/main/webapp/index.xhtml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><ui:composition xmlns=\"http://www.w3.org/1999/xhtml\"\r\n                xmlns:h=\"http://xmlns.jcp.org/jsf/html\"\r\n                xmlns:ui=\"http://xmlns.jcp.org/jsf/facelets\"\r\n                template=\"/WEB-INF/templates/base.xhtml\">\r\n\r\n    <ui:define name=\"title\">Anton's Skafferi - Lokala Smaker</ui:define>\r\n\r\n    <ui:define name=\"hero\">\r\n        <section class=\"hero\">\r\n\r\n            <div class=\"hero-slides\" aria-hidden=\"true\">\r\n                <span class=\"hero-slide s1\"></span>\r\n                <span class=\"hero-slide s2\"></span>\r\n                <span class=\"hero-slide s3\"></span>\r\n                <span class=\"hero-slide s4\"></span>\r\n            </div>\r\n\r\n<!--            <div class=\"hero-overlay\" aria-hidden=\"true\"></div>-->\r\n\r\n            <div class=\"hero-inner\">\r\n                <h1>Välkommen till Anton's Skafferi</h1>\r\n                <p>Där skog och hav är centralt i varje maträtt.</p>\r\n                <h:link outcome=\"lunch\" value=\"Se dagens lunch\" styleClass=\"hero-btn\" />\r\n            </div>\r\n            <div class=\"hero-credits\">\r\n                <h:outputLink value=\"https://www.eat-and-breathe.co.uk/photography/\" target=\"_blank\" styleClass=\"hero-credit c1\">\r\n                    Foto: https://www.eat-and-breathe.co.uk/\r\n                </h:outputLink>\r\n                <h:outputLink value=\"https://www.eat-and-breathe.co.uk/photography/\" target=\"_blank\" styleClass=\"hero-credit c2\">\r\n                    Foto: https://www.eat-and-breathe.co.uk/\r\n                </h:outputLink>\r\n                <h:outputLink value=\"https://www.eat-and-breathe.co.uk/photography/\" target=\"_blank\" styleClass=\"hero-credit c3\">\r\n                    Foto: https://www.eat-and-breathe.co.uk/\r\n                </h:outputLink>\r\n               <h:outputLink value=\"https://www.freepik.com/free-photo/bottom-view-fish-fry-fried-eggplants-onion-wood-serving-board-black-pepper-bowl-oil-bottle-dill-dark-background_16607675.htm#from_element=cross_selling__photo\" target=\"_blank\" styleClass=\"hero-credit c4\">\r\n                   Foto: Image by KamranAydinov on Freepik\r\n               </h:outputLink>\r\n            </div>\r\n        </section>\r\n    </ui:define>\r\n\r\n    <ui:define name=\"content\">\r\n\r\n        <section class=\"concept-section\">\r\n            <h2>Vårt Koncept</h2>\r\n            <p>\r\n                Vi tror på det enkla och äkta. Vi har alltid en grundmeny som vi följer,\r\n                men vi låter oss inspireras av säsongens smaker och vad naturen har att erbjuda. Vi sammarbetar\r\n                med lokala bönder, fiskare och jägare för att säkerställa att vi alltid har de bästa råvarorna på tallriken.\r\n                Hos oss hittar du alltid <strong>färskfångad fisk</strong>,\r\n                <strong>viltkött av högsta kvalitet</strong> eller\r\n                <strong>närodlat kött</strong>.\r\n            </p>\r\n        </section>\r\n\r\n        <section class=\"category-grid\">\r\n\r\n            <div class=\"card\">\r\n                <div class=\"card-header\"><h3>Dagens Lunch</h3></div>\r\n                <div class=\"card-content\"><p>Klassisk husman med en vild twist. Se även vår veckovy.</p></div>\r\n                <div class=\"card-link\"><h:link outcome=\"lunch\" value=\"Visa lunchmeny\" /></div>\r\n            </div>\r\n\r\n            <div class=\"card\">\r\n                <div class=\"card-header\"><h3>À La Carte</h3></div>\r\n                <div class=\"card-content\"><p>Utvalt vilt och dagens fångst.</p></div>\r\n                <div class=\"card-link\"><h:link outcome=\"menu\" value=\"Se hela menyn\" /></div>\r\n            </div>\r\n\r\n            <div class=\"card\">\r\n                <div class=\"card-header\"><h3>Boka Bord</h3></div>\r\n                <div class=\"card-content\"><p>Säkra din plats i skafferiet.</p></div>\r\n                <div class=\"card-link\"><h:link outcome=\"booking\" value=\"Till bokningen\" /></div>\r\n            </div>\r\n\r\n            <div class=\"card\">\r\n                <div class=\"card-header\"><h3>Musik och Events</h3></div>\r\n                <div class=\"card-content\"><p>Kommande &amp; tidigare events.</p></div>\r\n                <div class=\"card-link\"><h:link outcome=\"events\" value=\"Gå till bloggen\" /></div>\r\n            </div>\r\n\r\n        </section>\r\n\r\n    </ui:define>\r\n\r\n</ui:composition>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/main/webapp/index.xhtml b/backend/src/main/webapp/index.xhtml
+--- a/backend/src/main/webapp/index.xhtml	(revision 924a7171c657a629588c8aae9314075b90cb37d2)
++++ b/backend/src/main/webapp/index.xhtml	(date 1771236958097)
+@@ -40,7 +40,6 @@
+     </ui:define>
+ 
+     <ui:define name="content">
+-
+         <section class="concept-section">
+             <h2>Vårt Koncept</h2>
+             <p>

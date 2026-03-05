@@ -69,7 +69,7 @@ CREATE TABLE booking(
     duration_minutes INT NOT NULL,
     no_of_people INT NOT NULL,
     note VARCHAR(255) DEFAULT NULL,
-    name VARCHAR(50) NOT NULL,    
+    name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     phone_no VARCHAR(30) NOT NULL,
     CONSTRAINT uq_booking_slot_phone UNIQUE (date, start_time, phone_no),
