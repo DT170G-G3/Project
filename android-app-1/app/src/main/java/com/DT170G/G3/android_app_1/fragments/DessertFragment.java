@@ -1,8 +1,5 @@
 package com.DT170G.G3.android_app_1.fragments;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
@@ -49,8 +43,6 @@ public class DessertFragment extends Fragment {
      */
     public static DessertFragment newInstance(String param1, String param2) {
         DessertFragment fragment = new DessertFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -70,24 +62,11 @@ public class DessertFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadDesserts();
-        dessertNotesSwitchListener();
     }
 
-    private void dessertNotesSwitchListener(){
-        Switch dessertSwitch = requireView().findViewById(R.id.dessertNotesSwitch);
-        EditText dessertNotes = requireView().findViewById(R.id.dessertNotes);
-
-        dessertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    dessertNotes.setVisibility(VISIBLE);
-                } else{
-                    dessertNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
+    /**
+     * Återställer räknarna kopplad till alla efterrätter
+     */
     public void resetDessertCounter(){
         for(TextView dessertCounter : allDessertCounters){
             dessertCounter.setText("0");
@@ -98,6 +77,10 @@ public class DessertFragment extends Fragment {
         allOrderedDesserts.clear();
     }
 
+    /**
+     * Hämtar alla beställda efterrätter
+     * @return Lista med IDn för alla beställda efterrätter
+     */
     public List<Integer> getAllOrderedDesserts(){
         return allOrderedDesserts;
     }
@@ -106,7 +89,6 @@ public class DessertFragment extends Fragment {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
             public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
                 populateDessertUI(dishes);
             }
             @Override
@@ -116,17 +98,21 @@ public class DessertFragment extends Fragment {
         });
     }
 
-    private void populateDessertUI(List<Dish> dishes) {
+    /**
+     * Lägger till alla efterrätter på sidan för efterrätter
+     * @param desserts
+     */
+    private void populateDessertUI(List<Dish> desserts) {
         LinearLayout dessertView = requireView().findViewById(R.id.dessertLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        for(Dish dish : dishes) {
-            int catId = dish.getDishCategoryId();
-            //Lägger till alla med katergori 3 som är Desserter
+        for(Dish dessert : desserts) {
+            int catId = dessert.getDishCategoryId();
+            //Lägger till alla med kategori 3 som är Desserter
             if (catId != 3) {
                 continue;
             }
-            dessertView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allDessertCounters, allOrderedDesserts));
+            dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert.getId(), dessert.getName(), allDessertCounters, allOrderedDesserts));
         }
     }
 }

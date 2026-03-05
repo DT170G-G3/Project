@@ -1,7 +1,6 @@
 package com.DT170G.G3.android_app_1.fragments;
 
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -117,6 +116,10 @@ public class TableFragment extends Fragment {
         });
     }
 
+    /**
+     * Funktion som hämtar det valda bordsnumret
+     * @return det valda bordsnumret
+     */
     public int getSelectedTable() {
         return selectedTableNumber;
     }

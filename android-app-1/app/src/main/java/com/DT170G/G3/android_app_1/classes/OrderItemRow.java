@@ -1,26 +1,16 @@
 package com.DT170G.G3.android_app_1.classes;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.icu.text.Transliterator;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -101,5 +91,4 @@ public class OrderItemRow {
         itemRow.addView(itemCounter);
         return itemRow;
     }
-
 }

@@ -1,6 +1,4 @@
 package com.DT170G.G3.android_app_1.fragments;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
 
@@ -12,10 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
@@ -44,13 +39,10 @@ public class MainCourseFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment ChefFragment.
+     * @return A new instance of fragment MainCourseFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MainCourseFragment newInstance(String param1, String param2) {
         MainCourseFragment fragment = new MainCourseFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -71,25 +63,11 @@ public class MainCourseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadMainDishes();
-        mainCourseNotesSwitchListener();
     }
 
-    private void mainCourseNotesSwitchListener(){
-        Switch mainCourseSwitch = requireView().findViewById(R.id.mainCourseNotesSwitch);
-        EditText mainCourseNotes = requireView().findViewById(R.id.mainCourseNotes);
-
-        mainCourseSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    mainCourseNotes.setVisibility(VISIBLE);
-                } else{
-                    mainCourseNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
-
+    /**
+     * Återställer räknarna kopplad till alla varmrätter
+     */
     public void resetMainCounter(){
         for(TextView mainCounter : allMainCounters){
             mainCounter.setText("0");
@@ -100,6 +78,10 @@ public class MainCourseFragment extends Fragment {
         allOrderedMainCourses.clear();
     }
 
+    /**
+     * Hämtar alla beställda varmrätter
+     * @return Lista med IDn för alla beställda varmrätter
+     */
     public List<Integer> getAllOrderedMainCourses(){
         return allOrderedMainCourses;
     }
@@ -108,7 +90,6 @@ public class MainCourseFragment extends Fragment {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
             @Override
             public void onSuccess(List<Dish> dishes) {
-                //DishesCache.setCache(dishes);   //om vi ska använda cache
                 populateMainDishesUI(dishes);
             }
             @Override
@@ -118,6 +99,10 @@ public class MainCourseFragment extends Fragment {
         });
     }
 
+    /**
+     * Lägger till alla varmrätter på sidan för varmrätter
+     * @param dishes
+     */
     private void populateMainDishesUI(List<Dish> dishes) {
         LinearLayout mainCourseView = requireView().findViewById(R.id.mainCourseLayout);
         OrderItemRow orderItemRow = new OrderItemRow();

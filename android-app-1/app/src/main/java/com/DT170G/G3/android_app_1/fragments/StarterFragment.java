@@ -70,23 +70,6 @@ public class StarterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         asyncLoadStarters();
-        starterNotesSwitchListener();
-    }
-
-    private void starterNotesSwitchListener(){
-        Switch starterSwitch = requireView().findViewById(R.id.starterNotesSwitch);
-        EditText starterNotes = requireView().findViewById(R.id.starterNotes);
-
-        starterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    starterNotes.setVisibility(VISIBLE);
-                } else{
-                    starterNotes.setVisibility(GONE);
-                }
-            }
-        });
     }
 
     public void resetStarterCounter(){

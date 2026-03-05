@@ -1,15 +1,19 @@
 package com.DT170G.G3.android_app_1;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -27,20 +31,17 @@ import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.fragments.TableFragment;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.tables.Table;
+import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-//TODO Temporära imports
-import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    // TODO Temporärt test
     OrdersRepository ordersRepo = new OrdersRepository();
     DrinkFragment drinkFragment = new DrinkFragment();
     StarterFragment starterFragment = new StarterFragment();
@@ -71,14 +72,7 @@ public class MainActivity extends AppCompatActivity {
         changeTabListener();
         sendOrderButtonListener();
         resetOrderButtonListener();
-
-
-        //------POST--------
-        //exampleCreateOrder();
-
-        //------GET---------
-        //exampleGetDishes();
-
+        notesSwitchListener();
     }
 
     /**
@@ -95,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
             Snackbar.make(findViewById(R.id.main), "Beställningen rensad", Snackbar.LENGTH_SHORT).setAnchorView(resetButton).show();
 
-            //Ändrar vy till val av bord
             viewPager2.setCurrentItem(0);
         });
 
@@ -107,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void sendOrderButtonListener(){
-        //Resest form - ändra så att den skickar till databasen oxå
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
             createOrder();
+            viewPager2.setCurrentItem(0);
         });
 
     }
@@ -174,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Döljer alla managerings knappar mm.
+     */
     private void hideManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -186,8 +182,19 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(INVISIBLE);
         tv2.setVisibility(INVISIBLE);
         tv3.setVisibility(INVISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(INVISIBLE);
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setVisibility(INVISIBLE);
+        notes.setText("");
+
     }
 
+    /**
+     * Visar alla managerings knappar mm.
+     */
     private void showManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -200,7 +207,16 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(VISIBLE);
         tv2.setVisibility(VISIBLE);
         tv3.setVisibility(VISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(VISIBLE);
+
+        if(noteSwitch.isChecked()){
+            noteSwitch.setChecked(false);
+        }
+
     }
+
 
     /**
      * Funktion som resettar alla counters för drink, förrätt, varmrätt och efterrätt
@@ -222,7 +238,11 @@ public class MainActivity extends AppCompatActivity {
         dessertFragment = pagerAdapter.getDessertFragment();
         dessertFragment.resetDessertCounter();
         dessertFragment.clearAllOrderedDesserts();
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setText("");
     }
+
 
     /**
      * Funktion som skapar en order och lägger till den i databasen
@@ -232,12 +252,6 @@ public class MainActivity extends AppCompatActivity {
      * @return void
      */
     public void createOrder() {
-        // EXAMPLE how to POST an Order
-        // Only ID is required for drinks, sitting and dishes
-
-        //Create new order, initialize new Lists
-
-
         //Kollar om Table är valt annars be att välja bord
         tableFragment = pagerAdapter.getTableFragment();
         int tableNumber = tableFragment.getSelectedTable();
@@ -263,9 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 Drink orderedDrink = new Drink();
                 orderedDrink.id = drinkId;
                 order.drinks.add(orderedDrink);
-                Log.d("CREATE ORDER", "DRINK: " + drinkId);
             }
-            Log.d("CREATE ORDER", "DRINKS SIZE: " + order.drinks.size());
         }
 
         //STARTERS
@@ -276,9 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedStarter = new Dish();
                 orderedStarter.id = starterId;
                 order.dishes.add(orderedStarter);
-                Log.d("CREATE ORDER", "STARTER: " + starterId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //MAIN COURSES
@@ -289,9 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedMainCourse = new Dish();
                 orderedMainCourse.id = mainCourseId;
                 order.dishes.add(orderedMainCourse);
-                Log.d("CREATE ORDER", "MAIN: " + mainCourseId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //DESSERTS
@@ -302,9 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 Dish orderedDessert = new Dish();
                 orderedDessert.id = dessertId;
                 order.dishes.add(orderedDessert);
-                Log.d("CREATE ORDER", "DESSERT: " + dessertId);
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         if (allOrderedDrinks.isEmpty() && allOrderedStarters.isEmpty() && allOrderedMainCourses.isEmpty() && allOrderedDesserts.isEmpty()){
@@ -318,9 +324,41 @@ public class MainActivity extends AppCompatActivity {
         table.id = tableNumber;
         order.table = table;
 
-        //resetItemCountersAndAllOrderedItems();
+        //NOTES
+        String orderNote = "";
+
+        EditText notes = findViewById(R.id.orderNotes);
+        String notesString = notes.getText().toString();
+        if(!notesString.matches("")){
+            orderNote = orderNote + notesString;
+        }
+
+        order.note = orderNote;
+
+        Log.d("NOTES",orderNote);
+        resetItemCountersAndAllOrderedItems();
         asyncCreateOrder(order);
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
+    }
+
+    /**
+     * Funktion som lyssnar när switchen ändras
+     * Visar eller döljer textrutan för noteringar
+     */
+    private void notesSwitchListener(){
+        Switch orderSwitch = findViewById(R.id.notesSwitch);
+        EditText notes = findViewById(R.id.orderNotes);
+
+        orderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    notes.setVisibility(VISIBLE);
+                } else{
+                    notes.setVisibility(GONE);
+                }
+            }
+        });
     }
 
 
