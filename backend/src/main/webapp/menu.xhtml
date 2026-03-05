@@ -13,9 +13,28 @@
                 <h1 class="text-center">À la carte meny</h1>
 
                 <!-- KATEGORI -->
-                <ui:repeat value="#{carteMenu.groupedDishes.entrySet()}" var="catEntry">
+                <ui:repeat value="#{carteMenu.groupedDishes.entrySet()}" var="catEntry" varStatus="picCounter">
                     <article class="menu-category">
                         <h2 class="text-center">#{catEntry.key}</h2>
+
+                        <!-- Bild Divider -->
+                        <h:panelGroup layout="block" styleClass="divider-carousel text-center">
+
+                            <ui:repeat value="#{menuViewBean.getCarouselImagesForCategory(picCounter.index)}" var="imgName" varStatus="loopStat">
+
+                                <h:graphicImage library="images"
+                                                name="#{imgName}"
+                                                styleClass="divider-carousel__img slide-#{loopStat.index}"
+                                                style="
+                                                    animation-name: fade-#{menuViewBean.getCarouselImagesForCategory(picCounter.index).size()};
+                                                    animation-duration: #{menuViewBean.getCarouselImagesForCategory(picCounter.index).size() * 10}s;
+                                                    animation-delay: #{loopStat.index * 10}s;
+                                                    "
+                                                alt="Dekorativ avdelare"/>
+
+                            </ui:repeat>
+
+                        </h:panelGroup>
 
                         <!-- TYP inom kategori -->
                         <ui:repeat value="#{catEntry.value.entrySet()}" var="typeEntry">
@@ -32,7 +51,7 @@
                                             <h3>#{item.name}</h3>
 
                                             <!-- Pris -->
-<!--                                            <span class="dish-price">#{item.price} SEK</span>-->
+                                            <!--                                            <span class="dish-price">#{item.price} SEK</span>-->
 
                                             <span class="dish-price">
                                                 <h:outputText value="#{item.price}">
@@ -47,6 +66,9 @@
 
                         </ui:repeat>
                     </article>
+
+
+
                 </ui:repeat>
 
             </div>
