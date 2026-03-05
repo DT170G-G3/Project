@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void sendOrderButtonListener(){
-        //Resest form - ändra så att den skickar till databasen oxå
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
@@ -168,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Döljer alla managerings knappar mm.
+     */
     private void hideManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -190,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Visar alla managerings knappar mm.
+     */
     private void showManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -211,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
     /**
      * Funktion som resettar alla counters för drink, förrätt, varmrätt och efterrätt
@@ -335,6 +341,10 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
 
+    /**
+     * Funktion som lyssnar när switchen ändras
+     * Visar eller döljer textrutan för noteringar
+     */
     private void notesSwitchListener(){
         Switch orderSwitch = findViewById(R.id.notesSwitch);
         EditText notes = findViewById(R.id.orderNotes);
@@ -350,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void asyncCreateOrder(Order order) {
