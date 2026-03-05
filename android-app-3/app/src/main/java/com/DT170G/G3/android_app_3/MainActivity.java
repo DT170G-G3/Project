@@ -2,9 +2,11 @@ package com.DT170G.G3.android_app_3;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,12 +36,22 @@ public class MainActivity extends AppCompatActivity {
     private LocalDate monday;
     private Button selectedButton;
     private LocalDate selectedDate;
-    //bara för test, byt mot databas sen private
-    Map<LocalDate, List<String>> dayWork = new HashMap<>();
+    //TODO: bara för test, byt mot databas sen private
+    private Map<LocalDate, List<String>> dayWork = new HashMap<>();
     private Map<LocalDate, List<String>> nightWork = new HashMap<>();
 
-    //för test
-    private List<String> allPersons = List.of("Molly", "Frank", "Melker", "Andreas", "Jacob", "Christine", "Doris");
+    private List<String> allPersons = List.of("Sigrid", "Frank", "Melker", "Andreas", "Jacob", "Christine", "Doris");
+
+    private String correctTestID = "cd20486bd301b60d";
+    private String wrongTestID = "cd20486bd301b602";
+
+    private String name;
+
+    private String androidId;
+
+    private Map<String, String> idToName = Map.of(correctTestID, "Sigrid");
+
+
     private @NonNull Insets systemBars;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -48,6 +60,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d("ANDROID_ID", androidId);
+
+
+        if(androidId.equals(correctTestID)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Välkommen!");
+            builder.setMessage("Ange ditt namn: ");
+
+            EditText input = new EditText(this);
+            input.setHint("skriv ditt namn här");
+
+            builder.setView(input);
+
+            builder.setPositiveButton("ok", (dialog, which) -> {
+                name  = input.getText().toString();
+            });
+            builder.show();
+        }
 
 
         LocalDate today = LocalDate.now();
@@ -193,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
     private void printSchedule(LocalDate today) {
         dayWork.clear();
         nightWork.clear();
-        dayWork.put(today, new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
+        dayWork.put(today, new ArrayList<>(List.of("Sigrid", "Frank", "Susanna")));
         nightWork.put(today, new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
         dayWork.put(today.plusDays(1), new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
         nightWork.put(today.plusDays(1), new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
@@ -255,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
     private void swapPerson(String personName, String changeToPerson) {
         Log.d("REQUESR", "Swap request" + personName + " -> " + changeToPerson);
         Toast.makeText(this, "Förfrågan skcikad", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void checkId() {
 
     }
 }
