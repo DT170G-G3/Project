@@ -5,12 +5,13 @@ INSERT INTO event (title, description, start_time) VALUES
    ('Musikquiz 80-tal', 'Quiz om 80-talets största hits.', '2026-03-20 19:00:00'),
    ('Musikquiz Film', 'Quiz om låtar från filmer.', '2026-03-27 19:00:00');
 
-INSERT INTO posts (event_id) VALUES
-    (1),
-    (2),
-    (3),
-    (4),
-    (5);
+INSERT INTO posts (image_path, event_id) VALUES
+    ('resources/images/bottles-picture.jpg', 1),
+    ('resources/images/burgers.jpeg', 2),
+    ('resources/images/burgers-ai.png', 3),
+    ('resources/images/Drink-picture.jpg', 4),
+    ('resources/images/fish.jpg', 5),
+    ('resources/images/pizza-ai.png', 5);
 
 INSERT INTO comments (post_id, name, comment) VALUES
     (1, 'Erik', 'Ser fram emot quizet!'),
@@ -18,4 +19,5 @@ INSERT INTO comments (post_id, name, comment) VALUES
     (2, 'Johan', 'Rockquiz blir grymt!'),
     (3, 'Sara', 'Popquiz låter kul!'),
     (4, 'David', '80-talets musik är bäst!'),
-    (5, 'Emma', 'Filmmusik quiz låter svårt!');
+    (5, 'Emma', 'Filmmusik quiz låter svårt!'),
+    (6, 'Peter', 'Filmmusik quiz låter svårt!');

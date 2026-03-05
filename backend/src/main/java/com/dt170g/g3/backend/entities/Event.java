@@ -2,6 +2,26 @@ package com.dt170g.g3.backend.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+
+@NamedQueries({
+        @NamedQuery(
+                name = "EventRows.getEventPostCommentRows",
+                query = "SELECT e.title, e.description, e.startTime, p.imagePath, c.name, c.comment, c.dateAndTime " +
+                        "FROM Event e " +
+                        "LEFT JOIN Post p ON p.event = e " +
+                        "LEFT JOIN Comment c ON c.post = p " +
+                        "WHERE e.id = :eventId"
+        ),
+        @NamedQuery(
+                name = "Event.findAllWithPostsAndComments",
+                query = "SELECT DISTINCT e FROM Event e " +
+                        "LEFT JOIN FETCH e.posts p " +
+                        "LEFT JOIN FETCH p.comments " //+
+//                        "ORDER BY e.startTime ASC"
+        )
+})
 
 @Entity
 @Table(name="event")
@@ -18,6 +38,10 @@ public class Event {
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
+
+    @OneToMany(mappedBy = "event")
+    private List<Post> posts;
+
 
     public Event(){}
 
@@ -38,7 +62,7 @@ public class Event {
         return title;
     }
 
-    public void setDescription(String text) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -52,5 +76,13 @@ public class Event {
 
     public LocalDateTime getStartTime() {
         return startTime;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 }

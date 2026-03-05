@@ -2,6 +2,8 @@ package com.dt170g.g3.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "posts")
@@ -17,6 +19,12 @@ public class Post {
     @ManyToOne
     @JoinColumn(name="event_id", nullable=false)
     private Event event;
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
+
+    public List<Comment> getComments() { return comments; }
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 
     public Post(){}
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Eriks Tite3jjoijeel</title>
+    <!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>-->
+
+</h:head>
+<h:body>
+    <div class="container">
+
+        <h1>Test igen om det fungerar Erik, sienna</h1>
+        <div id="message-box">
+
+
+            <!-- Kör metoden när sidan laddas -->
+            <f:metadata>
+                <f:viewAction action="#{eventBean.loadEvents}" />
+            </f:metadata>
+
+            <h1>Alla Events</h1>
+
+            <!-- Om inga events -->
+            <h:panelGroup rendered="#{empty eventBean.events}">
+                <p>Inga events hittades.</p>
+            </h:panelGroup>
+
+            <!-- Lista events -->
+            <ui:repeat value="#{eventBean.events}" var="e">
+                <hr/>
+                <h2>#{e.title}</h2>
+                <p>#{e.description}</p>
+                <p><b>Start:</b> #{e.startTime}</p>
+
+                <h3>Posts</h3>
+
+                <!-- Om event saknar posts -->
+                <h:panelGroup rendered="#{empty e.posts}">
+                    <p>Inga posts.</p>
+                </h:panelGroup>
+
+                <!-- Lista posts -->
+                <ui:repeat value="#{e.posts}" var="p">
+                    <div style="margin-left: 20px;">
+                        <h:graphicImage value="#{p.imagePath}" style="max-width:300px;" />
+
+                        <h4>Comments</h4>
+
+                        <!-- Om post saknar comments -->
+                        <h:panelGroup rendered="#{empty p.comments}">
+                            <p>Inga kommentarer.</p>
+                        </h:panelGroup>
+
+                        <!-- Lista comments -->
+                        <ui:repeat value="#{p.comments}" var="c">
+                            <div style="margin-left: 20px;">
+                                <p>
+                                    <b>#{c.name}</b> (#{c.dateAndTime})<br/>
+                                    #{c.comment}
+                                </p>
+                            </div>
+                        </ui:repeat>
+
+                    </div>
+                </ui:repeat>
+
+            </ui:repeat>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</h:body>
+
+</html>
+
