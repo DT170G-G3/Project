@@ -89,11 +89,11 @@ CREATE TABLE posts (
 
 CREATE TABLE comments (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    post_id INT NOT NULL,
+    event_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     comment TEXT NOT NULL,
     date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+    FOREIGN KEY (event_id) REFERENCES posts(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Junction Tables

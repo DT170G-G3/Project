@@ -13,11 +13,11 @@ INSERT INTO posts (image_path, event_id) VALUES
     ('resources/images/fish.jpg', 5),
     ('resources/images/pizza-ai.png', 5);
 
-INSERT INTO comments (post_id, name, comment) VALUES
+INSERT INTO comments (event_id, name, comment) VALUES
     (1, 'Erik', 'Ser fram emot quizet!'),
     (1, 'Anna', '90-tal är min favorit!'),
     (2, 'Johan', 'Rockquiz blir grymt!'),
     (3, 'Sara', 'Popquiz låter kul!'),
-    (4, 'David', '80-talets musik är bäst!'),
+    (3, 'David', '80-talets musik är bäst!'),
     (5, 'Emma', 'Filmmusik quiz låter svårt!'),
-    (6, 'Peter', 'Filmmusik quiz låter svårt!');
+    (5, 'Peter', 'Filmmusik quiz låter svårt!');

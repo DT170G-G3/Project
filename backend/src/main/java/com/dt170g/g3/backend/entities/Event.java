@@ -6,19 +6,19 @@ import java.util.List;
 
 
 @NamedQueries({
-        @NamedQuery(
-                name = "EventRows.getEventPostCommentRows",
-                query = "SELECT e.title, e.description, e.startTime, p.imagePath, c.name, c.comment, c.dateAndTime " +
-                        "FROM Event e " +
-                        "LEFT JOIN Post p ON p.event = e " +
-                        "LEFT JOIN Comment c ON c.post = p " +
-                        "WHERE e.id = :eventId"
-        ),
+//        @NamedQuery(
+//                name = "EventRows.getEventPostCommentRows",
+//                query = "SELECT e.title, e.description, e.startTime, p.imagePath, c.name, c.comment, c.dateAndTime " +
+//                        "FROM Event e " +
+//                        "LEFT JOIN Post p ON p.event = e " +
+//                        "LEFT JOIN Comment c ON c.post = p " +
+//                        "WHERE e.id = :eventId"
+//        ),
         @NamedQuery(
                 name = "Event.findAllWithPostsAndComments",
                 query = "SELECT DISTINCT e FROM Event e " +
-                        "LEFT JOIN FETCH e.posts p " +
-                        "LEFT JOIN FETCH p.comments " //+
+                        "LEFT JOIN FETCH e.posts " +
+                        "LEFT JOIN FETCH e.comments " //+
 //                        "ORDER BY e.startTime ASC"
         )
 })
@@ -41,6 +41,11 @@ public class Event {
 
     @OneToMany(mappedBy = "event")
     private List<Post> posts;
+
+
+    @OneToMany(mappedBy = "event")
+    private List<Comment> comments;
+
 
 
     public Event(){}
@@ -84,5 +89,13 @@ public class Event {
 
     public List<Post> getPosts() {
         return posts;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 }

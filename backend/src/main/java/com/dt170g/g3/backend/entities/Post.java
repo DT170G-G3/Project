@@ -20,11 +20,6 @@ public class Post {
     @JoinColumn(name="event_id", nullable=false)
     private Event event;
 
-    @OneToMany(mappedBy = "post")
-    private List<Comment> comments;
-
-    public List<Comment> getComments() { return comments; }
-    public void setComments(List<Comment> comments) { this.comments = comments; }
 
     public Post(){}
 
