@@ -18,19 +18,12 @@
             <div class="hero-inner">
                 <h1>Välkommen till Anton's Skafferi</h1>
                 <p>Där skog och hav är centralt i varje maträtt.</p>
-<!--                <h:link outcome="lunch" value="Se dagens lunch" styleClass="hero-btn" />-->
             </div>
             <div class="hero-credits">
-<!--                <h:outputLink value="https://www.eat-and-breathe.co.uk/photography/" target="_blank" styleClass="hero-credit c1">-->
-<!--                    Foto: https://www.eat-and-breathe.co.uk/-->
-<!--                </h:outputLink>-->
                 <h:outputText value="Foto: AI-generated" styleClass="hero-credit c1"/>
                 <h:outputText value="Foto: AI-generated" styleClass="hero-credit c2"/>
                 <h:outputText value="Foto: AI-generated" styleClass="hero-credit c3" />
                 <h:outputText value="Foto: AI-generated" styleClass="hero-credit c4" />
-<!--               <h:outputLink value="https://www.freepik.com/free-photo/bottom-view-fish-fry-fried-eggplants-onion-wood-serving-board-black-pepper-bowl-oil-bottle-dill-dark-background_16607675.htm#from_element=cross_selling__photo" target="_blank" styleClass="hero-credit c4">-->
-<!--                   Foto: Image by KamranAydinov on Freepik-->
-<!--               </h:outputLink>-->
             </div>
         </section>
     </ui:define>
@@ -39,7 +32,7 @@
 
         <section class="paper-wrap">
             <div class="panel paper-look paper-torn text-center">
-                <h2>Dagens lunch</h2>
+                <h2>Dagens lunch #{week.currentDay}</h2>
                 <div class="todays">
                     <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
                         <div class="under-line">

@@ -18,6 +18,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(name= "android_id")
+    private String androidId;
+
     public String getName() {return name;}
+
+
+    public String getAndroidId(){return androidId;}
     public int getId(){return id;}
 }

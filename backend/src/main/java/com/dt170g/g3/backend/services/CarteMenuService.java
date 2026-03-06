@@ -76,5 +76,6 @@ public class CarteMenuService {
         CarteDish dish = entityManager.find(CarteDish.class, id);
         menu.getDishes().remove(dish);
 
+
     }
 }
