@@ -1,64 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+<html lang="sv"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
       xmlns:ui="jakarta.faces.facelets">
 
 <h:head>
     <meta charset="UTF-8" />
-    <title>Eriks Tite3jjoijeel</title>
-    <!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>-->
-
+    <title>Event och kommentarer</title>
 </h:head>
+
 <h:body>
     <div class="container">
+        <h1>Alla event</h1>
 
-        <h1>Test igen om det fungerar Erik, sienna</h1>
         <div id="message-box">
 
-            <f:metadata>
-                <f:viewAction action="#{eventBean.loadEvents}" />
-            </f:metadata>
-            <!-- Kör metoden när sidan laddas -->
-            <ui:repeat value="#{eventBean.events}" var="e">
-                <hr/>
-                <h2>#{e.title}</h2>
-                <p>#{e.description}</p>
-                <p><b>Start:</b> #{e.startTime}</p>
+            <ui:repeat value="#{eventBean.events}" var="e" varStatus="status">
+                <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #ccc;">
 
-                <h3>Posts</h3>
-                <h:panelGroup rendered="#{empty e.posts}">
-                    <p>Inga posts.</p>
-                </h:panelGroup>
+                    <h2>#{e.title}</h2>
+                    <p>#{e.description}</p>
 
-                <ui:repeat value="#{e.posts}" var="p">
-                    <div style="margin-left: 20px;">
-                        <h:graphicImage value="#{p.imagePath}" style="max-width:300px;" />
-                    </div>
-                </ui:repeat>
+                    <p>
+                        <b>Start:</b>
+                        <h:outputText value="#{e.startTime}">
+                            <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm" />
+                        </h:outputText>
+                    </p>
 
-                <h3>Comments</h3>
-                <h:panelGroup rendered="#{empty e.comments}">
-                    <p>Inga kommentarer.</p>
-                </h:panelGroup>
+                    <h3>Posts</h3>
+                    <h:panelGroup rendered="#{empty e.posts}">
+                        <p>Inga posts ännu.</p>
+                    </h:panelGroup>
 
-                <ui:repeat value="#{e.comments}" var="c">
-                    <div style="margin-left: 20px;">
-                        <p>
-                            <b>#{c.name}</b> (#{c.dateAndTime})<br/>
-                            #{c.comment}
-                        </p>
-                    </div>
-                </ui:repeat>
+                    <ui:repeat value="#{e.posts}" var="p">
+                        <div style="margin-left: 20px; margin-bottom: 10px;">
+                            <h:graphicImage value="#{p.imagePath}" style="max-width:300px;" />
+                        </div>
+                    </ui:repeat>
+
+                    <h3>Kommentarer</h3>
+                    <h:panelGroup rendered="#{empty e.comments}">
+                        <p>Inga kommentarer ännu.</p>
+                    </h:panelGroup>
+
+                    <ui:repeat value="#{e.comments}" var="c">
+                        <div style="margin-left: 20px; margin-bottom: 10px;">
+                            <p>
+                                <b>#{c.name}</b>
+                                (<h:outputText value="#{c.dateAndTime}">
+                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm" />
+                            </h:outputText>)
+                                <br />
+                                #{c.comment}
+                            </p>
+                        </div>
+                    </ui:repeat>
+
+                    <!-- Eget formulär för just detta event -->
+                    <h:form id="commentForm#{status.index}">
+                        <h3>Skriv kommentar till detta event</h3>
+
+                        <h:messages style="color:red;" />
+
+                        <h:panelGrid columns="2" cellpadding="6">
+                            <h:outputLabel for="commentName" value="Namn:" />
+                            <h:inputText id="commentName"
+                                         value="#{commentBean.newComment.name}"
+                                         required="true"
+                                         requiredMessage="Namn måste fyllas i" />
+
+                            <h:outputLabel for="commentText" value="Kommentar:" />
+                            <h:inputTextarea id="commentText"
+                                             value="#{commentBean.newComment.comment}"
+                                             rows="3"
+                                             cols="40"
+                                             required="true"
+                                             requiredMessage="Kommentar måste fyllas i" />
+                        </h:panelGrid>
+
+                        <br />
+
+                        <h:commandButton value="Skapa kommentar"
+                                         action="#{commentBean.createComment(e.id)}" />
+                    </h:form>
+
+                </div>
             </ui:repeat>
 
+            <hr />
 
+            <!-- Separat formulär för att skapa event -->
+            <h:form id="eventForm">
+                <h2>Skapa nytt Event</h2>
 
+                <h:messages style="color:red;" />
 
+                <h:panelGrid columns="2" cellpadding="6">
+                    <h:outputLabel for="title" value="Titel:" />
+                    <h:inputText id="title"
+                                 value="#{eventBean.newEvent.title}"
+                                 required="true"
+                                 requiredMessage="Titel måste fyllas i" />
 
+                    <h:outputLabel for="desc" value="Beskrivning:" />
+                    <h:inputTextarea id="desc"
+                                     value="#{eventBean.newEvent.description}"
+                                     rows="4"
+                                     cols="40"
+                                     required="true"
+                                     requiredMessage="Beskrivning måste fyllas i" />
 
+                    <h:outputLabel for="start" value="Starttid:" />
+                    <h:inputText id="start"
+                                 value="#{eventBean.newEvent.startTime}"
+                                 type="datetime-local"
+                                 required="true"
+                                 requiredMessage="Starttid måste fyllas i">
+                        <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd'T'HH:mm" />
+                    </h:inputText>
+                </h:panelGrid>
+
+                <br />
+
+                <h:commandButton value="Skapa Event"
+                                 action="#{eventBean.createEvent}" />
+            </h:form>
 
         </div>
     </div>
 </h:body>
-
 </html>
-

@@ -20,7 +20,16 @@ import java.util.List;
                         "LEFT JOIN FETCH e.posts " +
                         "LEFT JOIN FETCH e.comments " //+
 //                        "ORDER BY e.startTime ASC"
+        ),
+        @NamedQuery(
+                name = "Event.findAll",
+                query = "SELECT e FROM Event e ORDER BY e.startTime ASC"
         )
+//        @NamedQuery(
+//                name = "Event.findAllWithPostsAndComments",
+//                query = "SELECT DISTINCT e FROM Event e " +
+//                        "LEFT JOIN FETCH e.comments"
+//        )
 })
 
 @Entity

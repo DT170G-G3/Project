@@ -17,19 +17,40 @@ public class EventBean implements Serializable {
 
     private List<Event> events;
 
+    Event newEvent = new Event();
 
 
-    public void loadEvents(){
-        events = eventService.findAllWithPostsAndComments();
+    public void createEvent(){
+        eventService.createEvent(newEvent);
+        newEvent = new Event();
     }
 
+
+//    public void loadEvents(){
+//        events = eventService.findAllWithPostsAndComments();
+//    }
+
+//    public List<Event> getEvents(){
+//        return eventService.findAllWithPostsAndComments();
+//    }
 
     public List<Event> getEvents(){
-        return events;
+        return eventService.findAll();
     }
 
 
+//    public List<Event> getEvents(){
+//        return events;
+//    }
 
+
+    public Event getNewEvent() {
+        return newEvent;
+    }
+
+    public void setNewEvent(Event newEvent) {
+        this.newEvent = newEvent;
+    }
 
 
 }

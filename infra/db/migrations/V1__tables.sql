@@ -93,7 +93,7 @@ CREATE TABLE comments (
     name VARCHAR(100) NOT NULL,
     comment TEXT NOT NULL,
     date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (event_id) REFERENCES posts(id) ON DELETE CASCADE
+    FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Junction Tables
