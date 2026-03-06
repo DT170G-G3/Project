@@ -6,9 +6,14 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ShiftsApi {
     //http://localhost:8080/restaurant/api/shift
     @GET("shift")
     Call<List<Shift>> getShifts();
+
+    //http://localhost:8080/restaurant/api/shift/day/2026-03-02
+    @GET("shift/day/{date}")
+    Call<List<Shift>> getShiftsByDate(@Path("date") String date);
 }
