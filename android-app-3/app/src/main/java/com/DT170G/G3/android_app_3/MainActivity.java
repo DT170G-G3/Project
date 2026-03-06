@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Map<String, String> idToName = Map.of(correctTestID, "Sigrid");
 
-
     private @NonNull Insets systemBars;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ANDROID_ID", androidId);
 
 
-        if(androidId.equals(correctTestID)) {
+       /* if(androidId.equals(correctTestID)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Välkommen!");
             builder.setMessage("Ange ditt namn: ");
@@ -83,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
             builder.setView(input);
 
-            builder.setPositiveButton("ok", (dialog, which) -> {
+            builder.setPositiveButton("OK", (dialog, which) -> {
                 name  = input.getText().toString();
             });
             builder.show();
-        }
+        }*/
 
 
         LocalDate today = LocalDate.now();
@@ -248,8 +247,6 @@ public class MainActivity extends AppCompatActivity {
         nightWork.put(today.plusDays(1), new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
         dayWork.put(today.plusDays(2), new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
         nightWork.put(today.plusDays(2), new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
-
-
     }
 
     private void addPersonToSchedule(LinearLayout container, List<String> personList) {
