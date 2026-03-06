@@ -21,6 +21,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.DT170G.G3.android_app_3.employees.Employee;
+import com.DT170G.G3.android_app_3.employees.EmployeesRepository;
+import com.DT170G.G3.android_app_3.shifts.Shift;
+import com.DT170G.G3.android_app_3.shifts.ShiftsRepository;
+
 import org.jspecify.annotations.NonNull;
 
 import java.time.DayOfWeek;
@@ -33,6 +38,9 @@ import java.util.List; import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    EmployeesRepository employeesRepo = new EmployeesRepository();
+    ShiftsRepository shiftsRepo = new ShiftsRepository();
+
     private LocalDate monday;
     private Button selectedButton;
     private LocalDate selectedDate;
@@ -109,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
+        //--------GET----------------
+        asyncLoadEmployees();
+        asyncLoadShifts();
+
+
+        //--------POST---------------
     }
 
 
@@ -293,4 +310,50 @@ public class MainActivity extends AppCompatActivity {
     private void checkId() {
 
     }
+
+
+    private void asyncLoadEmployees() {
+
+        employeesRepo.getEmployees(new EmployeesRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Employee> employees) {
+                populateEmployeesUI(employees);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("DRINKS", "Fel: " + message);
+            }
+        });
+    }
+    private void populateEmployeesUI(List<Employee> employees) {
+        Log.d("EMPLOYEES", "" + employees.size());
+    }
+
+
+    private void asyncLoadShifts() {
+        shiftsRepo.getShifts(new ShiftsRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Shift> shifts) {
+                populateShiftsUI(shifts);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("DRINKS", "Fel: " + message);
+            }
+        });
+    }
+    private void populateShiftsUI(List<Shift> shifts) {
+        Log.d("SHIFTS", "" + shifts.size());
+        for (Shift s : shifts) {
+            Log.d("Date: ", "" + s.date);
+            Log.d("ShiftType: ", "" + s.shiftType.name);
+            for (Employee e : s.employeeList) {
+                Log.d("Employee", "android id: " + e.androidId);
+                Log.d("Employee", "name: " + e.name);
+            }
+        }
+    }
+
 }
