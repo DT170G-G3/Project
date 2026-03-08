@@ -25,19 +25,19 @@ public class OrdersRepository {
 
 
     public void postOrder(Order order, PostCallback cb) {
-        Call<Order> call = ApiClient.ordersApi().postOrder(order);
-        call.enqueue(new Callback<Order>() {
+        Call<Void> call = ApiClient.ordersApi().postOrder(order);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Order> call, Response<Order> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    cb.onSuccess(response.body());
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    cb.onSuccess(order);
                 } else {
                     cb.onError("HTTP " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<Order> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 cb.onError(t.getMessage());
             }
         });
