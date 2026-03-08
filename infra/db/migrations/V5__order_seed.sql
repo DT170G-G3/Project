@@ -1,3 +1,6 @@
+-- -------------------------------
+-- Tables
+-- -------------------------------
 INSERT INTO restaurant_table (seats, table_no) VALUES
 (4, 1),
 (4, 2),
@@ -7,52 +10,91 @@ INSERT INTO restaurant_table (seats, table_no) VALUES
 (6, 6),
 (6, 7);
 
+-- -------------------------------
+-- Orders
+-- -------------------------------
 INSERT INTO table_order (order_no, note, table_id) VALUES
-
--- Sitting 1 (busy lunch)
+-- Sitting 1
 (1001, "Nötallergi", 1),
-(1002, "Extra sauce on the side", 1),
-(1003, NULL, 1),
-
 -- Sitting 2
-(1004, NULL, 2),
-
+(1002, NULL, 2),
 -- Sitting 3
-(1005, "No onions please", 3),
-(1006, NULL, 3);
+(1003, "No onions please", 3),
+-- Sitting 4
+(1004, "Vegan", 4),
+-- Sitting 5
+(1005, "Gluten free", 5),
+-- Sitting 6
+(1006, NULL, 6),
+-- Sitting 7
+(1007, "Birthday celebration", 7);
 
+-- -------------------------------
+-- Dishes per order
+-- -------------------------------
+INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id, quantity) VALUES
+-- Order 1
+(1, 1, 5),
+(1, 7, 1),
+(1, 15, 7),
 
-
-
-INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id) VALUES
-
--- Order 1 (full meal)
-(1, 1),   -- Vitlöksbröd
-(1, 7),   -- Oxfilé
-(1, 15),  -- Crème Brûlée
-
--- Order 2 (light)
-(2, 2),
-(2, 11),
-
--- Order 3 (food only)
-(3, 3),
-(3, 9);
-
-
-INSERT INTO table_order_drink (table_order_id, drink_id) VALUES
-
--- Order 1 (classic)
-(1, 1),   -- Coca-Cola
-(1, 6),   -- Sparkling Water
-
--- Order 2 (drinks only)
-(2, 10),
-(2, 11),
+-- Order 2
+(2, 2, 2),
+(2, 8, 1),
+(2, 16, 3),
+(2, 11, 1),
 
 -- Order 3
-(3, 2),
-(3, 7);
+(3, 3, 7),
+(3, 9, 2),
+
+-- Order 4
+(4, 4, 3),
+(4, 10, 2),
+
+-- Order 5
+(5, 5, 2),
+(5, 12, 1),
+
+-- Order 6
+(6, 6, 4),
+(6, 14, 2),
+
+-- Order 7
+(7, 7, 1),
+(7, 13, 3);
+
+-- -------------------------------
+-- Drinks per order
+-- -------------------------------
+INSERT INTO table_order_drink (table_order_id, drink_id, quantity) VALUES
+-- Order 1
+(1, 1, 3),   -- Coca-Cola
+(1, 6, 2),   -- Sparkling Water
+
+-- Order 2
+(2, 10, 1),
+(2, 11, 1),
+
+-- Order 3
+(3, 2, 2),
+(3, 7, 1),
+
+-- Order 4
+(4, 3, 2),
+(4, 5, 1),
+
+-- Order 5
+(5, 4, 1),
+(5, 9, 2),
+
+-- Order 6
+(6, 2, 3),
+(6, 6, 1),
+
+-- Order 7
+(7, 1, 2),
+(7, 8, 1);
 
 INSERT INTO booking
 (date, start_time, duration_minutes, no_of_people, note, name, email, phone_no)

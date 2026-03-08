@@ -97,17 +97,21 @@ CREATE TABLE dish_lunch_menu(
 ) ENGINE=InnoDB;
 
 CREATE TABLE table_order_carte_dish(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     table_order_id INT NOT NULL,
     carte_dish_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, carte_dish_id),
+    quantity INT NOT NULL DEFAULT 1,
+    CONSTRAINT uq_order_dish UNIQUE (table_order_id, carte_dish_id),
     FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
     FOREIGN KEY (carte_dish_id) REFERENCES carte_dish(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE table_order_drink(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     table_order_id INT NOT NULL,
     drink_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, drink_id),
+    quantity INT NOT NULL DEFAULT 1,
+    CONSTRAINT uq_order_drink UNIQUE (table_order_id, drink_id),
     FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
     FOREIGN KEY (drink_id) REFERENCES drink(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
