@@ -34,4 +34,25 @@ public class ShiftsRepository {
             }
         });
     }
+
+    public void getShiftsByDate(String date, GetCallback cb) {
+        Call<List<Shift>> listShifts = ApiClient.shiftsApi().getShiftsByDate(date);
+        listShifts.enqueue(new Callback<List<Shift>>() {
+            @Override
+            public void onResponse(Call<List<Shift>> call, Response<List<Shift>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    cb.onSuccess(response.body());
+                }
+                else {
+                    cb.onError("HTTP " + response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Shift>> call, Throwable t) {
+                //handle error code
+                Log.d("Shift API onFailure: ", t.toString());
+                cb.onError(t.getMessage());
+            }
+        });
+    }
 }

@@ -120,9 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //--------GET----------------
-        asyncLoadEmployees();
-        asyncLoadShifts();
+        //asyncLoadEmployees();
+        //asyncLoadShifts();
 
+        String testDate = "2026-02-28";
+        asyncLoadShiftsByDate(testDate);
 
         //--------POST---------------
     }
@@ -341,6 +343,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //GET Shifts for a specific date. Requires String date format "2026-03-02"
+    private void asyncLoadShiftsByDate(String date) {
+        shiftsRepo.getShiftsByDate(date, new ShiftsRepository.GetCallback() {
+            @Override
+            public void onSuccess(List<Shift> shifts) {
+                populateShiftsUI(shifts);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("DRINKS", "Fel: " + message);
+            }
+        });
+    }
+
+
+
+
     private void populateShiftsUI(List<Shift> shifts) {
         Log.d("SHIFTS", "" + shifts.size());
         for (Shift s : shifts) {
