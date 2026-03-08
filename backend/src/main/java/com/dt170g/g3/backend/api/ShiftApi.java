@@ -43,8 +43,10 @@ public class ShiftApi {
         return Response.ok(shifts).build();
     }
 
+
+
     @POST
-    @Path("/swap")
+    @Path("/swap/request")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createSwapRequest(SwapRequest req) {
@@ -54,10 +56,38 @@ public class ShiftApi {
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("Failed to swap: " + e.getMessage())
+                    .entity("Failed create swap: " + e.getMessage())
                     .build();
         }
     }
+    
+    @GET
+    @Path("/swap/list")
+    public Response allSwapRequests(){
+        List<SwapRequest> req = shiftHandler.getSwapRequests();
+        return Response.ok(req).build();
+    }
+
+    @PUT
+    @Path("/swap/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateSwapRequest(
+            @PathParam("id") int id,
+            SwapRequest updatedReq) {
+        try {
+            shiftHandler.updateSwapRequestStatus(id, updatedReq.getStatus());
+            return Response.ok().build();
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Failed to update request: " + e.getMessage())
+                    .build();
+        }
+    }
+
+
+
 
 
 }

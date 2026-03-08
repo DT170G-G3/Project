@@ -1,7 +1,11 @@
 package com.dt170g.g3.backend.entities;
 
+import com.dt170g.g3.backend.SwapStatus;
 import jakarta.persistence.*;
 
+
+@NamedQuery(name= "SwapRequest.getAllRequests",
+        query= "SELECT req FROM SwapRequest req")
 @Entity
 @Table(name = "swap_request")
 public class SwapRequest {
@@ -14,6 +18,9 @@ public class SwapRequest {
     private String receiverId;
     @Column(name="shift_id")
     private int shiftId;
+
+    @Enumerated(EnumType.STRING)
+    private SwapStatus status;
 
     public SwapRequest() {}
 
@@ -43,5 +50,13 @@ public class SwapRequest {
 
     public void setShiftId(int shiftId) {
         this.shiftId = shiftId;
+    }
+
+    public SwapStatus getStatus(){
+        return this.status;
+    }
+
+    public void setStatus(SwapStatus status){
+        this.status = status;
     }
 }
