@@ -125,6 +125,33 @@ header .weekDiv {
     transition: background 0.1s;
 }
 
+.dishCard-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+}
+
+.dishCard-input--muted {
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.dishCard-input::placeholder {
+    color: #c0b8b0;
+    font-style: italic;
+}
+
+.dishCard-field-input {
+    margin-bottom: 0.25rem;
+}
+
+.dishCard--add {
+    border-style: dashed;
+    background: transparent;
+}
+
 .dishCard-remove:hover { background: rgba(0,0,0,0.2); }
 
 .workspace {
