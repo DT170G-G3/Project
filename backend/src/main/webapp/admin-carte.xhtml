@@ -48,7 +48,7 @@
             <!-- Dish list grouped by category -->
             <div class="daysList">
                 <ui:repeat value="#{carteMenu.groupedDishes.entrySet().toArray()}" var="categoryEntry">
-                    <details class="day-card">
+                    <details class="day-card" open="open">
                         <summary class="day-header">
                             <span class="day-name">#{categoryEntry.key}</span>
                         </summary>
