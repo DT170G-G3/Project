@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +24,8 @@ import com.DT170G.G3.android_app_1.fragments.DrinkFragment;
 import com.DT170G.G3.android_app_1.fragments.MainCourseFragment;
 import com.DT170G.G3.android_app_1.fragments.StarterFragment;
 import com.DT170G.G3.android_app_1.fragments.TableFragment;
+import com.DT170G.G3.android_app_1.orders.DishEntry;
+import com.DT170G.G3.android_app_1.orders.DrinkEntry;
 import com.DT170G.G3.android_app_1.orders.Order;
 import com.DT170G.G3.android_app_1.tables.Table;
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //------POST--------
-        //exampleCreateOrder();
+        exampleCreateOrder();
 
         //------GET---------
         //exampleGetDishes();
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
-            createOrder();
+            //createOrder();
         });
 
     }
@@ -231,6 +232,8 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return void
      */
+
+    /*
     public void createOrder() {
         // EXAMPLE how to POST an Order
         // Only ID is required for drinks, sitting and dishes
@@ -322,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
         asyncCreateOrder(order);
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
+    */
 
 
     private void asyncCreateOrder(Order order) {
@@ -336,5 +340,36 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("ORDER", "FAILED TO POST: " + message);
             }
         });
+    }
+
+    // Example how to create an Order with the new API changes
+    public void exampleCreateOrder() {
+        // EXAMPLE how to POST an Order
+
+
+        //Create new order, initialize new Lists
+        Order order = new Order();
+        order.dishes = new ArrayList<>();
+        order.drinks = new ArrayList<>();
+
+
+        // Using constructor
+        int dish_1 = 3;
+        int  qty1 = 2;
+        int drink_1 = 2;
+        DishEntry dishEntry = new DishEntry(dish_1, qty1);
+        DrinkEntry drinkEntry = new DrinkEntry(drink_1, 2);
+
+
+
+        String note = "EXECUTE ORDER 66";
+        order.note = note;
+
+
+        order.dishes.add(dishEntry);
+        order.drinks.add(drinkEntry);
+        order.tableId = 3;
+
+        asyncCreateOrder(order);
     }
 }

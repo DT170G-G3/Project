@@ -4,7 +4,7 @@ import com.DT170G.G3.android_app_1.dishes.DishesApi;
 import com.DT170G.G3.android_app_1.drinks.DrinksApi;
 import com.DT170G.G3.android_app_1.orders.OrdersApi;
 import com.DT170G.G3.android_app_1.tables.TablesApi;
-import com.DT170G.G3.android_app_1.waiters.WaitersApi;
+
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -20,9 +20,6 @@ public final class ApiClient {
     // http://localhost:8080/restaurant/api/dish
     public static DishesApi dishesApi() {
         return retrofit.create(DishesApi.class);
-    }
-    public static WaitersApi waiterApi() {
-        return retrofit.create(WaitersApi.class);
     }
     public static OrdersApi ordersApi() {
         return retrofit.create(OrdersApi.class);
