@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     ShiftsRepository shiftsRepo = new ShiftsRepository();
 
     private List<String> allEmployees = new ArrayList<>();
-
     private LocalDate monday;
     private Button selectedButton;
     private LocalDate selectedDate;
@@ -52,13 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String correctTestID = "cd20486bd301b60d";
-    private String wrongTestID = "cd20486bd301b602";
-
-    private String name;
-
     private String androidId;
-
-    private Map<String, String> idToName = Map.of(correctTestID, "Sigrid");
 
     private @NonNull Insets systemBars;
 
@@ -76,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         LocalDate today = LocalDate.now();
         monday = today.with(DayOfWeek.MONDAY);
 
-        printSchedule(monday);
         selectedDate = monday;
         changeWeek(monday);
 
@@ -101,16 +93,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
-
-        //--------GET----------------
-        //asyncLoadEmployees();
-        //asyncLoadShifts();
-
-        String testDate = "2026-02-28";
-        asyncLoadShiftsByDate(testDate);
-
-        //--------POST---------------
     }
 
 
@@ -142,10 +124,18 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void changeWeek(LocalDate monday) {
+        selectedDate = monday;
+        dayWork.clear();
+        nightWork.clear();
+
+        for(int i = 0; i < 6; i++) {
+            LocalDate date = monday.plusDays(i);
+            asyncLoadShiftsByDate(date.toString());
+        }
         TextView monthTextView = findViewById(R.id.monthTextView);
         TextView weekTextView = findViewById(R.id.weekTextView);
         monthTextView.setText(monday.getMonth().getDisplayName(TextStyle.FULL, new Locale("sv", "SE")));
-        weekTextView.setText("Vecka" + monday.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
+        weekTextView.setText("Vecka " + monday.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
         findDateToButtons(monday);
         clickedDay(monday);
 
@@ -223,17 +213,6 @@ public class MainActivity extends AppCompatActivity {
         addPersonToSchedule(nightContainer, nightList);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void printSchedule(LocalDate today) {
-        dayWork.clear();
-        nightWork.clear();
-        dayWork.put(today, new ArrayList<>(List.of("Sigrid", "Frank", "Susanna")));
-        nightWork.put(today, new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
-        dayWork.put(today.plusDays(1), new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
-        nightWork.put(today.plusDays(1), new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
-        dayWork.put(today.plusDays(2), new ArrayList<>(List.of("Molly", "Frank", "Susanna")));
-        nightWork.put(today.plusDays(2), new ArrayList<>(List.of("Andreas", "Jacob", "Christine")));
-    }
 
     private void addPersonToSchedule(LinearLayout container, List<String> personList) {
         for(String person : personList) {
@@ -322,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void asyncLoadShifts() {
         shiftsRepo.getShifts(new ShiftsRepository.GetCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSuccess(List<Shift> shifts) {
                 populateShiftsUI(shifts);
@@ -337,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
     //GET Shifts for a specific date. Requires String date format "2026-03-02"
     private void asyncLoadShiftsByDate(String date) {
         shiftsRepo.getShiftsByDate(date, new ShiftsRepository.GetCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSuccess(List<Shift> shifts) {
                 populateShiftsUI(shifts);
@@ -352,16 +333,32 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void populateShiftsUI(List<Shift> shifts) {
+
         Log.d("SHIFTS", "" + shifts.size());
+
         for (Shift s : shifts) {
+            LocalDate date = LocalDate.parse(s.date);
+            List<String> names = new ArrayList<>();
+
             Log.d("Date: ", "" + s.date);
             Log.d("ShiftType: ", "" + s.shiftType.name);
+
+
             for (Employee e : s.employeeList) {
+                names.add(e.name);
                 Log.d("Employee", "android id: " + e.androidId);
                 Log.d("Employee", "name: " + e.name);
             }
+            if(s.shiftType.name.equalsIgnoreCase("Lunch")) {
+                    dayWork.put(date,names);
+            } else if (s.shiftType.name.equalsIgnoreCase("Middag")) {
+                    nightWork.put(date,names);
+            }
+
         }
+        updateSchedule();
     }
 
 }
