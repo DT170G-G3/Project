@@ -9,13 +9,13 @@ import java.util.*;
 
 @Named("eventBean") // Explicitly naming it to match your XHTML
 @ViewScoped
-public class EventBean implements Serializable {
+public class EventsBean implements Serializable {
     // ... existing map and lists ...
     private Map<LocalDate, List<String>> eventsByDate = new HashMap<>();
     private LocalDate selectedDate = LocalDate.now();
     private List<String> selectedEvents = new ArrayList<>();
 
-    public EventBean() {
+    public EventsBean() {
         // Dummy test data
         eventsByDate.put(LocalDate.now(),
                 List.of("Concert", "Board Meeting"));
