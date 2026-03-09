@@ -1,4 +1,4 @@
-# 03 — Docker stack (Payara + MySQL + Flyway)
+ # 03 — Docker stack (Payara + MySQL + Flyway)
 
 ## Snabbnavigering
 - [TL;DR starta lokalt](#tldr-starta-lokalt)
