@@ -19,7 +19,9 @@ import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +32,7 @@ public class DrinkFragment extends Fragment {
 
     DrinksRepository drinksRepo = new DrinksRepository();
     private List<TextView> allDrinkCounters = new ArrayList<>();
-    private List<Integer> allOrderedDrinks = new ArrayList<>();
+    private Map<Integer, Integer> quantityOrderedDrinks = new HashMap<>();
 
     public DrinkFragment() {
         // Required empty public constructor
@@ -79,15 +81,15 @@ public class DrinkFragment extends Fragment {
      * Rensar listan med alla beställda drycker
      */
     public void clearAllOrderedDrinks(){
-        allOrderedDrinks.clear();
+        quantityOrderedDrinks.clear();
     }
 
     /**
      * Hämtar alla beställda drycker
      * @return Lista med IDn för alla beställda drinkar
      */
-    public List<Integer> getAllOrderedDrinks(){
-        return allOrderedDrinks;
+    public Map<Integer, Integer> getAllOrderedDrinks(){
+        return quantityOrderedDrinks;
     }
 
     private void asyncLoadDrinks() {
@@ -114,7 +116,7 @@ public class DrinkFragment extends Fragment {
         OrderItemRow orderItemRow = new OrderItemRow();
 
         for(Drink drink : drinks){
-            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getId() , drink.getName(), allDrinkCounters, allOrderedDrinks));
+            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getId() , drink.getName(), allDrinkCounters, quantityOrderedDrinks));
         }
     }
 }

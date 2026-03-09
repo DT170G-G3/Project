@@ -19,7 +19,9 @@ import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +31,7 @@ import java.util.List;
 public class DessertFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allDessertCounters = new ArrayList<>();
-    private List<Integer> allOrderedDesserts = new ArrayList<>();
+    private Map<Integer, Integer> quantityOrderedDesserts = new HashMap<>();
 
     public DessertFragment() {
         // Required empty public constructor
@@ -74,15 +76,15 @@ public class DessertFragment extends Fragment {
     }
 
     public void clearAllOrderedDesserts(){
-        allOrderedDesserts.clear();
+        quantityOrderedDesserts.clear();
     }
 
     /**
      * Hämtar alla beställda efterrätter
      * @return Lista med IDn för alla beställda efterrätter
      */
-    public List<Integer> getAllOrderedDesserts(){
-        return allOrderedDesserts;
+    public Map<Integer, Integer> getAllOrderedDesserts(){
+        return quantityOrderedDesserts;
     }
 
     private void asyncLoadDesserts() {
@@ -112,7 +114,7 @@ public class DessertFragment extends Fragment {
             if (catId != 3) {
                 continue;
             }
-            dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert.getId(), dessert.getName(), allDessertCounters, allOrderedDesserts));
+            dessertView.addView(orderItemRow.createItemRow(requireContext(), dessert.getId(), dessert.getName(), allDessertCounters, quantityOrderedDesserts));
         }
     }
 }

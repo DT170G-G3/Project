@@ -17,9 +17,14 @@ import com.DT170G.G3.android_app_1.R;
 import com.DT170G.G3.android_app_1.classes.OrderItemRow;
 import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
+import com.DT170G.G3.android_app_1.orders.DishEntry;
+import com.DT170G.G3.android_app_1.orders.DrinkEntry;
+import com.DT170G.G3.android_app_1.orders.Order;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +34,7 @@ import java.util.List;
 public class MainCourseFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allMainCounters = new ArrayList<>();
-    private List<Integer> allOrderedMainCourses = new ArrayList<>();
+    private Map<Integer, Integer> quantityOrderedMainCourses = new HashMap<>();
 
     public MainCourseFragment() {
         // Required empty public constructor
@@ -68,22 +73,23 @@ public class MainCourseFragment extends Fragment {
     /**
      * Återställer räknarna kopplad till alla varmrätter
      */
-    public void resetMainCounter(){
-        for(TextView mainCounter : allMainCounters){
+    public void resetMainCounter() {
+        for (TextView mainCounter : allMainCounters) {
             mainCounter.setText("0");
         }
     }
 
-    public void clearAllOrderedMainCourses(){
-        allOrderedMainCourses.clear();
+    public void clearAllOrderedMainCourses() {
+        quantityOrderedMainCourses.clear();
     }
 
     /**
      * Hämtar alla beställda varmrätter
+     *
      * @return Lista med IDn för alla beställda varmrätter
      */
-    public List<Integer> getAllOrderedMainCourses(){
-        return allOrderedMainCourses;
+    public Map<Integer, Integer> getAllOrderedMainCourses() {
+        return quantityOrderedMainCourses;
     }
 
     private void asyncLoadMainDishes() {
@@ -92,6 +98,7 @@ public class MainCourseFragment extends Fragment {
             public void onSuccess(List<Dish> dishes) {
                 populateMainDishesUI(dishes);
             }
+
             @Override
             public void onError(String message) {
                 Log.e("MAINDISHES", "Fel: " + message);
@@ -101,19 +108,20 @@ public class MainCourseFragment extends Fragment {
 
     /**
      * Lägger till alla varmrätter på sidan för varmrätter
+     *
      * @param dishes
      */
     private void populateMainDishesUI(List<Dish> dishes) {
         LinearLayout mainCourseView = requireView().findViewById(R.id.mainCourseLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
-        for(Dish dish : dishes){
+        for (Dish dish : dishes) {
             int catId = dish.getDishCategoryId();
             //Lägger till alla med kategori 2 som är Varmrätter
-            if(catId != 2) {
+            if (catId != 2) {
                 continue;
             }
-            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allMainCounters, allOrderedMainCourses));
+            mainCourseView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allMainCounters, quantityOrderedMainCourses));
         }
     }
 }
