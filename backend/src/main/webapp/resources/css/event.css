@@ -1,0 +1,205 @@
+.events-page { padding: 1rem; }
+
+.events-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap: 1rem;
+}
+
+.events-layout{
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.events-sidebar{
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-light);
+    padding: 1rem;
+    display:grid;
+    gap: .5rem;
+    height: fit-content;
+}
+
+.section-title{ margin: 0 0 .5rem; }
+
+.item{
+    width:100%;
+    text-align:left;
+    padding:.55rem .6rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text);
+    cursor:pointer;
+}
+
+.item:hover{ border-color: var(--border); background: var(--bg); }
+.item.active{ border-color: var(--primary); background: var(--bg); }
+
+.events-main{ display:grid; gap: 1rem; }
+
+.event-meta{
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-light);
+    padding: 1rem;
+}
+
+.img-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.img-card{
+    margin:0;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-light);
+    overflow:hidden;
+}
+
+.events-hero .hero-slide.events-s1{
+    background-image: var(--events-hero-img-1);
+    animation-delay: 0s;
+}
+.events-hero .hero-slide.events-s2{
+    background-image: var(--events-hero-img-2);
+    animation-delay: 10s;
+}
+.events-hero .hero-slide.events-s3{
+    background-image: var(--events-hero-img-3);
+    animation-delay: 20s;
+}
+.events-hero .hero-slide.events-s4{
+    background-image: var(--events-hero-img-4);
+    animation-delay: 30s;
+}
+
+.hero-inner-event{
+
+    /*glaseffekt*/
+    background: rgba(0,0,0,0.10);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius);
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    place-items: center;
+    padding: var(--space-fluid) var(--padding-fluid);
+    max-width: var(--container-width);
+}
+
+.hero-inner-event h1 {
+    color: var(--secondary);
+    text-shadow:
+            1px 1px 3px rgba(0,0,0,0.8),
+            0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 0.35em;
+}
+
+.hero-inner-event p{
+    max-width: 60ch;
+    margin-inline: auto;
+    color: var(--text);
+    margin: 0.6rem 0 0;
+
+    /* själva plattan */
+    background: var(--glass-panel);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: .55rem .75rem;
+
+    /* glaseffekt */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    /* gör den lite “lyft” */
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+.img-card img{ width:100%; height:auto; display:block; }
+.img-card figcaption{ padding: .6rem .75rem; }
+
+.muted{ color: var(--text-muted); }
+
+@media (max-width: 900px){
+    .events-layout{ grid-template-columns: 1fr; }
+}
+
+.event-comments{
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-light);
+    padding: 1rem;
+    display: grid;
+    gap: .9rem;
+}
+
+/* Själva kommentarblocket */
+.event-comments .comment{
+    border-top: 1px solid var(--border);
+    padding-top: .75rem;
+}
+
+.event-comments .comment:first-of-type{
+    border-top: 0;
+    padding-top: 0;
+}
+
+.event-comments .comment-head,
+.event-comments .comment-head strong,
+.event-comments .comment-body{
+    color: var(--text) !important;
+}
+
+.event-comments .comment-head .muted{
+    color: var(--text-muted) !important;
+}
+
+.event-comments .comment-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap: 1rem;
+}
+
+.event-comments h3 {
+    color: var(--text);
+}
+
+.comment-form{
+    display:grid;
+    gap: .75rem;
+    padding: .75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: color-mix(in oklch, var(--bg) 65%, transparent);
+    color: var(--text);
+}
+
+.form-row{
+    display:grid;
+    gap: .35rem;
+}
+
+.input, .textarea{
+    width:100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+    padding: .55rem .65rem;
+    color: var(--text);
+}
+
+.form-messages{
+    margin: 0;
+}

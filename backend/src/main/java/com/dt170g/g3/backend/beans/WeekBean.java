@@ -76,7 +76,7 @@ public class WeekBean implements Serializable {
         DayOfWeek dow = LocalDate.now().getDayOfWeek();
 
         if (dow == DayOfWeek.SATURDAY || dow == DayOfWeek.SUNDAY) {
-            return ", Helg: ingen dagens lunch - Välkommen att beställa á la carte";
+            return "- Välkommen att beställa á la carte under helgen";
         }
 
         String day = dow.getDisplayName(TextStyle.FULL, sv);
