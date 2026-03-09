@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/admin_base.xhtml">
+
+    <ui:define name="title">Adminpanel - À La Carte</ui:define>
+
+    <ui:define name="content">
+        <div class="menuWrapper">
+
+            <div class="weekTitle">À La Carte</div>
+
+            <ui:repeat value="#{carteMenu.groupedDishes.entrySet().toArray()}" var="categoryEntry">
+                <details class="carte-category">
+                    <summary class="carte-category-header">
+                        #{categoryEntry.key}
+                    </summary>
+
+                    <div class="carte-category-body">
+                        <ui:repeat value="#{categoryEntry.value.entrySet().toArray()}" var="typeEntry">
+
+                            <ui:fragment rendered="#{not empty typeEntry.key}">
+                                <div class="carte-type-header">#{typeEntry.key}</div>
+                            </ui:fragment>
+
+                            <ul class="dishList">
+                                <ui:repeat value="#{typeEntry.value}" var="carteDishItem">
+                                    <li>
+                                        <span class="dish-name">#{carteDishItem.name}</span>
+                                        <span class="dish-price">#{carteDishItem.price} kr</span>
+                                        <span class="dish-desc">#{carteDishItem.description}</span>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+
+                        </ui:repeat>
+                    </div>
+                </details>
+            </ui:repeat>
+
+        </div>
+    </ui:define>
+
+</ui:composition>

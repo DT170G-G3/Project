@@ -10,6 +10,8 @@ import java.time.temporal.IsoFields;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /*
  * The week-bean is used to calculate the current week and
@@ -66,6 +68,19 @@ public class WeekBean implements Serializable {
 
     public List<LocalDate> getDaysOfWeekSchedule(){
         return getDaysOfWeek(weekNumber,6);
+    }
+
+    // returnerar vilken dag i veckan
+    public String getCurrentDay(){
+        Locale sv = Locale.forLanguageTag("sv-SE");
+        DayOfWeek dow = LocalDate.now().getDayOfWeek();
+
+        if (dow == DayOfWeek.SATURDAY || dow == DayOfWeek.SUNDAY) {
+            return ", Helg: ingen dagens lunch - Välkommen att beställa á la carte";
+        }
+
+        String day = dow.getDisplayName(TextStyle.FULL, sv);
+        return day.substring(0, 1).toUpperCase(sv) + day.substring(1);
     }
 
 }

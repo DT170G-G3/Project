@@ -11,5 +11,5 @@ public interface OrdersApi {
     @GET("order")
     Call<List<Order>> getOrders();
     @POST("order/add")
-    Call<Order> postOrder(@Body Order order);
+    Call<Void> postOrder(@Body Order order);
 }

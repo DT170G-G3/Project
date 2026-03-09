@@ -1,7 +1,5 @@
 package se.miun.g3.android_app_2;
 
-import static java.util.Collections.replaceAll;
-
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -22,12 +19,12 @@ import se.miun.g3.android_app_2.dishes.Dish;
 import se.miun.g3.android_app_2.dishes.DishesRepository;
 import se.miun.g3.android_app_2.drinks.Drink;
 import se.miun.g3.android_app_2.drinks.DrinksRepository;
+import se.miun.g3.android_app_2.orders.DishItem;
+import se.miun.g3.android_app_2.orders.DrinkItem;
 import se.miun.g3.android_app_2.orders.Order;
 import se.miun.g3.android_app_2.orders.OrdersRepository;
-import se.miun.g3.android_app_2.orders.Sitting;
 import se.miun.g3.android_app_2.tables.Table;
 import se.miun.g3.android_app_2.tables.TablesRepository;
-import se.miun.g3.android_app_2.waiters.WaitersRepository;
 
 public class MainActivity extends AppCompatActivity {
     DishesRepository dishesRepo = new DishesRepository();
@@ -72,23 +69,24 @@ public class MainActivity extends AppCompatActivity {
         int tableNum;
         String notes;
         String time;
-        for (Dish d : backendOrder.dishes) {
-            if (d.category == null) {
+        for (DishItem d : backendOrder.dishes) {
+            if (d.carteDish.category == null) {
                 continue;
             }
 
-            switch (d.category.id) {
+
+            switch (d.carteDish.category.id) {
                 case 1:
-                    starters.add(d.name);
+                    starters.add(d.carteDish.name);
                     break;
                 case 2:
-                    mains.add(d.name);
+                    mains.add(d.carteDish.name);
                     break;
                 case 3:
-                    desserts.add(d.name);
+                    desserts.add(d.carteDish.name);
                     break;
                 default:
-                    Log.w("ORDER", "Okänd kategori: " + d.category.id);
+                    Log.w("ORDER", "Okänd kategori: " + d.carteDish.category.id);
             }
         }
         tableNum = backendOrder.table.tableNum;
@@ -129,8 +127,15 @@ public class MainActivity extends AppCompatActivity {
         Table table = new Table();
         table.id = 1;
 
-        order.dishes.add(dish);
-        order.drinks.add(drink);
+        DishItem dishItem = new DishItem();
+        dishItem.carteDish = dish;
+        dishItem.quantity = 1;
+
+        DrinkItem drinkItem = new DrinkItem();
+        drinkItem.drink = drink;
+
+        order.dishes.add(dishItem);
+        order.drinks.add(drinkItem);
         order.table = table;
 
         asyncCreateOrder(order);
