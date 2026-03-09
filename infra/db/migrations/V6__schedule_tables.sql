@@ -1,6 +1,7 @@
 CREATE TABLE employee (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL        
+    name VARCHAR(50) NOT NULL,
+    android_id varchar(25)     
 ) ENGINE=InnoDB;
 
 CREATE TABLE shift_type (
@@ -17,6 +18,15 @@ CREATE TABLE shift (
     FOREIGN KEY (type_id) REFERENCES shift_type(id) ON DELETE CASCADE    
 ) ENGINE=InnoDB;
 
+CREATE TABLE swap_request (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id VARCHAR(25) NOT NULL,   
+    receiver_id VARCHAR(25) NOT NULL,
+    shift_id INT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    FOREIGN KEY (shift_id) REFERENCES shift(id) ON DELETE CASCADE   
+) ENGINE=InnoDB;
+
 -- Junction Table
 
 CREATE TABLE employee_works_shift(
@@ -29,19 +39,21 @@ CREATE TABLE employee_works_shift(
 
 
 -- Insert Into Employee
-INSERT INTO employee (name) VALUES
-('Kalle'),
-('Karl'),
-('Krister'),
-('Kristina'),
-('Karin'),
-('Kim'),
-('Kanelbullen'),
-('Gud'),
-('Konan Barbaren'),
-('Katjakaj'),
-('Bentebent'),
-('En Tallrik Musli');
+INSERT INTO employee (name, android_id) VALUES
+('Kalle', "cd20486bd301b60e"),
+('Sigrid' , "cd20486bd301b60d"),
+('Mike', "cd20486bd301b60f"),
+('Karl', "cd20486bd301b601"),
+('Krister', "cd20486bd301b602"),
+('Kristina', "cd20486bd301b603"),
+('Karin', "cd20486bd301b604"),
+('Kim', "cd20486bd301b605"),
+('Kanelbullen', "cd20486bd301b606"),
+('Gud', "cd20486bd301b607"),
+('Konan Barbaren', "cd20486bd301b608"),
+('Katjakaj', "cd20486bd301b609"),
+('Bentebent', "cd20486bd301b61a"),
+('En Tallrik Musli', "cd20486bd301b61e");
 
 -- Insert Into Shift Type
 INSERT INTO shift_type (name, start_time, end_time) VALUES

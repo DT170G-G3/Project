@@ -36,10 +36,10 @@
 }
 
 /* Bilder för animation */
-.hero-slide.s1{ background-image: url("#{resource['images:burgers-ai.png']}"); }
-.hero-slide.s2{ background-image: url("#{resource['images:pizza-ai.png']}"); }
-.hero-slide.s3{ background-image: url("#{resource['images:pasta-ai.png']}"); }
-.hero-slide.s4{ background-image: url("#{resource['images:fish-ai.png']}"); }
+.hero-slide.s1{ background-image: url("#{resource['images:burgers-ai.jpg']}"); }
+.hero-slide.s2{ background-image: url("#{resource['images:pizza-ai.jpg']}"); }
+.hero-slide.s3{ background-image: url("#{resource['images:pasta-ai.jpg']}"); }
+.hero-slide.s4{ background-image: url("#{resource['images:fish-ai.jpg']}"); }
 
 /* Förskjut tiden för att matcha antalet bilder mot animationen */
 .hero-slide.s1{ animation-delay: 0s; }
