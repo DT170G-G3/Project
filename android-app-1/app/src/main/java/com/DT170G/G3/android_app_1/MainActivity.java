@@ -1,14 +1,19 @@
 package com.DT170G.G3.android_app_1;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -17,8 +22,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.classes.PagerAdapter;
-import com.DT170G.G3.android_app_1.dishes.Dish;
-import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.fragments.DessertFragment;
 import com.DT170G.G3.android_app_1.fragments.DrinkFragment;
 import com.DT170G.G3.android_app_1.fragments.MainCourseFragment;
@@ -27,22 +30,18 @@ import com.DT170G.G3.android_app_1.fragments.TableFragment;
 import com.DT170G.G3.android_app_1.orders.DishEntry;
 import com.DT170G.G3.android_app_1.orders.DrinkEntry;
 import com.DT170G.G3.android_app_1.orders.Order;
-import com.DT170G.G3.android_app_1.tables.Table;
+import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-//TODO Temporära imports
-import com.DT170G.G3.android_app_1.orders.OrdersRepository;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    // TODO Temporärt test
-    OrdersRepository ordersRepo = new OrdersRepository();
+        OrdersRepository ordersRepo = new OrdersRepository();
     DrinkFragment drinkFragment = new DrinkFragment();
     StarterFragment starterFragment = new StarterFragment();
     MainCourseFragment mainCourseFragment = new MainCourseFragment();
@@ -72,14 +71,7 @@ public class MainActivity extends AppCompatActivity {
         changeTabListener();
         sendOrderButtonListener();
         resetOrderButtonListener();
-
-
-        //------POST--------
-        exampleCreateOrder();
-
-        //------GET---------
-        //exampleGetDishes();
-
+        notesSwitchListener();
     }
 
     /**
@@ -96,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
             Snackbar.make(findViewById(R.id.main), "Beställningen rensad", Snackbar.LENGTH_SHORT).setAnchorView(resetButton).show();
 
-            //Ändrar vy till val av bord
             viewPager2.setCurrentItem(0);
         });
 
@@ -108,14 +99,35 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void sendOrderButtonListener(){
-        //Resest form - ändra så att den skickar till databasen oxå
         TextView sendButton = findViewById(R.id.sendOrderButton);
 
         sendButton.setOnClickListener(buttonClicked -> {
-            //createOrder();
+            createOrder();
+            viewPager2.setCurrentItem(0);
         });
 
     }
+
+    /**
+     * Funktion som lyssnar när switchen ändras
+     * Visar eller döljer textrutan för noteringar
+     */
+    private void notesSwitchListener(){
+        Switch orderSwitch = findViewById(R.id.notesSwitch);
+        EditText notes = findViewById(R.id.orderNotes);
+
+        orderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    notes.setVisibility(VISIBLE);
+                } else{
+                    notes.setVisibility(GONE);
+                }
+            }
+        });
+    }
+
 
     /**
      * Function that listens to swipes or selection in navbar
@@ -150,31 +162,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-                                                   @Override
-                                                   public void onPageSelected(int position) {
-                                                       switch (position) {
-                                                           case 0:
-                                                               bottomNavigationMenu.setSelectedItemId(R.id.tableTab);
-                                                               break;
-                                                           case 1:
-                                                               bottomNavigationMenu.setSelectedItemId(R.id.drinkTab);
-                                                               break;
-                                                           case 2:
-                                                               bottomNavigationMenu.setSelectedItemId(R.id.starterTab);
-                                                               break;
-                                                           case 3:
-                                                               bottomNavigationMenu.setSelectedItemId(R.id.mainCourseTab);
-                                                               break;
-                                                           case 4:
-                                                               bottomNavigationMenu.setSelectedItemId(R.id.dessertTab);
-                                                               break;
-                                                       }
-                                                   }
-                                               }
+                                                    @Override
+                                                    public void onPageSelected(int position) {
+                                                        switch (position) {
+                                                            case 0:
+                                                                bottomNavigationMenu.setSelectedItemId(R.id.tableTab);
+                                                                break;
+                                                            case 1:
+                                                                bottomNavigationMenu.setSelectedItemId(R.id.drinkTab);
+                                                                break;
+                                                            case 2:
+                                                                bottomNavigationMenu.setSelectedItemId(R.id.starterTab);
+                                                                break;
+                                                            case 3:
+                                                                bottomNavigationMenu.setSelectedItemId(R.id.mainCourseTab);
+                                                                break;
+                                                            case 4:
+                                                                bottomNavigationMenu.setSelectedItemId(R.id.dessertTab);
+                                                                break;
+                                                        }
+                                                    }
+                                                }
         );
 
     }
 
+    /**
+     * Döljer alla managerings knappar mm.
+     */
     private void hideManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -187,8 +202,19 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(INVISIBLE);
         tv2.setVisibility(INVISIBLE);
         tv3.setVisibility(INVISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(INVISIBLE);
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setVisibility(GONE);
+        notes.setText("");
+
     }
 
+    /**
+     * Visar alla managerings knappar mm.
+     */
     private void showManagebles(){
         TextView sendOrderButton = findViewById(R.id.sendOrderButton);
         TextView resetOrderButton = findViewById(R.id.resetOrderButton);
@@ -201,7 +227,16 @@ public class MainActivity extends AppCompatActivity {
         tv1.setVisibility(VISIBLE);
         tv2.setVisibility(VISIBLE);
         tv3.setVisibility(VISIBLE);
+
+        Switch noteSwitch = findViewById(R.id.notesSwitch);
+        noteSwitch.setVisibility(VISIBLE);
+
+        if(noteSwitch.isChecked()){
+            noteSwitch.setChecked(false);
+        }
+
     }
+
 
     /**
      * Funktion som resettar alla counters för drink, förrätt, varmrätt och efterrätt
@@ -223,6 +258,9 @@ public class MainActivity extends AppCompatActivity {
         dessertFragment = pagerAdapter.getDessertFragment();
         dessertFragment.resetDessertCounter();
         dessertFragment.clearAllOrderedDesserts();
+
+        EditText notes = findViewById(R.id.orderNotes);
+        notes.setText("");
     }
 
     /**
@@ -232,19 +270,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return void
      */
-
-    /*
     public void createOrder() {
-        // EXAMPLE how to POST an Order
-        // Only ID is required for drinks, sitting and dishes
-
-        //Create new order, initialize new Lists
-
-
         //Kollar om Table är valt annars be att välja bord
         tableFragment = pagerAdapter.getTableFragment();
         int tableNumber = tableFragment.getSelectedTable();
         TextView sendButton = findViewById(R.id.sendOrderButton);
+
+        //Dubbelkollar att bord är valt
         if (tableNumber == 0) {
             Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Vänligen välj ett bord", Snackbar.LENGTH_SHORT);
             snackbar.setAnchorView(sendButton);
@@ -260,54 +292,47 @@ public class MainActivity extends AppCompatActivity {
 
         //DRINKS
         drinkFragment = pagerAdapter.getDrinkFragment();
-        List<Integer> allOrderedDrinks = drinkFragment.getAllOrderedDrinks();
+        Map<Integer, Integer> allOrderedDrinks = drinkFragment.getAllOrderedDrinks();
         if (!allOrderedDrinks.isEmpty()) {
-            for (int drinkId : allOrderedDrinks) {
-                Drink orderedDrink = new Drink();
-                orderedDrink.id = drinkId;
-                order.drinks.add(orderedDrink);
-                Log.d("CREATE ORDER", "DRINK: " + drinkId);
+            for (int drinkId : allOrderedDrinks.keySet()) {
+                DrinkEntry drinkEntry = new DrinkEntry(drinkId, allOrderedDrinks.get(drinkId));
+                order.drinks.add(drinkEntry);
+                Log.d("DRINKS", "Drink" + drinkId + " - " + allOrderedDrinks.get(drinkId));
             }
-            Log.d("CREATE ORDER", "DRINKS SIZE: " + order.drinks.size());
         }
 
         //STARTERS
         starterFragment = pagerAdapter.getStarterFragment();
-        List<Integer> allOrderedStarters = starterFragment.getAllOrderedStarters();
+        Map<Integer, Integer> allOrderedStarters = starterFragment.getAllOrderedStarters();
         if (!allOrderedStarters.isEmpty()) {
-            for (int starterId : allOrderedStarters) {
-                Dish orderedStarter = new Dish();
-                orderedStarter.id = starterId;
-                order.dishes.add(orderedStarter);
-                Log.d("CREATE ORDER", "STARTER: " + starterId);
+            for (int starterId : allOrderedStarters.keySet()) {
+                DishEntry dishEntry = new DishEntry(starterId, allOrderedStarters.get(starterId));
+                order.dishes.add(dishEntry);
+                Log.d("STARTERS", "Starter"+starterId + " - " + allOrderedStarters.get(starterId));
+
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //MAIN COURSES
         mainCourseFragment = pagerAdapter.getMainCourseFragment();
-        List<Integer> allOrderedMainCourses = mainCourseFragment.getAllOrderedMainCourses();
+        Map<Integer, Integer> allOrderedMainCourses = mainCourseFragment.getAllOrderedMainCourses();
         if (!allOrderedMainCourses.isEmpty()) {
-            for (int mainCourseId : allOrderedMainCourses) {
-                Dish orderedMainCourse = new Dish();
-                orderedMainCourse.id = mainCourseId;
-                order.dishes.add(orderedMainCourse);
-                Log.d("CREATE ORDER", "MAIN: " + mainCourseId);
+            for (int mainCourseId : allOrderedMainCourses.keySet()) {
+                DishEntry dishEntry = new DishEntry(mainCourseId, allOrderedMainCourses.get(mainCourseId));
+                order.dishes.add(dishEntry);
+                Log.d("MAIN_COURSES",  "Main"+mainCourseId + " - " + allOrderedMainCourses.get(mainCourseId));
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         //DESSERTS
         dessertFragment = pagerAdapter.getDessertFragment();
-        List<Integer> allOrderedDesserts = dessertFragment.getAllOrderedDesserts();
+        Map<Integer, Integer> allOrderedDesserts = dessertFragment.getAllOrderedDesserts();
         if (!allOrderedDesserts.isEmpty()) {
-            for (int dessertId : allOrderedDesserts) {
-                Dish orderedDessert = new Dish();
-                orderedDessert.id = dessertId;
-                order.dishes.add(orderedDessert);
-                Log.d("CREATE ORDER", "DESSERT: " + dessertId);
+            for (int dessertId : allOrderedDesserts.keySet()) {
+                DishEntry dishEntry = new DishEntry(dessertId, allOrderedDesserts.get(dessertId));
+                order.dishes.add(dishEntry);
+                Log.d("DESSERTS", "Dessert"+dessertId + " - " + allOrderedDesserts.get(dessertId));
             }
-            Log.d("CREATE ORDER", "DISHES SIZE: " + order.dishes.size());
         }
 
         if (allOrderedDrinks.isEmpty() && allOrderedStarters.isEmpty() && allOrderedMainCourses.isEmpty() && allOrderedDesserts.isEmpty()){
@@ -316,17 +341,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //TABLE
-        Table table = new Table();
-        table.tableNum = tableNumber;
-        table.id = tableNumber;
-        order.table = table;
+        order.tableId = tableNumber;
 
+        //NOTES
+        String orderNote = "";
+
+        EditText notes = findViewById(R.id.orderNotes);
+        String notesString = notes.getText().toString();
+        if(!notesString.matches("")){
+            orderNote = orderNote + notesString;
+        }
+
+        order.note = orderNote;
+
+        Log.d("NOTES","Notes: "+orderNote);
         resetItemCountersAndAllOrderedItems();
         asyncCreateOrder(order);
         Snackbar.make(findViewById(R.id.main), "Beställningen är skickad", Snackbar.LENGTH_SHORT).setAnchorView(sendButton).show();
     }
-    */
-
 
     private void asyncCreateOrder(Order order) {
         //asynchronous post the order to the database
@@ -340,36 +372,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("ORDER", "FAILED TO POST: " + message);
             }
         });
-    }
-
-    // Example how to create an Order with the new API changes
-    public void exampleCreateOrder() {
-        // EXAMPLE how to POST an Order
-
-
-        //Create new order, initialize new Lists
-        Order order = new Order();
-        order.dishes = new ArrayList<>();
-        order.drinks = new ArrayList<>();
-
-
-        // Using constructor
-        int dish_1 = 3;
-        int  qty1 = 2;
-        int drink_1 = 2;
-        DishEntry dishEntry = new DishEntry(dish_1, qty1);
-        DrinkEntry drinkEntry = new DrinkEntry(drink_1, 2);
-
-
-
-        String note = "EXECUTE ORDER 66";
-        order.note = note;
-
-
-        order.dishes.add(dishEntry);
-        order.drinks.add(drinkEntry);
-        order.tableId = 3;
-
-        asyncCreateOrder(order);
     }
 }

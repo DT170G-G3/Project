@@ -1,8 +1,5 @@
 package com.DT170G.G3.android_app_1.fragments;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.DT170G.G3.android_app_1.R;
@@ -25,7 +19,9 @@ import com.DT170G.G3.android_app_1.drinks.Drink;
 import com.DT170G.G3.android_app_1.drinks.DrinksRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +32,7 @@ public class DrinkFragment extends Fragment {
 
     DrinksRepository drinksRepo = new DrinksRepository();
     private List<TextView> allDrinkCounters = new ArrayList<>();
-    private List<Integer> allOrderedDrinks = new ArrayList<>();
+    private Map<Integer, Integer> quantityOrderedDrinks = new HashMap<>();
 
     public DrinkFragment() {
         // Required empty public constructor
@@ -70,37 +66,30 @@ public class DrinkFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         asyncLoadDrinks();
-        drinkNotesSwitchListener();
     }
 
-    private void drinkNotesSwitchListener(){
-        Switch drinkSwitch = requireView().findViewById(R.id.drinkNotesSwitch);
-        EditText drinkNotes = requireView().findViewById(R.id.drinkNotes);
-
-        drinkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    drinkNotes.setVisibility(VISIBLE);
-                } else{
-                    drinkNotes.setVisibility(GONE);
-                }
-            }
-        });
-    }
-
+    /**
+     * Återställer räknarna kopplad till alla drycker
+     */
     public void resetDrinkCounter(){
         for(TextView drinkCounter : allDrinkCounters){
             drinkCounter.setText("0");
         }
     }
 
+    /**
+     * Rensar listan med alla beställda drycker
+     */
     public void clearAllOrderedDrinks(){
-        allOrderedDrinks.clear();
+        quantityOrderedDrinks.clear();
     }
 
-    public List<Integer> getAllOrderedDrinks(){
-        return allOrderedDrinks;
+    /**
+     * Hämtar alla beställda drycker
+     * @return Lista med IDn för alla beställda drinkar
+     */
+    public Map<Integer, Integer> getAllOrderedDrinks(){
+        return quantityOrderedDrinks;
     }
 
     private void asyncLoadDrinks() {
@@ -117,12 +106,17 @@ public class DrinkFragment extends Fragment {
         });
     }
 
+
+    /**
+     * Lägger till alla drycker på sidan för dryck
+     * @param drinks
+     */
     private void populateDrinksUI(List<Drink> drinks) {
         LinearLayout drinkView = requireView().findViewById(R.id.drinkLayout);
         OrderItemRow orderItemRow = new OrderItemRow();
 
         for(Drink drink : drinks){
-            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getId() , drink.getName(), allDrinkCounters, allOrderedDrinks));
+            drinkView.addView(orderItemRow.createItemRow(requireContext(), drink.getId() , drink.getName(), allDrinkCounters, quantityOrderedDrinks));
         }
     }
 }

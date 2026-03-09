@@ -25,7 +25,9 @@ import com.DT170G.G3.android_app_1.dishes.Dish;
 import com.DT170G.G3.android_app_1.dishes.DishesRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +37,7 @@ import java.util.List;
 public class StarterFragment extends Fragment {
     DishesRepository dishesRepo = new DishesRepository();
     private List<TextView> allStarterCounters = new ArrayList<>();
-    private List<Integer> allOrderedStarters = new ArrayList<>();
+    private Map<Integer, Integer> quantityOrderedStarters = new HashMap<>();
 
     public StarterFragment() {
         // Required empty public constructor
@@ -70,23 +72,6 @@ public class StarterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         asyncLoadStarters();
-        starterNotesSwitchListener();
-    }
-
-    private void starterNotesSwitchListener(){
-        Switch starterSwitch = requireView().findViewById(R.id.starterNotesSwitch);
-        EditText starterNotes = requireView().findViewById(R.id.starterNotes);
-
-        starterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    starterNotes.setVisibility(VISIBLE);
-                } else{
-                    starterNotes.setVisibility(GONE);
-                }
-            }
-        });
     }
 
     public void resetStarterCounter(){
@@ -96,11 +81,11 @@ public class StarterFragment extends Fragment {
     }
 
     public void clearAllOrderedStarters(){
-        allOrderedStarters.clear();
+        quantityOrderedStarters.clear();
     }
 
-    public List<Integer> getAllOrderedStarters(){
-        return allOrderedStarters;
+    public Map<Integer, Integer> getAllOrderedStarters(){
+        return quantityOrderedStarters;
     }
     private void asyncLoadStarters() {
         dishesRepo.getDishes(new DishesRepository.GetCallback() {
@@ -126,7 +111,7 @@ public class StarterFragment extends Fragment {
              if(catId != 1) {
                  continue;
              }
-            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allStarterCounters, allOrderedStarters));
+            starterView.addView(orderItemRow.createItemRow(requireContext(), dish.getId(), dish.getName(), allStarterCounters, quantityOrderedStarters));
         }
     }
 
