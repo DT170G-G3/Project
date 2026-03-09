@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+   <!--- <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#D3BCBC</color>
     <color name="markedButtonColor">#3A6EA5</color>
@@ -8,5 +8,11 @@
     <color name="backgroundColor">#F2F5F8</color>
     <color name="TextContainerColor">#FAFCFF</color>
     <color name="buttonTextColor">#2A3A45</color>
-    <color name="personColor">#D5DDE4</color>
+    <color name="personColor">#D5DDE4</color>-->
+    <color name="markedButtonColor">#B5838D</color>
+    <color name="dayButtonColor">#EFD3D7</color>
+    <color name="backgroundColor">#F7ECEE</color>
+    <color name="TextContainerColor">#EAE4E9</color>
+    <color name="buttonTextColor">#3A3A3A</color>
+    <color name="personColor">#D6A4A4</color>
 </resources>

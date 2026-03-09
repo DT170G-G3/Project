@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private LocalDate monday;
     private Button selectedButton;
     private LocalDate selectedDate;
-    //TODO: bara för test, byt mot databas sen private
+    private String currentUserName;
     private Map<LocalDate, List<String>> dayWork = new HashMap<>();
     private Map<LocalDate, List<String>> nightWork = new HashMap<>();
 
@@ -63,14 +63,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        Log.d("ANDROID_ID", androidId);
-
 
         LocalDate today = LocalDate.now();
         monday = today.with(DayOfWeek.MONDAY);
 
         selectedDate = monday;
         changeWeek(monday);
+        asyncLoadEmployees();
 
 
         ImageButton prevWeekButton = findViewById(R.id.prevWeekButton);
@@ -107,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton editButton = new ImageButton(this);
         editButton.setImageResource(R.drawable.outline_edit_24);
+        editButton.setBackgroundColor(getResources().getColor(R.color.TextContainerColor));
         TooltipCompat.setTooltipText(editButton, "Redigera schemat");
 
         LinearLayout.LayoutParams titleP = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         addHeader(dayContainer, "Dag kl. 10-15", true);
         addPersonToSchedule(dayContainer, dayList);
 
-        addHeader(nightContainer, "kväll kl. 16-23", false);
+        addHeader(nightContainer, "Kväll kl. 16-23", false);
         addPersonToSchedule(nightContainer, nightList);
     }
 
@@ -218,8 +218,8 @@ public class MainActivity extends AppCompatActivity {
         for(String person : personList) {
             TextView personTextView = new TextView(this);
             personTextView.setText(person);
-            personTextView.setPadding(32, 32, 32, 32);
-            personTextView.setTextSize(25);
+            personTextView.setPadding(30,25,30,25);
+            personTextView.setTextSize(22);
             personTextView.setBackgroundResource(R.drawable.person_container);
 
             personTextView.setTag(person);
@@ -236,17 +236,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private String getCurrentUserName(List<Shift> shift) {
+        for(Shift s : shift) {
+            for(Employee e: s.employeeList) {
+                if(e.androidId.equals(androidId)){
+                    return e.name;
+                }
+            }
+        }
+        return null;
+    }
+
     private void sendChangeRequest(boolean dayOrNot) {
+        if(currentUserName == null) {
+            Toast.makeText(this, "Välj en dag du ska jobba", Toast.LENGTH_SHORT).show();
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Redigera schema");
-        builder.setMessage("Välj den person som inte ska jobba");
-        builder.setPositiveButton("OK", null);
+        builder.setTitle("Ansök om att byta pass för " + currentUserName);
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            selectNewPerson(currentUserName);
+        });
+        builder.setNegativeButton("Avbryt", null);
         builder.show();
     }
 
     private void selectNewPerson(String personName) {
+        List<String> listWithAllOtherPersons = new ArrayList<>();
 
-        String[] personArray = allEmployees.toArray(new String[0]);
+        for(String employee : allEmployees) {
+            if(!employee.equals(personName)) {
+                listWithAllOtherPersons.add(employee);
+            }
+        }
+
+        String[] personArray = listWithAllOtherPersons.toArray(new String[0]);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Byt pass för " + personName);
@@ -254,8 +278,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setItems(personArray, (dialog, which) -> {
             String selectedPerson = personArray[which];
             swapPerson(personName, selectedPerson);
-
-            Toast.makeText(this, "förfrågan skickad", Toast.LENGTH_SHORT).show();
         });
 
         builder.setNegativeButton("Avbryt", null);
@@ -265,14 +287,9 @@ public class MainActivity extends AppCompatActivity {
     //till senare
     private void swapPerson(String personName, String changeToPerson) {
         Log.d("REQUESR", "Swap request" + personName + " -> " + changeToPerson);
-        Toast.makeText(this, "Förfrågan skcikad", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Förfrågan skickad", Toast.LENGTH_SHORT).show();
 
     }
-
-    private void checkId() {
-
-    }
-
 
     private void asyncLoadEmployees() {
 
@@ -342,14 +359,12 @@ public class MainActivity extends AppCompatActivity {
             LocalDate date = LocalDate.parse(s.date);
             List<String> names = new ArrayList<>();
 
-            Log.d("Date: ", "" + s.date);
-            Log.d("ShiftType: ", "" + s.shiftType.name);
-
-
             for (Employee e : s.employeeList) {
                 names.add(e.name);
-                Log.d("Employee", "android id: " + e.androidId);
-                Log.d("Employee", "name: " + e.name);
+                if(e.androidId.equals(androidId)) {
+                    currentUserName = e.name;
+                }
+
             }
             if(s.shiftType.name.equalsIgnoreCase("Lunch")) {
                     dayWork.put(date,names);
