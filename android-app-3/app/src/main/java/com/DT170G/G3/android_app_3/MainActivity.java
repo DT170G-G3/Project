@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     EmployeesRepository employeesRepo = new EmployeesRepository();
     ShiftsRepository shiftsRepo = new ShiftsRepository();
 
+    private List<String> allEmployees = new ArrayList<>();
+
     private LocalDate monday;
     private Button selectedButton;
     private LocalDate selectedDate;
@@ -48,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private Map<LocalDate, List<String>> dayWork = new HashMap<>();
     private Map<LocalDate, List<String>> nightWork = new HashMap<>();
 
-    private List<String> allPersons = List.of("Sigrid", "Frank", "Melker", "Andreas", "Jacob", "Christine", "Doris");
 
     private String correctTestID = "cd20486bd301b60d";
     private String wrongTestID = "cd20486bd301b602";
@@ -70,23 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         Log.d("ANDROID_ID", androidId);
-
-
-       /* if(androidId.equals(correctTestID)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Välkommen!");
-            builder.setMessage("Ange ditt namn: ");
-
-            EditText input = new EditText(this);
-            input.setHint("skriv ditt namn här");
-
-            builder.setView(input);
-
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                name  = input.getText().toString();
-            });
-            builder.show();
-        }*/
 
 
         LocalDate today = LocalDate.now();
@@ -283,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectNewPerson(String personName) {
 
-        String[] personArray = allPersons.toArray(new String[0]);
+        String[] personArray = allEmployees.toArray(new String[0]);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Byt pass för " + personName);
@@ -326,6 +310,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void populateEmployeesUI(List<Employee> employees) {
+        allEmployees.clear();
+
+        for(Employee e : employees) {
+            allEmployees.add(e.name);
+        }
+
         Log.d("EMPLOYEES", "" + employees.size());
     }
 
