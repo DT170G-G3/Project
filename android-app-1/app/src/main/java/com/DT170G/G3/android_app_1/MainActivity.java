@@ -344,14 +344,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Example how to create an Order with the new API changes
     public void exampleCreateOrder() {
-        // EXAMPLE how to POST an Order
-
-
         //Create new order, initialize new Lists
         Order order = new Order();
         order.dishes = new ArrayList<>();
         order.drinks = new ArrayList<>();
-
 
         // Using constructor
         int dish_1 = 3;
@@ -360,12 +356,8 @@ public class MainActivity extends AppCompatActivity {
         DishEntry dishEntry = new DishEntry(dish_1, qty1);
         DrinkEntry drinkEntry = new DrinkEntry(drink_1, 2);
 
-
-
         String note = "EXECUTE ORDER 66";
         order.note = note;
-
-
         order.dishes.add(dishEntry);
         order.drinks.add(drinkEntry);
         order.tableId = 3;
