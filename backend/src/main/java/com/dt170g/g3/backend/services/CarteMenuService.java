@@ -55,19 +55,35 @@ public class CarteMenuService {
     }
 
     public List<CarteDish> getMenuDishes() {
-        System.out.println("--------------------------------jhjhih");
         return entityManager
                 .createNamedQuery("CarteMenu.getDishesOnMenu", CarteDish.class)
                 .setParameter("menuId", 1)
                 .getResultList();
     }
 
+    public boolean dishAlreadyInMenu(int dishId, int menuId){
+
+        Long count = entityManager
+                .createNamedQuery("CarteMenu.dishAlreadyInMenu", Long.class)
+                .setParameter("menuId", menuId)
+                .setParameter("dishId", dishId)
+                .getSingleResult();
+
+        return count > 0;
+    }
+
 
     @Transactional
-    public void addDishToMenu(CarteDish dish){
+    public boolean addDishToMenu(CarteDish dish){
+
         CarteMenu menu = entityManager.find(CarteMenu.class, 1);
-        menu.getDishes().add(dish);
-        System.out.println("Adding dish to menu");
+
+        if(!dishAlreadyInMenu(dish.getId(), menu.getId())){
+            menu.getDishes().add(dish);
+            return true;
+        }
+
+        return false;
     }
 
     @Transactional

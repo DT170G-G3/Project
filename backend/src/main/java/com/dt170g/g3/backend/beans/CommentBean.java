@@ -3,47 +3,65 @@ package com.dt170g.g3.backend.beans;
 import com.dt170g.g3.backend.entities.Comment;
 import com.dt170g.g3.backend.entities.Event;
 import com.dt170g.g3.backend.services.CommentService;
-import com.dt170g.g3.backend.services.EventService;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-@RequestScoped
+
 @Named("commentBean")
-public class CommentBean {
+@ViewScoped
+public class CommentBean implements Serializable {
 
     @Inject
     private CommentService commentService;
 
-    @Inject
-    private EventService eventService;
+    private Event selectedEvent;
 
-    private Comment newComment = new Comment();
+    private String name;
+    private String commentText;
 
-    public String createComment(Integer eventId){
-        Event event = eventService.getEventById(eventId);
+    public void createComment() {
 
-        if (event == null) {
-            System.out.println("Event hittades inte för id: " + eventId);
-            return null;
-        }
+        Comment comment = new Comment();
+        comment.setEvent(selectedEvent);
+        comment.setName(name);
+        comment.setComment(commentText);
+        comment.setDateAndTime(LocalDateTime.now());
 
-        newComment.setEvent(event);
-        newComment.setDateAndTime(LocalDateTime.now());
-        commentService.createComment(newComment);
+        commentService.createComment(comment);
 
-        newComment = new Comment();
-
-        return "testEvent?faces-redirect=true";
+        name = null;
+        commentText = null;
     }
 
-    public void setNewComment(Comment newComment) {
-        this.newComment = newComment;
+    public Event getSelectedEvent() {
+        return selectedEvent;
     }
 
-    public Comment getNewComment() {
-        return newComment;
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
+
+    public List<Comment> getAllComments() {
+        return commentService.findAll();
     }
 }

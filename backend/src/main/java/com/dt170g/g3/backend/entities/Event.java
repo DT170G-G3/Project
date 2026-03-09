@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 
 @NamedQueries({
@@ -23,7 +24,7 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "Event.findAll",
-                query = "SELECT e FROM Event e ORDER BY e.startTime ASC"
+                query = "SELECT DISTINCT e FROM Event e LEFT JOIN FETCH e.comments ORDER BY e.startTime ASC"
         )
 //        @NamedQuery(
 //                name = "Event.findAllWithPostsAndComments",
@@ -49,11 +50,11 @@ public class Event {
     private LocalDateTime startTime;
 
     @OneToMany(mappedBy = "event")
-    private List<Post> posts;
+    private Set<Post> posts;
 
 
     @OneToMany(mappedBy = "event")
-    private List<Comment> comments;
+    private Set<Comment> comments;
 
 
 
@@ -92,19 +93,37 @@ public class Event {
         return startTime;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
+//    public void setPosts(List<Post> posts) {
+//        this.posts = posts;
+//    }
+//
+//    public List<Post> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setComments(List<Comment> comments) {
+//        this.comments = comments;
+//    }
+//
+//    public List<Comment> getComments() {
+//        return comments;
+//    }
 
-    public List<Post> getPosts() {
+    public Set<Post> getPosts() {
         return posts;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+
 }

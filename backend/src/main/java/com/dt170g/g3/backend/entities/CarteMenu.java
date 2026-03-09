@@ -52,6 +52,10 @@ import java.util.List;
                 name = "CarteMenu.findDishesByCategoryId",
                 query = "SELECT d FROM CarteMenu m JOIN m.dishes d " +
                         "WHERE m.id = :menuId AND d.category.id = :categoryId"
+        ),
+        @NamedQuery(
+                name = "CarteMenu.dishAlreadyInMenu",
+                query = "SELECT COUNT(d) FROM CarteMenu m JOIN m.dishes d WHERE m.id = :menuId AND d.id = :dishId"
         )
 })
 @Entity
