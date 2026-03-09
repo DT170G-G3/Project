@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         //exampleCreateShiftSwap();
 
         //--------PUT-(EDIT)---------------
-        exampleAcceptShiftChangeStatus();
+        //exampleAcceptShiftChangeStatus();
     }
 
 
