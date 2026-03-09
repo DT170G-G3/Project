@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         //--------GET---------------------
         //asyncLoadEmployees();
         //asyncLoadShifts();
@@ -334,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void asyncLoadShifts() {
         shiftsRepo.getShifts(new ShiftsRepository.GetCallback() {
             @Override
@@ -347,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void asyncLoadShiftsByDate(String date) {
         shiftsRepo.getShiftsByDate(date, new ShiftsRepository.GetCallback() {
             @Override
@@ -360,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void asyncPostShiftSwap(ShiftSwap shiftSwap) {
         //asynchronous post the order to the database
         shiftsRepo.postShiftSwap(shiftSwap, new ShiftsRepository.PostCallback() {
@@ -373,6 +375,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void asyncPutShiftUpdate(int shiftId, ShiftUpdate update) {
         shiftsRepo.putShiftUpdate(shiftId, update, new ShiftsRepository.PutCallback() {
             @Override
@@ -402,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // How to create a shift swap query
     public void exampleCreateShiftSwap() {
         ShiftSwap sc = new ShiftSwap();
         String senderId = "cd20486bd301b603";
