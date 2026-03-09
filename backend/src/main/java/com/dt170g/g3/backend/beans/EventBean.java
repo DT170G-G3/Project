@@ -46,7 +46,9 @@ public class EventBean implements Serializable {
     }
 
 
+    public void addPost(){
 
+    }
 
 
 
