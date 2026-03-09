@@ -1,10 +1,13 @@
 package com.dt170g.g3.backend.services;
 
+import com.dt170g.g3.backend.SwapStatus;
 import com.dt170g.g3.backend.entities.Employee;
 import com.dt170g.g3.backend.entities.Shift;
 import com.dt170g.g3.backend.entities.ShiftType;
+import com.dt170g.g3.backend.entities.SwapRequest;
 import jakarta.ejb.Local;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -21,6 +24,8 @@ import java.util.Set;
 public class ShiftService {
     @PersistenceContext
     EntityManager entityManager;
+    @Inject
+    EmployeeService empService;
 
     public List<Shift> getAllShifts(){
         return entityManager.createNamedQuery("Shift.getAllShifts", Shift.class)
@@ -74,21 +79,53 @@ public class ShiftService {
     public void assignEmployeeToShift(int empId, int shiftId){
         Shift shift = entityManager.find(Shift.class, shiftId);
         Employee employee = entityManager.find(Employee.class, empId);
-
-        shift.getEmployeeList().add(employee);
+        if(!shift.getEmployeeList().contains(employee)){
+            shift.getEmployeeList().add(employee);
+        }
+        else{
+            throw new RuntimeException("Employee already assigned to this shift");
+        }
     }
 
     @Transactional
     public void removeEmployeeFromShift(int empId, int shiftId){
         Shift shift = entityManager.find(Shift.class, shiftId);
         Employee employee = entityManager.find(Employee.class, empId);
-
-        shift.getEmployeeList().remove(employee);
+        if(shift.getEmployeeList().contains(employee)){
+            shift.getEmployeeList().remove(employee);
+        }
+        else{
+            throw new RuntimeException("Employee not assigned to this shift");
+        }
     }
 
     @Transactional
-    public void swapShift(int senderId, int reciverId, int shiftId){
+    public void swapShift(String senderAndroidId, String reciverAndroidId, int shiftId){
+        int senderId = empService.getEmployeeFromAndroidId(senderAndroidId).getId();
+        int reciverId = empService.getEmployeeFromAndroidId(reciverAndroidId).getId();
         removeEmployeeFromShift(senderId,shiftId);
         assignEmployeeToShift(reciverId,shiftId);
+    }
+    @Transactional
+    public void createSwapRequest(SwapRequest req){
+        req.setStatus(SwapStatus.pending);
+        entityManager.persist(req);
+    }
+
+    public List<SwapRequest> getSwapRequests(){
+        return entityManager.createNamedQuery("SwapRequest.getAllRequests", SwapRequest.class)
+                .getResultList();
+    }
+
+    @Transactional
+    public void updateSwapRequestStatus(int requestId, SwapStatus status) {
+        SwapRequest req = entityManager.find(SwapRequest.class, requestId);
+        if(req == null){
+            throw new RuntimeException("Swap request not found");
+        }
+        req.setStatus(status);
+        if(status.equals(SwapStatus.approved)){
+            swapShift(req.getSenderId(),req.getReceiverId(),req.getShiftId());
+        }
     }
 }

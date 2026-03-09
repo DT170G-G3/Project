@@ -17,4 +17,10 @@ public class EmployeeService {
         TypedQuery<Employee> messageQuery = entityManager.createNamedQuery("Employee.getAll", Employee.class);
         return messageQuery.getResultList();
     }
+
+    public Employee getEmployeeFromAndroidId(String androidId){
+        TypedQuery<Employee> messageQuery = entityManager.createNamedQuery("Employee.getByAndroidId", Employee.class)
+                .setParameter("androidId", androidId);;
+        return messageQuery.getSingleResult();
+    }
 }

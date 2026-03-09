@@ -9,6 +9,10 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "Employee.findById",
                 query = "SELECT e FROM Employee e WHERE e.id = :id"
+        ),
+        @NamedQuery(
+                name = "Employee.getByAndroidId",
+                query = "SELECT e FROM Employee e WHERE e.androidId = :androidId"
         )
 })
 @Entity

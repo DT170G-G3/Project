@@ -18,6 +18,15 @@ CREATE TABLE shift (
     FOREIGN KEY (type_id) REFERENCES shift_type(id) ON DELETE CASCADE    
 ) ENGINE=InnoDB;
 
+CREATE TABLE swap_request (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id VARCHAR(25) NOT NULL,   
+    receiver_id VARCHAR(25) NOT NULL,
+    shift_id INT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    FOREIGN KEY (shift_id) REFERENCES shift(id) ON DELETE CASCADE   
+) ENGINE=InnoDB;
+
 -- Junction Table
 
 CREATE TABLE employee_works_shift(
