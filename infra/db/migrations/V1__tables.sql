@@ -52,6 +52,7 @@ CREATE TABLE restaurant_table (
     table_no INT NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
+
 CREATE TABLE table_order(
     id INT AUTO_INCREMENT PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
@@ -69,32 +70,13 @@ CREATE TABLE booking(
     no_of_people INT NOT NULL,
     note VARCHAR(255) DEFAULT NULL,
     name VARCHAR(50) NOT NULL,
-    email VARCHAR(100),
-    phone_no VARCHAR(30)
+    email VARCHAR(100) NOT NULL,
+    phone_no VARCHAR(30) NOT NULL,
+    CONSTRAINT uq_booking_slot_phone UNIQUE (date, start_time, phone_no),
+    CONSTRAINT uq_booking_slot_email UNIQUE (date, start_time, email)
 ) ENGINE=InnoDB;
 
-CREATE TABLE event (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    start_time DATETIME NOT NULL
-) ENGINE=InnoDB;
-
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    image_path VARCHAR(500),
-    event_id INT NOT NULL,
-    FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE comments (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    event_id INT NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    comment TEXT NOT NULL,
-    date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE INDEX ix_booking_date_time ON booking(date, start_time);
 
 -- Junction Tables
 
@@ -115,18 +97,44 @@ CREATE TABLE dish_lunch_menu(
 ) ENGINE=InnoDB;
 
 CREATE TABLE table_order_carte_dish(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     table_order_id INT NOT NULL,
     carte_dish_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, carte_dish_id),
+    quantity INT NOT NULL DEFAULT 1,
+    CONSTRAINT uq_order_dish UNIQUE (table_order_id, carte_dish_id),
     FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
     FOREIGN KEY (carte_dish_id) REFERENCES carte_dish(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE table_order_drink(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     table_order_id INT NOT NULL,
     drink_id INT NOT NULL,
-    PRIMARY KEY (table_order_id, drink_id),
+    quantity INT NOT NULL DEFAULT 1,
+    CONSTRAINT uq_order_drink UNIQUE (table_order_id, drink_id),
     FOREIGN KEY (table_order_id) REFERENCES table_order(id) ON DELETE CASCADE,
     FOREIGN KEY (drink_id) REFERENCES drink(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE event (
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   title VARCHAR(255) NOT NULL,
+   description TEXT,
+   start_time DATETIME NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE posts (
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   image_path VARCHAR(500),
+   event_id INT NOT NULL,
+   FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE comments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  event_id INT NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  comment TEXT NOT NULL,
+  date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (event_id) REFERENCES posts(id) ON DELETE CASCADE
+) ENGINE=InnoDB;

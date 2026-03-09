@@ -1,3 +1,6 @@
+-- -------------------------------
+-- Tables
+-- -------------------------------
 INSERT INTO restaurant_table (seats, table_no) VALUES
 (4, 1),
 (4, 2),
@@ -7,59 +10,97 @@ INSERT INTO restaurant_table (seats, table_no) VALUES
 (6, 6),
 (6, 7);
 
+-- -------------------------------
+-- Orders
+-- -------------------------------
 INSERT INTO table_order (order_no, note, table_id) VALUES
-(1001, NULL, 1),
+-- Sitting 1
+(1001, "Nötallergi", 1),
+-- Sitting 2
 (1002, NULL, 2),
-(1003, NULL, 3),
-(1004, 'Birthday celebration', 4),
-(1005, 'Extra napkins requested', 5),
-(1006, 'Business dinner', 6),
-(1007, NULL, 7);
+-- Sitting 3
+(1003, "No onions please", 3),
+-- Sitting 4
+(1004, "Vegan", 4),
+-- Sitting 5
+(1005, "Gluten free", 5),
+-- Sitting 6
+(1006, NULL, 6),
+-- Sitting 7
+(1007, "Birthday celebration", 7);
 
-INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id) VALUES
-(1, 1),
-(1, 13),
+-- -------------------------------
+-- Dishes per order
+-- -------------------------------
+INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id, quantity) VALUES
+-- Order 1
+(1, 1, 5),
+(1, 7, 1),
+(1, 15, 7),
 
-(2, 2),
-(2, 14),
+-- Order 2
+(2, 2, 2),
+(2, 8, 1),
+(2, 16, 3),
+(2, 11, 1),
 
-(3, 5),
-(3, 17),
+-- Order 3
+(3, 3, 7),
+(3, 9, 2),
 
-(4, 4),
-(4, 20),
+-- Order 4
+(4, 4, 3),
+(4, 10, 2),
 
-(5, 3),
-(5, 15),
+-- Order 5
+(5, 5, 2),
+(5, 12, 1),
 
-(6, 6),
-(6, 18),
+-- Order 6
+(6, 6, 4),
+(6, 14, 2),
 
-(7, 1),
-(7, 16);
+-- Order 7
+(7, 7, 1),
+(7, 13, 3);
 
-INSERT INTO table_order_drink (table_order_id, drink_id) VALUES
-(1, 1),
-(1, 4),
+-- -------------------------------
+-- Drinks per order
+-- -------------------------------
+INSERT INTO table_order_drink (table_order_id, drink_id, quantity) VALUES
+-- Order 1
+(1, 1, 3),   -- Coca-Cola
+(1, 6, 2),   -- Sparkling Water
 
-(2, 2),
+-- Order 2
+(2, 10, 1),
+(2, 11, 1),
 
-(3, 3),
+-- Order 3
+(3, 2, 2),
+(3, 7, 1),
 
-(4, 1),
-(4, 2),
+-- Order 4
+(4, 3, 2),
+(4, 5, 1),
 
-(5, 4),
+-- Order 5
+(5, 4, 1),
+(5, 9, 2),
 
-(6, 2),
-(6, 3),
+-- Order 6
+(6, 2, 3),
+(6, 6, 1),
 
-(7, 1);
+-- Order 7
+(7, 1, 2),
+(7, 8, 1);
 
 INSERT INTO booking
 (date, start_time, duration_minutes, no_of_people, note, name, email, phone_no)
 VALUES
 
+-- Booking for Sitting 1
 ('2026-03-01', '12:00:00', 60, 2, "Some note", 'Anna Svensson', 'anna.svensson@email.se', '0701234567'),
 
 -- Booking for Sitting 3
@@ -71,32 +112,11 @@ VALUES
 -- Booking for Sitting 7
 ('2026-03-01', '12:15:00', 60, 4, NULL, 'Erik Johansson', 'erik.j@email.se', '0739876543'),
 
--- Booking for Sitting 8
-('2026-03-01', '13:30:00', 60, 3, NULL, 'Maria Nilsson', NULL, '0761122334'),
-
--- Booking for Sitting 10
-('2026-03-01', '19:30:00', 120, 6, NULL, 'Familjen Berg', NULL, '0709988776'),
-
 -- Booking for Sitting 12
 ('2026-03-02', '18:00:00', 120, 6, NULL, 'Anders Nyström', 'anders@email.se', '0731112233'),
 
 -- Booking for Sitting 14
 ('2026-03-02', '12:00:00', 75, 2, NULL, 'Sara Lind', 'sara.l@email.se', '0705544332'),
-
--- Booking for Sitting 15
-('2026-03-02', '13:45:00', 75, 5, NULL, 'Oskar Pettersson', NULL, '0766655443'),
-
--- Booking for Sitting 17
-('2026-03-02', '18:00:00', 120, 6, NULL, 'Karin Holm', 'karin@email.se', NULL),
-
--- Booking for Sitting 18
-('2026-03-02', '19:50:00', 120, 4, NULL, 'Mikael Fors', NULL, '0702223344'),
-
--- Booking for Sitting 22
-('2026-03-03', '18:15:00', 120, 3, NULL, 'Niklas Öberg', NULL, NULL),
-
--- Booking for Sitting 28
-('2026-03-03', '12:45:00', 75, 2, NULL, 'Per Andersson', NULL, '0704433221'),
 
 -- Booking for Sitting 30
 ('2026-03-03', '17:45:00', 120, 6, NULL, 'Helena Sjöberg', 'helena@email.se', '0739998877'),

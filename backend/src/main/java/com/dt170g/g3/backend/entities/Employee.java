@@ -9,6 +9,10 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "Employee.findById",
                 query = "SELECT e FROM Employee e WHERE e.id = :id"
+        ),
+        @NamedQuery(
+                name = "Employee.getByAndroidId",
+                query = "SELECT e FROM Employee e WHERE e.androidId = :androidId"
         )
 })
 @Entity
@@ -18,6 +22,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(name= "android_id")
+    private String androidId;
+
     public String getName() {return name;}
+
+
+    public String getAndroidId(){return androidId;}
     public int getId(){return id;}
 }

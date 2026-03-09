@@ -21,16 +21,7 @@ import java.util.Set;
                         "LEFT JOIN FETCH e.posts " +
                         "LEFT JOIN FETCH e.comments " //+
 //                        "ORDER BY e.startTime ASC"
-        ),
-        @NamedQuery(
-                name = "Event.findAll",
-                query = "SELECT DISTINCT e FROM Event e LEFT JOIN FETCH e.comments ORDER BY e.startTime ASC"
         )
-//        @NamedQuery(
-//                name = "Event.findAllWithPostsAndComments",
-//                query = "SELECT DISTINCT e FROM Event e " +
-//                        "LEFT JOIN FETCH e.comments"
-//        )
 })
 
 @Entity
@@ -50,11 +41,11 @@ public class Event {
     private LocalDateTime startTime;
 
     @OneToMany(mappedBy = "event")
-    private Set<Post> posts;
+    private List<Post> posts;
 
 
     @OneToMany(mappedBy = "event")
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
 
 
@@ -93,37 +84,19 @@ public class Event {
         return startTime;
     }
 
-//    public void setPosts(List<Post> posts) {
-//        this.posts = posts;
-//    }
-//
-//    public List<Post> getPosts() {
-//        return posts;
-//    }
-//
-//    public void setComments(List<Comment> comments) {
-//        this.comments = comments;
-//    }
-//
-//    public List<Comment> getComments() {
-//        return comments;
-//    }
-
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<Post> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
-
+    public List<Comment> getComments() {
+        return comments;
+    }
 }
