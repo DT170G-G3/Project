@@ -2,6 +2,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/admin_base.xhtml"
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
@@ -49,9 +50,19 @@
                                     <div class="dishCard dishCard--add">
                                         <div class="dishCard-name">Lägg till ny rätt</div>
                                         <div class="dishCard-fields">
-                                            <h:inputText value="#{dish.newDish.name}" required="true" pt:placeholder="Namn" styleClass="dishCard-field-input" />
-                                            <h:inputText value="#{dish.newDish.description}" pt:placeholder="Beskrivning" styleClass="dishCard-field-input" />
-                                            <h:inputText value="#{dish.newDish.price}" pt:placeholder="Pris (kr)" styleClass="dishCard-field-input dishCard-field-input--short" />
+                                            <p:autoComplete id="name" value="#{dish.newDish.name}"
+                                                            completeMethod="#{dish.completeDish}"
+                                                            dropdown="true"
+                                                            forceSelection="false"
+                                                            styleClass="dishCard-field-input"
+                                                            required="true"
+                                                            pt:placeholder="Namn">
+                                                <p:ajax event="itemSelect"
+                                                        listener="#{dish.onDishSelect}"
+                                                        update="name description price" />
+                                            </p:autoComplete>
+                                            <h:inputText id="description" value="#{dish.newDish.description}" pt:placeholder="Beskrivning" styleClass="dishCard-field-input" />
+                                            <h:inputText id="price" value="#{dish.newDish.price}" pt:placeholder="Pris (kr)" styleClass="dishCard-field-input dishCard-field-input--short" />
                                         </div>
                                         <h:commandButton value="Lägg till" styleClass="btn btnPrimary dishCard-submit"
                                                          action="#{lunch.saveToMenu(day)}">

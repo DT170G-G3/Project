@@ -2,14 +2,79 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/admin_base.xhtml">
 
     <ui:define name="title">Adminpanel - Event</ui:define>
-
     <ui:define name="content">
-        <div class="carteWrapper">
 
-        </div>
+        <!-- Listed events -->
+        <h:form id="eventForm">
+            <div class="menuWrapper">
+                <div class="event-list-area day-card">
+                    <h:panelGroup id="eventDisplayArea" layout="block">
+                        <div class="day-header">
+                            <span class="day-name">
+                                #{eventBean.selectedDate == null ? 'Upcoming Events' : 'Events: ' += eventBean.selectedDate}
+                            </span>
+                        </div>
+
+                        <!-- Output list -->
+                        <h:form>
+                            <ul class="dishList">
+                                <ui:repeat value="#{eventBean.selectedEvents}" var="ev">
+                                    <li>#{ev}
+                                        <h:commandLink
+                                                value="Ta bort">
+                                            <f:ajax execute="@this" render="@all" />
+                                        </h:commandLink>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </h:form>
+
+                        <!-- If no events on selected date -->
+                        <h:panelGroup rendered="#{empty eventBean.selectedEvents}" styleClass="empty-state">
+                            <p>No events found for this selection.</p>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <!-- Add a event to selected date -->
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Name" />
+                            <h:inputText id="name" styleClass="inputText"/>
+                            <h:outputLabel value="Description" />
+                            <h:inputTextarea id="description" styleClass="inputText" maxlength="300"/>
+                            <div class="time-container">
+                                <div class="time">
+                                    <h:outputLabel value="Start Time"/>
+                                    <p:datePicker id="startTime" showTime="true" timeOnly="true" pattern="HH:mm"/>
+                                </div>
+                                <div class="time">
+                                    <h:outputLabel value="End Time"/>
+                                    <p:datePicker id="endTime" showTime="true" timeOnly="true" pattern="HH:mm"/>
+                                </div>
+                            </div>
+                        </h:panelGrid>
+                        <h:commandButton value="Lägg till"
+                                         styleClass="btn btnPrimary"
+                                         action="#{event.saveToEvent(date)}">
+                            <f:ajax execute="@form" render="@all" />
+                        </h:commandButton>
+                    </h:form>
+                </div>
+
+                <!-- Calendar for sidebar -->
+                <div class="sidebar-area">
+                    <p:calendar value="#{eventBean.selectedDate}"
+                                mode="inline">
+                        <p:ajax event="dateSelect"
+                                listener="#{eventBean.onDateSelect}"
+                                update="eventDisplayArea" />
+                    </p:calendar>
+                </div>
+            </div>
+        </h:form>
     </ui:define>
-
 </ui:composition>
