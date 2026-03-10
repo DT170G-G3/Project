@@ -1,6 +1,9 @@
 package com.dt170g.g3.backend.beans;
 
+import com.dt170g.g3.backend.entities.Comment;
 import com.dt170g.g3.backend.entities.Event;
+import com.dt170g.g3.backend.entities.Post;
+import com.dt170g.g3.backend.services.CommentService;
 import com.dt170g.g3.backend.services.EventService;
 import com.dt170g.g3.backend.utils.ProfanityFilter;
 import jakarta.annotation.PostConstruct;
@@ -24,6 +27,7 @@ public class EventBean implements Serializable {
     private CommentService commentService;
 
     private List<Event> events;
+    private Event newEvent = new Event();
 
     // --- FÄLT FÖR ATT HANTERA XHTML-VYN ---
     private Event selectedEvent;
@@ -63,6 +67,13 @@ public class EventBean implements Serializable {
                 .filter(e -> e.getStartTime().isBefore(now)) // Filtrera fram de som har passerat
                 .sorted(Comparator.comparing(Event::getStartTime).reversed()) // Sortera så det senaste ligger först i menyn
                 .collect(Collectors.toList()); // Skapa en lista av dem
+    }
+
+
+    public void createEvent() {
+        eventService.createEvent(newEvent);
+        newEvent = new Event();
+        events = eventService.findAll();
     }
 
 
@@ -110,5 +121,15 @@ public class EventBean implements Serializable {
         }
     }
 
+    public void removeComment(int id){
+        eventService.removeComment(id);
+    }
 
+    public Event getNewEvent() {
+        return newEvent;
+    }
+
+    public void setNewEvent(Event newEvent) {
+        this.newEvent = newEvent;
+    }
 }

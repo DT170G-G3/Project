@@ -68,25 +68,7 @@
                 </div>
             </ui:repeat>
 
-            <h3>Kommentarer</h3>
-            <ui:repeat value="#{eventBean.commentsForEvent(e.id)}" var="c">
-                <div style="margin-bottom:10px; padding:8px; border:1px solid #ddd;">
-                    <p>
-                        <strong>Namn:</strong>
-                        #{c.name}
-                    </p>
 
-                    <p>
-                        <strong>Kommentar:</strong>
-                        #{c.comment}
-                    </p>
-
-                    <p>
-                        <strong>Tid:</strong>
-                        #{c.dateAndTime}
-                    </p>
-                </div>
-            </ui:repeat>
 
             <h:form>
                 <h:commandButton value="Kommentera"

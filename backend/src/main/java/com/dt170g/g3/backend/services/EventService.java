@@ -44,20 +44,11 @@ public class EventService {
         //Event event = entityManager.find(Event.class, id);
         Comment comment = entityManager.find(Comment.class, id);
 
-        //entityManager.remove(event);
+
 
         entityManager.remove(comment);
 
     }
-
-//    @Transactional
-//    public void removeDishfromMenu(int id){
-//        CarteMenu menu = entityManager.find(CarteMenu.class, 1);
-//        CarteDish dish = entityManager.find(CarteDish.class, id);
-//        menu.getDishes().remove(dish);
-//
-//
-//    }
 
 
     @Transactional
