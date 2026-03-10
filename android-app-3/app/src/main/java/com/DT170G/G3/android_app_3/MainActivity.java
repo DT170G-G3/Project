@@ -6,7 +6,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private Map<LocalDate, List<String>> dayWork = new HashMap<>();
     private Map<LocalDate, List<String>> nightWork = new HashMap<>();
 
-    private List<String> allPersons = List.of("Sigrid", "Frank", "Melker", "Andreas", "Jacob", "Christine", "Doris");
-
-    private String correctTestID = "cd20486bd301b60d";
     private String androidId;
 
     private @NonNull Insets systemBars;
@@ -310,6 +306,7 @@ public class MainActivity extends AppCompatActivity {
     private void asyncLoadEmployees() {
 
         employeesRepo.getEmployees(new EmployeesRepository.GetCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSuccess(List<Employee> employees) {
                 populateEmployeesUI(employees);
@@ -389,11 +386,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void populateEmployeesUI(List<Employee> employees) {
-        Log.d("EMPLOYEES", "" + employees.size());
-    }
     private void populateShiftsUI(List<Shift> shifts) {
 
         Log.d("SHIFTS", "" + shifts.size());
