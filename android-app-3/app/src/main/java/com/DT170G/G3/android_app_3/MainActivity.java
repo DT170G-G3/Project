@@ -24,6 +24,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.DT170G.G3.android_app_3.employees.Employee;
 import com.DT170G.G3.android_app_3.employees.EmployeesRepository;
 import com.DT170G.G3.android_app_3.shifts.Shift;
+import com.DT170G.G3.android_app_3.shifts.ShiftSwap;
+import com.DT170G.G3.android_app_3.shifts.ShiftUpdate;
 import com.DT170G.G3.android_app_3.shifts.ShiftsRepository;
 
 import org.jspecify.annotations.NonNull;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private Map<LocalDate, List<String>> dayWork = new HashMap<>();
     private Map<LocalDate, List<String>> nightWork = new HashMap<>();
 
+    private List<String> allPersons = List.of("Sigrid", "Frank", "Melker", "Andreas", "Jacob", "Christine", "Doris");
 
     private String correctTestID = "cd20486bd301b60d";
     private String androidId;
@@ -92,6 +95,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        //--------GET---------------------
+        //asyncLoadEmployees();
+        //asyncLoadShifts();
+        String testDate = "2026-02-28";
+        //asyncLoadShiftsByDate(testDate);
+
+        //--------POST---------------------
+        //exampleCreateShiftSwap();
+
+        //--------PUT-(EDIT)---------------
+        //exampleAcceptShiftChangeStatus();
     }
 
 
@@ -291,6 +306,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Send the correlating object or data to GET/POST/PUT
     private void asyncLoadEmployees() {
 
         employeesRepo.getEmployees(new EmployeesRepository.GetCallback() {
@@ -331,7 +347,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //GET Shifts for a specific date. Requires String date format "2026-03-02"
     private void asyncLoadShiftsByDate(String date) {
         shiftsRepo.getShiftsByDate(date, new ShiftsRepository.GetCallback() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -347,10 +362,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void asyncPostShiftSwap(ShiftSwap shiftSwap) {
+        //asynchronous post the order to the database
+        shiftsRepo.postShiftSwap(shiftSwap, new ShiftsRepository.PostCallback() {
+            @Override
+            public void onSuccess(ShiftSwap shiftSwap) {
+                Log.d("SHIFT CHANGE", "SUCCESSFULLY POSTED REQUEST");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("SHIFT CHANGE", "FAILED TO POST REQUEST: " + message);
+            }
+        });
+    }
 
+    public void asyncPutShiftUpdate(int shiftId, ShiftUpdate update) {
+        shiftsRepo.putShiftUpdate(shiftId, update, new ShiftsRepository.PutCallback() {
+            @Override
+            public void onSuccess() {
+                Log.d("SHIFT UPDATE", "SUCCESSFULLY UPDATED REQUEST");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("SHIFT UPDATE", "FAILED TO UPDATE REQUEST: " + message);
+            }
+        });
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    private void populateEmployeesUI(List<Employee> employees) {
+        Log.d("EMPLOYEES", "" + employees.size());
+    }
     private void populateShiftsUI(List<Shift> shifts) {
 
         Log.d("SHIFTS", "" + shifts.size());
@@ -374,6 +417,28 @@ public class MainActivity extends AppCompatActivity {
 
         }
         updateSchedule();
+    }
+
+    // How to create a shift swap query
+    public void exampleCreateShiftSwap() {
+        ShiftSwap sc = new ShiftSwap();
+        String senderId = "cd20486bd301b603";
+        String  recieverId = "cd20486bd301b606";
+        int shiftId = 2;
+
+        sc.senderId = senderId;
+        sc.receiverId = recieverId;
+        sc.shiftId = shiftId;
+
+        asyncPostShiftSwap(sc);
+    }
+
+    // Updates a pending Shift change with approved or disapproved status
+    public void exampleAcceptShiftChangeStatus() {
+        ShiftUpdate update = new ShiftUpdate();
+        update.status = "approved";
+        int shiftId = 2;
+        asyncPutShiftUpdate(shiftId, update);
     }
 
 }

@@ -17,11 +17,9 @@ public class EmployeeBean implements Serializable {
 
     private List<Employee> employees;
 
-
     @PostConstruct
     public void init(){
-        this.employees = empService.getAllEmployees();
-        System.out.println("Employees: " + employees.size());
+        this.employees = empService.getAllEmployees();        ;
     }
 
     public List<Employee> getEmployees(){
