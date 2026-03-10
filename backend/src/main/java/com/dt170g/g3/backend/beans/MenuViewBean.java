@@ -16,9 +16,9 @@ public class MenuViewBean implements Serializable {
     // Index 1, 4, 7, osv. = Mains
     // Index 2, 5, 8, osv. = Desserts
     private static final List<String> DIVIDERS = List.of(
-            "divider/starters1.png", "divider/mains1.png", "divider/desserts1.png",
-            "divider/starters2.png", "divider/mains2.png", "divider/desserts2.png",
-            "divider/starters3.png", "divider/mains3.png", "divider/desserts3.png"
+            "divider/starters1.jpg", "divider/mains1.jpg", "divider/desserts1.jpg",
+            "divider/starters2.jpg", "divider/mains2.jpg", "divider/desserts2.jpg",
+            "divider/starters3.jpg", "divider/mains3.jpg", "divider/desserts3.jpg"
     );
 
     // Hämtar bilderna för rätt kategori

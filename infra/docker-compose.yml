@@ -56,12 +56,17 @@ services:
       DB_NAME: ${MYSQL_DATABASE}
       DB_USER: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
+
+      # bilder för events
+      EVENT_IMAGE_ROOT: /opt/assets/events
     ports:
       - "${PAYARA_HTTP_PORT}:8080"
       - "${PAYARA_ADMIN_PORT}:4848"
     volumes:
       # autodeploy härifrån vid start
       - ./payara/deployments:/opt/payara/deployments
+      #Folder för att spara bilder för events, mappas till en path i payara där appen kan läsa och skriva bilder
+      - ../assets/events:/opt/assets/events
 
 volumes:
   mysql_data:
