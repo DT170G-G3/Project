@@ -18,6 +18,9 @@ CREATE TABLE shift (
     FOREIGN KEY (type_id) REFERENCES shift_type(id) ON DELETE CASCADE    
 ) ENGINE=InnoDB;
 
+-- Prevent duplicates
+ALTER TABLE shift ADD UNIQUE (date, type_id);
+
 CREATE TABLE swap_request (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sender_id VARCHAR(25) NOT NULL,   
