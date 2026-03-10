@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Enhance pool chips with avatar styling
     document.querySelectorAll('#pool .chip').forEach((chip, idx) => {
         const name = chip.dataset.name;
         chip.innerHTML = `
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     });
 
-    // Enhance zone chips with avatar styling and remove button
     document.querySelectorAll('.shift-drop-zone .chip').forEach((chip, idx) => {
         const name = chip.dataset.name;
         chip.innerHTML = `

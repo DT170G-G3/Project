@@ -174,23 +174,41 @@ public class LunchMenuService {
 
     /* This or the one above? */
     @Transactional
-    public void saveDishToLunchMenu(String localDate ){
+    public void saveDishToLunchMenu(String localDate){
         LocalDate date = LocalDate.parse(localDate);
-        if(!menuExistsForDate(date)){
-            createLunchMenu(date);
-        }
-        LunchMenu menu = getLunchMenuByDate(date);
+        LunchDish dish = dishBean.getNewDish();
 
-        LunchDish inputDish = dishBean.getNewDish();
-        LunchDish managedDish = lunchDishService.findExistingDish(inputDish);
-        if(managedDish == null){
-            lunchDishService.saveDish(inputDish);
-            managedDish = inputDish;
+        // Hämta/skapa meny om den inte finns
+        LunchMenu menu;
+        if (!menuExistsForDate(date)) {
+            menu = new LunchMenu();
+            menu.setDate(date);
+            entityManager.persist(menu);
+        } else {
+            menu = getLunchMenuByDate(date);
         }
-        menu.addDish(managedDish);
-        dishBean.reset();
+
+        // Sök efter rätten
+        LunchDish dishToLink;
+        List<LunchDish> existing = entityManager.createQuery(
+                        "SELECT d FROM LunchDish d WHERE d.name = :name", LunchDish.class)
+                .setParameter("name", dish.getName())
+                .getResultList();
+
+        // Har listan element behandlas första elementet som en tidigare skapad rätt.
+        if (!existing.isEmpty()) {
+            LunchDish dbDish = existing.get(0);
+            dishToLink = entityManager.merge(dbDish);
+        } else {
+            dishToLink = entityManager.merge(dish);
+        }
+
+        // Koppla ihop och lägg rätt i menyn
+        if (!menu.getDishes().contains(dishToLink)) {
+            menu.getDishes().add(dishToLink);
+            entityManager.merge(menu); // Uppdatera kopplingen
+        }
     }
-
 
     // Getters and setters for JSF binding
     public List<Integer> getSelectedDishIds() { return selectedDishIds; }

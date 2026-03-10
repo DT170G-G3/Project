@@ -68,6 +68,92 @@ header .weekDiv {
     font-weight: 300;
 }
 
+.dishCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 0;
+}
+
+.dishCard {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    min-width: 160px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dishCard-name {
+    font-weight: 500;
+    font-size: 0.88rem;
+}
+
+.dishCard-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    flex: 1;
+}
+
+.dishCard-price {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 6px;
+}
+
+.dishCard-remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.08);
+    color: var(--text);
+    font-size: 0.65rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.1s;
+}
+
+.dishCard-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+}
+
+.dishCard-input--muted {
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.dishCard-input::placeholder {
+    color: #c0b8b0;
+    font-style: italic;
+}
+
+.dishCard-field-input {
+    margin-bottom: 0.25rem;
+}
+
+.dishCard--add {
+    border-style: dashed;
+    background: transparent;
+}
+
+.dishCard-remove:hover { background: rgba(0,0,0,0.2); }
+
 .workspace {
     display: flex;
     gap: 0;
@@ -175,7 +261,7 @@ header .weekDiv {
     padding: 32px;
 }
 
-.weekTitle {
+.contentTitle {
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     font-weight: 500;
@@ -185,7 +271,7 @@ header .weekDiv {
     align-items: center;
     gap: 10px;
 }
-.weekTitle::after {
+.contentTitle::after {
     content: '';
     flex: 1;
     height: 1px;
@@ -355,6 +441,26 @@ header .weekDiv {
 .menu-item-row input:focus {
     border-color: #b0a898;
     box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+.inputText{
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    width: 200px;
+    box-shadow: inset 0 2px 2px #f0f0f0;
+}
+
+.inputText:hover{
+    border-color: dodgerblue;
+}
+
+inputText:focus{
+    border-color: dodgerblue !important;
+    box-shadow: outset 0 2px 2px dodgerblue;
 }
 
 .weekSelector {

@@ -41,7 +41,7 @@ public class ShiftService {
 
         if (shifts.isEmpty()) {
             List<ShiftType> types = entityManager.createQuery(
-                    "SELECT st FROM ShiftType st", ShiftType.class).getResultList();
+                    "SELECT st FROM ShiftType st ORDER BY st.id ASC", ShiftType.class).getResultList();
 
             for (ShiftType type : types) {
                 Shift shift = new Shift();
