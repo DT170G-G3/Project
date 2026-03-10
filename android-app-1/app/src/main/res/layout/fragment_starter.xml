@@ -7,30 +7,17 @@
     android:orientation="vertical"
     android:id="@+id/starterLayout">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/starterHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:paddingTop="15dp"
-            android:text="Förrätter" />
-
-        <Switch
-            android:id="@+id/starterNotesSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="158dp"
-            android:text="Noteringar"/>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/starterHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="Förrätter" />
 
     <TextView
         android:id="@+id/starterBorderHeader"
@@ -41,15 +28,4 @@
         android:layout_marginStart="15dp"
         android:background="@color/borderColor"/>
 
-    <EditText
-        android:id="@+id/starterNotes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="5dp"
-        android:visibility="gone"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Skriv en notering till Kocken"/>
 </LinearLayout>

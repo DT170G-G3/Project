@@ -1,27 +1,18 @@
 package com.DT170G.G3.android_app_1.classes;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.icu.text.Transliterator;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.DT170G.G3.android_app_1.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple class for creating
@@ -40,7 +31,7 @@ public class OrderItemRow {
      *
      * @return A LinearLayout with a button and counter for items that can be ordered.
      */
-    public LinearLayout createItemRow(Context context, int itemId, String item, List<TextView> allItemCounters, List<Integer> allOrderedItems){
+    public LinearLayout createItemRow(Context context, int itemId, String item, List<TextView> allItemCounters, Map<Integer, Integer> allOrderedItems){
         //Skapar en LinearLayout som innehåller en Button och en TextView för att kunna ta ordrar
         LinearLayout itemRow = new LinearLayout(context);
         itemRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -81,7 +72,8 @@ public class OrderItemRow {
             //Öka räknaren
             itemCounter.setText(String.valueOf(currentNumber +1));
             //Lägg till i listan över beställda drinkar
-            allOrderedItems.add(itemId);
+            int currentQuantity = allOrderedItems.getOrDefault(itemId, 0);
+            allOrderedItems.put(itemId, currentQuantity + 1);
         });
 
         // Lyssnare för långa klick - Minskar antalet med ett
@@ -91,7 +83,13 @@ public class OrderItemRow {
                 //Minska räknaren
                 itemCounter.setText(String.valueOf(currentNumber - 1));
                 //Ta bort från listan över beställda drinkar
-                allOrderedItems.remove(Integer.valueOf(itemId));
+                int currentQuantity = allOrderedItems.getOrDefault(itemId, 0);
+                if(currentQuantity > 1) {
+                    allOrderedItems.put(itemId, currentQuantity - 1);
+                } else {
+                    allOrderedItems.remove(itemId);
+                }
+
             }
             return true;
         });
@@ -101,5 +99,4 @@ public class OrderItemRow {
         itemRow.addView(itemCounter);
         return itemRow;
     }
-
 }
