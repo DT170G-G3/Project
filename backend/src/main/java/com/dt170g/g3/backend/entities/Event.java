@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 
 @NamedQueries({
@@ -20,7 +21,18 @@ import java.util.List;
                         "LEFT JOIN FETCH e.posts " +
                         "LEFT JOIN FETCH e.comments " //+
 //                        "ORDER BY e.startTime ASC"
+        ),
+
+        @NamedQuery(
+                name = "Event.findAll",
+                query = "SELECT DISTINCT e FROM Event e LEFT JOIN FETCH e.comments ORDER BY e.startTime ASC"
         )
+
+//        @NamedQuery(
+//                name = "Event.findAll",
+//                query = "SELECT DISTINCT e FROM Event e LEFT JOIN FETCH e.comments ORDER BY e.startTime ASC"
+//        )
+
 })
 
 @Entity

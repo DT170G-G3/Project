@@ -38,6 +38,14 @@ public class CarteDishService {
     public CarteDish getDishById(int id){
         return entityManager.find(CarteDish.class, id);
     }
+
+    public CarteDish getDishByName(String name) {
+        return entityManager
+                .createNamedQuery("CarteDish.findByName", CarteDish.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
+
     public List<CarteDish> getDishesByCategory(int id){
 
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.findByCategory", CarteDish.class);
@@ -57,6 +65,16 @@ public class CarteDishService {
     public List<CarteDish> getMenuDishes() {
         TypedQuery<CarteDish> messageQuery = entityManager.createNamedQuery("CarteDish.getDishesFromMenuByCategory", CarteDish.class);
         return messageQuery.getResultList();
+    }
+
+    public Boolean dishExistsInDatabase(String name){
+        Long count = entityManager
+                .createNamedQuery("CarteDish.existsByNameAndDescription", Long.class)
+                .setParameter("name", name)
+                //.setParameter("description", description)
+                .getSingleResult();
+
+        return count > 0;
     }
 
 
