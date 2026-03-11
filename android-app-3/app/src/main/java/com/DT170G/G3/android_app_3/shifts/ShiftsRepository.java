@@ -2,6 +2,9 @@ package com.DT170G.G3.android_app_3.shifts;
 
 import android.util.Log;
 import com.DT170G.G3.android_app_3.*;
+import com.DT170G.G3.android_app_3.employees.Employee;
+import com.DT170G.G3.android_app_3.employees.EmployeesRepository;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,12 +17,37 @@ public class ShiftsRepository {
         void onError(String message);
     }
     public interface PostCallback {
-        void onSuccess(ShiftSwap shiftChange);
+        void onSuccess(ShiftSwap shiftSwap);
         void onError(String message);
     }
     public interface PutCallback {
         void onSuccess();
         void onError(String message);
+    }
+    public interface GetShiftSwapCallback {
+        void onSuccess(List<ShiftSwap> shiftSwaps);
+        void onError(String message);
+    }
+
+    public void getShiftSwaps(GetShiftSwapCallback cb) {
+        Call<List<ShiftSwap>> listShiftSwaps = ApiClient.shiftsApi().getShiftSwaps();
+        listShiftSwaps.enqueue(new Callback<List<ShiftSwap>>() {
+            @Override
+            public void onResponse(Call<List<ShiftSwap>> call, Response<List<ShiftSwap>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    cb.onSuccess(response.body());
+                }
+                else {
+                    cb.onError("HTTP " + response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<ShiftSwap>> call, Throwable t) {
+                //handle error code
+                Log.d("Shift API onFailure: ", t.toString());
+                cb.onError(t.getMessage());
+            }
+        });
     }
 
     public void putShiftUpdate(int id, ShiftUpdate update, PutCallback cb) {
@@ -40,7 +68,6 @@ public class ShiftsRepository {
             }
         });
     }
-
     public void postShiftSwap(ShiftSwap shiftSwap, PostCallback cb) {
         Call<Void> call = ApiClient.shiftsApi().postShiftSwap(shiftSwap);
         call.enqueue(new Callback<Void>() {
@@ -59,7 +86,7 @@ public class ShiftsRepository {
             }
         });
     }
-    public void getShifts(ShiftsRepository.GetCallback cb) {
+    public void getShifts(GetCallback cb) {
         Call<List<Shift>> listShifts = ApiClient.shiftsApi().getShifts();
         listShifts.enqueue(new Callback<List<Shift>>() {
             @Override
