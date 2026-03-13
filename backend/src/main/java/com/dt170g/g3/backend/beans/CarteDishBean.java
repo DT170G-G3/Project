@@ -16,8 +16,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -81,14 +79,22 @@ public class CarteDishBean implements Serializable {
      * Finally, the dish is added to the current menu.
      */
     public void saveDishToMenu(){
+
         Category category = categoryService.findById(selectedCategoryId); // find selected category
         dish.setCategory(category);
 
         FoodType foodType = foodTypeService.findById(selectedFoodTypeId); // find selected food type
         dish.setFoodType(foodType);
 
-        carteDishService.saveToDatabase(dish); // saving new dish to database
-        carteMenuService.addDishToMenu(dish); // adding the new dish to the menu
+        if(carteDishService.dishExistsInDatabase(dish.getName())){
+            CarteDish existingDish = carteDishService.getDishByName(dish.getName());
+
+            carteMenuService.addDishToMenu(existingDish);
+        }
+        else{
+            carteDishService.saveToDatabase(dish);
+            carteMenuService.addDishToMenu(dish); // adding the new dish to the menu
+        }
 
     }
 

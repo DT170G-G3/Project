@@ -9,35 +9,79 @@
     <ui:define name="content">
         <div class="menuWrapper">
 
-            <div class="weekTitle">À La Carte</div>
+            <div class="contentTitle">À La Carte</div>
 
-            <ui:repeat value="#{carteMenu.groupedDishes.entrySet().toArray()}" var="categoryEntry">
-                <details class="carte-category">
-                    <summary class="carte-category-header">
-                        #{categoryEntry.key}
-                    </summary>
+            <!-- Add dish form -->
+            <h:form class="carte-add-form">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Namn" />
+                    <h:inputText value="#{carteDish.dish.name}" required="true" />
 
-                    <div class="carte-category-body">
-                        <ui:repeat value="#{categoryEntry.value.entrySet().toArray()}" var="typeEntry">
+                    <h:outputLabel value="Beskrivning" />
+                    <h:inputText value="#{carteDish.dish.description}" />
 
-                            <ui:fragment rendered="#{not empty typeEntry.key}">
-                                <div class="carte-type-header">#{typeEntry.key}</div>
-                            </ui:fragment>
+                    <h:outputLabel value="Pris" />
+                    <h:inputText value="#{carteDish.dish.price}" />
 
-                            <ul class="dishList">
-                                <ui:repeat value="#{typeEntry.value}" var="carteDishItem">
-                                    <li>
-                                        <span class="dish-name">#{carteDishItem.name}</span>
-                                        <span class="dish-price">#{carteDishItem.price} kr</span>
-                                        <span class="dish-desc">#{carteDishItem.description}</span>
-                                    </li>
-                                </ui:repeat>
-                            </ul>
+                    <h:outputLabel value="Kategori" />
+                    <h:selectOneMenu value="#{carteDish.selectedCategoryId}">
+                        <f:selectItem itemLabel="Välj kategori" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{carteDish.categories}" var="cat"
+                                       itemValue="#{cat.id}" itemLabel="#{cat.name}" />
+                    </h:selectOneMenu>
 
-                        </ui:repeat>
-                    </div>
-                </details>
-            </ui:repeat>
+                    <h:outputLabel value="Typ" />
+                    <h:selectOneMenu value="#{carteDish.selectedFoodTypeId}">
+                        <f:selectItem itemLabel="Välj typ" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{carteDish.foodTypes}" var="fType"
+                                       itemValue="#{fType.id}" itemLabel="#{fType.name}" />
+                    </h:selectOneMenu>
+                </h:panelGrid>
+
+                <h:commandButton value="Lägg till"
+                                 styleClass="btn btnPrimary"
+                                 action="#{carteDish.saveDishToMenu()}">
+                    <f:ajax execute="@form" render="@all" />
+                </h:commandButton>
+            </h:form>
+
+            <!-- Dish list grouped by category -->
+            <div class="daysList">
+                <ui:repeat value="#{carteMenu.groupedDishes.entrySet().toArray()}" var="categoryEntry">
+                    <details class="day-card" open="open">
+                        <summary class="day-header">
+                            <span class="day-name">#{categoryEntry.key}</span>
+                        </summary>
+
+                        <div class="menu-day-body">
+                            <ui:repeat value="#{categoryEntry.value.entrySet().toArray()}" var="typeEntry">
+
+                                <ui:fragment rendered="#{not empty typeEntry.key}">
+                                    <div class="carte-type-header">#{typeEntry.key}</div>
+                                </ui:fragment>
+
+                                <div class="dishCards">
+                                    <ui:repeat value="#{typeEntry.value}" var="carteDishItem">
+                                        <div class="dishCard">
+                                            <h:form>
+                                                <h:commandLink styleClass="dishCard-remove"
+                                                               action="#{carteMenu.removeDishfromMenu(carteDishItem.id)}">
+                                                    ✕
+                                                    <f:ajax execute="@this" render="@all" />
+                                                </h:commandLink>
+                                            </h:form>
+                                            <div class="dishCard-name">#{carteDishItem.name}</div>
+                                            <div class="dishCard-desc">#{carteDishItem.description}</div>
+                                            <div class="dishCard-price">#{carteDishItem.price} kr</div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+
+                            </ui:repeat>
+                        </div>
+                    </details>
+                </ui:repeat>
+            </div>
 
         </div>
     </ui:define>

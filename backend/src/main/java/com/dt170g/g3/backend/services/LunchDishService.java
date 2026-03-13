@@ -75,4 +75,13 @@ public class LunchDishService {
         }
         return existing.get(0);
     }
+
+    public List<LunchDish> searchByName(String query) {
+        return entityManager.createQuery(
+                        "SELECT d FROM LunchDish d " +
+                                "WHERE LOWER(d.name) LIKE LOWER(CONCAT('%', :query, '%'))",
+                        LunchDish.class)
+                .setParameter("query", query)
+                .getResultList();
+    }
 }

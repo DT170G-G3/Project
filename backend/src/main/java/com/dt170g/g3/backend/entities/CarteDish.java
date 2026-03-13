@@ -39,7 +39,16 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "CarteDish.findByName",
                 query = "SELECT cd FROM CarteDish cd WHERE cd.name = :name"
+        ),
+        @NamedQuery(
+                name = "CarteDish.existsByNameAndDescription",
+                query = "SELECT COUNT(cd) FROM CarteDish cd WHERE cd.name = :name"
+        ),
+        @NamedQuery(
+                name = "CarteDish.findByName",
+                query = "SELECT cd FROM CarteDish cd WHERE cd.name = :name"
         )
+
 })
 
 @Entity
