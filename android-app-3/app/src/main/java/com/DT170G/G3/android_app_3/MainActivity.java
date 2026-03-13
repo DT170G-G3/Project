@@ -287,6 +287,11 @@ public class MainActivity extends AppCompatActivity {
     //till senare
     private void swapPerson(String personName, String changeToPerson) {
         Log.d("REQUESR", "Swap request" + personName + " -> " + changeToPerson);
+        Toast.makeText(this, "Förfrågan skcikad", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void checkId() {}
         Toast.makeText(this, "Förfrågan skickad", Toast.LENGTH_SHORT).show();
 
     }
@@ -301,10 +306,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(String message) {
-                Log.e("DRINKS", "Fel: " + message);
+                Log.e("EMPLOYEES", "Fel: " + message);
             }
         });
     }
+    private void asyncLoadShiftSwaps() {
+        shiftsRepo.getShiftSwaps(new ShiftsRepository.GetShiftSwapCallback() {
+            @Override
+            public void onSuccess(List<ShiftSwap> shiftSwaps) {
+                populateShiftSwapsUI(shiftSwaps);
+            }
     private void populateEmployeesUI(List<Employee> employees) {
         allEmployees.clear();
 
@@ -316,6 +327,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+            @Override
+            public void onError(String message) {
+                Log.e("SHIFTSWAPS", "Fel: " + message);
+            }
+        });
+    }
     private void asyncLoadShifts() {
         shiftsRepo.getShifts(new ShiftsRepository.GetCallback() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -351,6 +368,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    private void populateShiftSwapsUI(List<ShiftSwap> shiftSwaps) {
+        Log.d("SHIFTSWAPS", "" + shiftSwaps.size());
+        ShiftSwap swap = shiftSwaps.get(0);
+        int swapId = swap.id;
+        exampleAcceptShiftChangeStatus(swapId);
+    }
+    private void populateEmployeesUI(List<Employee> employees) {
+        Log.d("EMPLOYEES", "" + employees.size());
+    }
     private void populateShiftsUI(List<Shift> shifts) {
 
         Log.d("SHIFTS", "" + shifts.size());
@@ -380,6 +406,35 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MAP_DEBUG", "nightWork: " + nightWork);
             }
 
+
+    // Denna fungerar. Man kan byta bort sin egna plats på ett pass,
+    // men inte byta till sig ett pass (?)
+    public void exampleCreateShiftSwap() {
+        ShiftSwap sc = new ShiftSwap();
+        String senderId = "cd20486bd301b60f";       // Mike
+        String  recieverId = "cd20486bd301b606";    // Konan Barbaren
+        int shiftId = 1;
+
+        sc.senderId = senderId;
+        sc.receiverId = recieverId;
+        sc.shiftId = shiftId;
+
+        asyncPostShiftSwap(sc);
+    }
+
+
+
+    // Updates a pending Shift change with approved or disapproved status
+    public void exampleRejectShiftChangeStatus() {
+        ShiftUpdate update = new ShiftUpdate();
+        update.status = "rejected";
+        int shiftSwapId = 1; // NOT shiftId of the shiftSwap. Use shift.id of the Shift class
+        asyncPutShiftUpdate(shiftSwapId, update);
+    }
+    public void exampleAcceptShiftChangeStatus(int id) {
+        ShiftUpdate update = new ShiftUpdate();
+        update.status = "approved";
+        asyncPutShiftUpdate(id, update);
         }
         updateSchedule();
     }

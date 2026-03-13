@@ -20,6 +20,9 @@ public interface ShiftsApi {
     @GET("shift/day/{date}")
     Call<List<Shift>> getShiftsByDate(@Path("date") String date);
 
+    @GET("shift/swap/list")
+    Call<List<ShiftSwap>> getShiftSwaps();
+
     @POST("shift/swap/request")
     Call<Void> postShiftSwap(@Body ShiftSwap shiftChange);
 
