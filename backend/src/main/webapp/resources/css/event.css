@@ -82,7 +82,6 @@
 
 .hero-inner-event{
 
-    /*glaseffekt*/
     background: rgba(0,0,0,0.10);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(12px);
@@ -110,7 +109,6 @@
     color: var(--text);
     margin: 0.6rem 0 0;
 
-    /* själva plattan */
     background: var(--glass-panel);
     border: 1px solid var(--glass-border);
     border-radius: 14px;
@@ -120,7 +118,6 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
-    /* gör den lite “lyft” */
     box-shadow: 0 8px 22px rgba(0,0,0,0.25);
 }
 

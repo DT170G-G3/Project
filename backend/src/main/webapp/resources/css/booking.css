@@ -32,24 +32,23 @@
 .form-group label {
     font-weight: 700;
     color: var(--text);
-    /* font-family: 'Courier New', Courier, monospace;  <-- Om du vill behålla paper-look */
 }
 
-/* Input-fält som liknar dina kort/knappar */
+/* Input-fält som liknar kort/knappar */
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
     padding: clamp(0.6rem, 0.5rem + 0.5vw, 0.9rem);
 
-    background-color: var(--bg-light); /* Ljusare bakgrund än panelen */
+    background-color: var(--bg-light);
     color: var(--text);
 
     border: var(--border-card);
-    border-top: var(--border-top); /* Din specifika top-border */
-    border-radius: calc(var(--border-radius) * 0.5); /* Lite mindre radie än korten */
+    border-top: var(--border-top);
+    border-radius: calc(var(--border-radius) * 0.5);
 
-    box-shadow: var(--shadow); /* Samma skugga som korten */
+    box-shadow: var(--shadow);
 
     font-size: 1rem;
     font-family: inherit;
@@ -62,7 +61,7 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--focus-ring);
-    box-shadow: 0 0 0 3px var(--focus-ring); /* Tydlig fokusring */
+    box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* Knappen - kopierad stil från .btn-link */
@@ -71,13 +70,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    width: 100%; /* Full bredd i formuläret */
+    width: 100%;
 
-    padding: clamp(0.75rem, 0.6rem + 0.6vw, 1rem); /* Lite större padding än länkar */
+    padding: clamp(0.75rem, 0.6rem + 0.6vw, 1rem);
 
     border-radius: calc(var(--border-radius) * 0.75);
-    background-color: var(--bg-light); /* Eller var(--primary) om du vill ha den färgade */
-    color: var(--text); /* Eller var(--bg-dark) om bakgrunden är ljus */
+    background-color: var(--bg-light);
+    color: var(--text);
 
     border: var(--border-card);
     border-top: var(--border-top);
