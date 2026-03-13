@@ -1,0 +1,4 @@
+create-jdbc-connection-pool --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource --restype javax.sql.DataSource --ping true --property user=${ENV=DB_USER}:password=${ENV=DB_PASSWORD}:serverName=${ENV=DB_HOST}:portNumber=${ENV=DB_PORT}:databaseName=${ENV=DB_NAME}:useSSL=false:allowPublicKeyRetrieval=true AppPool
+create-jdbc-resource --connectionpoolid AppPool jdbc/local_sql
+ping-connection-pool AppPool
+deploy --force=true --name restaurant --contextroot restaurant /opt/payara/deployments/restaurant.war

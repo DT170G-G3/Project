@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets" xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>En Ganska Kass Titel</title>
+    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <div id="message-box">
+
+            <!-- Buttons for the current and upcomming weeks -->
+            <h:form>
+                <ui:repeat value="#{week.weekNumbers}" var="w">
+                    <h:commandButton value="V.#{w}"
+                    action="#{week.setWeekNumber(w)}"/>
+                </ui:repeat>
+            </h:form>
+        </div>
+        <h3>Employees</h3>
+
+        <h:form>
+        <ui:repeat value="#{emp.employees}" var="e">
+            <p:outputPanel layout="block"
+                           draggable="true"
+                           style="padding:6px; border:1px solid #000; cursor: grab"
+                           ondragstart="event.dataTransfer.setData('text/plain', '#{e.id}')">
+                #{e.name}
+            </p:outputPanel>
+        </ui:repeat>
+        </h:form>
+
+        <ui:repeat value="#{week.daysOfWeekSchedule}" var="day">
+            <div class="day-box">
+                #{day}
+                <ui:repeat value="#{schedule.getShifts(day)}" var="shift">
+                    <b>#{shift.shiftType.name}</b>
+                    <ui:repeat value="#{schedule.getEmployeesShift(shift)}" var="worker">
+                        #{worker.name}
+                    </ui:repeat>
+                </ui:repeat>
+            </div>
+        </ui:repeat>
+    </div>
+
+
+    <!-- Adding a dish to the lunchmenueeee -->
+    <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
+        <div class="day-box">
+            #{day}
+        </div>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Name" />
+                <h:inputText value="#{dish.newDish.name}" required="true" />
+
+                <h:outputLabel value="Description" />
+                <h:inputText value="#{dish.newDish.description}" />
+
+                <h:outputLabel value="Price" />
+                <h:inputText value="#{dish.newDish.price}" />
+
+            </h:panelGrid>
+            <h:commandButton value="Save"
+                             action="#{lunch.saveToMenu(day)}">
+                <f:ajax execute="@form" render="@all" />
+            </h:commandButton>
+        </h:form>
+
+    </ui:repeat>
+</h:body>
+
+</html>

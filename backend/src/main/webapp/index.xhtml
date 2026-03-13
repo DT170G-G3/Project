@@ -1,15 +1,87 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="jakarta.faces.core"
-      xmlns:h="jakarta.faces.html">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/base.xhtml">
 
-<h:head>
-    <title>En Ganska Kass Titel</title>
-</h:head>
-<h:body>
-    <h1>Undertitel</h1>
-    #{ dbHandler.messageText }
-</h:body>
+    <ui:define name="title">Anton's Skafferi - Lokala Smaker</ui:define>
 
-</html>
+    <ui:define name="hero">
+        <section class="hero">
+
+            <div class="hero-slides" aria-hidden="true">
+                <span class="hero-slide s1"></span>
+                <span class="hero-slide s2"></span>
+                <span class="hero-slide s3"></span>
+                <span class="hero-slide s4"></span>
+            </div>
+
+            <div class="hero-inner">
+                <h1>Välkommen till Anton's Skafferi</h1>
+                <p>Där skog och hav är centralt i varje maträtt.</p>
+            </div>
+            <div class="hero-credits">
+                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c1"/>
+                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c2"/>
+                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c3" />
+                <h:outputText value="Foto: AI-generated" styleClass="hero-credit c4" />
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <section class="paper-wrap">
+            <div class="panel paper-look paper-torn text-center">
+                <h2>Dagens lunch #{week.currentDay}</h2>
+                <h3>Dagens lunch serveras måndag till fredag 1100-1330</h3>
+                <div class="todays">
+                    <ui:repeat value="#{lunch.lunchDishesToday}" var="menuToday">
+                        <div class="under-line">
+                            <h3>#{menuToday.name}</h3>
+                            <p>#{menuToday.description}</p>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="category-grid">
+
+            <div class="card panel">
+                <div class="card-header"><h3>Dagens Lunch</h3></div>
+                <div class="card-content"><p>Klassisk husman med en vild twist. Se hela veckomenyn här.</p></div>
+                <div class="card-link">
+                    <h:link outcome="lunch" value="Visa lunchmeny" styleClass="btn-link"/>
+                </div>
+            </div>
+
+            <div class="card panel">
+                <div class="card-header"><h3>À La Carte</h3></div>
+                <div class="card-content"><p>Utvalt vilt och dagens fångst.</p></div>
+                <div class="card-link">
+                    <h:link outcome="menu" value="Se hela menyn" styleClass="btn-link"/>
+                </div>
+            </div>
+
+            <div class="card panel">
+                <div class="card-header"><h3>Boka Bord</h3></div>
+                <div class="card-content"><p>Säkra din plats i skafferiet.</p></div>
+                <div class="card-link">
+                    <h:link outcome="booking" value="Till bokningen" styleClass="btn-link"/>
+                </div>
+            </div>
+
+            <div class="card panel">
+                <div class="card-header"><h3>Musik och Events</h3></div>
+                <div class="card-content"><p>Kommande &amp; tidigare events.</p></div>
+                <div class="card-link">
+                    <h:link outcome="events" value="Gå till bloggen" styleClass="btn-link"/>
+                </div>
+            </div>
+
+        </section>
+
+    </ui:define>
+
+</ui:composition>

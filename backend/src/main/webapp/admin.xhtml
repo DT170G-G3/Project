@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/admin_base.xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">Adminpanel - Veckomeny</ui:define>
+
+    <ui:define name="content">
+        <div class="menuWrapper">
+
+            <!-- Week selector buttons -->
+            <h:form>
+                <div class="weekSelector">
+                    <ui:repeat value="#{week.weekNumbers}" var="w">
+                        <h:commandButton value="V.#{w}"
+                                         styleClass="btn #{w == week.weekNumber ? 'btnPrimary' : 'btnSecondary'}"
+                                         action="#{week.setWeekNumber(w)}"/>
+                    </ui:repeat>
+                </div>
+            </h:form>
+
+            <div class="contentTitle">Lunchmeny</div>
+
+            <div class="daysList">
+                <ui:repeat value="#{week.daysOfWeekLunch}" var="day">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-name">#{day}</span>
+                        </div>
+
+                        <div class="menu-day-body">
+                            <h:form>
+                                <div class="dishCards">
+                                    <ui:repeat value="#{lunch.getLunchDishesByDate(day)}" var="dayDish">
+                                        <div class="dishCard">
+                                            <h:commandLink styleClass="dishCard-remove"
+                                                           action="#{lunch.removeDish(day,dayDish)}">
+                                                ✕
+                                                <f:ajax execute="@this" render="@all" />
+                                            </h:commandLink>
+                                            <div class="dishCard-name">#{dayDish.name}</div>
+                                            <div class="dishCard-desc">#{dayDish.description}</div>
+                                            <div class="dishCard-price">#{dayDish.price} kr</div>
+                                        </div>
+                                    </ui:repeat>
+
+                                    <div class="dishCard dishCard--add">
+                                        <div class="dishCard-name">Lägg till ny rätt</div>
+                                        <div class="dishCard-fields">
+                                            <p:autoComplete id="name" value="#{dish.newDish.name}"
+                                                            completeMethod="#{dish.completeDish}"
+                                                            dropdown="true"
+                                                            forceSelection="false"
+                                                            styleClass="dishCard-field-input"
+                                                            required="true"
+                                                            pt:placeholder="Namn">
+                                                <p:ajax event="itemSelect"
+                                                        listener="#{dish.onDishSelect}"
+                                                        update="name description price" />
+                                            </p:autoComplete>
+                                            <h:inputText id="description" value="#{dish.newDish.description}" pt:placeholder="Beskrivning" styleClass="dishCard-field-input" />
+                                            <h:inputText id="price" value="#{dish.newDish.price}" pt:placeholder="Pris (kr)" styleClass="dishCard-field-input dishCard-field-input--short" />
+                                        </div>
+                                        <h:commandButton value="Lägg till" styleClass="btn btnPrimary dishCard-submit"
+                                                         action="#{lunch.saveToMenu(day)}">
+                                            <f:ajax execute="@form" render="@all" />
+                                        </h:commandButton>
+                                    </div>
+
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

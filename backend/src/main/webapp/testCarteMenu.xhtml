@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Eriks Tite3jjoijeel</title>
+<!--    <h:outputStylesheet library="css" name="style.css?v=${build.version}"/>-->
+
+</h:head>
+<h:body>
+    <div class="container">
+
+        <h1>Test igen om det fungerar Erik, sienna</h1>
+        <div id="message-box">
+
+
+
+            <h2>Lägg till ny rätt</h2>
+            <h2>Lägg till ny rätt</h2>
+
+            <ui:repeat value="#{carteMenu.groupedDishes.entrySet()}" var="catEntry">
+                <!-- Kategori-rubrik -->
+                <h2>#{catEntry.key}</h2>
+                <ui:repeat value="#{catEntry.value.entrySet()}" var="typeEntry">
+                    <!-- Typ-rubrik (visa bara om inte "Alla"/"Annat" om du vill) -->
+                    <h3>#{typeEntry.key}</h3>
+                    <!-- Lista rätter -->
+                    <ui:repeat value="#{typeEntry.value}" var="item">
+                        <p>#{item.name}</p>
+                        <p>#{item.description}</p>
+                        <p>#{item.price}</p>
+                    </ui:repeat>
+                </ui:repeat>
+            </ui:repeat>
+
+
+
+
+
+            <h:form>
+
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <h:outputLabel for="name" value="Namn:" />
+                    <h:inputText id="name" value="#{carteDish.dish.name}" />
+
+                    <h:outputLabel for="description" value="Beskrivning:" />
+                    <h:inputText id="description" value="#{carteDish.dish.description}" />
+
+                    <h:outputLabel for="price" value="Pris:" />
+                    <h:inputText id="price" value="#{carteDish.dish.price}" />
+
+                    <!-- NYTT: Dropdown för kategori -->
+                    <h:outputLabel for="category" value="Kategori:" />
+                    <h:selectOneMenu id="category"
+                                     value="#{carteDish.selectedCategoryId}">
+
+                        <f:selectItem itemLabel="Välj kategori"
+                                      itemValue="#{null}"
+                                      noSelectionOption="true"/>
+
+                        <f:selectItems value="#{carteDish.categories}"
+                                       var="cat"
+                                       itemValue="#{cat.id}"
+                                       itemLabel="#{cat.name}" />
+                    </h:selectOneMenu>
+
+                    <h:selectOneMenu id="foodType"
+                                     value="#{carteDish.selectedFoodTypeId}">
+
+                        <f:selectItem itemLabel="Välj kategori"
+                                      itemValue="#{null}"
+                                      noSelectionOption="true"/>
+
+                        <f:selectItems value="#{carteDish.foodTypes}"
+                                       var="fType"
+                                       itemValue="#{fType.id}"
+                                       itemLabel="#{fType.name}" />
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+
+                <br/>
+
+                <!-- TEST: Visa vad som valts -->
+                <h:outputText value="Valt kategori-id: #{carteDish.selectedCategoryId}" />
+
+                <br/><br/>
+
+                <h:commandButton value="Spara"
+                                 action="#{carteDish.saveDishToMenu()}" />
+
+
+
+                <ui:repeat value="#{carteMenu.dishes}" var="d">
+                    #{d.name}
+                    <h:commandButton value="Ta bort"
+                                     action="#{carteMenu.removeDishfromMenu(d.id)}" />
+                </ui:repeat>
+
+            </h:form>
+
+
+        </div>
+    </div>
+</h:body>
+
+</html>
+

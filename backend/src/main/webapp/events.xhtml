@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/templates/base.xhtml">
+
+    <ui:define name="title">Events</ui:define>
+
+    <ui:define name="hero">
+        <section class="hero events-hero"
+                 style="
+               --events-hero-img-1: url('#{resource[&quot;images:event/hero/4in1.jpg&quot;]}');
+               --events-hero-img-2: url('#{resource[&quot;images:event/hero/company.jpg&quot;]}');
+               --events-hero-img-3: url('#{resource[&quot;images:event/hero/playing.jpg&quot;]}');
+               --events-hero-img-4: url('#{resource[&quot;images:event/hero/salut.jpg&quot;]}');
+             ">
+
+            <div class="hero-slides" aria-hidden="true">
+                <span class="hero-slide events-s1"></span>
+                <span class="hero-slide events-s2"></span>
+                <span class="hero-slide events-s3"></span>
+                <span class="hero-slide events-s4"></span>
+            </div>
+
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+<!--            Laddar nästkommande event här-->
+            <div class="hero-inner-event">
+                <ui:fragment rendered="#{not empty eventBean.nextEvent}">
+                    <h1> Kommande Event: #{eventBean.nextEvent.title}</h1>
+                    <p>#{eventBean.nextEvent.description}</p>
+                    <h2>
+                        <h:outputText value="#{eventBean.nextEvent.startTime}">
+                            <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm" />
+                        </h:outputText>
+                    </h2>
+                </ui:fragment>
+
+                <ui:fragment rendered="#{empty eventBean.nextEvent}">
+                    <h1>Kommande Event</h1>
+                    <p>Vi planerar för fullt! Håll utkik här för framtida uppdateringar.</p>
+                    <h2>-</h2>
+                </ui:fragment>
+            </div>
+
+        </section>
+    </ui:define>
+
+    <ui:define name="content">
+        <section class="panel paper-look paper-torn events-page">
+
+            <header class="events-head">
+                <div>
+                    <h1>Events som varit kan ni se här nedan</h1>
+                </div>
+            </header>
+
+            <h:panelGroup id="page" layout="block" styleClass="events-layout">
+
+                <!-- Laddar in tidigare events som en klickbar länk-->
+                <h:form id="navForm" styleClass="events-sidebar">
+                    <h2 class="section-title">Datum</h2>
+
+                    <ui:repeat value="#{eventBean.pastEvents}" var="e">
+
+                        <h:commandLink action="#{eventBean.selectEvent(e)}"
+                                       styleClass="#{eventBean.selectedEvent.id eq e.id ? 'item active' : 'item'}">
+                            <f:ajax execute="@this" render=":page"/>
+
+                            <h:outputText value="#{e.startTime}">
+                                <f:convertDateTime type="localDateTime" pattern="MMMM" />
+                            </h:outputText>
+                        </h:commandLink>
+                    </ui:repeat>
+
+                    <ui:fragment rendered="#{empty eventBean.events}">
+                        <p class="muted">Inga events hittades.</p>
+                    </ui:fragment>
+                </h:form>
+
+<!--                visar tidigare events med bilder och kommentare-->
+                <section class="events-main">
+                    <ui:fragment rendered="#{not empty eventBean.selectedEvent}">
+
+                        <div class="event-meta">
+                            <h2>#{eventBean.selectedEvent.title}</h2>
+                            <p>#{eventBean.selectedEvent.description}</p>
+                        </div>
+
+                        <ui:fragment rendered="#{empty eventBean.selectedEvent.posts}">
+                            <p class="muted">Inga bilder hittades i det här eventet.</p>
+                        </ui:fragment>
+
+                        <div class="img-grid">
+                            <ui:repeat value="#{eventBean.selectedEvent.posts}" var="p">
+                                <figure class="img-card">
+                                    <img src="#{request.contextPath}/#{p.imagePath}" alt="Eventbild" />
+                                </figure>
+                            </ui:repeat>
+                        </div>
+
+                        <section class="event-comments">
+                            <h3>Kommentarer</h3>
+
+                            <h:form id="commentForm" styleClass="comment-form">
+                                <h:panelGroup id="msgs" layout="block">
+                                    <h:messages globalOnly="true" styleClass="form-messages"/>
+                                </h:panelGroup>
+
+                                <div class="form-row">
+                                    <h:outputLabel for="name" value="Namn (valfritt)"/>
+                                    <h:inputText id="name" value="#{eventBean.newCommentName}" styleClass="input"/>
+                                </div>
+
+                                <div class="form-row">
+                                    <h:outputLabel for="notes" value="Kommentar"/>
+                                    <h:inputTextarea id="notes" value="#{eventBean.newCommentText}" styleClass="textarea" rows="4"/>
+                                </div>
+
+                                <h:commandButton value="Skicka kommentar" action="#{eventBean.addComment}" styleClass="btn">
+                                    <f:ajax execute="@form" render=":page :commentForm:msgs"/>
+                                </h:commandButton>
+                            </h:form>
+
+                            <ui:fragment rendered="#{empty eventBean.selectedEvent.comments}">
+                                <p class="muted">Inga kommentarer ännu, bli först med att kommentera.</p>
+                            </ui:fragment>
+
+                            <ui:repeat value="#{eventBean.selectedEvent.comments}" var="c">
+                                <article class="comment">
+                                    <header class="comment-head">
+                                        <h3><strong>#{empty c.name ? 'Gäst' : c.name}</strong></h3>
+                                        <span class="muted">
+                                            <h:outputText value="#{c.dateAndTime}">
+                                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm"/>
+                                            </h:outputText>
+                                        </span>
+                                    </header>
+                                    <p class="comment-body">#{c.comment}</p>
+                                </article>
+                            </ui:repeat>
+
+                        </section>
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{empty eventBean.selectedEvent}">
+                        <p class="muted">Välj ett datum till vänster.</p>
+                    </ui:fragment>
+
+                </section>
+            </h:panelGroup>
+        </section>
+    </ui:define>
+</ui:composition>

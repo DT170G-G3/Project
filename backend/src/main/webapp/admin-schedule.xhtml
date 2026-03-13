@@ -1,0 +1,87 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/admin_base.xhtml">
+
+    <ui:define name="title">Adminpanel - Schema</ui:define>
+
+    <ui:define name="extra-head">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+        <h:outputScript library="js" name="admin-schedule.js"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="workspace">
+            <aside class="poolPanel">
+                <h2>Anställda</h2>
+                <div class="employeePool" id="pool">
+                    <ui:repeat value="#{emp.employees}" var="employee">
+                        <div class="chip" data-id="#{employee.id}" data-name="#{employee.name}">
+                            #{employee.name}
+                        </div>
+                    </ui:repeat>
+                </div>
+            </aside>
+
+            <main class="scheduleArea">
+                <!-- Week selector buttons -->
+                <h:form>
+                    <div class="weekSelector">
+                        <ui:repeat value="#{week.weekNumbers}" var="w">
+                            <h:commandButton value="V.#{w}"
+                                             styleClass="btn #{w == week.weekNumber ? 'btnPrimary' : 'btnSecondary'}"
+                                             action="#{week.setWeekNumber(w)}"/>
+                        </ui:repeat>
+                    </div>
+                </h:form>
+                <div class="contentTitle">Schema</div>
+
+                <div class="daysList" id="days-list">
+                    <ui:repeat value="#{week.daysOfWeekSchedule}" var="day">
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-name">#{day}</span>
+                            </div>
+                            <div class="shifts">
+                                <ui:repeat value="#{adminSchedule.getShifts(day)}" var="shift">
+                                    <div class="shift-row #{shift.shiftType.name == 'Lunch' ? 'lunch' : 'evening'}">
+                                        <div class="shift-label">
+                                            <span class="shift-dot"></span>
+                                            <span>#{shift.shiftType.name}</span>
+                                        </div>
+                                        <div class="shift-drop-zone #{shift.shiftType.name == 'Lunch' ? 'lunch-zone' : 'evening-zone'}"
+                                             id="zone-#{shift.id}"
+                                             data-shift-id="#{shift.id}">
+                                            <ui:repeat value="#{adminSchedule.getEmployeesShift(shift)}" var="worker">
+                                                <div class="chip" data-id="#{worker.id}" data-name="#{worker.name}">
+                                                    #{worker.name}
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </main>
+        </div>
+
+        <!-- Hidden form for backend calls -->
+        <h:form id="scheduleForm">
+            <h:inputHidden id="empId" value="#{adminSchedule.selectedEmpId}" />
+            <h:inputHidden id="shiftId" value="#{adminSchedule.selectedShiftId}" />
+            <h:commandButton id="addBtn" style="display:none"
+                             action="#{adminSchedule.addEmployeeToShift(adminSchedule.selectedEmpId, adminSchedule.selectedShiftId)}">
+                <f:ajax execute="@form" render="@none" />
+            </h:commandButton>
+            <h:commandButton id="removeBtn" style="display:none"
+                             action="#{adminSchedule.removeEmployeeFromShift(adminSchedule.selectedEmpId, adminSchedule.selectedShiftId)}">
+                <f:ajax execute="@form" render="@none" />
+            </h:commandButton>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

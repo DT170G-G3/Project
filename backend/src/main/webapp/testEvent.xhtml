@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Events</title>
+</h:head>
+
+<h:body>
+
+    <h1>Skapa event</h1>
+
+    <h:form>
+        <h:panelGrid columns="2">
+
+            <h:outputLabel for="title" value="Titel:" />
+            <h:inputText id="title"
+                         value="#{eventBean.newEvent.title}"
+                         required="true" />
+
+            <h:outputLabel for="description" value="Beskrivning:" />
+            <h:inputTextarea id="description"
+                             value="#{eventBean.newEvent.description}"
+                             required="true" />
+
+            <h:outputLabel for="startTime" value="Starttid:" />
+            <h:inputText id="startTime"
+                         value="#{eventBean.newEvent.startTime}"
+                         required="true"
+                         a:type="datetime-local">
+                <f:convertDateTime pattern="yyyy-MM-dd'T'HH:mm"
+                                   type="localDateTime" />
+            </h:inputText>
+
+        </h:panelGrid>
+
+        <h:commandButton value="Skapa event"
+                         action="#{eventBean.createEvent}" />
+    </h:form>
+
+    <hr/>
+
+    <h1>Alla events</h1>
+
+    <ui:repeat value="#{eventBean.events}" var="e">
+
+        <div style="margin-bottom: 30px; padding: 10px; border: 1px solid #ccc;">
+
+            <h2>#{e.title}</h2>
+
+            <p>
+                <strong>Beskrivning:</strong>
+                #{e.description}
+            </p>
+
+            <p>
+                <strong>Starttid:</strong>
+                #{e.startTime}
+            </p>
+
+            <h3>Posts</h3>
+            <ui:repeat value="#{e.posts}" var="p">
+                <div style="margin-bottom: 10px;">
+                    <h:graphicImage value="#{p.imagePath}" style="max-width:300px;" />
+                </div>
+            </ui:repeat>
+
+
+
+            <h:form>
+                <h:commandButton value="Kommentera"
+                                 action="#{commentBean.setSelectedEvent(e)}" />
+            </h:form>
+
+        </div>
+
+    </ui:repeat>
+
+    <h:panelGroup rendered="#{not empty commentBean.selectedEvent}">
+
+        <hr/>
+
+        <h2>
+            Kommentera event:
+            #{commentBean.selectedEvent.title}
+        </h2>
+
+        <h:form>
+            <h:panelGrid columns="2">
+
+                <h:outputLabel for="commentName" value="Namn:" />
+                <h:inputText id="commentName"
+                             value="#{commentBean.name}"
+                             required="true" />
+
+                <h:outputLabel for="commentText" value="Kommentar:" />
+                <h:inputTextarea id="commentText"
+                                 value="#{commentBean.commentText}"
+                                 required="true" />
+
+            </h:panelGrid>
+
+            <h:commandButton value="Skicka kommentar"
+                             action="#{commentBean.createComment}" />
+        </h:form>
+
+    </h:panelGroup>
+
+    <h2>Alla kommentarer</h2>
+
+    <ui:repeat value="#{commentBean.allComments}" var="c">
+        <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #999;">
+
+            <p><strong>ID:</strong> #{c.id}</p>
+            <p><strong>Namn:</strong> #{c.name}</p>
+            <p><strong>Kommentar:</strong> #{c.comment}</p>
+            <p><strong>Tid:</strong> #{c.dateAndTime}</p>
+            <p><strong>Event-ID:</strong> #{c.event.id}</p>
+
+            <h:form>
+                <h:commandButton value="Ta bort"
+                                 action="#{eventBean.removeComment(c.id)}" />
+            </h:form>
+
+        </div>
+    </ui:repeat>
+
+</h:body>
+</html>

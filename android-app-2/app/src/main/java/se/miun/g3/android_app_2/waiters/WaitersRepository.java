@@ -1,0 +1,40 @@
+package se.miun.g3.android_app_2.waiters;
+
+import android.util.Log;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import se.miun.g3.android_app_2.ApiClient;
+
+public class WaitersRepository {
+    public interface WaitersCallback {
+        void onSuccess(List<Waiter> waiters);
+        void onError(String message);
+    }
+
+
+    public void getWaiters(WaitersCallback cb) {
+        Call<List<Waiter>> listWaiters = ApiClient.waitersApi().getWaiters();
+        listWaiters.enqueue(new Callback<List<Waiter>>() {
+            @Override
+            public void onResponse(Call<List<Waiter>> call, Response<List<Waiter>> response) {
+                if (response.body() == null) {
+                    Log.d("API Response","Response call is null");
+                }
+                else {
+                    Log.d("API Response", "Code: " + response.code());
+                    cb.onSuccess(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Waiter>> call, Throwable t) {
+                //handle error code
+                Log.d("Waiter API onFailure: ", t.toString());
+                cb.onError(t.getMessage());
+            }
+        });
+    }
+}

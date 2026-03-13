@@ -1,0 +1,72 @@
+name: ${COMPOSE_PROJECT_NAME:-restaurant-local}
+
+services:
+  mysql:
+    image: mysql:${MYSQL_TAG}
+    container_name: restaurant-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent" ]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  flyway:
+    image: flyway/flyway:10
+    container_name: restaurant-flyway
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command:
+      - -url=jdbc:mysql://mysql:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true
+      - -user=${MYSQL_USER}
+      - -password=${MYSQL_PASSWORD}
+      - -connectRetries=60
+      - migrate
+    volumes:
+      - ./db/migrations:/flyway/sql:ro
+    restart: "no"
+
+  payara:
+    build:
+      context: ./payara
+      args:
+        PAYARA_TAG: ${PAYARA_TAG}
+    image: restaurant-payara:${PAYARA_TAG}
+    container_name: restaurant-payara
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      flyway:
+        condition: service_completed_successfully
+    environment:
+      # Dessa används av post-boot-commands.asadmin via ${ENV=...}
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+
+      # bilder för events
+      EVENT_IMAGE_ROOT: /opt/assets/events
+    ports:
+      - "${PAYARA_HTTP_PORT}:8080"
+      - "${PAYARA_ADMIN_PORT}:4848"
+    volumes:
+      # autodeploy härifrån vid start
+      - ./payara/deployments:/opt/payara/deployments
+      #Folder för att spara bilder för events, mappas till en path i payara där appen kan läsa och skriva bilder
+      - ../assets/events:/opt/assets/events
+
+volumes:
+  mysql_data:
