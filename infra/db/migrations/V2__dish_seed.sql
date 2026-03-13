@@ -1,12 +1,12 @@
 INSERT INTO food_type (name) VALUES
-                               ('Meat'),
-                               ('Fish'),
-                               ('Vegetarian');
+                               ('Kött'),
+                               ('Fisk'),
+                               ('Vegetarisk');
 
 INSERT INTO category (name, display_order) VALUES
-('Starters', 1),
-('Mains', 2),
-('Desserts', 3);
+('Förrätter', 1),
+('Varmrätter', 2),
+('Efterrätter', 3);
 
 INSERT INTO lunch_dish (name, description, price) VALUES
 ('Margherita Pizza', 'Klassisk pizza med tomatsås, mozzarella och färsk basilika', 95.00),
