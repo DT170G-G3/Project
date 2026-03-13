@@ -8,108 +8,144 @@
     <ui:define name="title">Boka bord</ui:define>
 
     <ui:define name="extra-head">
-        <h:outputStylesheet library="css" name="booking.css?v=${build.version}" />
+        <h:outputStylesheet library="css" name="forms.css?v=${build.version}" />
     </ui:define>
-
+ö
     <ui:define name="content">
         <section class="panel paper-look">
             <h1 class="text-center">Boka bord</h1>
-            <p class="text-center">Välkommen att boka bord hos oss. För sällskap över 6 personer, vänligen ring oss på 010-234 56 78, eller maila på anton@skafferi.se.</p>
 
-            <h:form id="bookingForm" styleClass="booking-form">
+            <p class="text-center">
+                Välkommen att boka bord hos oss. För sällskap över 6 personer,
+                vänligen ring oss på 010-234 56 78, eller maila på anton@skafferi.se.
+            </p>
 
-                <!-- Namn -->
-                <div class="form-group">
-                    <h:outputLabel for="name" value="Namn" />
-                    <h:inputText id="name" value="#{bookingBean.name}" required="true"
-                                 requiredMessage="Du måste ange ett namn"
-                                 p:placeholder="För- och efternamn" />
-                    <h:message for="name" styleClass="error-msg" />
-                </div>
+            <div class="panel booking-form-wrap">
+                <h:form id="bookingForm" styleClass="booking-form form-ui">
 
-                <!-- Telefon -->
-                <div class="form-group">
-                    <h:outputLabel for="phone" value="Telefon" />
-                    <h:inputText id="phone" value="#{bookingBean.phone}" required="true"
-                                 requiredMessage="Vi behöver ditt telefonnummer"
-                                 p:type="tel" p:placeholder="070-123 45 67"/>
-                    <h:message for="phone" styleClass="error-msg" />
-                </div>
-
-                <!-- E-post -->
-                <div class="form-group">
-                    <h:outputLabel for="email" value="E-post" />
-                    <h:inputText id="email" value="#{bookingBean.email}" required="true"
-                                 requiredMessage="Ange en giltig e-post"
-                                 p:type="email" p:placeholder="namn@exempel.se"/>
-                    <h:message for="email" styleClass="error-msg" />
-                </div>
-
-                <!-- Datum och Tid -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <h:outputLabel for="date" value="Datum" />
-                        <h:inputText id="date" value="#{bookingBean.date}" required="true"
-                                     requiredMessage="Välj ett datum"
-                                     p:type="date">
-                            <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
-                        </h:inputText>
-                        <h:message for="date" styleClass="error-msg" />
+                    <!-- Namn -->
+                    <div class="form-field">
+                        <h:outputLabel for="name" value="Namn" />
+                        <h:inputText id="name"
+                                     value="#{bookingBean.name}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Du måste ange ett namn"
+                                     p:placeholder="För- och efternamn" />
+                        <h:message for="name" styleClass="error-msg" />
                     </div>
 
-                    <div class="form-group">
-                        <h:outputLabel for="time" value="Tid" />
-                        <h:selectOneMenu id="time" value="#{bookingBean.time}" styleClass="form-select">
-                            <f:selectItem itemLabel="Välj tid..." itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemValue="17:00" itemLabel="17:00" />
-                            <f:selectItem itemValue="17:30" itemLabel="17:30" />
-                            <f:selectItem itemValue="18:00" itemLabel="18:00" />
-                            <f:selectItem itemValue="18:30" itemLabel="18:30" />
-                            <f:selectItem itemValue="19:00" itemLabel="19:00" />
-                            <f:selectItem itemValue="19:30" itemLabel="19:30" />
-                            <f:selectItem itemValue="20:00" itemLabel="20:00" />
-                            <f:selectItem itemValue="20:30" itemLabel="20:30" />
+                    <!-- Telefon -->
+                    <div class="form-field">
+                        <h:outputLabel for="phone" value="Telefon" />
+                        <h:inputText id="phone"
+                                     value="#{bookingBean.phone}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Vi behöver ditt telefonnummer"
+                                     p:type="tel"
+                                     p:placeholder="070-123 45 67" />
+                        <h:message for="phone" styleClass="error-msg" />
+                    </div>
+
+                    <!-- E-post -->
+                    <div class="form-field">
+                        <h:outputLabel for="email" value="E-post" />
+                        <h:inputText id="email"
+                                     value="#{bookingBean.email}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Ange en giltig e-post"
+                                     p:type="email"
+                                     p:placeholder="namn@exempel.se" />
+                        <h:message for="email" styleClass="error-msg" />
+                    </div>
+
+                    <!-- Datum och tid -->
+                    <div class="form-row">
+
+                        <div class="form-field">
+                            <h:outputLabel for="date" value="Datum" />
+                            <h:inputText id="date"
+                                         value="#{bookingBean.date}"
+                                         styleClass="form-control"
+                                         required="true"
+                                         requiredMessage="Välj ett datum"
+                                         p:type="date">
+                                <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                            </h:inputText>
+                            <h:message for="date" styleClass="error-msg" />
+                        </div>
+
+                        <div class="form-field">
+                            <h:outputLabel for="time" value="Tid" />
+                            <h:selectOneMenu id="time"
+                                             value="#{bookingBean.time}"
+                                             styleClass="form-control"
+                                             required="true"
+                                             requiredMessage="Välj en tid">
+                                <f:selectItem itemLabel="Välj tid..." itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemValue="17:00" itemLabel="17:00" />
+                                <f:selectItem itemValue="17:30" itemLabel="17:30" />
+                                <f:selectItem itemValue="18:00" itemLabel="18:00" />
+                                <f:selectItem itemValue="18:30" itemLabel="18:30" />
+                                <f:selectItem itemValue="19:00" itemLabel="19:00" />
+                                <f:selectItem itemValue="19:30" itemLabel="19:30" />
+                                <f:selectItem itemValue="20:00" itemLabel="20:00" />
+                                <f:selectItem itemValue="20:30" itemLabel="20:30" />
+                            </h:selectOneMenu>
+                            <h:message for="time" styleClass="error-msg" />
+                        </div>
+
+                    </div>
+
+                    <!-- Antal gäster -->
+                    <div class="form-field">
+                        <h:outputLabel for="guests" value="Antal gäster" />
+                        <h:selectOneMenu id="guests"
+                                         value="#{bookingBean.guests}"
+                                         styleClass="form-control"
+                                         required="true"
+                                         requiredMessage="Välj antal gäster">
+                            <f:selectItem itemLabel="Välj antal gäster..." itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemValue="1" itemLabel="1 person" />
+                            <f:selectItem itemValue="2" itemLabel="2 personer" />
+                            <f:selectItem itemValue="3" itemLabel="3 personer" />
+                            <f:selectItem itemValue="4" itemLabel="4 personer" />
+                            <f:selectItem itemValue="5" itemLabel="5 personer" />
+                            <f:selectItem itemValue="6" itemLabel="6 personer" />
                         </h:selectOneMenu>
-                        <h:message for="time" styleClass="error-msg" />
+                        <h:message for="guests" styleClass="error-msg" />
                     </div>
-                </div>
 
-                <!-- Antal gäster -->
-                <div class="form-group">
-                    <h:outputLabel for="guests" value="Antal gäster" />
-                    <h:selectOneMenu id="guests" value="#{bookingBean.guests}" styleClass="form-select">
-                        <f:selectItem itemValue="1" itemLabel="1 person" />
-                        <f:selectItem itemValue="2" itemLabel="2 personer" />
-                        <f:selectItem itemValue="3" itemLabel="3 personer" />
-                        <f:selectItem itemValue="4" itemLabel="4 personer" />
-                        <f:selectItem itemValue="5" itemLabel="5 personer" />
-                        <f:selectItem itemValue="6" itemLabel="6 personer" />
-                    </h:selectOneMenu>
-                </div>
+                    <!-- Övriga önskemål -->
+                    <div class="form-field">
+                        <h:outputLabel for="notes" value="Övriga önskemål (valfritt)" />
+                        <h:inputTextarea id="notes"
+                                         value="#{bookingBean.notes}"
+                                         styleClass="form-control"
+                                         rows="4"
+                                         p:placeholder="Allergier, barnstol, fönsterbord..." />
+                    </div>
 
-                <!-- Önskemål -->
-                <div class="form-group">
-                    <h:outputLabel for="notes" value="Övriga önskemål (valfritt)" />
-                    <h:inputTextarea id="notes" value="#{bookingBean.notes}" rows="4"
-                                     p:placeholder="Allergier, barnstol, fönsterbord..."/>
-                </div>
+                    <!-- Knapp -->
+                    <div class="form-actions">
+                        <h:commandButton value="Skicka bokningsförfrågan"
+                                         action="#{bookingBean.submitBooking}"
+                                         styleClass="btn-link btn-booking btn-block" />
+                    </div>
 
-                <!-- Knapp -->
-                <div class="form-actions">
-                    <h:commandButton value="Skicka bokningsförfrågan"
-                                     action="#{bookingBean.submitBooking}"
-                                     styleClass="btn-primary" />
-                </div>
+                    <!-- Globala meddelanden -->
+                    <h:messages globalOnly="true"
+                                styleClass="global-messages"
+                                showDetail="true"
+                                showSummary="true"
+                                errorClass="msg-error"
+                                infoClass="msg-success" />
 
-                <!-- Globala meddelanden -->
-                <h:messages globalOnly="true"
-                            styleClass="global-messages"
-                            showDetail="true"
-                            showSummary="true"
-                            errorClass="msg-error"
-                            infoClass="msg-success" />
-
-            </h:form>
+                </h:form>
+            </div>
         </section>
     </ui:define>
+
 </ui:composition>

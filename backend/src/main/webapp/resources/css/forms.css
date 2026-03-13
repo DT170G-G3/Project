@@ -1,0 +1,116 @@
+/* =========================
+   Reusable Form Styles
+   ========================= */
+
+.form-ui {
+    display: grid;
+    gap: var(--gap-fluid);
+}
+
+/* Ett vanligt fältblock: label + input + message */
+.form-ui .form-field {
+    display: grid;
+    gap: 0.5rem;
+}
+
+/* När flera fält ska ligga på samma rad */
+.form-ui .form-row {
+    display: flex;
+    gap: var(--gap-fluid);
+}
+
+.form-ui .form-row > .form-field {
+    flex: 1;
+}
+
+/* Labels */
+.form-ui label {
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* Gemensam klass för input/select/textarea */
+.form-ui .form-control {
+    width: 100%;
+    padding: clamp(0.65rem, 0.55rem + 0.4vw, 0.9rem);
+    background-color: var(--bg-light);
+    color: var(--text);
+    border: 1px solid var(--border-card);
+    border-top: var(--border-top);
+    border-radius: calc(var(--border-radius) * 0.5);
+    box-shadow: var(--shadow);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.4;
+    transition:
+            border-color 180ms ease,
+            box-shadow 180ms ease,
+            background-color 180ms ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Textarea får växa vertikalt */
+.form-ui textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Focus */
+.form-ui .form-control:focus {
+    outline: none;
+    border-color: var(--focus-ring);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Placeholder */
+.form-ui .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+/* Meddelanden / validering */
+.form-ui .error-msg,
+.form-ui .form-messages {
+    font-size: 0.95rem;
+}
+
+.form-ui .error-msg {
+    color: var(--danger);
+}
+
+/* Gemensam knappyta */
+.form-ui .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Fullbredd-knapp */
+.form-ui .btn-block {
+    width: 100%;
+}
+
+/* Responsivt */
+@media (max-width: 600px) {
+    .form-ui .form-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* styling för booking.xhtml formulär*/
+.booking-form-wrap {
+    max-width: calc(600px + (2 * var(--padding-fluid)));
+    margin: 0 auto;
+}
+
+.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%
+}
+
+.booking-form-wrap .form-control {
+    background: var(--bg);
+}

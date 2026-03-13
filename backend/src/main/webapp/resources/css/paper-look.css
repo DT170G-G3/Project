@@ -65,7 +65,7 @@
 
 
     clip-path: polygon(
-        /* TOP */
+                /* TOP */
             0% calc(0% + var(--tear)), 6% 0%, 14% calc(0% + var(--tear)), 22% 0%, 30% calc(0% + var(--tear)), 38% 0%, 46% calc(0% + var(--tear)), 54% 0%, 62% calc(0% + var(--tear)), 70% 0%, 78% calc(0% + var(--tear)), 86% 0%, 94% calc(0% + var(--tear)), 100% 0%,
                 /* RIGHT */
             calc(100% - var(--tear)) 8%, 100% 16%, calc(100% - var(--tear)) 24%, 100% 32%, calc(100% - var(--tear)) 40%, 100% 48%, calc(100% - var(--tear)) 56%, 100% 64%, calc(100% - var(--tear)) 72%, 100% 80%, calc(100% - var(--tear)) 88%, 100% 96%,
