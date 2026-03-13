@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="appBackground">#F4F4F4</color>
+    <color name="borderColor">#575757</color>
+
+    <color name="navMenuColor">#E9E9E9</color>
+    <color name="itemsButtonColor">#FFFFFF</color>
+    <color name="rippleColor">#8D9FB6</color>
+
+    <color name="manageButtonColor">#415a77</color>
+    <color name="manageRippleColor">#1b263b</color>
+
+    <color name="redSnackbar">#7C0000</color>
 </resources>

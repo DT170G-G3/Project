@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="weekdays">
+        <item>"Måndag"</item>
+        <item>"Tisdag"</item>
+        <item>"Onsdag"</item>
+        <item>"Torsdag"</item>
+        <item>"Fredag"</item>
+        <item>"Lördag"</item>
+    </string-array>
+
+
+    <string-array name="morningteam1">
+        <item>"Disa"</item>
+        <item>"Magnus"</item>
+        <item>"Daniel"</item>
+    </string-array>
+
+
+    <string-array name="afternoonteam1">
+        <item>"Anna"</item>
+        <item>"Elin"</item>
+        <item>"Olle"</item>
+    </string-array>
+
+
+    <string-array name="morningteam2">
+        <item>"Fanny"</item>
+        <item>"Helen"</item>
+        <item>"Sofia"</item>
+    </string-array>
+
+
+    <string-array name="afternoonteam2">
+        <item>"Sofie"</item>
+        <item>"Gustav"</item>
+        <item>"Eric"</item>
+    </string-array>
+
+</resources>
+
+

@@ -5,15 +5,45 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/mainHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Beställningar"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+    </TextView>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/mainHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </View>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
