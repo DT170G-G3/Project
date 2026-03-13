@@ -6,7 +6,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +23,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.DT170G.G3.android_app_3.employees.Employee;
 import com.DT170G.G3.android_app_3.employees.EmployeesRepository;
 import com.DT170G.G3.android_app_3.shifts.Shift;
+import com.DT170G.G3.android_app_3.shifts.ShiftSwap;
+import com.DT170G.G3.android_app_3.shifts.ShiftUpdate;
 import com.DT170G.G3.android_app_3.shifts.ShiftsRepository;
 
 import org.jspecify.annotations.NonNull;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         selectedDate = monday;
         changeWeek(monday);
         asyncLoadEmployees();
-
+        asyncLoadShiftSwaps();
 
         ImageButton prevWeekButton = findViewById(R.id.prevWeekButton);
         ImageButton nextWeekButton = findViewById(R.id.nextWeekButton);
@@ -291,9 +292,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkId() {}
+    private void checkId() {
         Toast.makeText(this, "Förfrågan skickad", Toast.LENGTH_SHORT).show();
-
     }
 
     private void asyncLoadEmployees() {
@@ -310,12 +310,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void asyncLoadShiftSwaps() {
-        shiftsRepo.getShiftSwaps(new ShiftsRepository.GetShiftSwapCallback() {
-            @Override
-            public void onSuccess(List<ShiftSwap> shiftSwaps) {
-                populateShiftSwapsUI(shiftSwaps);
-            }
     private void populateEmployeesUI(List<Employee> employees) {
         allEmployees.clear();
 
@@ -325,7 +319,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("EMPLOYEES", "" + employees.size());
     }
-
+    private void asyncLoadShiftSwaps() {
+        shiftsRepo.getShiftSwaps(new ShiftsRepository.GetShiftSwapCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onSuccess(List<ShiftSwap> shiftSwaps) {
+                populateShiftSwapsUI(shiftSwaps);
+            }
 
             @Override
             public void onError(String message) {
@@ -333,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void asyncLoadShifts() {
         shiftsRepo.getShifts(new ShiftsRepository.GetCallback() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -364,19 +365,57 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void asyncPostShiftSwap(ShiftSwap shiftSwap) {
+        //asynchronous post the order to the database
+        shiftsRepo.postShiftSwap(shiftSwap, new ShiftsRepository.PostCallback() {
+            @Override
+            public void onSuccess(ShiftSwap shiftSwap) {
+                Log.d("SHIFT CHANGE", "SUCCESSFULLY POSTED REQUEST");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("SHIFT CHANGE", "FAILED TO POST REQUEST: " + message);
+            }
+        });
+    }
 
+    public void asyncPutShiftUpdate(int shiftId, ShiftUpdate update) {
+        shiftsRepo.putShiftUpdate(shiftId, update, new ShiftsRepository.PutCallback() {
+            @Override
+            public void onSuccess() {
+                Log.d("SHIFT UPDATE", "SUCCESSFULLY UPDATED REQUEST");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("SHIFT UPDATE", "FAILED TO UPDATE REQUEST: " + message);
+            }
+        });
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void populateShiftSwapsUI(List<ShiftSwap> shiftSwaps) {
         Log.d("SHIFTSWAPS", "" + shiftSwaps.size());
+
+        if(shiftSwaps == null || shiftSwaps.isEmpty()) {
+            Log.d("SHIFTSWAPS", "Inga shiftswaps");
+            return;
+        }
+
         ShiftSwap swap = shiftSwaps.get(0);
         int swapId = swap.id;
         exampleAcceptShiftChangeStatus(swapId);
     }
-    private void populateEmployeesUI(List<Employee> employees) {
-        Log.d("EMPLOYEES", "" + employees.size());
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void exampleAcceptShiftChangeStatus(int id) {
+        ShiftUpdate update = new ShiftUpdate();
+        update.status = "approved";
+        asyncPutShiftUpdate(id, update);
+        updateSchedule();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void populateShiftsUI(List<Shift> shifts) {
 
         Log.d("SHIFTS", "" + shifts.size());
@@ -393,26 +432,27 @@ public class MainActivity extends AppCompatActivity {
 
             for (Employee e : s.employeeList) {
                 names.add(e.name);
-                if(e.androidId.equals(androidId)) {
+                if (e.androidId.equals(androidId)) {
                     currentUserName = e.name;
                 }
 
             }
-            if(s.shiftType.name.equalsIgnoreCase("Lunch")) {
-                    dayWork.put(date,names);
+            if (s.shiftType.name.equalsIgnoreCase("Lunch")) {
+                dayWork.put(date, names);
                 Log.d("MAP_DEBUG", "dayWork: " + dayWork);
             } else if (s.shiftType.name.equalsIgnoreCase("Middag")) {
-                    nightWork.put(date,names);
+                nightWork.put(date, names);
                 Log.d("MAP_DEBUG", "nightWork: " + nightWork);
             }
-
+        }
+    }
 
     // Denna fungerar. Man kan byta bort sin egna plats på ett pass,
     // men inte byta till sig ett pass (?)
-    public void exampleCreateShiftSwap() {
+    private void exampleCreateShiftSwap() {
         ShiftSwap sc = new ShiftSwap();
         String senderId = "cd20486bd301b60f";       // Mike
-        String  recieverId = "cd20486bd301b606";    // Konan Barbaren
+        String recieverId = "cd20486bd301b606";    // Konan Barbaren
         int shiftId = 1;
 
         sc.senderId = senderId;
@@ -423,20 +463,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     // Updates a pending Shift change with approved or disapproved status
     public void exampleRejectShiftChangeStatus() {
         ShiftUpdate update = new ShiftUpdate();
         update.status = "rejected";
         int shiftSwapId = 1; // NOT shiftId of the shiftSwap. Use shift.id of the Shift class
         asyncPutShiftUpdate(shiftSwapId, update);
-    }
-    public void exampleAcceptShiftChangeStatus(int id) {
-        ShiftUpdate update = new ShiftUpdate();
-        update.status = "approved";
-        asyncPutShiftUpdate(id, update);
-        }
-        updateSchedule();
     }
 
 }
