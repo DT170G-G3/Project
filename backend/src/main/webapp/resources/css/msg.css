@@ -1,0 +1,35 @@
+/* =========================
+   Messages
+   ========================= */
+
+.error-msg {
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+.global-messages,
+.form-messages {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.msg-error,
+.msg-success {
+    color: var(--text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: var(--border-card);
+    border-top: var(--border-top);
+    box-shadow: var(--shadow);
+}
+
+.msg-error {
+    background: var(--danger);
+}
+
+.msg-success {
+    background: var(--success);
+}

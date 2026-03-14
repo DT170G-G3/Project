@@ -2,18 +2,24 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 xmlns:f="jakarta.faces.core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 template="/WEB-INF/templates/base.xhtml">
 
     <ui:define name="title">Events</ui:define>
 
+    <ui:define name="extra-head">
+        <h:outputStylesheet library="css" name="forms.css?v=${build.version}" />
+        <h:outputStylesheet library="css" name="events.css?v=${build.version}" />
+    </ui:define>
+
     <ui:define name="hero">
         <section class="hero events-hero"
                  style="
-               --events-hero-img-1: url('#{resource[&quot;images:event/hero/4in1.jpg&quot;]}');
-               --events-hero-img-2: url('#{resource[&quot;images:event/hero/company.jpg&quot;]}');
-               --events-hero-img-3: url('#{resource[&quot;images:event/hero/playing.jpg&quot;]}');
-               --events-hero-img-4: url('#{resource[&quot;images:event/hero/salut.jpg&quot;]}');
-             ">
+                   --events-hero-img-1: url('#{resource[&quot;images:event/hero/4in1.jpg&quot;]}');
+                   --events-hero-img-2: url('#{resource[&quot;images:event/hero/company.jpg&quot;]}');
+                   --events-hero-img-3: url('#{resource[&quot;images:event/hero/playing.jpg&quot;]}');
+                   --events-hero-img-4: url('#{resource[&quot;images:event/hero/salut.jpg&quot;]}');
+                 ">
 
             <div class="hero-slides" aria-hidden="true">
                 <span class="hero-slide events-s1"></span>
@@ -24,10 +30,10 @@
 
             <div class="hero-overlay" aria-hidden="true"></div>
 
-<!--            Laddar nästkommande event här-->
+            <!-- Nästkommande event -->
             <div class="hero-inner-event">
                 <ui:fragment rendered="#{not empty eventBean.nextEvent}">
-                    <h1> Kommande Event: #{eventBean.nextEvent.title}</h1>
+                    <h1>Kommande Event: #{eventBean.nextEvent.title}</h1>
                     <p>#{eventBean.nextEvent.description}</p>
                     <h2>
                         <h:outputText value="#{eventBean.nextEvent.startTime}">
@@ -36,13 +42,13 @@
                     </h2>
                 </ui:fragment>
 
+                <!-- Om det inte finns något kommande event -->
                 <ui:fragment rendered="#{empty eventBean.nextEvent}">
                     <h1>Kommande Event</h1>
                     <p>Vi planerar för fullt! Håll utkik här för framtida uppdateringar.</p>
                     <h2>-</h2>
                 </ui:fragment>
             </div>
-
         </section>
     </ui:define>
 
@@ -51,21 +57,20 @@
 
             <header class="events-head">
                 <div>
-                    <h1>Events som varit kan ni se här nedan</h1>
+                    <h1>Tidigare events</h1>
                 </div>
             </header>
 
             <h:panelGroup id="page" layout="block" styleClass="events-layout">
 
-                <!-- Laddar in tidigare events som en klickbar länk-->
+                <!-- Sidomeny med tidigare events -->
                 <h:form id="navForm" styleClass="events-sidebar">
                     <h2 class="section-title">Datum</h2>
 
                     <ui:repeat value="#{eventBean.pastEvents}" var="e">
-
                         <h:commandLink action="#{eventBean.selectEvent(e)}"
                                        styleClass="#{eventBean.selectedEvent.id eq e.id ? 'item active' : 'item'}">
-                            <f:ajax execute="@this" render=":page"/>
+                            <f:ajax execute="@this" render=":page" />
 
                             <h:outputText value="#{e.startTime}">
                                 <f:convertDateTime type="localDateTime" pattern="MMMM" />
@@ -78,7 +83,7 @@
                     </ui:fragment>
                 </h:form>
 
-<!--                visar tidigare events med bilder och kommentare-->
+                <!-- Huvudinnehåll -->
                 <section class="events-main">
                     <ui:fragment rendered="#{not empty eventBean.selectedEvent}">
 
@@ -102,24 +107,40 @@
                         <section class="event-comments">
                             <h3>Kommentarer</h3>
 
-                            <h:form id="commentForm" styleClass="comment-form">
+                            <h:form id="commentForm" styleClass="comment-form form-ui">
                                 <h:panelGroup id="msgs" layout="block">
-                                    <h:messages globalOnly="true" styleClass="form-messages"/>
+                                    <h:messages globalOnly="true"
+                                                styleClass="form-messages"
+                                                showDetail="true"
+                                                showSummary="true"
+                                                errorClass="msg-error"
+                                                infoClass="msg-success" />
                                 </h:panelGroup>
 
-                                <div class="form-row">
-                                    <h:outputLabel for="name" value="Namn (valfritt)"/>
-                                    <h:inputText id="name" value="#{eventBean.newCommentName}" styleClass="input"/>
+                                <div class="form-field">
+                                    <h:outputLabel for="name" value="Namn (valfritt)" />
+                                    <h:inputText id="name"
+                                                 value="#{eventBean.newCommentName}"
+                                                 styleClass="form-control"
+                                                 p:placeholder="För- och efternamn (valfritt)" />
                                 </div>
 
-                                <div class="form-row">
-                                    <h:outputLabel for="notes" value="Kommentar"/>
-                                    <h:inputTextarea id="notes" value="#{eventBean.newCommentText}" styleClass="textarea" rows="4"/>
+                                <div class="form-field">
+                                    <h:outputLabel for="notes" value="Kommentar" />
+                                    <h:inputTextarea id="notes"
+                                                     value="#{eventBean.newCommentText}"
+                                                     styleClass="form-control"
+                                                     p:placeholder="Skriv din kommentar här..."
+                                                     rows="4" />
                                 </div>
 
-                                <h:commandButton value="Skicka kommentar" action="#{eventBean.addComment}" styleClass="btn">
-                                    <f:ajax execute="@form" render=":page :commentForm:msgs"/>
-                                </h:commandButton>
+                                <div class="form-actions">
+                                    <h:commandButton value="Skicka kommentar"
+                                                     action="#{eventBean.addComment}"
+                                                     styleClass="btn-link btn-block">
+                                        <f:ajax execute="@form" render=":page :commentForm:msgs" />
+                                    </h:commandButton>
+                                </div>
                             </h:form>
 
                             <ui:fragment rendered="#{empty eventBean.selectedEvent.comments}">
@@ -132,7 +153,7 @@
                                         <h3><strong>#{empty c.name ? 'Gäst' : c.name}</strong></h3>
                                         <span class="muted">
                                             <h:outputText value="#{c.dateAndTime}">
-                                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm"/>
+                                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm" />
                                             </h:outputText>
                                         </span>
                                     </header>
@@ -151,4 +172,5 @@
             </h:panelGroup>
         </section>
     </ui:define>
+
 </ui:composition>
