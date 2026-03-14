@@ -132,47 +132,6 @@ public class LunchMenuService {
         entityManager.persist(menu);
     }
 
-
-    /**
-     * Creates and persists a new lunch menu for a given date with selected dishes.
-     *
-     * Throws:
-     * - IllegalArgumentException if date is missing or no dishes are selected.
-     * - IllegalStateException if a menu already exists for the given date.
-     *
-     * Note: The method is transactional; any exceptions will cause the transaction to roll back.
-     */
-    @Transactional
-    public void addLunch() {
-        if (selectedDate == null || selectedDate.isEmpty()) {
-            throw new IllegalArgumentException("Date must be provided to create a lunch menu.");
-        }
-
-        if (selectedDishIds.isEmpty()) {
-            throw new IllegalArgumentException("At least one dish must be selected for the menu.");
-        }
-
-        LocalDate menuDate = LocalDate.parse(selectedDate);
-        if (menuExistsForDate(menuDate)) {
-            throw new IllegalStateException("A lunch menu already exists for the selected date.");
-        }
-
-
-        LunchMenu menu = new LunchMenu();
-        menu.setDate(menuDate);  // Uses default yyyy-MM-dd format
-
-        List<LunchDish> dishes = entityManager.createQuery(
-                        "SELECT d FROM LunchDish d WHERE d.id IN :ids", LunchDish.class)
-                .setParameter("ids", selectedDishIds)
-                .getResultList();
-
-        menu.setDishes(dishes);
-        entityManager.persist(menu);
-        selectedDate = null;
-        selectedDishIds.clear();
-    }
-
-    /* This or the one above? */
     @Transactional
     public void saveDishToLunchMenu(String localDate){
         LocalDate date = LocalDate.parse(localDate);
@@ -198,9 +157,15 @@ public class LunchMenuService {
         // Har listan element behandlas första elementet som en tidigare skapad rätt.
         if (!existing.isEmpty()) {
             LunchDish dbDish = existing.get(0);
+            //Update existing dish, else we can't modify dishes.
+            dbDish.setDescription(dish.getDescription());
+            dbDish.setPrice(dish.getPrice());
+
             dishToLink = entityManager.merge(dbDish);
         } else {
-            dishToLink = entityManager.merge(dish);
+            ///dishToLink = entityManager.merge(dish);
+            entityManager.persist(dish);
+            dishToLink = dish;
         }
 
         // Koppla ihop och lägg rätt i menyn
@@ -208,6 +173,7 @@ public class LunchMenuService {
             menu.getDishes().add(dishToLink);
             entityManager.merge(menu); // Uppdatera kopplingen
         }
+        dishBean.reset(); //Empties the form on the website
     }
 
     // Getters and setters for JSF binding

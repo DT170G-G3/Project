@@ -91,7 +91,10 @@ public class CarteMenuService {
         CarteMenu menu = entityManager.find(CarteMenu.class, 1);
         CarteDish dish = entityManager.find(CarteDish.class, id);
         menu.getDishes().remove(dish);
+    }
 
-
+    @Transactional
+    public void updateDish(CarteDish dish){
+        entityManager.merge(dish);
     }
 }
