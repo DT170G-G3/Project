@@ -123,6 +123,7 @@ header .weekDiv {
     justify-content: center;
     padding: 0;
     transition: background 0.1s;
+    text-decoration: none;
 }
 
 .dishCard-input {
