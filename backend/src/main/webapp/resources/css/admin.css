@@ -176,6 +176,21 @@ header .weekDiv {
     flex-shrink: 0;
 }
 
+.carte-add-form .inputText,
+.carte-add-form input,
+.carte-add-form select {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
 .workspace {
     display: flex;
     gap: 0;
