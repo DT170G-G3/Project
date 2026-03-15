@@ -154,6 +154,28 @@ header .weekDiv {
 
 .dishCard-remove:hover { background: rgba(0,0,0,0.2); }
 
+.dishCard-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.dishCard-fields > span.ui-autocomplete {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+}
+
+.dishCard-fields > span.ui-autocomplete input {
+    flex: 1;
+    min-width: 0;
+}
+
+.dishCard-fields > span.ui-autocomplete .ui-autocomplete-dropdown {
+    flex-shrink: 0;
+}
+
 .workspace {
     display: flex;
     gap: 0;
