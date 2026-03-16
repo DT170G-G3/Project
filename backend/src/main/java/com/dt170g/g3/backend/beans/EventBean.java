@@ -14,6 +14,8 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @ViewScoped
@@ -30,6 +32,8 @@ public class EventBean implements Serializable {
     private Event newEvent = new Event();
 
     // --- FÄLT FÖR ATT HANTERA XHTML-VYN ---
+    private LocalDate selectedDate;
+    private LocalTime eventTime;
     private Event selectedEvent;
     private String newCommentName;
     private String newCommentText;
@@ -71,14 +75,19 @@ public class EventBean implements Serializable {
 
 
     public void createEvent() {
-        eventService.createEvent(newEvent);
-        newEvent = new Event();
-        events = eventService.findAll();
+        if (selectedDate != null && eventTime != null) {
+            LocalDateTime fullDateTime = selectedDate.atTime(eventTime);
+            newEvent.setStartTime(fullDateTime);
+
+            eventService.createEvent(newEvent);
+
+            newEvent = new Event();
+            eventTime = null;
+            events = eventService.findAllWithPostsAndComments();
+        }
     }
 
-
-
-    public List<Event> getEvents(){
+    public List<Event> getEvents() {
         return events;
     }
 
@@ -95,11 +104,21 @@ public class EventBean implements Serializable {
     }
 
     // --- METODER FÖR ATT LÄGGA TILL KOMMENTAR ---
-    public String getNewCommentName() { return newCommentName; }
-    public void setNewCommentName(String newCommentName) { this.newCommentName = newCommentName; }
+    public String getNewCommentName() {
+        return newCommentName;
+    }
 
-    public String getNewCommentText() { return newCommentText; }
-    public void setNewCommentText(String newCommentText) { this.newCommentText = newCommentText; }
+    public void setNewCommentName(String newCommentName) {
+        this.newCommentName = newCommentName;
+    }
+
+    public String getNewCommentText() {
+        return newCommentText;
+    }
+
+    public void setNewCommentText(String newCommentText) {
+        this.newCommentText = newCommentText;
+    }
 
     public void addComment() {
         if (selectedEvent != null && newCommentText != null && !newCommentText.trim().isEmpty()) {
@@ -121,7 +140,7 @@ public class EventBean implements Serializable {
         }
     }
 
-    public void removeComment(int id){
+    public void removeComment(int id) {
         eventService.removeComment(id);
     }
 
@@ -132,4 +151,31 @@ public class EventBean implements Serializable {
     public void setNewEvent(Event newEvent) {
         this.newEvent = newEvent;
     }
+
+    // hämta event för specifikt datum vid val i PrimeFaces kalender
+    public List<Event> getEventsForSelectedDate() {
+        if (events == null) return null;
+
+        if (selectedDate == null) {
+            return events.stream()
+                    .filter(e -> e.getStartTime().isAfter(LocalDateTime.now()))
+                    .sorted(Comparator.comparing(Event::getStartTime))
+                    .collect(Collectors.toList());
+        }
+
+        LocalDateTime startOfDay = selectedDate.atStartOfDay();
+        LocalDateTime startOfNextDay = selectedDate.plusDays(1).atStartOfDay();
+
+        return events.stream()
+                .filter(e -> !e.getStartTime().isBefore(startOfDay) &&
+                        e.getStartTime().isBefore(startOfNextDay)) // Standard range
+                .sorted(Comparator.comparing(Event::getStartTime))
+                .collect(Collectors.toList());
+    }
+
+    //Get och set för datum i kalender och tid
+    public LocalDate getSelectedDate() { return selectedDate; }
+    public void setSelectedDate(LocalDate selectedDate) { this.selectedDate = selectedDate; }
+    public java.time.LocalTime getEventTime() { return eventTime; }
+    public void setEventTime(java.time.LocalTime eventTime) { this.eventTime = eventTime; }
 }

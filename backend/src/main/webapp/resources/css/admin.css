@@ -431,6 +431,36 @@ header .weekDiv {
     background: var(--border);
 }
 
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+    padding: 10px 14px;
+}
+
+.event-list-area {
+    flex: 3; /* Takes up 75% of space /
+    min-height: 500px;
+}
+
+.sidebar-area {
+    flex: 1; / Takes up 25% of space */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.time{
+    display: flex;
+}
+
 .menuGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
