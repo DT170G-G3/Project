@@ -51,6 +51,9 @@ public class PostBean implements Serializable {
                     .getExternalContext()
                     .getRealPath("/resources/images/event/past");
 
+
+
+            
             Path target = Paths.get(folder, filename); // target path to folder and filename
             Files.copy(imageFile.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING); // copy the files from input stream to the target
             System.out.println("Folder: " + folder);

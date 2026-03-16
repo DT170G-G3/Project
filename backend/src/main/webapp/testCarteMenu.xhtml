@@ -16,16 +16,10 @@
 
 
 
-            <h2>Lägg till ny rätt</h2>
-            <h2>Lägg till ny rätt</h2>
-
             <ui:repeat value="#{carteMenu.groupedDishes.entrySet()}" var="catEntry">
-                <!-- Kategori-rubrik -->
                 <h2>#{catEntry.key}</h2>
                 <ui:repeat value="#{catEntry.value.entrySet()}" var="typeEntry">
-                    <!-- Typ-rubrik (visa bara om inte "Alla"/"Annat" om du vill) -->
                     <h3>#{typeEntry.key}</h3>
-                    <!-- Lista rätter -->
                     <ui:repeat value="#{typeEntry.value}" var="item">
                         <p>#{item.name}</p>
                         <p>#{item.description}</p>
