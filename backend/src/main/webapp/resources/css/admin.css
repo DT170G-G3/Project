@@ -123,6 +123,7 @@ header .weekDiv {
     justify-content: center;
     padding: 0;
     transition: background 0.1s;
+    text-decoration: none;
 }
 
 .dishCard-input {
@@ -153,6 +154,43 @@ header .weekDiv {
 }
 
 .dishCard-remove:hover { background: rgba(0,0,0,0.2); }
+
+.dishCard-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.dishCard-fields > span.ui-autocomplete {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+}
+
+.dishCard-fields > span.ui-autocomplete input {
+    flex: 1;
+    min-width: 0;
+}
+
+.dishCard-fields > span.ui-autocomplete .ui-autocomplete-dropdown {
+    flex-shrink: 0;
+}
+
+.carte-add-form .inputText,
+.carte-add-form input,
+.carte-add-form select {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
 
 .workspace {
     display: flex;
@@ -391,6 +429,36 @@ header .weekDiv {
     flex: 1;
     height: 1px;
     background: var(--border);
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+    padding: 10px 14px;
+}
+
+.event-list-area {
+    flex: 3; /* Takes up 75% of space /
+    min-height: 500px;
+}
+
+.sidebar-area {
+    flex: 1; / Takes up 25% of space */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.time{
+    display: flex;
 }
 
 .menuGrid {
