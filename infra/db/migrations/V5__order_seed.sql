@@ -19,7 +19,7 @@ INSERT INTO table_order (order_no, note, table_id) VALUES
 -- Sitting 2
 (1002, NULL, 2),
 -- Sitting 3
-(1003, "Riktigt jobbiga kunder... Oxfilen ska vara medium rare och inget lamm i racksen.", 3);
+(1003, "Medium rare", 3);
 
 -- -------------------------------
 -- Dishes per order
@@ -38,7 +38,7 @@ INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id, quantity) VAL
 
 -- Order 3
 (3, 2, 1),
-(3, 13, 1),
+(3, 14, 1),
 (3, 20, 1),
 (3, 8, 1),
 (3, 12, 1),
