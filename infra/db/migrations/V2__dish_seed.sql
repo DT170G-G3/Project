@@ -65,34 +65,6 @@ INSERT INTO drink (name, price) VALUES
 ('Coca-Cola Zero', 32.00),
 ('Fanta', 32.00),
 ('Sprite', 32.00),
-('Still Water', 25.00),
-('Sparkling Water', 28.00),
-('Orange Juice', 35.00),
-('Apple Juice', 35.00),
 ('Lemonade', 38.00),
 ('Iced Tea', 34.00),
-
--- Coffee / hot drinks
-('Coffee', 30.00),
-('Espresso', 28.00),
-('Cappuccino', 36.00),
-('Latte', 38.00),
-('Hot Chocolate', 40.00),
-
--- Alcoholic
-('House Red Wine', 95.00),
-('House White Wine', 95.00),
-('Prosecco', 105.00),
-('Champagne', 145.00),
-('Draft Beer', 68.00),
-('IPA Beer', 78.00),
-('Stout Beer', 82.00),
-('Cider', 72.00),
-
--- Cocktails / spirits
-('Gin & Tonic', 135.00),
-('Vodka Soda', 125.00),
-('Mojito', 140.00),
-('Margarita', 145.00),
-('Whiskey', 120.00),
-('Irish Coffee', 110.00);
+('Öl', 68.00);

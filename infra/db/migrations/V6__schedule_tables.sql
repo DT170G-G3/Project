@@ -44,7 +44,7 @@ CREATE TABLE employee_works_shift(
 -- Insert Into Employee
 INSERT INTO employee (name, android_id) VALUES
 ('Kalle', "cd20486bd301b60e"),
-('Sigrid' , "cd20486bd301b60d"),
+('Jesper' , "cd20486bd301b60d"),
 ('Mike', "cd20486bd301b60f"),
 ('Karl', "cd20486bd301b601"),
 ('Krister', "cd20486bd301b602"),
