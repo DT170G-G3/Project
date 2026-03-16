@@ -1,9 +1,10 @@
+const NUMBER_OF_EMPLOYEES = 11;
 document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('#pool .chip').forEach((chip, idx) => {
         const name = chip.dataset.name;
         chip.innerHTML = `
-            <span class="chip-avatar av-${idx % 11}">${name.at(0).toUpperCase()}</span>
+            <span class="chip-avatar av-${parseInt(chip.dataset.id) % NUMBER_OF_EMPLOYEES}">${name.at(0).toUpperCase()}</span>
             ${name}
         `;
     });
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.shift-drop-zone .chip').forEach((chip, idx) => {
         const name = chip.dataset.name;
         chip.innerHTML = `
-            <span class="chip-avatar av-${idx % 11}">${name.at(0).toUpperCase()}</span>
+            <span class="chip-avatar av-${parseInt(chip.dataset.id) % NUMBER_OF_EMPLOYEES}">${name.at(0).toUpperCase()}</span>
             ${name}
             <button class="remove-btn" title="Ta bort">✕</button>
         `;

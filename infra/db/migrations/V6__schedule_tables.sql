@@ -51,12 +51,9 @@ INSERT INTO employee (name, android_id) VALUES
 ('Kristina', "cd20486bd301b603"),
 ('Karin', "cd20486bd301b604"),
 ('Kim', "cd20486bd301b605"),
-('Kanelbullen', "cd20486bd301b606"),
-('Gud', "cd20486bd301b607"),
 ('Konan Barbaren', "cd20486bd301b608"),
 ('Katjakaj', "cd20486bd301b609"),
-('Bentebent', "cd20486bd301b61a"),
-('En Tallrik Musli', "cd20486bd301b61e");
+('Bentebent', "cd20486bd301b61a");
 
 -- Insert Into Shift Type
 INSERT INTO shift_type (name, start_time, end_time) VALUES
@@ -69,18 +66,3 @@ INSERT INTO shift (date, type_id) VALUES
 ('2026-02-27', 2),
 ('2026-02-28', 1),
 ('2026-02-28', 2);
-
--- Insert Into Employee Works Shift
-INSERT INTO employee_works_shift (employee_id, shift_id) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 4),
-(11, 4),
-(12, 4);
