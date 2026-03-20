@@ -8,9 +8,11 @@ import jdk.jfr.Name;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 @NamedQueries({
         @NamedQuery(name = "Lunch.getDishes", query = "SELECT d.name FROM LunchDish d"),
@@ -62,7 +64,12 @@ public class LunchMenu {
         return dishes;
     }
 
-    public DayOfWeek getDay() {return date.getDayOfWeek();}
+    public String getDay() {
+        Locale sv = Locale.forLanguageTag("sv-SE");
+        String day = date.getDayOfWeek().getDisplayName(TextStyle.FULL,sv);
+
+        return day.substring(0,1).toUpperCase()+day.substring(1);
+    }
 
     public void setDate(LocalDate date){
         this.date = date;

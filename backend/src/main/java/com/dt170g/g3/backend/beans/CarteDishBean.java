@@ -88,7 +88,13 @@ public class CarteDishBean implements Serializable {
 
         if(carteDishService.dishExistsInDatabase(dish.getName())){
             CarteDish existingDish = carteDishService.getDishByName(dish.getName());
+            //Update existing dish
+            existingDish.setDescription(dish.getDescription());
+            existingDish.setPrice(dish.getPrice());
+            existingDish.setCategory(category);
+            existingDish.setFoodType(foodType);
 
+            carteMenuService.updateDish(existingDish);
             carteMenuService.addDishToMenu(existingDish);
         }
         else{

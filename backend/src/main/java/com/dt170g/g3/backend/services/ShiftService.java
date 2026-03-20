@@ -79,24 +79,14 @@ public class ShiftService {
     public void assignEmployeeToShift(int empId, int shiftId){
         Shift shift = entityManager.find(Shift.class, shiftId);
         Employee employee = entityManager.find(Employee.class, empId);
-        if(!shift.getEmployeeList().contains(employee)){
-            shift.getEmployeeList().add(employee);
-        }
-        else{
-            throw new RuntimeException("Employee already assigned to this shift");
-        }
+        shift.getEmployeeList().add(employee);
     }
 
     @Transactional
     public void removeEmployeeFromShift(int empId, int shiftId){
         Shift shift = entityManager.find(Shift.class, shiftId);
         Employee employee = entityManager.find(Employee.class, empId);
-        if(shift.getEmployeeList().contains(employee)){
-            shift.getEmployeeList().remove(employee);
-        }
-        else{
-            throw new RuntimeException("Employee not assigned to this shift");
-        }
+        shift.getEmployeeList().remove(employee);
     }
 
     @Transactional

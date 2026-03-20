@@ -44,19 +44,16 @@ CREATE TABLE employee_works_shift(
 -- Insert Into Employee
 INSERT INTO employee (name, android_id) VALUES
 ('Kalle', "cd20486bd301b60e"),
-('Sigrid' , "cd20486bd301b60d"),
+('Jesper' , "cd20486bd301b60d"),
 ('Mike', "cd20486bd301b60f"),
 ('Karl', "cd20486bd301b601"),
 ('Krister', "cd20486bd301b602"),
 ('Kristina', "cd20486bd301b603"),
 ('Karin', "cd20486bd301b604"),
 ('Kim', "cd20486bd301b605"),
-('Kanelbullen', "cd20486bd301b606"),
-('Gud', "cd20486bd301b607"),
 ('Konan Barbaren', "cd20486bd301b608"),
 ('Katjakaj', "cd20486bd301b609"),
-('Bentebent', "cd20486bd301b61a"),
-('En Tallrik Musli', "cd20486bd301b61e");
+('Bentebent', "cd20486bd301b61a");
 
 -- Insert Into Shift Type
 INSERT INTO shift_type (name, start_time, end_time) VALUES
@@ -65,22 +62,29 @@ INSERT INTO shift_type (name, start_time, end_time) VALUES
 
 -- Insert Into Shift
 INSERT INTO shift (date, type_id) VALUES
-('2026-02-27', 1),
-('2026-02-27', 2),
-('2026-02-28', 1),
-('2026-02-28', 2);
+('2026-03-16', 1),
+('2026-03-16', 2),
+('2026-03-17', 1),
+('2026-03-17', 2),
+('2026-03-18', 1),
+('2026-03-18', 2),
+('2026-03-19', 1),
+('2026-03-19', 2),
+('2026-03-20', 1),
+('2026-03-20', 2),
+('2026-03-21', 1),
+('2026-03-21', 2);
 
--- Insert Into Employee Works Shift
 INSERT INTO employee_works_shift (employee_id, shift_id) VALUES
 (1, 1),
 (2, 1),
-(3, 1),
+(3, 2),
 (4, 2),
-(5, 2),
-(6, 2),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 4),
-(11, 4),
-(12, 4);
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4),
+(9, 5),
+(10, 5),
+(11, 6);
+

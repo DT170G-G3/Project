@@ -19,15 +19,7 @@ INSERT INTO table_order (order_no, note, table_id) VALUES
 -- Sitting 2
 (1002, NULL, 2),
 -- Sitting 3
-(1003, "No onions please", 3),
--- Sitting 4
-(1004, "Vegan", 4),
--- Sitting 5
-(1005, "Gluten free", 5),
--- Sitting 6
-(1006, NULL, 6),
--- Sitting 7
-(1007, "Birthday celebration", 7);
+(1003, "Medium rare", 3);
 
 -- -------------------------------
 -- Dishes per order
@@ -45,24 +37,12 @@ INSERT INTO table_order_carte_dish (table_order_id, carte_dish_id, quantity) VAL
 (2, 11, 1),
 
 -- Order 3
-(3, 3, 7),
-(3, 9, 2),
-
--- Order 4
-(4, 4, 3),
-(4, 10, 2),
-
--- Order 5
-(5, 5, 2),
-(5, 12, 1),
-
--- Order 6
-(6, 6, 4),
-(6, 14, 2),
-
--- Order 7
-(7, 7, 1),
-(7, 13, 3);
+(3, 2, 1),
+(3, 14, 1),
+(3, 20, 1),
+(3, 8, 1),
+(3, 12, 1),
+(3, 3, 1);
 
 -- -------------------------------
 -- Drinks per order
@@ -73,28 +53,14 @@ INSERT INTO table_order_drink (table_order_id, drink_id, quantity) VALUES
 (1, 6, 2),   -- Sparkling Water
 
 -- Order 2
-(2, 10, 1),
-(2, 11, 1),
+(2, 1, 1),
+(2, 2, 1),
 
 -- Order 3
-(3, 2, 2),
-(3, 7, 1),
+(3, 1, 2),
+(3, 2, 1);
 
--- Order 4
-(4, 3, 2),
-(4, 5, 1),
 
--- Order 5
-(5, 4, 1),
-(5, 9, 2),
-
--- Order 6
-(6, 2, 3),
-(6, 6, 1),
-
--- Order 7
-(7, 1, 2),
-(7, 8, 1);
 
 INSERT INTO booking
 (date, start_time, duration_minutes, no_of_people, note, name, email, phone_no)

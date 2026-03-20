@@ -14,10 +14,16 @@
     margin-top: 1rem;
 }
 
-.events-sidebar{
-    border: 1px solid var(--border);
+.events-sidebar,
+.event-meta,
+.img-card,
+.event-comments {
+    border: var(--border-card);
     border-radius: var(--border-radius);
     background: var(--bg-light);
+}
+
+.events-sidebar{
     padding: 1rem;
     display:grid;
     gap: .5rem;
@@ -43,9 +49,6 @@
 .events-main{ display:grid; gap: 1rem; }
 
 .event-meta{
-    border: 1px solid var(--border);
-    border-radius: var(--border-radius);
-    background: var(--bg-light);
     padding: 1rem;
 }
 
@@ -57,9 +60,6 @@
 
 .img-card{
     margin:0;
-    border: 1px solid var(--border);
-    border-radius: var(--border-radius);
-    background: var(--bg-light);
     overflow:hidden;
 }
 
@@ -81,8 +81,6 @@
 }
 
 .hero-inner-event{
-
-    /*glaseffekt*/
     background: rgba(0,0,0,0.10);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(12px);
@@ -110,17 +108,14 @@
     color: var(--text);
     margin: 0.6rem 0 0;
 
-    /* själva plattan */
     background: var(--glass-panel);
     border: 1px solid var(--glass-border);
     border-radius: 14px;
     padding: .55rem .75rem;
 
-    /* glaseffekt */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
-    /* gör den lite “lyft” */
     box-shadow: 0 8px 22px rgba(0,0,0,0.25);
 }
 
@@ -135,9 +130,6 @@
 
 .event-comments{
     margin-top: 1rem;
-    border: 1px solid var(--border);
-    border-radius: var(--border-radius);
-    background: var(--bg-light);
     padding: 1rem;
     display: grid;
     gap: .9rem;
@@ -176,28 +168,20 @@
 }
 
 .comment-form{
+    --form-label-color: var(--text);
+
     display:grid;
-    gap: .75rem;
+    gap: var(--gap-fluid);
     padding: .75rem;
-    border: 1px solid var(--border);
+    border: var(--border-card);
+    border-top: var(--border-top);
     border-radius: var(--border-radius);
     background: color-mix(in oklch, var(--bg) 65%, transparent);
     color: var(--text);
 }
 
-.form-row{
-    display:grid;
-    gap: .35rem;
-}
-
-.input, .textarea{
-    width:100%;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+.comment-form .form-control {
     background: var(--bg);
-    color: var(--text);
-    padding: .55rem .65rem;
-    color: var(--text);
 }
 
 .form-messages{

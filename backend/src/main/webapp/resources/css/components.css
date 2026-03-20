@@ -10,13 +10,6 @@
     align-items: stretch;
 }
 
-/* Stora skärmar: alltid 5 kolumner (mån–fre)*/
-/*@media (min-width: 1800px) {*/
-/*    .category-grid {*/
-/*        grid-template-columns: repeat(5, minmax(0, 1fr));*/
-/*    }*/
-/*}*/
-
 
 /* Fallback om inte subgrid fungerar */
 .card {
@@ -35,7 +28,6 @@
     margin-top: var(--gap-fluid);
 }
 
-/* Gör länken till en knapp */
 .btn-link{
     display: inline-flex;
     align-items: center;
@@ -59,17 +51,17 @@
     transition: transform 120ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
-.btn-link:hover{
-    /* enkel hover utan color-mix: byt till gradient-hover eller bg */
+.btn-link:hover {
     background: var(--gradient-hover);
     box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
 }
 
-.btn-link:active{
+.btn-link:active {
     transform: scale(0.98);
 }
 
-.btn-link:focus-visible{
+.btn-link:focus-visible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 3px;
 }
@@ -79,8 +71,7 @@
   Parent får "3 rader per kort", korten span:3 och använder subgrid.
 */
 @supports (grid-template-rows: subgrid) {
-    .category-grid {
-        grid-auto-rows: auto;
+    .category-grid {        grid-auto-rows: auto;
     }
 
     .card {
@@ -94,26 +85,10 @@
 }
 
 
+
 @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
 }
-
-/* =========================
-   Concept section
-   ========================= */
-
-.concept-section{
-    margin-top: var(--space-fluid);
-    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-}
-
-
-.concept-section p { color: var(--text-muted); }
-.concept-section strong {
-    color: var(--text);
-    font-weight: 700;
-}
-.concept-section h2 { color: var(--secondary); }
 
 
 /* =========================
